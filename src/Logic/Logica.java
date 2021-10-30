@@ -10,12 +10,19 @@ public class Logica {
 	private Timer miTimer;
 	private MapaGrilla miMapa;
 	protected FactoryMapaGrilla miFabrica;
+	protected Timer miReloj;
 	
 	public Logica(GUI g, FactoryMapaGrilla f) {
 		miGUI = g;
 		miFabrica = f;
 		miMapa = miFabrica.crearMapa();
 		miGUI.actualizarFondo(miMapa.getImage());
+		miReloj = new Timer(this); 
+	}
+	
+	public void actualizarReloj() {
+		//Llamamos a la Gui para que el reloj se actualice. 
+		this.miGUI.actualizarReloj(miReloj.getMinutos(), miReloj.getSegundos());
 	}
 	
 	public void moverProtagonistaAbajo() {
@@ -29,5 +36,8 @@ public class Logica {
 	}
 	public void moverProtagonistaIzquierda() {
 		miMapa.moverProtagonistaIzquierda();
+	}
+	public void realizarMovimiento() {
+		
 	}
 }
