@@ -50,7 +50,7 @@ public class GUI {
 		frmJuego = new JFrame();
 		frmJuego.setTitle("Tetris");
 		frmJuego.getContentPane().setBackground(new Color(0, 0, 0));
-		frmJuego.setBounds(400,60,351,722);
+		frmJuego.setBounds(400,60,522,522);
 		frmJuego.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmJuego.addKeyListener(tecla);
 		frmJuego.getContentPane().setLayout(null);
@@ -58,54 +58,54 @@ public class GUI {
 		jugando = true;
 			
 			
-			PPerdiste = new JPanel();
-			PPerdiste.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			PPerdiste.setForeground(Color.WHITE);
-			PPerdiste.setBounds(0, 335, 335, 142);
-			//		PMatriz.add(PPerdiste);
-					frmJuego.getContentPane().add(PPerdiste);
-					PPerdiste.setBackground(new Color(0, 0, 0));
-					PPerdiste.setLayout(null);
-					
-					JButton btnNewButton = new JButton("Volver al menu");
-					btnNewButton.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							EventQueue.invokeLater(new Runnable() {
-								public void run() {
-									try {
-										GUIMenu Nframe = new GUIMenu();
-										Nframe.setVisible(true);
-										frmJuego.dispose();
-									} catch (Exception e) {
-										e.printStackTrace();
-									}
+		PPerdiste = new JPanel();
+		PPerdiste.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		PPerdiste.setForeground(Color.WHITE);
+		PPerdiste.setBounds(0, 335, 335, 142);
+		//		PMatriz.add(PPerdiste);
+				frmJuego.getContentPane().add(PPerdiste);
+				PPerdiste.setBackground(new Color(0, 0, 0));
+				PPerdiste.setLayout(null);
+				
+				JButton btnNewButton = new JButton("Volver al menu");
+				btnNewButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						EventQueue.invokeLater(new Runnable() {
+							public void run() {
+								try {
+									GUIMenu Nframe = new GUIMenu();
+									Nframe.setVisible(true);
+									frmJuego.dispose();
+								} catch (Exception e) {
+									e.printStackTrace();
 								}
-							});
-						}
-					});
-					btnNewButton.setBounds(109, 87, 118, 23);
-					PPerdiste.add(btnNewButton);
-					
-					JLPerdiste = new JLabel("JUEGO TERMINADO");
-					JLPerdiste.setBounds(10, 0, 320, 112);
-					PPerdiste.add(JLPerdiste);
-					JLPerdiste.setForeground(Color.WHITE);
-					JLPerdiste.setBackground(new Color(255, 255, 255));
-					JLPerdiste.setToolTipText("");
-					JLPerdiste.setHorizontalAlignment(SwingConstants.CENTER);
-					JLPerdiste.setFont(new Font("Yu Gothic Light", Font.PLAIN, 20));
-					PPerdiste.setVisible(false);
+							}
+						});
+					}
+				});
+				btnNewButton.setBounds(109, 87, 118, 23);
+				PPerdiste.add(btnNewButton);
+				
+				JLPerdiste = new JLabel("JUEGO TERMINADO");
+				JLPerdiste.setBounds(10, 0, 320, 112);
+				PPerdiste.add(JLPerdiste);
+				JLPerdiste.setForeground(Color.WHITE);
+				JLPerdiste.setBackground(new Color(255, 255, 255));
+				JLPerdiste.setToolTipText("");
+				JLPerdiste.setHorizontalAlignment(SwingConstants.CENTER);
+				JLPerdiste.setFont(new Font("Yu Gothic Light", Font.PLAIN, 20));
+				PPerdiste.setVisible(false);
 	
 		//Panel donde se crea la matriz
 		PMatriz = new JPanel();
 		PMatriz.setBorder(null);
 		PMatriz.setBackground(new Color(0, 0, 0));
-		PMatriz.setBounds(42, 27, 250, 630); //PMatriz.setBounds(20, 25, 356, 678); //
+		PMatriz.setBounds(0,0, 500, 500); //PMatriz.setBounds(20, 25, 356, 678); //
 		frmJuego.getContentPane().add(PMatriz);
 		PMatriz.setLayout(null);
 		
 			panel = new JPanel();
-			panel.setBounds(0, 0, 250, 100);
+			panel.setBounds(0, 0, 522, 100);
 			PMatriz.add(panel);
 			panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			panel.setBackground(new Color(0, 0, 0));
@@ -129,8 +129,8 @@ public class GUI {
 			//necesitamos que el random aparezca antes, osea crear un metodo para el random
 			//y tener q imagen y tetrimino siguiente viene
 			fondo = new JLabel("");
-			fondo.setBounds(180, 25, 60, 60);
-			panel.add(fondo);
+			fondo.setBounds(0, 100, 522, 422);
+			PMatriz.add(fondo);
 			fondo.setForeground(new Color(0, 128, 0));
 			fondo.setBackground(Color.WHITE);
 
