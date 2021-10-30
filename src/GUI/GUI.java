@@ -133,16 +133,7 @@ public class GUI {
 			PMatriz.add(fondo);
 			fondo.setForeground(new Color(0, 128, 0));
 			fondo.setBackground(Color.WHITE);
-
-		
 	}	
-	public void captarMovimientoIzq() {
-		
-	}
-	
-	
-	public void captarMovimientoDer() {
-	}
 	
 	// gui ya tiene que saber cual es el proximo, el random lo tenemos que hacer antes
 	public void actualizarFondo(ImageIcon imagen){
@@ -152,8 +143,16 @@ public class GUI {
 	}
 	
 	public void captarMovimientoAbajo() {
+		log.moverProtagonistaAbajo();
 	}
 	public void captarMovimientoArriba() {
+		log.moverProtagonistaArriba();
+	}
+	public void captarMovimientoIzq() {
+		log.moverProtagonistaIzquierda();
+	}
+	public void captarMovimientoDer() {
+		log.moverProtagonistaDerecha();
 	}
 
 	public void gameOver() {

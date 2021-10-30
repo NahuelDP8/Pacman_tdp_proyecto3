@@ -7,7 +7,10 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -67,7 +70,7 @@ public class GUIMenu extends JFrame {
 				});
 			}
 		});
-		btnNaruto.setBounds(180, 162, 155, 46);
+		btnNaruto.setBounds(261, 100, 261, 422);
 		
 		JButton btnGoku = new JButton("JUGAR GOKU");
 		btnGoku.setFont(new Font("Source Sans Pro", Font.BOLD, 14));
@@ -86,15 +89,23 @@ public class GUIMenu extends JFrame {
 				});
 			}
 		});
-		btnGoku.setBounds(180, 300, 155, 46);
+		btnGoku.setBounds(0, 100, 261, 422);
 		
-		JLabel lblNewLabel = new JLabel("PACMAN");
-		lblNewLabel.setBounds(120, 30, 291, 78);
+		JLabel lblNewLabel = new JLabel("MODO DE JUEGO");
+		lblNewLabel.setBounds(0, 30, 522, 78);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Yu Gothic Light", Font.PLAIN, 45));
 		contentPane.setLayout(null);
+		ImageIcon imagen = new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/naruto.png"));
+		Image EscalarFoto = imagen.getImage().getScaledInstance(btnNaruto.getWidth(),btnNaruto.getHeight(), Image.SCALE_SMOOTH);
+		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
+		btnNaruto.setIcon(FotoEscalada);
 		contentPane.add(btnNaruto);
+		imagen = new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/goku.png"));
+		EscalarFoto = imagen.getImage().getScaledInstance(btnGoku.getWidth(),btnGoku.getHeight(), Image.SCALE_SMOOTH);
+		FotoEscalada = new ImageIcon(EscalarFoto);
+		btnGoku.setIcon(FotoEscalada);
 		contentPane.add(btnGoku);
 		contentPane.add(lblNewLabel);
 		
