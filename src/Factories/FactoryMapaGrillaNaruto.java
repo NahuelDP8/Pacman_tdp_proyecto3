@@ -12,7 +12,7 @@ public class FactoryMapaGrillaNaruto extends FactoryMapaGrilla{
 		FactoryProtagonista fabricaProt = new FactoryGoku(); 
 		FactoryEnemigo fabricaEnem = new FactoryTortuga(); 
 		
-		MapaGrilla mapa = new Mapa1(miImagen,fabricaProt,fabricaEnem);
+		MapaGrilla mapa = new Mapa1(miImagen,fabricaProt,fabricaEnem, 0, 0);
 		
 		return mapa;
 	}

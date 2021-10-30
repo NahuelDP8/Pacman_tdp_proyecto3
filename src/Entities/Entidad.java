@@ -1,13 +1,24 @@
 package Entities;
 
 abstract public class Entidad {
-	protected int x;
-	protected int y;
+	protected PairTupla posicion;
+	protected int ancho;
+	protected int altura;
+	protected MapaGrilla miGrilla;
 	
-	public int getX() {
-		return x;
+	public Entidad (PairTupla p, int anc,int alt) {
+		ancho = anc;
+		altura = alt;
+		posicion = p;
 	}
-	public int getY() {
-		return y;
+	
+	public int getAltura() {
+		return altura;
+	}
+	public int getAncho() {
+		return ancho;
+	}
+	public PairTupla getPos() {
+		return posicion;
 	}
 }

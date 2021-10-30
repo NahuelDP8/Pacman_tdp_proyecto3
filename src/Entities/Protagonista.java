@@ -7,7 +7,8 @@ abstract public class Protagonista extends Personaje{
 	protected int puntaje;
 	protected int velocidad;
 	
-	public Protagonista() {
+	public Protagonista(PairTupla p , int anc, int alt) {
+		super(p, anc, alt);
 		vidas = 3;
 		movimiento = 0;
 		puntaje = 0;
