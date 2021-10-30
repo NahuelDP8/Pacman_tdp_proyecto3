@@ -1,5 +1,5 @@
 package Entities;
 
-public class Celda {
+public class Zona {
 
 }
