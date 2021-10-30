@@ -1,5 +1,7 @@
 package Factories;
 
-abstract public class FactoryProtagonista extends AbstractFactory{
-	abstract public void crearElemento();
+import Entities.Protagonista;
+
+abstract public class FactoryProtagonista{
+	abstract public Protagonista crearProtagonista();
 }

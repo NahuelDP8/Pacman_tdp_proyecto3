@@ -17,4 +17,17 @@ public class Logica {
 		miMapa = miFabrica.crearMapa();
 		miGUI.actualizarFondo(miMapa.getImage());
 	}
+	
+	public void moverProtagonistaAbajo() {
+		miMapa.moverProtagonistaAbajo();
+	}
+	public void moverProtagonistaArriba() {
+		miMapa.moverProtagonistaArriba();
+	}
+	public void moverProtagonistaDerecha() {
+		miMapa.moverProtagonistaDerecha();
+	}
+	public void moverProtagonistaIzquierda() {
+		miMapa.moverProtagonistaIzquierda();
+	}
 }
