@@ -27,6 +27,7 @@ public class GUI {
 	private Logica log;
 	private JLabel [][] labels = new JLabel[25][10];
 	private JLabel JLTiempo;
+	private JLabel player;
 	private JLabel JLPuntaje;
 	private JPanel panel;
 	private JPanel PMatriz;
@@ -128,18 +129,36 @@ public class GUI {
 			
 			//necesitamos que el random aparezca antes, osea crear un metodo para el random
 			//y tener q imagen y tetrimino siguiente viene
+			
+			player = new JLabel("");
+			player.setBounds(30, 30, 50,50);
+			PMatriz.add(player);
+			player.setForeground(new Color(0, 128, 0));
+			player.setBackground(Color.WHITE);
+			
 			fondo = new JLabel("");
 			fondo.setBounds(0, 100, 522, 422);
 			PMatriz.add(fondo);
 			fondo.setForeground(new Color(0, 128, 0));
 			fondo.setBackground(Color.WHITE);
+			
 	}	
 	
-	// gui ya tiene que saber cual es el proximo, el random lo tenemos que hacer antes
 	public void actualizarFondo(ImageIcon imagen){
 		Image EscalarFoto = imagen.getImage().getScaledInstance(fondo.getWidth(),fondo.getHeight(), Image.SCALE_SMOOTH);
 		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
-		fondo.setIcon(FotoEscalada);
+		//fondo.setIcon(FotoEscalada);
+	}
+	
+	public void actualizarProtagonista(ImageIcon imagenProtagonista, int xProtagonista, int yProtagonista) {
+		player.setLocation(xProtagonista,yProtagonista);
+		
+	}
+	public void fotoProtagonista(ImageIcon imagenProtagonista, int xProtagonista, int yProtagonista) {
+		Image EscalarFoto = imagenProtagonista.getImage().getScaledInstance(player.getWidth(),player.getHeight(), Image.SCALE_SMOOTH);
+		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
+		player.setIcon(FotoEscalada);
+		
 	}
 	
 	public void captarMovimientoAbajo() {
@@ -176,9 +195,6 @@ public class GUI {
 	}
 
 
-
-	
-	
 	class EventoDeTeclado implements KeyListener{
 		public void keyTyped(KeyEvent e) {
 			
@@ -211,6 +227,7 @@ public class GUI {
 						
 		}
 	}
+
 }
 
 

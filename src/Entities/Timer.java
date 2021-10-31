@@ -21,7 +21,7 @@ public class Timer implements Runnable {
 		//Hilo que notifica que se debe mover.
 		hiloMoverPersonaje = new Thread(this);
 		hiloMoverPersonaje.start();
-		
+		/*
 		hiloMejora = new Thread(this);
 		hiloMejora.start();
 		
@@ -33,13 +33,22 @@ public class Timer implements Runnable {
 		
 		hiloMoverFantasmas = new Thread(this);
 		hiloMoverFantasmas.start();
-
+		*/
 	}
 
 	@Override
 	public void run() {
 		Thread ct = Thread.currentThread();
 		//Actualiza el reloj
+		while (ct == hiloMoverPersonaje) {
+
+			try {
+				Thread.sleep(30);
+				miLogica.realizarMovimiento();
+			} catch(InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+		}
 		while (ct == hiloTiempo) {
 			try {
 				Thread.sleep(1000);
@@ -56,52 +65,42 @@ public class Timer implements Runnable {
 				Thread.currentThread().interrupt();
 			}
 		}
-		while (ct == hiloMoverPersonaje) {
-			/*
-			try {
-				//Completar
-			} catch(InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-		*/
-		}
+		/*
 		while (ct == hiloMejora) {
-			/*
 				try {
 					//Completar
 				} catch(InterruptedException e) {
 					Thread.currentThread().interrupt();
 				}
-			*/
 		}
 		while (ct == hiloMusica) {
-			/*
+
 			try {
 				//Completar
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
-		*/
+/
 		}
 		while (ct == hiloMoverFantasmas) {
-			/*
+
 			try {
 				//Completar
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
-		*/
+
 		}
 		while (ct == hiloMoverFantasmasMuertos) {
-			/*
+
 			try {
 				//Completar
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
-		*/
+
 		}
-		
+		*/
 	}
 	
 	public int getMinutos() {

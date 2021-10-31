@@ -20,7 +20,18 @@ public class Zona {
 	public void setEntidad(Entidad nueva) {
 		misEntidades.add(nueva);
 	}
-	
+	public int getAncho() {
+		return ancho;
+	}
+	public int getAlto() {
+		return alto;
+	}
+	public int getX(){
+		return posicionEnMatriz.getX();
+	}
+	public int getY(){
+		return posicionEnMatriz.getY();
+	}
 	public void realizarColisiones() {
 		
 	}

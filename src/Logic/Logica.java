@@ -16,10 +16,16 @@ public class Logica {
 		miGUI = g;
 		miFabrica = f;
 		miMapa = miFabrica.crearMapa();
+		miMapa.setLogica(this);
 		miGUI.actualizarFondo(miMapa.getImage());
+		miGUI.fotoProtagonista(miMapa.getImagenProtagonista(),100,100);
 		miReloj = new Timer(this); 
 	}
 	
+	public void actualizarProtagonista(int x,int y) {
+		miGUI.actualizarProtagonista(miMapa.getImagenProtagonista(),x,y);
+	}
+
 	public void actualizarReloj() {
 		//Llamamos a la Gui para que el reloj se actualice. 
 		this.miGUI.actualizarReloj(miReloj.getMinutos(), miReloj.getSegundos());
@@ -38,6 +44,6 @@ public class Logica {
 		miMapa.moverProtagonistaIzquierda();
 	}
 	public void realizarMovimiento() {
-		
+		miMapa.realizarMovimiento();
 	}
 }
