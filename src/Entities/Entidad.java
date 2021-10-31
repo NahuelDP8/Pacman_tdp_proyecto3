@@ -19,15 +19,20 @@ abstract public class Entidad {
 	public int getAltura() {
 		return altura;
 	}
+	
 	public int getAncho() {
 		return ancho;
 	}
+	
+	
+	//verificar abajo sacar?
 	public int getX() {
 		return posicion.x;
 	}
 	public int getY() {
 		return posicion.y;
 	}
+	// verificar arriba de esto
 	public PairTupla getPos() {
 		return posicion;
 	}
