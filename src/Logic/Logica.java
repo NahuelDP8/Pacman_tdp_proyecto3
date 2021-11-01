@@ -16,8 +16,7 @@ public class Logica {
 	public Logica(GUI_MAPA g, FactoryMapaGrilla f) {
 		miGUI = g;
 		miFabrica = f;
-		miMapa = miFabrica.crearMapa();
-		miMapa.setLogica(this);
+		miMapa = miFabrica.crearMapa(this);
 		miGUI.actualizarFondo(miMapa.getImage());
 		miGUI.fotoProtagonista(miMapa.getImagenProtagonista(),100,100);
 		miReloj = new Timer(this); 
