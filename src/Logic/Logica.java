@@ -4,18 +4,20 @@ import GUI.GUI;
 
 import javax.swing.ImageIcon;
 
+import GUI.GUI_MAPA;
+
 import Entities.*;
 import Factories.FactoryMapaGrilla;
 
 public class Logica {
 
-	private GUI miGUI;
+	private GUI_MAPA miGUI;
 	private Timer miTimer;
 	private MapaGrilla miMapa;
 	protected FactoryMapaGrilla miFabrica;
 	protected Timer miReloj;
 	
-	public Logica(GUI g, FactoryMapaGrilla f) {
+	public Logica(GUI_MAPA g, FactoryMapaGrilla f) {
 		miGUI = g;
 		miFabrica = f;
 		miMapa = miFabrica.crearMapa(this);
@@ -28,7 +30,7 @@ public class Logica {
 		miGUI.actualizarProtagonista(miMapa.getImagenProtagonista(),x,y);
 	}
 	public void actualizarPunto(ImageIcon img, int x,int y) {
-		miGUI.actualizarPunto(img,x,y);
+		//miGUI.actualizarPunto(img,x,y);
 	}
 
 	public void actualizarReloj() {

@@ -30,8 +30,9 @@ abstract public class MapaGrilla {
 		this.miLogica = miLogica;
 	}
 	
+
 	protected void agregarProtagonista() {
-		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(100,100),50,50);
+		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(563,400),50,50);
 		miProtagonista.setGrilla(this);
 	}
 
