@@ -7,13 +7,11 @@ abstract public class Entidad {
 	protected int ancho;
 	protected int altura;
 	protected MapaGrilla miGrilla;
-	protected Zona miZona;
 	
-	public Entidad (PairTupla p, int anc,int alt, Zona zona) {
+	public Entidad (PairTupla p, int anc,int alt) {
 		ancho = anc;
 		altura = alt;
 		posicion = p;
-		miZona = zona;
 	}
 	
 	public int getAltura() {

@@ -1,7 +1,6 @@
 package Entities;
 
 import javax.swing.ImageIcon;
-
 import Factories.FactoryEnemigo;
 import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
@@ -21,40 +20,39 @@ abstract public class MapaGrilla {
 	protected int ancho;
 	protected int altura; 
 	
-	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al) {
+	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica) {
 		miFondo = fondo;
 		fabricaProt = fp;
 		fabricaEnem = fe;
 		fabricaMejora = new FactoryMejora();
 		ancho = an;
 		altura = al;
-		zonas = new Zona[4][4];
-		completarMapa();
-		agregarProtagonista();
+		this.miLogica = miLogica;
 	}
 	
-	private void agregarProtagonista() {
-		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(100,100),50,50, zonas[0][0]);
+	protected void agregarProtagonista() {
+		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(100,100),50,50);
 		miProtagonista.setGrilla(this);
 	}
 
-	private void completarMapa() {
+	protected void construccionZonasGrilla(int ancho, int alto) {
+		//Inicializamos el tamaño de nuestra matriz de zonas
+		zonas =  new Zona[ancho][alto];
 		//Creamos las zonas
 		int i = 0,j = 0;
 		for(Zona[] zz:zonas) {
 			for(Zona z:zz) {
 				z = new Zona(1,new PairTupla(i*(miFondo.getIconWidth()/4),i*(miFondo.getIconHeight()/4)),miFondo.getIconWidth()/4,miFondo.getIconHeight()/4);
+				zonas[i][j] = z;
 				j++;
 			}
+			j=0;
 			i++;
 		}
-		agregarParedes();
-		agregarMejoras();
 	}
-
-	private void agregarParedes() {
-		
-	}
+	
+	abstract protected void construccionParedeslimitaciones();
+	private void agregarParedes() {}
 
 	abstract protected void agregarMejoras();
 	
@@ -80,16 +78,16 @@ abstract public class MapaGrilla {
 	}
 
 	public void agregarEnemigoNaranja(){
-		
+		misEnemigos.add(fabricaEnem.crearNaranja(null, ancho, altura));
 	}
 	public void agregarEnemigoAzul() {
-		
+		misEnemigos.add(fabricaEnem.crearAzul(null, ancho, altura));
 	}
 	public void agregarEnemigoRojo() {
-		
+		misEnemigos.add(fabricaEnem.crearRojo(null, ancho, altura));
 	}
 	public void agregarEnemigoRosa() {
-		
+		misEnemigos.add(fabricaEnem.crearRosa(null, ancho, altura));
 	}
 	public ImageIcon getImagenProtagonista() {
 		return miProtagonista.getImagen();

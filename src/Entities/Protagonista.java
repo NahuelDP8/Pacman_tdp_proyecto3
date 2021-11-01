@@ -13,8 +13,8 @@ abstract public class Protagonista extends Personaje{
 	protected final int MOVER_IZQUIERDA = 3;
 	protected final int MOVER_DERECHA = 4;
 	
-	public Protagonista(PairTupla p, int anc, int alt,Zona zona) {
-		super(p, anc, alt,zona);
+	public Protagonista(PairTupla p, int anc, int alt) {
+		super(p, anc, alt);
 		vidas = 3;
 		movimiento = 0;
 		puntaje = 0;

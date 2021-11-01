@@ -2,8 +2,8 @@ package Entities;
 
 public class Enemigo extends Personaje{
 
-	public Enemigo(PairTupla p, int anc, int alt,Zona zona) {
-		super(p, anc, alt,zona);
+	public Enemigo(PairTupla p, int anc, int alt) {
+		super(p, anc, alt);
 		// TODO Auto-generated constructor stub
 	}
 
