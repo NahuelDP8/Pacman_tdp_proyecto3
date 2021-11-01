@@ -1,6 +1,9 @@
 package Logic;
 
 import GUI.GUI;
+
+import javax.swing.ImageIcon;
+
 import Entities.*;
 import Factories.FactoryMapaGrilla;
 
@@ -15,8 +18,7 @@ public class Logica {
 	public Logica(GUI g, FactoryMapaGrilla f) {
 		miGUI = g;
 		miFabrica = f;
-		miMapa = miFabrica.crearMapa();
-		miMapa.setLogica(this);
+		miMapa = miFabrica.crearMapa(this);
 		miGUI.actualizarFondo(miMapa.getImage());
 		miGUI.fotoProtagonista(miMapa.getImagenProtagonista(),100,100);
 		miReloj = new Timer(this); 
@@ -24,6 +26,9 @@ public class Logica {
 	
 	public void actualizarProtagonista(int x,int y) {
 		miGUI.actualizarProtagonista(miMapa.getImagenProtagonista(),x,y);
+	}
+	public void actualizarPunto(ImageIcon img, int x,int y) {
+		miGUI.actualizarPunto(img,x,y);
 	}
 
 	public void actualizarReloj() {

@@ -21,7 +21,8 @@ public class MapaGrilla {
 	protected int ancho;
 	protected int altura; 
 	
-	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al) {
+	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al,Logica log) {
+		miLogica = log;
 		miFondo = fondo;
 		fabricaProt = fp;
 		fabricaEnem = fe;
@@ -44,8 +45,10 @@ public class MapaGrilla {
 		for(Zona[] zz:zonas) {
 			for(Zona z:zz) {
 				z = new Zona(1,new PairTupla(i*(miFondo.getIconWidth()/4),i*(miFondo.getIconHeight()/4)),miFondo.getIconWidth()/4,miFondo.getIconHeight()/4);
+				zonas[i][j] = z;
 				j++;
 			}
+			j=0;
 			i++;
 		}
 		agregarParedes();
@@ -57,10 +60,9 @@ public class MapaGrilla {
 	}
 
 	private void agregarMejoras() {
-		/*
+
 		Mejora m;
 		//Comenzamos por la primer zona:
-		int i = 0,j = 0;
 		Zona z = zonas[0][0];
 		int x = z.getX();
 		int y = z.getY();
@@ -69,21 +71,28 @@ public class MapaGrilla {
 		z.setEntidad(m);
 		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*2,y+(z.getAlto()/5)), 10, 10, z);
 		z.setEntidad(m);
+		miLogica.actualizarPunto(m.getImagen(),m.getX(),m.getY());
 		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*3,y+(z.getAlto()/5)), 10, 10, z);
 		z.setEntidad(m);
+		miLogica.actualizarPunto(m.getImagen(),m.getX(),m.getY());
 		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*4,y+(z.getAlto()/5)), 10, 10, z);
 		z.setEntidad(m);
+		miLogica.actualizarPunto(m.getImagen(),m.getX(),m.getY());
 		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5),y+(z.getAlto()/5)*2), 10, 10, z);
 		z.setEntidad(m);
+		miLogica.actualizarPunto(m.getImagen(),m.getX(),m.getY());
 		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*4,y+(z.getAlto()/5)*2), 10, 10, z);
 		z.setEntidad(m);
+		miLogica.actualizarPunto(m.getImagen(),m.getX(),m.getY());
 		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5),y+(z.getAlto()/5)*3), 10, 10, z);
 		z.setEntidad(m);
+		miLogica.actualizarPunto(m.getImagen(),m.getX(),m.getY());
 		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*3,y+(z.getAlto()/5)*3), 10, 10, z);
 		z.setEntidad(m);
+		miLogica.actualizarPunto(m.getImagen(),m.getX(),m.getY());
 		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*4,y+(z.getAlto()/5)*3), 10, 10, z);
 		z.setEntidad(m);
-		*/
+		miLogica.actualizarPunto(m.getImagen(),m.getX(),m.getY());
 	}
 
 	public ImageIcon getImage() {
@@ -113,14 +122,9 @@ public class MapaGrilla {
 	public void actualizarProtagonista() {
 		miLogica.actualizarProtagonista(miProtagonista.getX(),miProtagonista.getY());
 	}
-
-	public void setLogica(Logica logica) {
-		miLogica = logica;
-		
-	}
-
 	public void realizarMovimiento() {
 		miProtagonista.realizarMovimiento();
 		
 	}
+
 }

@@ -1,5 +1,7 @@
 package Factories;
 
+import javax.swing.ImageIcon;
+
 import Entities.Fruta;
 import Entities.Mejora;
 import Entities.PairTupla;
@@ -9,8 +11,10 @@ import Entities.PuntoGrande;
 import Entities.Zona;
 
 public class FactoryMejora{
+	private ImageIcon imagenPunto=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/punto.png"));
 	public Mejora crearPunto(PairTupla p , int ancho, int altura, Zona zona) {
 		Mejora punto = new Punto( p ,  ancho,  altura, zona);
+		punto.setImagen(imagenPunto);
 		return punto;
 	}
 	public Mejora crearFruta(PairTupla p , int ancho, int altura, Zona zona) {

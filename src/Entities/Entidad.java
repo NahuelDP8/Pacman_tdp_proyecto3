@@ -8,6 +8,7 @@ abstract public class Entidad {
 	protected int altura;
 	protected MapaGrilla miGrilla;
 	protected Zona miZona;
+	protected ImageIcon miImagen;
 	
 	public Entidad (PairTupla p, int anc,int alt, Zona zona) {
 		ancho = anc;
@@ -22,6 +23,14 @@ abstract public class Entidad {
 	
 	public int getAncho() {
 		return ancho;
+	}
+	
+	
+	public void setImagen(ImageIcon miImagen) {
+		this.miImagen = miImagen;
+	}
+	public ImageIcon getImagen() {
+		return miImagen;
 	}
 	
 	

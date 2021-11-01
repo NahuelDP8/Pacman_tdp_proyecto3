@@ -9,6 +9,7 @@ public class Zona {
 	protected int alto;
 	
 	public Zona(int id, PairTupla p, int an,int al) {
+		misEntidades = new ArrayList<Entidad>();
 		posicionEnMatriz = p;
 		idZona = id;
 		ancho = an;
