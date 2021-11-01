@@ -127,6 +127,11 @@ public class GUI_MAPA {
 		
 		
 		
+		JLTiempo = new JLabel("00:00");
+        JLTiempo.setVerticalAlignment(SwingConstants.TOP);
+        JLTiempo.setForeground(Color.WHITE);
+        JLTiempo.setFont(new Font("Yu Gothic Light", Font.PLAIN, 48));
+        JLTiempo.setBounds(10, 10, 203, 52);
 		//JLABEL
 		
 		JLPlayer = new JLabel("");
