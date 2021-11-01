@@ -34,7 +34,7 @@ public class MapaGrilla {
 	}
 	
 	private void agregarProtagonista() {
-		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(100,100),50,50, zonas[0][0]);
+		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(463,504),50,50, zonas[0][0]);
 		miProtagonista.setGrilla(this);
 	}
 

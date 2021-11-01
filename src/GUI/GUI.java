@@ -39,7 +39,7 @@ public class GUI {
 	
 	public GUI(FactoryMapaGrilla f) {
 		initialize();
-		log = new Logica(this,f);
+		//log = new Logica(this,f);
 	}
 	
 	/**
@@ -162,16 +162,7 @@ public class GUI {
 		//fondo.setIcon(FotoEscalada);
 	}
 	
-	public void actualizarProtagonista(ImageIcon imagenProtagonista, int xProtagonista, int yProtagonista) {
-		player.setLocation(xProtagonista,yProtagonista);
-		
-	}
-	public void fotoProtagonista(ImageIcon imagenProtagonista, int xProtagonista, int yProtagonista) {
-		Image EscalarFoto = imagenProtagonista.getImage().getScaledInstance(player.getWidth(),player.getHeight(), Image.SCALE_DEFAULT);
-		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
-		player.setIcon(FotoEscalada);
-		
-	}
+	
 	
 	public void captarMovimientoAbajo() {
 		log.moverProtagonistaAbajo();
@@ -196,15 +187,7 @@ public class GUI {
 	}
 	
 
-	public void actualizarReloj(int min, int seg) {
-		String minutos= ""+min;
-		String segundos= ""+seg;
-		if(min<10)
-			minutos= "0"+min;
-		if(seg<10)
-			segundos= "0"+seg;
-		JLTiempo.setText(minutos+":"+segundos);
-	}
+	
 
 
 	class EventoDeTeclado implements KeyListener{

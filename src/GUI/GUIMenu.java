@@ -60,8 +60,8 @@ public class GUIMenu extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							GUI window = new GUI(new FactoryMapaGrillaNaruto());
-							window.frmJuego.setVisible(true);
+							GUI_MAPA GUIWindow = new GUI_MAPA(new FactoryMapaGrillaNaruto());
+							GUIWindow.getFrame().setVisible(true);
 							dispose();
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -79,8 +79,8 @@ public class GUIMenu extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							GUI window = new GUI(new FactoryMapaGrillaGoku());
-							window.frmJuego.setVisible(true);
+							GUI_MAPA window = new GUI_MAPA(new FactoryMapaGrillaGoku());
+							window.getFrame().setVisible(true);
 							dispose();
 						} catch (Exception e) {
 							e.printStackTrace();
