@@ -23,7 +23,7 @@ abstract public class Protagonista extends Personaje{
 	
 	public void realizarMovimiento() {
 		if(movimiento == MOVER_ABAJO) {
-			if(posicion.getY()<536) {
+			if(posicion.getY()<490) {
 			posicion.setY(posicion.getY()+ velocidad);
 			}
 		}else if(movimiento == MOVER_ARRIBA) {
@@ -35,7 +35,7 @@ abstract public class Protagonista extends Personaje{
 					posicion.setX(posicion.getX()- velocidad);
 				}
 			}else if(movimiento == MOVER_DERECHA) {
-			if(posicion.getX()<956)
+			if(posicion.getX()<910)
 			posicion.setX(posicion.getX()+ velocidad);
 		}
 		miGrilla.actualizarProtagonista();

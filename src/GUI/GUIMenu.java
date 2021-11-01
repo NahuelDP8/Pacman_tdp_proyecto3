@@ -97,13 +97,13 @@ public class GUIMenu extends JFrame {
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Yu Gothic Light", Font.PLAIN, 45));
 		contentPane.setLayout(null);
-		ImageIcon imagen = new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/naruto.png"));
-		Image EscalarFoto = imagen.getImage().getScaledInstance(btnNaruto.getWidth(),btnNaruto.getHeight(), Image.SCALE_SMOOTH);
+		ImageIcon imagen = new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/probar.gif"));
+		Image EscalarFoto = imagen.getImage().getScaledInstance(btnNaruto.getWidth(),btnNaruto.getHeight(), Image.SCALE_DEFAULT);
 		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
 		btnNaruto.setIcon(FotoEscalada);
 		contentPane.add(btnNaruto);
 		imagen = new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/goku.png"));
-		EscalarFoto = imagen.getImage().getScaledInstance(btnGoku.getWidth(),btnGoku.getHeight(), Image.SCALE_SMOOTH);
+		EscalarFoto = imagen.getImage().getScaledInstance(btnGoku.getWidth(),btnGoku.getHeight(), Image.SCALE_DEFAULT);
 		FotoEscalada = new ImageIcon(EscalarFoto);
 		btnGoku.setIcon(FotoEscalada);
 		contentPane.add(btnGoku);

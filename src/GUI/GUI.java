@@ -60,7 +60,7 @@ public class GUI {
 		PRUEBA_REVISAR.setForeground(Color.WHITE);
 		PRUEBA_REVISAR.setBounds(0, 0, 960, 540);
 		ImageIcon imagen = new ImageIcon(GUI.class.getResource("/Imagenes/fondo.png"));
-		Image EscalarFoto = imagen.getImage().getScaledInstance(PRUEBA_REVISAR.getWidth(),PRUEBA_REVISAR.getHeight(), Image.SCALE_SMOOTH);
+		Image EscalarFoto = imagen.getImage().getScaledInstance(PRUEBA_REVISAR.getWidth(),PRUEBA_REVISAR.getHeight(), Image.SCALE_DEFAULT);
 		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
 		
 		//necesitamos que el random aparezca antes, osea crear un metodo para el random
@@ -157,7 +157,7 @@ public class GUI {
 	}	
 	
 	public void actualizarFondo(ImageIcon imagen){
-		Image EscalarFoto = imagen.getImage().getScaledInstance(fondo.getWidth(),fondo.getHeight(), Image.SCALE_SMOOTH);
+		Image EscalarFoto = imagen.getImage().getScaledInstance(fondo.getWidth(),fondo.getHeight(), Image.SCALE_DEFAULT);
 		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
 		//fondo.setIcon(FotoEscalada);
 	}
@@ -167,7 +167,7 @@ public class GUI {
 		
 	}
 	public void fotoProtagonista(ImageIcon imagenProtagonista, int xProtagonista, int yProtagonista) {
-		Image EscalarFoto = imagenProtagonista.getImage().getScaledInstance(player.getWidth(),player.getHeight(), Image.SCALE_SMOOTH);
+		Image EscalarFoto = imagenProtagonista.getImage().getScaledInstance(player.getWidth(),player.getHeight(), Image.SCALE_DEFAULT);
 		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
 		player.setIcon(FotoEscalada);
 		
