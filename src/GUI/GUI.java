@@ -19,6 +19,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import Factories.FactoryMapaGrilla;
+import Factories.FactoryMapaGrillaNaruto;
 import GUI.GUI.EventoDeTeclado;
 import Logic.Logica;
 
@@ -51,11 +52,28 @@ public class GUI {
 		frmJuego = new JFrame();
 		frmJuego.setTitle("Tetris");
 		frmJuego.getContentPane().setBackground(new Color(0, 0, 0));
-		frmJuego.setBounds(400,60,522,522);
+		frmJuego.setBounds(400,60,1042,715);
 		frmJuego.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmJuego.addKeyListener(tecla);
 		frmJuego.getContentPane().setLayout(null);
+		JLabel PRUEBA_REVISAR = new JLabel("");
+		PRUEBA_REVISAR.setForeground(Color.WHITE);
+		PRUEBA_REVISAR.setBounds(0, 0, 960, 540);
+		ImageIcon imagen = new ImageIcon(GUI.class.getResource("/Imagenes/fondo.png"));
+		Image EscalarFoto = imagen.getImage().getScaledInstance(PRUEBA_REVISAR.getWidth(),PRUEBA_REVISAR.getHeight(), Image.SCALE_DEFAULT);
+		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
 		
+		//necesitamos que el random aparezca antes, osea crear un metodo para el random
+		//y tener q imagen y tetrimino siguiente viene
+		
+		player = new JLabel("");
+		player.setBounds(30, 30, 50,50);
+		frmJuego.getContentPane().add(player);
+		player.setForeground(new Color(0, 128, 0));
+		player.setBackground(Color.WHITE);
+		PRUEBA_REVISAR.setIcon(FotoEscalada);
+		
+		frmJuego.getContentPane().add(PRUEBA_REVISAR);
 		jugando = true;
 			
 			
@@ -104,9 +122,12 @@ public class GUI {
 		PMatriz.setBounds(0,0, 500, 500); //PMatriz.setBounds(20, 25, 356, 678); //
 		frmJuego.getContentPane().add(PMatriz);
 		PMatriz.setLayout(null);
+			
+			
+			
 		
 			panel = new JPanel();
-			panel.setBounds(0, 0, 522, 100);
+			panel.setBounds(0, 0, 960, 540);
 			PMatriz.add(panel);
 			panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			panel.setBackground(new Color(0, 0, 0));
@@ -127,15 +148,6 @@ public class GUI {
 			JLPuntaje.setBounds(10, 66, 230, 25);
 			panel.add(JLPuntaje);
 			
-			//necesitamos que el random aparezca antes, osea crear un metodo para el random
-			//y tener q imagen y tetrimino siguiente viene
-			
-			player = new JLabel("");
-			player.setBounds(30, 30, 50,50);
-			PMatriz.add(player);
-			player.setForeground(new Color(0, 128, 0));
-			player.setBackground(Color.WHITE);
-			
 			fondo = new JLabel("");
 			fondo.setBounds(0, 100, 522, 422);
 			PMatriz.add(fondo);
@@ -145,7 +157,7 @@ public class GUI {
 	}	
 	
 	public void actualizarFondo(ImageIcon imagen){
-		Image EscalarFoto = imagen.getImage().getScaledInstance(fondo.getWidth(),fondo.getHeight(), Image.SCALE_SMOOTH);
+		Image EscalarFoto = imagen.getImage().getScaledInstance(fondo.getWidth(),fondo.getHeight(), Image.SCALE_DEFAULT);
 		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
 		//fondo.setIcon(FotoEscalada);
 	}
@@ -155,7 +167,7 @@ public class GUI {
 		
 	}
 	public void fotoProtagonista(ImageIcon imagenProtagonista, int xProtagonista, int yProtagonista) {
-		Image EscalarFoto = imagenProtagonista.getImage().getScaledInstance(player.getWidth(),player.getHeight(), Image.SCALE_SMOOTH);
+		Image EscalarFoto = imagenProtagonista.getImage().getScaledInstance(player.getWidth(),player.getHeight(), Image.SCALE_DEFAULT);
 		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
 		player.setIcon(FotoEscalada);
 		
@@ -227,7 +239,6 @@ public class GUI {
 						
 		}
 	}
-
 }
 
 
