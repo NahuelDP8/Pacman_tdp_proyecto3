@@ -43,7 +43,7 @@ abstract public class MapaGrilla {
 		int i = 0,j = 0;
 		for(Zona[] zz:zonas) {
 			for(Zona z:zz) {
-				z = new Zona(1,new PairTupla(i*(miFondo.getIconWidth()/4),i*(miFondo.getIconHeight()/4)),miFondo.getIconWidth()/4,miFondo.getIconHeight()/4);
+				z = new Zona(1,new PairTupla(i*(miFondo.getIconWidth()/ancho),i*(miFondo.getIconHeight()/alto)),miFondo.getIconWidth()/4,miFondo.getIconHeight()/4);
 				zonas[i][j] = z;
 				j++;
 			}
