@@ -16,5 +16,31 @@ public class Mapa1 extends MapaGrilla {
 			}
 		}
 	}
-
+	protected void agregarMejoras() {
+	Mejora m;
+	//Comenzamos por la primer zona:
+	int i = 0,j = 0;
+	Zona z = zonas[0][0];
+	int x = z.getX();
+	int y = z.getY();
+	//Primer zona:
+	m = fabricaMejora.crearPuntoGrande(new PairTupla(x+(z.getAncho()/5),y+(z.getAlto()/5)), 10, 10, z);
+	z.setEntidad(m);
+	m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*2,y+(z.getAlto()/5)), 10, 10, z);
+	z.setEntidad(m);
+	m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*3,y+(z.getAlto()/5)), 10, 10, z);
+	z.setEntidad(m);
+	m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*4,y+(z.getAlto()/5)), 10, 10, z);
+	z.setEntidad(m);
+	m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5),y+(z.getAlto()/5)*2), 10, 10, z);
+	z.setEntidad(m);
+	m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*4,y+(z.getAlto()/5)*2), 10, 10, z);
+	z.setEntidad(m);
+	m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5),y+(z.getAlto()/5)*3), 10, 10, z);
+	z.setEntidad(m);
+	m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*3,y+(z.getAlto()/5)*3), 10, 10, z);
+	z.setEntidad(m);
+	m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*4,y+(z.getAlto()/5)*3), 10, 10, z);
+	z.setEntidad(m);
+	}
 }

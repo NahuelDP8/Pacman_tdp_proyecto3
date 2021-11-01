@@ -9,7 +9,7 @@ import Logic.Logica;
 
 import java.util.ArrayList;
 
-public class MapaGrilla {
+abstract public class MapaGrilla {
 	protected Logica miLogica;
 	protected ImageIcon miFondo;
 	protected FactoryProtagonista fabricaProt;
@@ -56,36 +56,8 @@ public class MapaGrilla {
 		
 	}
 
-	private void agregarMejoras() {
-		/*
-		Mejora m;
-		//Comenzamos por la primer zona:
-		int i = 0,j = 0;
-		Zona z = zonas[0][0];
-		int x = z.getX();
-		int y = z.getY();
-		//Primer zona:
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(x+(z.getAncho()/5),y+(z.getAlto()/5)), 10, 10, z);
-		z.setEntidad(m);
-		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*2,y+(z.getAlto()/5)), 10, 10, z);
-		z.setEntidad(m);
-		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*3,y+(z.getAlto()/5)), 10, 10, z);
-		z.setEntidad(m);
-		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*4,y+(z.getAlto()/5)), 10, 10, z);
-		z.setEntidad(m);
-		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5),y+(z.getAlto()/5)*2), 10, 10, z);
-		z.setEntidad(m);
-		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*4,y+(z.getAlto()/5)*2), 10, 10, z);
-		z.setEntidad(m);
-		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5),y+(z.getAlto()/5)*3), 10, 10, z);
-		z.setEntidad(m);
-		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*3,y+(z.getAlto()/5)*3), 10, 10, z);
-		z.setEntidad(m);
-		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*4,y+(z.getAlto()/5)*3), 10, 10, z);
-		z.setEntidad(m);
-		*/
-	}
-
+	abstract protected void agregarMejoras();
+	
 	public ImageIcon getImage() {
 		return miFondo;
 	}
@@ -103,17 +75,28 @@ public class MapaGrilla {
 		miProtagonista.moverIzquierda();
 	}
 	//Métodos para agregar mejoras en el mapa
-	public void agregarPunto(PairTupla p) {
+	public void agregarPunto() {
 		
 	}
 
+	public void agregarEnemigoNaranja(){
+		
+	}
+	public void agregarEnemigoAzul() {
+		
+	}
+	public void agregarEnemigoRojo() {
+		
+	}
+	public void agregarEnemigoRosa() {
+		
+	}
 	public ImageIcon getImagenProtagonista() {
 		return miProtagonista.getImagen();
 	}
 	public void actualizarProtagonista() {
 		miLogica.actualizarProtagonista(miProtagonista.getX(),miProtagonista.getY());
 	}
-
 	public void setLogica(Logica logica) {
 		miLogica = logica;
 		
