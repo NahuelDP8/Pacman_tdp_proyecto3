@@ -9,12 +9,12 @@ abstract public class Entidad {
 	protected MapaGrilla miGrilla;
 	protected Zona miZona;
 	protected ImageIcon miImagen;
+
 	
-	public Entidad (PairTupla p, int anc,int alt, Zona zona) {
+	public Entidad (PairTupla p, int anc,int alt) {
 		ancho = anc;
 		altura = alt;
 		posicion = p;
-		miZona = zona;
 	}
 	
 	public int getAltura() {

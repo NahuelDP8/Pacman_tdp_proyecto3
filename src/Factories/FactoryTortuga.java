@@ -6,26 +6,25 @@ import Entities.TortugaBlinky;
 import Entities.TortugaClyde;
 import Entities.TortugaInky;
 import Entities.TortugaPinky;
-import Entities.Zona;
 
 public class FactoryTortuga extends FactoryEnemigo{
 
-	public Enemigo crearRojo(PairTupla p , int ancho, int altura, Zona zona) {
-		Enemigo rojo = new TortugaBlinky(null, ancho, altura, zona);
+	public Enemigo crearRojo(PairTupla p , int ancho, int altura) {
+		Enemigo rojo = new TortugaBlinky(null, ancho, altura);
 		return rojo;
 	}
 
-	public Enemigo crearAzul(PairTupla p , int ancho, int altura, Zona zona) {
-		Enemigo azul = new TortugaInky( p ,  ancho,  altura, zona);
+	public Enemigo crearAzul(PairTupla p , int ancho, int altura) {
+		Enemigo azul = new TortugaInky( p ,  ancho,  altura);
 		return azul;
 	}
 
-	public Enemigo crearNaranja(PairTupla p , int ancho, int altura, Zona zona) {
-		Enemigo naranja = new TortugaClyde( p ,  ancho,  altura, zona);
+	public Enemigo crearNaranja(PairTupla p , int ancho, int altura) {
+		Enemigo naranja = new TortugaClyde( p ,  ancho,  altura);
 		return naranja;
 	}
-	public Enemigo crearRosa(PairTupla p, int ancho, int altura, Zona zona) {
-		Enemigo rosa = new TortugaClyde( p ,  ancho,  altura, zona);
+	public Enemigo crearRosa(PairTupla p, int ancho, int altura) {
+		Enemigo rosa = new TortugaPinky( p ,  ancho,  altura);
 		return rosa;
 	}
 }

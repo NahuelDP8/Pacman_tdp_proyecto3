@@ -1,7 +1,6 @@
 package Entities;
 
 import javax.swing.ImageIcon;
-
 import Factories.FactoryEnemigo;
 import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
@@ -9,7 +8,7 @@ import Logic.Logica;
 
 import java.util.ArrayList;
 
-public class MapaGrilla {
+abstract public class MapaGrilla {
 	protected Logica miLogica;
 	protected ImageIcon miFondo;
 	protected FactoryProtagonista fabricaProt;
@@ -21,25 +20,24 @@ public class MapaGrilla {
 	protected int ancho;
 	protected int altura; 
 	
-	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al,Logica log) {
-		miLogica = log;
+	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica) {
 		miFondo = fondo;
 		fabricaProt = fp;
 		fabricaEnem = fe;
 		fabricaMejora = new FactoryMejora();
 		ancho = an;
 		altura = al;
-		zonas = new Zona[4][4];
-		completarMapa();
-		agregarProtagonista();
+		this.miLogica = miLogica;
 	}
 	
-	private void agregarProtagonista() {
-		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(100,100),50,50, zonas[0][0]);
+	protected void agregarProtagonista() {
+		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(100,100),50,50);
 		miProtagonista.setGrilla(this);
 	}
 
-	private void completarMapa() {
+	protected void construccionZonasGrilla(int ancho, int alto) {
+		//Inicializamos el tamaño de nuestra matriz de zonas
+		zonas =  new Zona[ancho][alto];
 		//Creamos las zonas
 		int i = 0,j = 0;
 		for(Zona[] zz:zonas) {
@@ -51,50 +49,14 @@ public class MapaGrilla {
 			j=0;
 			i++;
 		}
-		agregarParedes();
-		agregarMejoras();
+
 	}
+	
+	abstract protected void construccionParedeslimitaciones();
+	private void agregarParedes() {}
 
-	private void agregarParedes() {
-		
-	}
-
-	private void agregarMejoras() {
-
-		Mejora m;
-		//Comenzamos por la primer zona:
-		Zona z = zonas[0][0];
-		int x = z.getX();
-		int y = z.getY();
-		//Primer zona:
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(x+(z.getAncho()/5),y+(z.getAlto()/5)), 10, 10, z);
-		z.setEntidad(m);
-		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*2,y+(z.getAlto()/5)), 10, 10, z);
-		z.setEntidad(m);
-		miLogica.actualizarPunto(m.getImagen(),m.getX(),m.getY());
-		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*3,y+(z.getAlto()/5)), 10, 10, z);
-		z.setEntidad(m);
-		miLogica.actualizarPunto(m.getImagen(),m.getX(),m.getY());
-		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*4,y+(z.getAlto()/5)), 10, 10, z);
-		z.setEntidad(m);
-		miLogica.actualizarPunto(m.getImagen(),m.getX(),m.getY());
-		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5),y+(z.getAlto()/5)*2), 10, 10, z);
-		z.setEntidad(m);
-		miLogica.actualizarPunto(m.getImagen(),m.getX(),m.getY());
-		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*4,y+(z.getAlto()/5)*2), 10, 10, z);
-		z.setEntidad(m);
-		miLogica.actualizarPunto(m.getImagen(),m.getX(),m.getY());
-		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5),y+(z.getAlto()/5)*3), 10, 10, z);
-		z.setEntidad(m);
-		miLogica.actualizarPunto(m.getImagen(),m.getX(),m.getY());
-		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*3,y+(z.getAlto()/5)*3), 10, 10, z);
-		z.setEntidad(m);
-		miLogica.actualizarPunto(m.getImagen(),m.getX(),m.getY());
-		m = fabricaMejora.crearPunto(new PairTupla(x+(z.getAncho()/5)*4,y+(z.getAlto()/5)*3), 10, 10, z);
-		z.setEntidad(m);
-		miLogica.actualizarPunto(m.getImagen(),m.getX(),m.getY());
-	}
-
+	abstract protected void agregarMejoras();
+	
 	public ImageIcon getImage() {
 		return miFondo;
 	}
@@ -112,16 +74,29 @@ public class MapaGrilla {
 		miProtagonista.moverIzquierda();
 	}
 	//Métodos para agregar mejoras en el mapa
-	public void agregarPunto(PairTupla p) {
+	public void agregarPunto() {
 		
 	}
 
+	public void agregarEnemigoNaranja(){
+		misEnemigos.add(fabricaEnem.crearNaranja(null, ancho, altura));
+	}
+	public void agregarEnemigoAzul() {
+		misEnemigos.add(fabricaEnem.crearAzul(null, ancho, altura));
+	}
+	public void agregarEnemigoRojo() {
+		misEnemigos.add(fabricaEnem.crearRojo(null, ancho, altura));
+	}
+	public void agregarEnemigoRosa() {
+		misEnemigos.add(fabricaEnem.crearRosa(null, ancho, altura));
+	}
 	public ImageIcon getImagenProtagonista() {
 		return miProtagonista.getImagen();
 	}
 	public void actualizarProtagonista() {
 		miLogica.actualizarProtagonista(miProtagonista.getX(),miProtagonista.getY());
 	}
+
 	public void realizarMovimiento() {
 		miProtagonista.realizarMovimiento();
 		
