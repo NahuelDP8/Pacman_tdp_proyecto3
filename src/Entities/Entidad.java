@@ -1,6 +1,9 @@
 package Entities;
 
 import java.awt.Shape;
+
+import javax.swing.ImageIcon;
+
 import java.awt.Rectangle;
 import Visitors.Visitor;
 
@@ -11,6 +14,9 @@ abstract public class Entidad {
 	protected int altura;
 	protected MapaGrilla miGrilla;
 	protected Visitor v;
+	protected Zona miZona;
+	protected ImageIcon miImagen;
+
 	public Entidad (PairTupla p, int anc,int alt) {
 		ancho = anc;
 		altura = alt;
@@ -30,6 +36,14 @@ abstract public class Entidad {
 		return miRectangulo;
 	} 
 	
+	public void setImagen(ImageIcon miImagen) {
+		this.miImagen = miImagen;
+	}
+	public ImageIcon getImagen() {
+		return miImagen;
+	}
+	
+	
 	//verificar abajo sacar?
 	public int getX() {
 		return posicion.x;
@@ -48,5 +62,5 @@ abstract public class Entidad {
 	public Visitor getVisitor() {
 		return v;
 	}
-	
+	abstract public void accept(Visitor v);
 }

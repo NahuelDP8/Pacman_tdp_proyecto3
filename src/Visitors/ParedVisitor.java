@@ -21,7 +21,6 @@ public class ParedVisitor implements Visitor {
 
 	@Override
 	public void visitEnemigo(Enemigo e) {
-		// TODO Auto-generated method stub
 		
 	}
 

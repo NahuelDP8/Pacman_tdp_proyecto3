@@ -26,7 +26,7 @@ import Logic.Logica;
 public class GUI {
 	public JFrame frmJuego;
 	private Logica log;
-	private JLabel [][] labels = new JLabel[25][10];
+	private JLabel [][] labels = new JLabel[20][12];
 	private JLabel JLTiempo;
 	private JLabel player;
 	private JLabel JLPuntaje;
@@ -36,6 +36,7 @@ public class GUI {
 	private JLabel JLPerdiste;
 	private boolean jugando;
 	private JLabel fondo;
+	private JLabel PRUEBA_REVISAR;
 	
 	public GUI(FactoryMapaGrilla f) {
 		initialize();
@@ -56,7 +57,7 @@ public class GUI {
 		frmJuego.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmJuego.addKeyListener(tecla);
 		frmJuego.getContentPane().setLayout(null);
-		JLabel PRUEBA_REVISAR = new JLabel("");
+		PRUEBA_REVISAR = new JLabel("");
 		PRUEBA_REVISAR.setForeground(Color.WHITE);
 		PRUEBA_REVISAR.setBounds(0, 0, 960, 540);
 		ImageIcon imagen = new ImageIcon(GUI.class.getResource("/Imagenes/fondo.png"));
@@ -71,6 +72,15 @@ public class GUI {
 		frmJuego.getContentPane().add(player);
 		player.setForeground(new Color(0, 128, 0));
 		player.setBackground(Color.WHITE);
+		for (int i =0; i< labels.length;i++) {
+			for (int j =0; j< labels[0].length;j++) {
+				JLabel lab = new JLabel("");
+				lab.setBounds(i*PRUEBA_REVISAR.getWidth()/20,j*PRUEBA_REVISAR.getHeight()/12, PRUEBA_REVISAR.getWidth()/20,PRUEBA_REVISAR.getHeight()/12);
+				frmJuego.getContentPane().add(lab);
+				lab.setForeground(new Color(0, 128, 0));
+				lab.setBackground(Color.WHITE);
+				labels[i][j]= lab;
+			}}
 		PRUEBA_REVISAR.setIcon(FotoEscalada);
 		
 		frmJuego.getContentPane().add(PRUEBA_REVISAR);
@@ -162,7 +172,31 @@ public class GUI {
 		//fondo.setIcon(FotoEscalada);
 	}
 	
-	
+
+	public void actualizarProtagonista(ImageIcon imagenProtagonista, int xProtagonista, int yProtagonista) {
+		player.setLocation(xProtagonista,yProtagonista);
+		
+	}
+	public void actualizarPunto(ImageIcon imagenPunto, int x, int y) {
+		System.out.print(x+","+y);
+		int i = (x)/(PRUEBA_REVISAR.getWidth()/20);
+		int j = (y)/(PRUEBA_REVISAR.getHeight()/12);
+		System.out.print(i+"/"+j);
+		JLabel punto = labels[i][j];
+		
+		Image EscalarFoto = imagenPunto.getImage().getScaledInstance(punto.getWidth(),punto.getHeight(), Image.SCALE_DEFAULT);
+		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
+		punto.setIcon(FotoEscalada);
+		labels[i][j] = punto;
+		
+	}
+	public void fotoProtagonista(ImageIcon imagenProtagonista, int xProtagonista, int yProtagonista) {
+		Image EscalarFoto = imagenProtagonista.getImage().getScaledInstance(player.getWidth(),player.getHeight(), Image.SCALE_DEFAULT);
+		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
+		player.setIcon(FotoEscalada);
+		
+	}
+
 	
 	public void captarMovimientoAbajo() {
 		log.moverProtagonistaAbajo();

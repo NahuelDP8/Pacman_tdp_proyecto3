@@ -22,6 +22,7 @@ public class GUI_MAPA {
 
 	private JFrame frame;
 	private JLabel JLPlayer;
+	private JLabel [][] labels = new JLabel[31][33];
 	private Logica log;
 	private JLabel JLTiempo;
 	private JLabel JLFondoMapa;
@@ -44,13 +45,27 @@ public class GUI_MAPA {
 	}
 	
 	public void actualizarProtagonista(ImageIcon imagenProtagonista, int xProtagonista, int yProtagonista) {
-		JLPlayer.setLocation(xProtagonista,yProtagonista);
+		JLPlayer.setLocation(xProtagonista,yProtagonista+155);
 		
 	}
 	public void fotoProtagonista(ImageIcon imagenProtagonista, int xProtagonista, int yProtagonista) {
 		Image EscalarFoto = imagenProtagonista.getImage().getScaledInstance(JLPlayer.getWidth(),JLPlayer.getHeight(), Image.SCALE_DEFAULT);
 		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
 		JLPlayer.setIcon(FotoEscalada);
+		
+	}
+	
+	public void actualizarPunto(ImageIcon imagenPunto, int x, int y) {
+		System.out.print(x+","+y);
+		int i = (x-12)/15;
+		int j = (y-12)/15;
+		System.out.print(i+"/"+j);
+		JLabel punto = labels[i][j];
+		
+		Image EscalarFoto = imagenPunto.getImage().getScaledInstance(punto.getWidth(),punto.getHeight(), Image.SCALE_DEFAULT);
+		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
+		punto.setIcon(FotoEscalada);
+		labels[i][j] = punto;
 		
 	}
 	
@@ -127,20 +142,36 @@ public class GUI_MAPA {
 		
 		
 		
-		//JLABEL
 		JLTiempo = new JLabel("00:00");
         JLTiempo.setVerticalAlignment(SwingConstants.TOP);
         JLTiempo.setForeground(Color.WHITE);
         JLTiempo.setFont(new Font("Yu Gothic Light", Font.PLAIN, 48));
         JLTiempo.setBounds(10, 10, 203, 52);
-	
+		//JLABEL
+		JLTiempo = new JLabel("00:00");
+		JLTiempo.setVerticalAlignment(SwingConstants.TOP);
+		JLTiempo.setForeground(Color.WHITE);
+		JLTiempo.setFont(new Font("Yu Gothic Light", Font.PLAIN, 48));
+		JLTiempo.setBounds(10, 10, 203, 52);
+		frame.getContentPane().add(JLTiempo);
 		JLPlayer = new JLabel("");
-		JLPlayer.setBounds(463, 504, 30,30);
+		JLPlayer.setBounds(189, 290+155, 30,30);
 		frame.getContentPane().add(JLPlayer);
 		JLPlayer.setForeground(new Color(0, 128, 0));
 		JLPlayer.setBackground(Color.WHITE);
+		
+		for (int i =0; i< labels.length;i++) {
+			for (int j =0; j< labels[0].length;j++) {
+				JLabel lab = new JLabel("");
+				lab.setBounds(12+i*15,22+j*15 + 155, 10,10);
+				frame.getContentPane().add(lab);
+				lab.setForeground(new Color(0, 128, 0));
+				lab.setBackground(Color.WHITE);
+				labels[i][j]= lab;
+			}}
+		
 		JLFondoMapa = new JLabel("");
-		JLFondoMapa.setBounds(0, 154, 960, 540);
+		JLFondoMapa.setBounds(0, 154, 500, 540);
 		frame.getContentPane().add(JLFondoMapa);
 		JLFondoMapa.setIcon(new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/fondo.png")));
 		JPanel panel = new JPanel();

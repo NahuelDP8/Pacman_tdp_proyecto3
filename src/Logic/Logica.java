@@ -1,7 +1,11 @@
 package Logic;
 
 import GUI.GUI;
+
+import javax.swing.ImageIcon;
+
 import GUI.GUI_MAPA;
+
 import Entities.*;
 import Factories.FactoryMapaGrilla;
 
@@ -24,6 +28,9 @@ public class Logica {
 	
 	public void actualizarProtagonista(int x,int y) {
 		miGUI.actualizarProtagonista(miMapa.getImagenProtagonista(),x,y);
+	}
+	public void actualizarPunto(ImageIcon img, int x,int y) {
+		miGUI.actualizarPunto(img,x,y);
 	}
 
 	public void actualizarReloj() {
