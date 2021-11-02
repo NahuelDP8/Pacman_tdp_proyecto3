@@ -30,7 +30,7 @@ public class Logica {
 		miGUI.actualizarProtagonista(miMapa.getImagenProtagonista(),x,y);
 	}
 	public void actualizarPunto(ImageIcon img, int x,int y) {
-		//miGUI.actualizarPunto(img,x,y);
+		miGUI.actualizarPunto(img,x,y);
 	}
 
 	public void actualizarReloj() {

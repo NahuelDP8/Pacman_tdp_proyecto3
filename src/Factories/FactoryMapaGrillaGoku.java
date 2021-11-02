@@ -7,7 +7,7 @@ import Entities.MapaGrilla;
 import Logic.Logica;
 
 public class FactoryMapaGrillaGoku extends FactoryMapaGrilla{
-	private ImageIcon miImagen=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/goku.png"));
+	private ImageIcon miImagen=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/fondo.png"));
 
 	public MapaGrilla crearMapa(Logica logica) {
 		FactoryProtagonista fabricaProt = new FactoryGoku(); 

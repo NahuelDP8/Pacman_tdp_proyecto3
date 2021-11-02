@@ -10,9 +10,11 @@ import Entities.Punto;
 import Entities.PuntoGrande;
 
 public class FactoryMejora{
+	private ImageIcon imagenPunto=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/punto.png"));
 
 	public Mejora crearPunto(PairTupla p , int ancho, int altura) {
 		Mejora punto = new Punto( p ,  ancho,  altura);
+		punto.setImagen(imagenPunto);
 		return punto;
 	}
 	public Mejora crearFruta(PairTupla p , int ancho, int altura) {

@@ -7,7 +7,7 @@ import Entities.MapaGrilla;
 import Logic.Logica;
 
 public class FactoryMapaGrillaNaruto extends FactoryMapaGrilla{
-	private ImageIcon miImagen=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/naruto.png"));
+	private ImageIcon miImagen=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/fondo.png"));
 
 
 	public MapaGrilla crearMapa(Logica logica) {	

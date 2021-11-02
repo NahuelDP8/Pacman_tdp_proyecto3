@@ -17,8 +17,7 @@ abstract public class MapaGrilla {
 	protected Protagonista miProtagonista;
 	protected ArrayList<Enemigo> misEnemigos;
 	protected Zona [][] zonas;
-	protected int ancho;
-	protected int altura; 
+	protected int ancho, altura, anchoMapa, altoMapa;
 	
 	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica) {
 		miFondo = fondo;
@@ -28,6 +27,8 @@ abstract public class MapaGrilla {
 		ancho = an;
 		altura = al;
 		this.miLogica = miLogica;
+		anchoMapa = 500;
+		altoMapa = 540;
 	}
 	
 
@@ -38,12 +39,12 @@ abstract public class MapaGrilla {
 
 	protected void construccionZonasGrilla(int ancho, int alto) {
 		//Inicializamos el tamaño de nuestra matriz de zonas
-		zonas =  new Zona[ancho][alto];
+		zonas =  new Zona[alto][ancho];
 		//Creamos las zonas
 		int i = 0,j = 0;
 		for(Zona[] zz:zonas) {
 			for(Zona z:zz) {
-				z = new Zona(1,new PairTupla(i*(miFondo.getIconWidth()/ancho),i*(miFondo.getIconHeight()/alto)),miFondo.getIconWidth()/4,miFondo.getIconHeight()/4);
+				z = new Zona(1,new PairTupla(j*(anchoMapa/5),i*(altoMapa/6)),anchoMapa/5,altoMapa/6);
 				zonas[i][j] = z;
 				j++;
 			}
@@ -53,8 +54,7 @@ abstract public class MapaGrilla {
 
 	}
 	
-	abstract protected void construccionParedeslimitaciones();
-	private void agregarParedes() {}
+	abstract protected void construccionParedesLimitaciones();
 
 	abstract protected void agregarMejoras();
 	
@@ -73,10 +73,6 @@ abstract public class MapaGrilla {
 	}
 	public void moverProtagonistaIzquierda() {
 		miProtagonista.moverIzquierda();
-	}
-	//Métodos para agregar mejoras en el mapa
-	public void agregarPunto() {
-		
 	}
 
 	public void agregarEnemigoNaranja(){
