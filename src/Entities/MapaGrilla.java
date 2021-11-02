@@ -6,6 +6,8 @@ import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
 
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.util.ArrayList;
 
 abstract public class MapaGrilla {
@@ -104,5 +106,29 @@ abstract public class MapaGrilla {
 	public void realizarMovimiento() {
 		miProtagonista.realizarMovimiento();
 		
+	}
+	protected ArrayList<Zona> mapeoPosEntidadAZona(Entidad e) {
+		ArrayList<Zona> toReturn = new ArrayList<Zona>();
+		for(int i =0; i<zonas.length; i++) {
+			for(int j = 0; j<zonas[0].length; j++) {
+				
+			}
+		}
+		return toReturn;
+	}
+	
+	public void verificarColisiones(Entidad e) {
+		Shape limite = e.getRectangulo();
+		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(e);
+		for(int i =0; i<zonasActivasDeE.size();i++) {
+			Zona auxiliar = zonasActivasDeE.get(i);
+			ArrayList<Entidad> entZona = auxiliar.obtenerEntidades();
+			for(int j = 0; j<entZona.size();j++) {
+				Shape auxR = entZona.get(j).getRectangulo();
+				if(limite.intersects(auxR.getBounds2D())) {
+				}
+				
+			}
+		}
 	}
 }

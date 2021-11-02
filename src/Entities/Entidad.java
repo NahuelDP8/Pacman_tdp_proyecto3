@@ -1,8 +1,8 @@
 package Entities;
 
-import javax.swing.ImageIcon;
 import java.awt.Shape;
-import java.awt.Rectangle;;
+import java.awt.Rectangle;
+import Visitors.Visitor;
 
 abstract public class Entidad {
 	protected Shape miRectangulo;
@@ -10,7 +10,7 @@ abstract public class Entidad {
 	protected int ancho;
 	protected int altura;
 	protected MapaGrilla miGrilla;
-	
+	protected Visitor v;
 	public Entidad (PairTupla p, int anc,int alt) {
 		ancho = anc;
 		altura = alt;
@@ -44,4 +44,9 @@ abstract public class Entidad {
 	public void setGrilla(MapaGrilla g) {
 		miGrilla = g;
 	}
+	
+	public Visitor getVisitor() {
+		return v;
+	}
+	
 }

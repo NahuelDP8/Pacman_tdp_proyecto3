@@ -1,6 +1,7 @@
 package Entities;
 
-import javax.swing.ImageIcon;
+
+import Visitors.ProtagonistaVisitor;
 
 abstract public class Protagonista extends Personaje{
 	
@@ -19,6 +20,7 @@ abstract public class Protagonista extends Personaje{
 		movimiento = 0;
 		puntaje = 0;
 		velocidad = 4;
+		v = new ProtagonistaVisitor();
 	}
 	
 	public void realizarMovimiento() {
@@ -52,6 +54,4 @@ abstract public class Protagonista extends Personaje{
 	public void moverDerecha() {
 		movimiento = MOVER_DERECHA; //Decimos que continue moviendose en esa direccion.
 	}
-
-
 }

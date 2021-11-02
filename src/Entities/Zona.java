@@ -32,7 +32,4 @@ public class Zona {
 	public int getY(){
 		return posicionEnMatriz.getY();
 	}
-	public void realizarColisiones() {
-		
-	}
 }
