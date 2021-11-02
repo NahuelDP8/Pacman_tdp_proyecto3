@@ -6,6 +6,7 @@ import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
 
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 abstract public class MapaGrilla {
@@ -33,7 +34,7 @@ abstract public class MapaGrilla {
 	
 
 	protected void agregarProtagonista() {
-		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(563,400),50,50);
+		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(189, 290),30,30);
 		miProtagonista.setGrilla(this);
 	}
 
@@ -97,6 +98,37 @@ abstract public class MapaGrilla {
 	public void realizarMovimiento() {
 		miProtagonista.realizarMovimiento();
 		
+	}
+
+
+	public boolean colision(int movimiento) {
+		int x,y,an,al;
+		x = miProtagonista.getX();
+		y = miProtagonista.getY();
+		an = miProtagonista.getAncho();
+		al = miProtagonista.getAltura();
+		if (movimiento == 1)
+			y += 4;
+		else if(movimiento == 2)
+			y-=4;
+		else if(movimiento == 3)
+			x-=4;
+		else if(movimiento == 4)
+			x+=4;
+		boolean colision = false;
+		for(Zona[] zz:zonas) {
+			for(Zona z:zz) {
+				if(z.getRectangulo().intersects(x,y,an,al)) {// el punto esta en la zona
+					for(Entidad e: z.getEntidades()) {
+						if(e.getRectangulo().intersects(x,y,an,al)){
+							colision = true;
+							break;
+						}
+					}
+				}
+			}
+		}
+		return colision;
 	}
 
 }

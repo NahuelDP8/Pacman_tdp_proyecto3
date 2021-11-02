@@ -23,20 +23,17 @@ abstract public class Protagonista extends Personaje{
 	
 	public void realizarMovimiento() {
 		if(movimiento == MOVER_ABAJO) {
-			if(true) {
-			posicion.setY(posicion.getY()+ velocidad);
-			}
+			if(!miGrilla.colision(movimiento))
+				posicion.setY(posicion.getY()+ velocidad);
 		}else if(movimiento == MOVER_ARRIBA) {
-			if(true) {
-			posicion.setY(posicion.getY()- velocidad);
-			}
+			if(!miGrilla.colision(movimiento))
+				posicion.setY(posicion.getY()- velocidad);
 		}else if(movimiento == MOVER_IZQUIERDA) {
-				if(true) {
+			if(!miGrilla.colision(movimiento))
 					posicion.setX(posicion.getX()- velocidad);
-				}
 			}else if(movimiento == MOVER_DERECHA) {
-			if(true)
-			posicion.setX(posicion.getX()+ velocidad);
+				if(!miGrilla.colision(movimiento))
+					posicion.setX(posicion.getX()+ velocidad);
 		}
 		miGrilla.actualizarProtagonista();
 	}

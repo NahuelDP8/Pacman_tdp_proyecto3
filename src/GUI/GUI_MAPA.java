@@ -45,7 +45,7 @@ public class GUI_MAPA {
 	}
 	
 	public void actualizarProtagonista(ImageIcon imagenProtagonista, int xProtagonista, int yProtagonista) {
-		JLPlayer.setLocation(xProtagonista,yProtagonista);
+		JLPlayer.setLocation(xProtagonista,yProtagonista+155);
 		
 	}
 	public void fotoProtagonista(ImageIcon imagenProtagonista, int xProtagonista, int yProtagonista) {
@@ -155,7 +155,7 @@ public class GUI_MAPA {
 		JLTiempo.setBounds(10, 10, 203, 52);
 		frame.getContentPane().add(JLTiempo);
 		JLPlayer = new JLabel("");
-		JLPlayer.setBounds(463, 504, 30,30);
+		JLPlayer.setBounds(189, 290+155, 30,30);
 		frame.getContentPane().add(JLPlayer);
 		JLPlayer.setForeground(new Color(0, 128, 0));
 		JLPlayer.setBackground(Color.WHITE);

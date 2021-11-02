@@ -16,7 +16,7 @@ public class Mapa1 extends MapaGrilla {
 		super(fondo, fp, fe, ancho, altura, miLogica);
 		construccionZonasGrilla(5,6);
 		construccionParedesLimitaciones();
-		agregarMejoras();
+		//agregarMejoras();
 		agregarProtagonista();
 	}
 	
