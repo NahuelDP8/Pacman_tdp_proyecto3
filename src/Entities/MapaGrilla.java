@@ -96,7 +96,6 @@ abstract public class MapaGrilla {
 
 	public void realizarMovimiento() {
 		boolean huboColisiones  = verificarColisiones(miProtagonista);
-		System.out.println(huboColisiones);
 		if(!huboColisiones) miProtagonista.realizarMovimiento();
 		
 	}
@@ -131,12 +130,18 @@ abstract public class MapaGrilla {
 	}
 
 	private ArrayList<Entidad> entidadesColisionadas(ArrayList<Zona> l, Entidad e){
+		int x,y,an,al;
+		x = miProtagonista.getX();
+		y = miProtagonista.getY();
+		an = miProtagonista.getAncho();
+		al = miProtagonista.getAltura();
+		
 		ArrayList<Entidad> toReturn = new ArrayList<Entidad>();
-		Shape boundE = e.getRectangulo();
 		for(Zona aux : l) {
 			for(Entidad auxEntidad : aux.getEntidades()) {
 				if(auxEntidad != e) {
-					if(boundE.intersects(auxEntidad.getRectangulo().getBounds())) {
+					if(auxEntidad.getRectangulo().intersects(x,y,an,al)) {
+						System.out.print("ANASHE");
 						if(!esRepetida(toReturn, auxEntidad))
 							toReturn.add(auxEntidad);
 					}

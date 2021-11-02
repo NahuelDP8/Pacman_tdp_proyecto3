@@ -51,4 +51,7 @@ abstract public class Protagonista extends Personaje{
 	public void accept(Visitor v) {
 		v.visitProtagonista(this);
 	}
+	public int getMovimiento() {
+		return movimiento;
+	}
 }
