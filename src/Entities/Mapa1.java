@@ -22,8 +22,8 @@ public class Mapa1 extends MapaGrilla {
 	
 	protected void agregarMejoras() {
 		Mejora m;
-		for(int i = 1; i<30;i++) {
-			for (int j = 0; j<30;j++) {
+		for(int i = 1; i<31;i++) {
+			for (int j = 0; j<33;j++) {
 				m = fabricaMejora.crearPunto(new PairTupla(12+i*15,22+j*15), 10, 10);
 				ubicarPunto(m);
 			}

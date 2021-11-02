@@ -22,7 +22,7 @@ public class GUI_MAPA {
 
 	private JFrame frame;
 	private JLabel JLPlayer;
-	private JLabel [][] labels = new JLabel[30][30];
+	private JLabel [][] labels = new JLabel[31][33];
 	private Logica log;
 	private JLabel JLTiempo;
 	private JLabel JLFondoMapa;
