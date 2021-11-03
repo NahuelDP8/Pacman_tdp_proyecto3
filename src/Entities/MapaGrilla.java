@@ -94,13 +94,12 @@ abstract public class MapaGrilla {
 		ArrayList<Zona> zonasActivasDePro = mapeoPosEntidadAZona(miProtagonista);
 		actualizarZonas(zonasActivasDePro, miProtagonista);
 		miLogica.actualizarProtagonista(miProtagonista.getX(),miProtagonista.getY());
-		System.out.println("ACTUALIZAR EN LA GUI");
 	}
 
 	public void realizarMovimiento() {
 		boolean huboColisiones  = verificarColisiones(miProtagonista);
 		if(!huboColisiones) miProtagonista.realizarMovimiento();
-		System.out.println("REALIZAR MOVIMIENTO EN PERSONAJE");
+		System.out.println("REALIZAR MOVIMIENTO EN PERSONAJE"+miProtagonista.getX()+","+miProtagonista.getY());
 		
 	}
 
@@ -119,7 +118,7 @@ abstract public class MapaGrilla {
 		else if(movimiento == 3)
 			x-=4;
 		else if(movimiento == 4)
-			x+=4;
+			x +=4;
 		for(int i =0; i<zonas.length; i++) {
 			for(int j = 0; j<zonas[0].length; j++) {
 				Zona agregamos = zonas[i][j];
@@ -135,8 +134,6 @@ abstract public class MapaGrilla {
 		boolean huboColisiones = false;
 		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(e);
 		ArrayList<Entidad> entidadesColisionadasConE = entidadesColisionadas(zonasActivasDeE, e);
-		//System.out.println(entidadesColisionadasConE.get(0).ancho+"este era el ancho de una pared");
-		//System.out.println(entidadesColisionadasConE.get(0).altura+"este era el altura de una pared");
 		if(entidadesColisionadasConE.size()!=0) {
 			huboColisiones = true;
 			for(Entidad aux : entidadesColisionadasConE)
@@ -159,15 +156,6 @@ abstract public class MapaGrilla {
 		else if(movimiento == 3)
 			x-=4;
 		else if(movimiento == 4)
-			x+=4;
-		
-		if (miProtagonista.getMovimientoActual() == 1)
-			y += 4;
-		else if(miProtagonista.getMovimientoActual() == 2)
-			y-=4;
-		else if(miProtagonista.getMovimientoActual()== 3)
-			x-=4;
-		else if(miProtagonista.getMovimientoActual() == 4)
 			x+=4;
 		
 		ArrayList<Entidad> toReturn = new ArrayList<Entidad>();
@@ -205,36 +193,5 @@ abstract public class MapaGrilla {
 	public void agregarEnemigoRosa() {
 		misEnemigos.add(fabricaEnem.crearRosa(null, ancho, altura));
 	}
-	
-	/*public boolean colision(int movimiento) {
-		int x,y,an,al;
-		x = miProtagonista.getX();
-		y = miProtagonista.getY();
-		an = miProtagonista.getAncho();
-		al = miProtagonista.getAltura();
-		
-		if (movimiento == 1)
-			y += 4;
-		else if(movimiento == 2)
-			y-=4;
-		else if(movimiento == 3)
-			x-=4;
-		else if(movimiento == 4)
-			x+=4;
-		
-		boolean colision = false;
-		for(Zona[] zz:zonas) {
-			for(Zona z:zz) {
-				if(z.getRectangulo().intersects(x,y,an,al)) {// el punto esta en la zona
-					for(Entidad e: z.getEntidades()) {
-						if(e.getRectangulo().intersects(x,y,an,al)){
-							colision = true;
-							break;
-						}
-					}
-				}
-			}
-		}
-		return colision;
-	}*/
+
 }
