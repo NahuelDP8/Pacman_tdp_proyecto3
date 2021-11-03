@@ -142,7 +142,7 @@ abstract public class MapaGrilla {
 		return huboColisiones; 
 	}
 
-	private ArrayList<Entidad> entidadesColisionadas(ArrayList<Zona> l, Entidad e){
+	public ArrayList<Entidad> entidadesColisionadas(ArrayList<Zona> l, Entidad e){
 		int x,y,an,al;
 		x = e.getX();
 		y = e.getY();

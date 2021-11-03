@@ -1,6 +1,8 @@
 package Entities;
 
 
+import java.util.ArrayList;
+
 import Visitors.ProtagonistaVisitor;
 import Visitors.Visitor;
 
@@ -45,19 +47,43 @@ abstract public class Protagonista extends Personaje{
 	}
 	public void moverAbajo() {
 		movimientoPrevio = movimientoActual;
-		movimientoActual = MOVER_ABAJO; //Decimos que continue moviendose en esa direccion.
+		movimientoActual = MOVER_ABAJO;
+		ArrayList<Zona> zonasActivasDeE = miGrilla.mapeoPosEntidadAZona(this);
+		ArrayList<Entidad> entidadesColisionadasConE = miGrilla.entidadesColisionadas(zonasActivasDeE, this);
+		if(entidadesColisionadasConE.size()!=0) {
+			for(Entidad aux : entidadesColisionadasConE)
+				this.accept(aux.getVisitor());		
+		}
 	}
 	public void moverArriba() {
-		movimientoPrevio  = movimientoActual;
-		movimientoActual = MOVER_ARRIBA; //Decimos que continue moviendose en esa direccion.
+		movimientoPrevio = movimientoActual;
+		movimientoActual = MOVER_ARRIBA;
+		ArrayList<Zona> zonasActivasDeE = miGrilla.mapeoPosEntidadAZona(this);
+		ArrayList<Entidad> entidadesColisionadasConE = miGrilla.entidadesColisionadas(zonasActivasDeE, this);
+		if(entidadesColisionadasConE.size()!=0) {
+			for(Entidad aux : entidadesColisionadasConE)
+				this.accept(aux.getVisitor());		
+		}
 	}
 	public void moverIzquierda() {
 		movimientoPrevio = movimientoActual;
-		movimientoActual = MOVER_IZQUIERDA; //Decimos que continue moviendose en esa direccion.
+		movimientoActual = MOVER_IZQUIERDA;
+		ArrayList<Zona> zonasActivasDeE = miGrilla.mapeoPosEntidadAZona(this);
+		ArrayList<Entidad> entidadesColisionadasConE = miGrilla.entidadesColisionadas(zonasActivasDeE, this);
+		if(entidadesColisionadasConE.size()!=0) {
+			for(Entidad aux : entidadesColisionadasConE)
+				this.accept(aux.getVisitor());		
+		}
 	}
 	public void moverDerecha() {
 		movimientoPrevio = movimientoActual;
-		movimientoActual = MOVER_DERECHA; //Decimos que continue moviendose en esa direccion.
+		movimientoActual = MOVER_DERECHA;
+		ArrayList<Zona> zonasActivasDeE = miGrilla.mapeoPosEntidadAZona(this);
+		ArrayList<Entidad> entidadesColisionadasConE = miGrilla.entidadesColisionadas(zonasActivasDeE, this);
+		if(entidadesColisionadasConE.size()!=0) {
+			for(Entidad aux : entidadesColisionadasConE)
+				this.accept(aux.getVisitor());		
+		}
 	}
 	public void accept(Visitor v) {
 		v.visitProtagonista(this);
