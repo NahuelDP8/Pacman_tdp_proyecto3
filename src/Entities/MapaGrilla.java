@@ -84,8 +84,10 @@ abstract public class MapaGrilla {
 	
 	private void actualizarZonas(ArrayList<Zona> l, Entidad e) {
 		for(Zona auxZ : l) {
-			if(!auxZ.getEntidades().contains(e))
+			if(!auxZ.getEntidades().contains(e)) {
 				auxZ.setEntidad(e);
+				System.out.print("kajbvbakhvb");
+			}
 		}
 	}
 	public void actualizarProtagonista() {
@@ -118,7 +120,6 @@ abstract public class MapaGrilla {
 		boolean huboColisiones = false;
 		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(e);
 		ArrayList<Entidad> entidadesColisionadasConE = entidadesColisionadas(zonasActivasDeE, e);
-		System.out.println(entidadesColisionadasConE.size()+"este era el tamanio de la lista");
 		//System.out.println(entidadesColisionadasConE.get(0).ancho+"este era el ancho de una pared");
 		//System.out.println(entidadesColisionadasConE.get(0).altura+"este era el altura de una pared");
 		if(entidadesColisionadasConE.size()!=0) {
@@ -136,12 +137,20 @@ abstract public class MapaGrilla {
 		an = miProtagonista.getAncho();
 		al = miProtagonista.getAltura();
 		
+		if (miProtagonista.movimiento == 1)
+			y += 4;
+		else if(miProtagonista.movimiento == 2)
+			y-=4;
+		else if(miProtagonista.movimiento == 3)
+			x-=4;
+		else if(miProtagonista.movimiento == 4)
+			x+=4;
+		
 		ArrayList<Entidad> toReturn = new ArrayList<Entidad>();
 		for(Zona aux : l) {
 			for(Entidad auxEntidad : aux.getEntidades()) {
 				if(auxEntidad != e) {
 					if(auxEntidad.getRectangulo().intersects(x,y,an,al)) {
-						System.out.print("ANASHE");
 						if(!esRepetida(toReturn, auxEntidad))
 							toReturn.add(auxEntidad);
 					}
