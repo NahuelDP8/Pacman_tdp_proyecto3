@@ -196,6 +196,12 @@ abstract public class MapaGrilla {
 	public void agregarEnemigoRosa() {
 		misEnemigos.add(fabricaEnem.crearRosa(null, ancho, altura));
 	}
+	public void desactivarPociones() {
+		//mandamos un mensaje a la lógica desactivando el timer relacionado a las pociones 
+	}
+	public void activarPociones() {
+		//Mandaría un mensaje a la lógica activando el timer relacionado a las pociones. 
+	}
 	
 	/*public boolean colision(int movimiento) {
 		int x,y,an,al;

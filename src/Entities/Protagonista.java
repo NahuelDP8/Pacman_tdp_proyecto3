@@ -10,7 +10,6 @@ abstract public class Protagonista extends Personaje{
 	protected int movimientoActual;
 	protected int movimientoPrevio;
 	protected int puntaje;
-	protected int velocidad;
 	protected final int MOVER_ABAJO = 1;	
 	protected final int MOVER_ARRIBA = 2;
 	protected final int MOVER_IZQUIERDA = 3;
