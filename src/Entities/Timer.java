@@ -4,10 +4,10 @@ import Logic.Logica;
 
 public class Timer implements Runnable {
 	private int minutos, segundos, pausa;
-	private Thread hiloTiempo, hiloMoverPersonaje, hiloMejora,hiloMusica,hiloMoverFantasmasMuertos,hiloMoverFantasmas;
+	private Thread hiloTiempo, hiloMoverPersonaje, hiloFruta, hiloPocion,hiloMusica,hiloMoverFantasmasMuertos,hiloMoverFantasmas;
 	private Logica miLogica;
 	private final int minPausa = 250;
-	
+	private int velocidadProtagonista, velocidadFantasmas; 
 
 	public Timer(Logica logic) {
 		miLogica = logic;
@@ -22,8 +22,11 @@ public class Timer implements Runnable {
 		hiloMoverPersonaje = new Thread(this);
 		hiloMoverPersonaje.start();
 		/*
-		hiloMejora = new Thread(this);
-		hiloMejora.start();
+		hiloFruta = new Thread(this);
+		hiloFruta.start();
+		
+		hiloPocion = new Thread(this);
+		hiloPocion.start();
 		
 		hiloMusica = new Thread(this);
 		hiloMusica.start();
@@ -41,14 +44,14 @@ public class Timer implements Runnable {
 		Thread ct = Thread.currentThread();
 		//Actualiza el reloj
 		while (ct == hiloMoverPersonaje) {
-
 			try {
-				Thread.sleep(30);
+				Thread.sleep(this.velocidadProtagonista);
 				miLogica.realizarMovimiento();
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
 		}
+		
 		while (ct == hiloTiempo) {
 			try {
 				Thread.sleep(1000);
@@ -66,13 +69,21 @@ public class Timer implements Runnable {
 			}
 		}
 		/*
-		while (ct == hiloMejora) {
+		while (ct == hiloPocion) {
 				try {
 					//Completar
 				} catch(InterruptedException e) {
 					Thread.currentThread().interrupt();
 				}
 		}
+		while (ct == hiloFruta) {
+				try {
+					//Completar
+				} catch(InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}
+		}
+		
 		while (ct == hiloMusica) {
 
 			try {
@@ -118,6 +129,13 @@ public class Timer implements Runnable {
 	public void gameOver() {
 		hiloTiempo.interrupt();
 		hiloMoverPersonaje.interrupt();
+	}
+	
+	public void setVelocidadProtagonista(int i) {
+		this.velocidadProtagonista = i;
+	}
+	public void setVelocidadFantasmas(int i) {
+		this.velocidadFantasmas = i;
 	}
 
 }

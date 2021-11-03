@@ -16,7 +16,7 @@ public class Mapa1 extends MapaGrilla {
 		super(fondo, fp, fe, ancho, altura, miLogica);
 		construccionZonasGrilla(5,6);
 		construccionParedesLimitaciones();
-		//agregarMejoras();
+		agregarMejoras();
 		agregarProtagonista();
 	}
 	
@@ -65,12 +65,12 @@ public class Mapa1 extends MapaGrilla {
 		
 		//Ahora las paredes verticales realizamos las paredes en vertical límitrofes
 		//Pared vertical, eje izquierdo parte superior. 
-		p = new Pared(new PairTupla(0,0), 18, 240);
+		p = new Pared(new PairTupla(0,0), 16, 240);
 		for(int i = 0; i<=2; i++) {
 			zonas [i][0].setEntidad(p);
 		}
 		//Pared vertical, eje izquierdo parte inferior. 
-		p = new Pared(new PairTupla(0,270), 18, 270);
+		p = new Pared(new PairTupla(0,270), 16, 270);
 		for(int i = 3; i<=5; i++) {
 			zonas [i][0].setEntidad(p);
 		}
@@ -87,40 +87,44 @@ public class Mapa1 extends MapaGrilla {
 		}
 		
 		//Paredes de la primer fila.
-		p = new Pared(new PairTupla(49,45), 56, 38);
+		p = new Pared(new PairTupla(50,45), 55, 38);
 		zonas [0][0].setEntidad(p); zonas [0][1].setEntidad(p);
-		p = new Pared(new PairTupla(137,45), 72, 38);
+		p = new Pared(new PairTupla(136,45), 72, 38);
 		zonas [0][1].setEntidad(p); zonas [0][2].setEntidad(p);
-		p = new Pared(new PairTupla(241,0), 20, 83);
+		p = new Pared(new PairTupla(240,0), 20, 83);
 		zonas [0][2].setEntidad(p);
-		p = new Pared(new PairTupla(293,45), 72, 38);
+		p = new Pared(new PairTupla(292,45), 72, 38);
 		zonas [0][2].setEntidad(p);zonas [0][3].setEntidad(p);
 		p = new Pared(new PairTupla(396,45), 56, 38);
 		zonas [0][3].setEntidad(p);zonas [0][4].setEntidad(p);
 		
 		//Paredes de la segunda fila.
-		p = new Pared(new PairTupla(49,114), 56, 20);
+		p = new Pared(new PairTupla(50,116), 55, 18);
 		zonas [1][0].setEntidad(p); zonas [1][1].setEntidad(p);
-		p = new Pared(new PairTupla(137,114), 20, 123);
+		p = new Pared(new PairTupla(138,116), 19, 120);
 		zonas [1][1].setEntidad(p);zonas [2][1].setEntidad(p);
-		p = new Pared(new PairTupla(189,114), 124, 50);
+		p = new Pared(new PairTupla(188,116), 124, 18);
 		zonas [1][1].setEntidad(p);zonas [1][2].setEntidad(p);zonas [1][3].setEntidad(p);
-		p = new Pared(new PairTupla(344,114), 20, 123);
+		p = new Pared(new PairTupla(344,116), 20, 121);
 		zonas [1][3].setEntidad(p);zonas [2][3].setEntidad(p);
-		p = new Pared(new PairTupla(396,114), 56, 20);
+		p = new Pared(new PairTupla(396,116), 56, 18);
 		zonas [1][3].setEntidad(p);zonas [1][4].setEntidad(p);
 		
 		//Paredes de la tercer fila.
-		p = new Pared(new PairTupla(0,165), 105, 73);
+		p = new Pared(new PairTupla(0,165), 105, 72);
 		zonas [1][0].setEntidad(p);zonas [1][1].setEntidad(p); 
 		zonas [2][0].setEntidad(p);zonas [2][1].setEntidad(p);
 		p = new Pared(new PairTupla(157,165), 52, 20);
 		zonas [1][1].setEntidad(p);zonas [1][2].setEntidad(p);
-		p = new Pared(new PairTupla(241,134), 20, 52);
 		zonas [2][1].setEntidad(p);zonas [2][2].setEntidad(p);
+		p = new Pared(new PairTupla(240,134), 20, 50);
+		zonas [1][2].setEntidad(p);zonas [2][2].setEntidad(p);
 		p = new Pared(new PairTupla(293,165), 52, 20);
+		zonas [1][2].setEntidad(p);
+		zonas [2][2].setEntidad(p);
 		zonas [1][3].setEntidad(p);
-		p = new Pared(new PairTupla(396,165), 105, 73);
+		zonas [2][3].setEntidad(p);
+		p = new Pared(new PairTupla(396,165), 105, 72);
 		zonas [1][3].setEntidad(p);zonas [1][4].setEntidad(p);
 		zonas [2][3].setEntidad(p);zonas[2][4].setEntidad(p);
 		
@@ -130,34 +134,34 @@ public class Mapa1 extends MapaGrilla {
 		zonas [3][1].setEntidad(p);zonas[3][2].setEntidad(p);zonas [3][3].setEntidad(p);
 		
 		//Paredes de la cuarta fila.
-		p = new Pared(new PairTupla(0,270), 105, 73);
+		p = new Pared(new PairTupla(0,270), 105, 72);
 		zonas [3][0].setEntidad(p);zonas [3][1].setEntidad(p); 
-		p = new Pared(new PairTupla(137,270), 20, 73);
+		p = new Pared(new PairTupla(137,270), 20, 72);
 		zonas [3][1].setEntidad(p);
-		p = new Pared(new PairTupla(189,323), 124, 20);
+		p = new Pared(new PairTupla(189,323), 124, 19);
 		zonas [3][1].setEntidad(p);zonas [3][2].setEntidad(p);zonas [3][3].setEntidad(p);
-		p = new Pared(new PairTupla(344,270), 20, 73);
+		p = new Pared(new PairTupla(344,270), 20, 72);
 		zonas [3][3].setEntidad(p);
-		p = new Pared(new PairTupla(396,270), 105, 73);
+		p = new Pared(new PairTupla(396,270), 105, 72);
 		zonas [3][3].setEntidad(p);zonas [3][4].setEntidad(p);
 		
 		//Paredes de la quinta fila.
-		p = new Pared(new PairTupla(49,373), 56, 20);
+		p = new Pared(new PairTupla(49,372), 56, 18);
 		zonas [4][0].setEntidad(p);zonas [4][1].setEntidad(p); 
-		p = new Pared(new PairTupla(137,373), 72, 20);
+		p = new Pared(new PairTupla(137,372), 72, 18);
 		zonas [4][1].setEntidad(p);zonas [4][2].setEntidad(p);
-		p = new Pared(new PairTupla(241,343), 20, 50);
+		p = new Pared(new PairTupla(241,343), 20, 47);
 		zonas [3][2].setEntidad(p);zonas [4][2].setEntidad(p);
-		p = new Pared(new PairTupla(293,373), 72, 20);
+		p = new Pared(new PairTupla(293,372), 72, 18);
 		zonas [4][2].setEntidad(p);zonas [4][3].setEntidad(p);
-		p = new Pared(new PairTupla(396,373), 56, 20);
+		p = new Pared(new PairTupla(396,372), 56, 18);
 		zonas [4][3].setEntidad(p);zonas [4][4].setEntidad(p);
 		
 		//Paredes de la sexta fila.
 		p = new Pared(new PairTupla(0,423), 52, 20);
 		zonas [4][0].setEntidad(p);
 		p = new Pared(new PairTupla(85,393), 20, 50);
-		zonas [4][0].setEntidad(p);
+		zonas [4][0].setEntidad(p);zonas [4][1].setEntidad(p);
 		p = new Pared(new PairTupla(137,423), 20, 50);
 		zonas [4][1].setEntidad(p);zonas [5][1].setEntidad(p);
 		p = new Pared(new PairTupla(189,423), 124, 20);
@@ -166,15 +170,15 @@ public class Mapa1 extends MapaGrilla {
 		zonas [4][3].setEntidad(p);zonas [5][3].setEntidad(p);
 		p = new Pared(new PairTupla(396,393), 20, 50);
 		zonas [4][3].setEntidad(p);zonas [4][4].setEntidad(p);
-		p = new Pared(new PairTupla(446,423), 54, 20);
+		p = new Pared(new PairTupla(447,423), 53, 20);
 		zonas [4][4].setEntidad(p);
 		
 		//Paredes de la septima fila.
-		p = new Pared(new PairTupla(49,479), 160, 20);
+		p = new Pared(new PairTupla(49,479), 160, 19);
 		zonas [5][0].setEntidad(p);zonas [5][1].setEntidad(p);zonas [5][2].setEntidad(p);
-		p = new Pared(new PairTupla(241,449), 20, 50);
+		p = new Pared(new PairTupla(241,449), 20, 49);
 		zonas [5][0].setEntidad(p);zonas [5][1].setEntidad(p);zonas [5][2].setEntidad(p);
-		p = new Pared(new PairTupla(293,479), 160, 20);
+		p = new Pared(new PairTupla(293,479), 160, 19);
 		zonas [5][2].setEntidad(p);zonas [5][3].setEntidad(p);zonas [5][4].setEntidad(p);
 	}
 }

@@ -5,6 +5,8 @@ import Factories.FactoryEnemigo;
 import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
+import Nivel.Nivel;
+
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
@@ -20,9 +22,12 @@ abstract public class MapaGrilla {
 	protected ArrayList<Enemigo> misEnemigos;
 	protected Zona [][] zonas;
 	protected int ancho, altura, anchoMapa, altoMapa;
+	protected Nivel miNivel;
 	
 	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica) {
+		//Asignamos imagen de fondo del mapa
 		miFondo = fondo;
+		//Asignamos las fabricas correspondientes 
 		fabricaProt = fp;
 		fabricaEnem = fe;
 		fabricaMejora = new FactoryMejora();
@@ -33,12 +38,23 @@ abstract public class MapaGrilla {
 		altoMapa = 540;
 	}
 	
-
+	public void setNivel(Nivel n) {
+		miNivel = n;
+	}
+	
 	protected void agregarProtagonista() {
 		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(189, 290),30,30);
 		miProtagonista.setGrilla(this);
 	}
-
+	
+	protected void agregarFantasmas() {
+		 this.misEnemigos.add(fabricaEnem.crearAzul(new PairTupla(243, 404),30,30));
+		 this.misEnemigos.add(fabricaEnem.crearRosa(new PairTupla(243, 404),30,30));
+		 this.misEnemigos.add(fabricaEnem.crearRojo(new PairTupla(243, 404),30,30));
+		 this.misEnemigos.add(fabricaEnem.crearNaranja(new PairTupla(243, 404),30,30));
+		//Faltaría setearlos a la grilla y a las zonas correspondientes
+	}
+	
 	protected void construccionZonasGrilla(int ancho, int alto) {
 		//Inicializamos el tamaño de nuestra matriz de zonas
 		zonas =  new Zona[alto][ancho];
@@ -84,22 +100,20 @@ abstract public class MapaGrilla {
 	
 	private void actualizarZonas(ArrayList<Zona> l, Entidad e) {
 		for(Zona auxZ : l) {
-			if(!auxZ.getEntidades().contains(e))
+			if(!auxZ.getEntidades().contains(e)) {
 				auxZ.setEntidad(e);
+			}
 		}
 	}
 	public void actualizarProtagonista() {
 		ArrayList<Zona> zonasActivasDePro = mapeoPosEntidadAZona(miProtagonista);
 		actualizarZonas(zonasActivasDePro, miProtagonista);
 		miLogica.actualizarProtagonista(miProtagonista.getX(),miProtagonista.getY());
-		System.out.println("ACTUALIZAR EN LA GUI");
 	}
 
 	public void realizarMovimiento() {
 		boolean huboColisiones  = verificarColisiones(miProtagonista);
-		if(!huboColisiones) miProtagonista.realizarMovimiento();
-		System.out.println("REALIZAR MOVIMIENTO EN PERSONAJE");
-		
+		if(!huboColisiones) miProtagonista.realizarMovimiento();		
 	}
 
 	protected ArrayList<Zona> mapeoPosEntidadAZona(Entidad e) {
@@ -117,7 +131,7 @@ abstract public class MapaGrilla {
 		else if(movimiento == 3)
 			x-=4;
 		else if(movimiento == 4)
-			x+=4;
+			x +=4;
 		for(int i =0; i<zonas.length; i++) {
 			for(int j = 0; j<zonas[0].length; j++) {
 				Zona agregamos = zonas[i][j];
@@ -133,9 +147,6 @@ abstract public class MapaGrilla {
 		boolean huboColisiones = false;
 		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(e);
 		ArrayList<Entidad> entidadesColisionadasConE = entidadesColisionadas(zonasActivasDeE, e);
-		System.out.println(entidadesColisionadasConE.size()+"este era el tamanio de la lista");
-		//System.out.println(entidadesColisionadasConE.get(0).ancho+"este era el ancho de una pared");
-		//System.out.println(entidadesColisionadasConE.get(0).altura+"este era el altura de una pared");
 		if(entidadesColisionadasConE.size()!=0) {
 			huboColisiones = true;
 			for(Entidad aux : entidadesColisionadasConE)
@@ -144,7 +155,7 @@ abstract public class MapaGrilla {
 		return huboColisiones; 
 	}
 
-	private ArrayList<Entidad> entidadesColisionadas(ArrayList<Zona> l, Entidad e){
+	public ArrayList<Entidad> entidadesColisionadas(ArrayList<Zona> l, Entidad e){
 		int x,y,an,al;
 		x = e.getX();
 		y = e.getY();
@@ -165,7 +176,6 @@ abstract public class MapaGrilla {
 			for(Entidad auxEntidad : aux.getEntidades()) {
 				if(auxEntidad != e) {
 					if(auxEntidad.getRectangulo().intersects(x,y,an,al)) {
-						System.out.print("ANASHE");
 						if(!esRepetida(toReturn, auxEntidad))
 							toReturn.add(auxEntidad);
 					}
@@ -196,42 +206,20 @@ abstract public class MapaGrilla {
 	public void agregarEnemigoRosa() {
 		misEnemigos.add(fabricaEnem.crearRosa(null, ancho, altura));
 	}
+	
 	public void desactivarPociones() {
-		//mandamos un mensaje a la lógica desactivando el timer relacionado a las pociones 
+		System.out.println("Se desactivaron las pociones");
 	}
 	public void activarPociones() {
 		//Mandaría un mensaje a la lógica activando el timer relacionado a las pociones. 
 	}
+
+	public void activarFrutas() {
+		System.out.println("Se activaron las frutas");
+		//Mandaría un mensaje a la lógica activando el timer relacionado a las frutas.
+	}
 	
-	/*public boolean colision(int movimiento) {
-		int x,y,an,al;
-		x = miProtagonista.getX();
-		y = miProtagonista.getY();
-		an = miProtagonista.getAncho();
-		al = miProtagonista.getAltura();
-		
-		if (movimiento == 1)
-			y += 4;
-		else if(movimiento == 2)
-			y-=4;
-		else if(movimiento == 3)
-			x-=4;
-		else if(movimiento == 4)
-			x+=4;
-		
-		boolean colision = false;
-		for(Zona[] zz:zonas) {
-			for(Zona z:zz) {
-				if(z.getRectangulo().intersects(x,y,an,al)) {// el punto esta en la zona
-					for(Entidad e: z.getEntidades()) {
-						if(e.getRectangulo().intersects(x,y,an,al)){
-							colision = true;
-							break;
-						}
-					}
-				}
-			}
-		}
-		return colision;
-	}*/
+	public void desactivarFrutas() {
+		//Mandaría un mensaje a la lógica activando el timer relacionado a las frutas.
+	}
 }

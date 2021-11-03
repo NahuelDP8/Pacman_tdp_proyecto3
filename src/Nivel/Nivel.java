@@ -3,11 +3,20 @@ package Nivel;
 import Entities.MapaGrilla;
 
 abstract public class Nivel {
+	/* protected ArrayList<Fruta> misFrutas;
+	 * protected ArrayList<Pociones> misPociones;
+	 */
+	
+	//Atributos de clase
 	protected MapaGrilla miMapa;
 	
-	abstract public int getVelocidadProtagonista();
+	//Constructor
+	public Nivel () {
+	}
 	
-	abstract public int getVelocidadFantasmas();
+	public void setMapa(MapaGrilla m) {
+		miMapa = m;
+	}
 	
 	public void aumentarFanstamaNaranja() {
 		miMapa.agregarEnemigoNaranja();
@@ -28,8 +37,21 @@ abstract public class Nivel {
 	public void activarPociones() {
 		miMapa.activarPociones(); 
 	}
-	
+
 	public void desactivarPociones() {
 		miMapa.desactivarPociones();
 	}
+	
+	public void activarFrutas() {
+		miMapa.activarFrutas(); 
+	}
+	
+	public void desactivarFrutas() {
+		miMapa.desactivarFrutas(); 
+	}
+	
+	abstract public int velocidadProtagonista();
+	abstract public int velocidadFantasmas();
+	abstract public int apacicionFruta(); 
+	abstract public int aparicionPocion();
 }
