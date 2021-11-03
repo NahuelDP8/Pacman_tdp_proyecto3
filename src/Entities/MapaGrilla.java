@@ -84,21 +84,22 @@ abstract public class MapaGrilla {
 	
 	private void actualizarZonas(ArrayList<Zona> l, Entidad e) {
 		for(Zona auxZ : l) {
-			if(!auxZ.getEntidades().contains(e))
+			if(!auxZ.getEntidades().contains(e)) {
 				auxZ.setEntidad(e);
+				System.out.print("kajbvbakhvb");
+			}
 		}
 	}
 	public void actualizarProtagonista() {
 		ArrayList<Zona> zonasActivasDePro = mapeoPosEntidadAZona(miProtagonista);
 		actualizarZonas(zonasActivasDePro, miProtagonista);
 		miLogica.actualizarProtagonista(miProtagonista.getX(),miProtagonista.getY());
-		System.out.println("ACTUALIZAR EN LA GUI");
 	}
 
 	public void realizarMovimiento() {
 		boolean huboColisiones  = verificarColisiones(miProtagonista);
 		if(!huboColisiones) miProtagonista.realizarMovimiento();
-		System.out.println("REALIZAR MOVIMIENTO EN PERSONAJE");
+		System.out.println("REALIZAR MOVIMIENTO EN PERSONAJE"+miProtagonista.getX()+","+miProtagonista.getY());
 		
 	}
 
@@ -117,7 +118,7 @@ abstract public class MapaGrilla {
 		else if(movimiento == 3)
 			x-=4;
 		else if(movimiento == 4)
-			x+=4;
+			x +=4;
 		for(int i =0; i<zonas.length; i++) {
 			for(int j = 0; j<zonas[0].length; j++) {
 				Zona agregamos = zonas[i][j];
@@ -133,9 +134,6 @@ abstract public class MapaGrilla {
 		boolean huboColisiones = false;
 		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(e);
 		ArrayList<Entidad> entidadesColisionadasConE = entidadesColisionadas(zonasActivasDeE, e);
-		System.out.println(entidadesColisionadasConE.size()+"este era el tamanio de la lista");
-		//System.out.println(entidadesColisionadasConE.get(0).ancho+"este era el ancho de una pared");
-		//System.out.println(entidadesColisionadasConE.get(0).altura+"este era el altura de una pared");
 		if(entidadesColisionadasConE.size()!=0) {
 			huboColisiones = true;
 			for(Entidad aux : entidadesColisionadasConE)
@@ -165,7 +163,6 @@ abstract public class MapaGrilla {
 			for(Entidad auxEntidad : aux.getEntidades()) {
 				if(auxEntidad != e) {
 					if(auxEntidad.getRectangulo().intersects(x,y,an,al)) {
-						System.out.print("ANASHE");
 						if(!esRepetida(toReturn, auxEntidad))
 							toReturn.add(auxEntidad);
 					}
@@ -196,36 +193,5 @@ abstract public class MapaGrilla {
 	public void agregarEnemigoRosa() {
 		misEnemigos.add(fabricaEnem.crearRosa(null, ancho, altura));
 	}
-	
-	/*public boolean colision(int movimiento) {
-		int x,y,an,al;
-		x = miProtagonista.getX();
-		y = miProtagonista.getY();
-		an = miProtagonista.getAncho();
-		al = miProtagonista.getAltura();
-		
-		if (movimiento == 1)
-			y += 4;
-		else if(movimiento == 2)
-			y-=4;
-		else if(movimiento == 3)
-			x-=4;
-		else if(movimiento == 4)
-			x+=4;
-		
-		boolean colision = false;
-		for(Zona[] zz:zonas) {
-			for(Zona z:zz) {
-				if(z.getRectangulo().intersects(x,y,an,al)) {// el punto esta en la zona
-					for(Entidad e: z.getEntidades()) {
-						if(e.getRectangulo().intersects(x,y,an,al)){
-							colision = true;
-							break;
-						}
-					}
-				}
-			}
-		}
-		return colision;
-	}*/
+
 }
