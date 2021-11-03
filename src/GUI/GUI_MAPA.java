@@ -142,18 +142,7 @@ public class GUI_MAPA {
 		
 		
 		
-		JLTiempo = new JLabel("00:00");
-        JLTiempo.setVerticalAlignment(SwingConstants.TOP);
-        JLTiempo.setForeground(Color.WHITE);
-        JLTiempo.setFont(new Font("Yu Gothic Light", Font.PLAIN, 48));
-        JLTiempo.setBounds(10, 10, 203, 52);
-		//JLABEL
-		JLTiempo = new JLabel("00:00");
-		JLTiempo.setVerticalAlignment(SwingConstants.TOP);
-		JLTiempo.setForeground(Color.WHITE);
-		JLTiempo.setFont(new Font("Yu Gothic Light", Font.PLAIN, 48));
-		JLTiempo.setBounds(10, 10, 203, 52);
-		frame.getContentPane().add(JLTiempo);
+		
 		JLPlayer = new JLabel("");
 		JLPlayer.setBounds(189, 290+155, 30,30);
 		frame.getContentPane().add(JLPlayer);
@@ -182,39 +171,63 @@ public class GUI_MAPA {
 		JLabel lblNewLabel = new JLabel("vidas");
 		lblNewLabel.setFont(new Font("Engravers MT", Font.BOLD, 40));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(-42, 10, 320, 62);
+		lblNewLabel.setBounds(0, 9, 213, 62);
 		panel.add(lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(261, 0, 320, 84);
+		panel_1.setBounds(213, 0, 313, 104);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
-		
-		JLabel JLVIDAS2 = new JLabel("New label");
-		JLVIDAS2.setBounds(124, 10, 64, 64);
-		panel_1.add(JLVIDAS2);
+	
 		
 		JLabel JLVIDAS1 = new JLabel("New label");
-		JLVIDAS1.setBounds(20, 10, 64, 64);
+		JLVIDAS1.setBounds(20, 0, 87, 104);
 		panel_1.add(JLVIDAS1);
+		Image EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")).getImage().getScaledInstance(JLVIDAS1.getWidth(),JLVIDAS1.getHeight(), Image.SCALE_DEFAULT);
+		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
+		JLVIDAS1.setIcon(FotoEscalada);
+		
+		JLabel JLVIDAS2 = new JLabel("New label");
+		JLVIDAS2.setIcon(new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")));
+		JLVIDAS2.setBounds(120, 0, 87, 104);
+		panel_1.add(JLVIDAS2);
+		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")).getImage().getScaledInstance(JLVIDAS2.getWidth(),JLVIDAS2.getHeight(), Image.SCALE_DEFAULT);
+		FotoEscalada = new ImageIcon(EscalarFoto);
+		JLVIDAS2.setIcon(FotoEscalada);
 		
 		JLabel JLVIDAS3 = new JLabel("New label");
-		JLVIDAS3.setBounds(234, 10, 64, 64);
+		JLVIDAS3.setIcon(new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")));
+		JLVIDAS3.setBounds(220, 0, 87, 104);
 		panel_1.add(JLVIDAS3);
+		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")).getImage().getScaledInstance(JLVIDAS3.getWidth(),JLVIDAS3.getHeight(), Image.SCALE_DEFAULT);
+		FotoEscalada = new ImageIcon(EscalarFoto);
+		JLVIDAS3.setIcon(FotoEscalada);
+		
 		
 		JLabel JLPlayerPuntaje = new JLabel("Tu Puntaje:");
 		JLPlayerPuntaje.setFont(new Font("Rockwell", Font.BOLD, 20));
 		JLPlayerPuntaje.setBounds(340, 97, 306, 48);
 		panel.add(JLPlayerPuntaje);
 		
-		JLabel JLHIGHSCORE = new JLabel("HIGH SCORE: ");
-		JLHIGHSCORE.setFont(new Font("Rockwell", Font.BOLD, 20));
-		JLHIGHSCORE.setBounds(649, 97, 306, 48);
-		panel.add(JLHIGHSCORE);
-		
 		JLabel JLNIVEL = new JLabel("Nivel: ");
 		JLNIVEL.setFont(new Font("Cooper Black", Font.PLAIN, 29));
 		JLNIVEL.setBounds(43, 96, 160, 45);
 		panel.add(JLNIVEL);
+		//JLABEL
+		JLTiempo = new JLabel("00:00");
+		JLTiempo.setHorizontalAlignment(SwingConstants.CENTER);
+		JLTiempo.setBounds(651, 12, 213, 75);
+		panel.add(JLTiempo);
+		JLTiempo.setForeground(Color.RED);
+		JLTiempo.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 48));
+		
+		JLabel JLHighScoreList = new JLabel("\"PREGUNTAR COMO HACER LOS ENTER\" LISTA DE HIGH SCORE PARA MAS ADELANTE"+"/n");
+		JLHighScoreList.setBounds(526, 222, 374, 348);
+		frame.getContentPane().add(JLHighScoreList);
+		
+		JLabel JLHIGHSCORE = new JLabel("HIGH SCORE: ");
+		JLHIGHSCORE.setBounds(548, 165, 306, 48);
+		frame.getContentPane().add(JLHIGHSCORE);
+		JLHIGHSCORE.setFont(new Font("Rockwell", Font.BOLD, 20));
 	}
 }
