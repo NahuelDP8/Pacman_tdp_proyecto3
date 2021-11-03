@@ -26,7 +26,7 @@ public class ParedVisitor implements Visitor {
 
 	@Override
 	public void visitProtagonista(Protagonista p) {
-		p.restablecerMovimiento();
+		
 	}
 
 	@Override

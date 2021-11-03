@@ -8,43 +8,36 @@ import Entities.Protagonista;
 import Entities.Punto;
 import Entities.PuntoGrande;
 
-public class ParedVisitor implements Visitor {
-
-	@Override
-	public void visitPunto(Punto p) {
-	}
-
-	@Override
-	public void visitPuntoGrande(PuntoGrande p) {
-		// TODO Auto-generated method stub
-	}
+public class FantasmaVisitor implements Visitor {
 
 	@Override
 	public void visitEnemigo(Enemigo e) {
 		
 	}
-
+	
 	@Override
 	public void visitProtagonista(Protagonista p) {
-		p.restablecerMovimiento();
 	}
 
 	@Override
 	public void visitPared(Pared p) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitFruta(Fruta f) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void visitPocion(Pocion p) {
 		// TODO Auto-generated method stub
-		
+
 	}
+	@Override
+	public void visitPunto(Punto p) {}
+
+	@Override
+	public void visitPuntoGrande(PuntoGrande p) {}
 
 }

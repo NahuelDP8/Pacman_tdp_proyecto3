@@ -92,23 +92,37 @@ abstract public class MapaGrilla {
 		ArrayList<Zona> zonasActivasDePro = mapeoPosEntidadAZona(miProtagonista);
 		actualizarZonas(zonasActivasDePro, miProtagonista);
 		miLogica.actualizarProtagonista(miProtagonista.getX(),miProtagonista.getY());
+		System.out.println("ACTUALIZAR EN LA GUI");
 	}
 
 	public void realizarMovimiento() {
 		boolean huboColisiones  = verificarColisiones(miProtagonista);
-		System.out.println(huboColisiones);
 		if(!huboColisiones) miProtagonista.realizarMovimiento();
+		System.out.println("REALIZAR MOVIMIENTO EN PERSONAJE");
 		
 	}
 
 	protected ArrayList<Zona> mapeoPosEntidadAZona(Entidad e) {
 		ArrayList<Zona> toReturn = new ArrayList<Zona>();
-		Rectangle2D rect = e.getRectangulo().getBounds2D();
+		int x, y, ancho, largo;
+		x = e.getX();
+		y = e.getY();
+		ancho = e.getAncho();
+		largo = e.getAltura();
+		int movimiento  =miProtagonista.getMovimientoActual();
+		if (movimiento == 1)
+			y += 4;
+		else if(movimiento == 2)
+			y-=4;
+		else if(movimiento == 3)
+			x-=4;
+		else if(movimiento == 4)
+			x+=4;
 		for(int i =0; i<zonas.length; i++) {
 			for(int j = 0; j<zonas[0].length; j++) {
 				Zona agregamos = zonas[i][j];
 				Shape auxiliar = agregamos.getRectangulo();
-				if(auxiliar.intersects(rect))
+				if(auxiliar.intersects(x,y,ancho,largo))
 						toReturn.add(agregamos);
 			}
 		}
@@ -131,12 +145,27 @@ abstract public class MapaGrilla {
 	}
 
 	private ArrayList<Entidad> entidadesColisionadas(ArrayList<Zona> l, Entidad e){
+		int x,y,an,al;
+		x = e.getX();
+		y = e.getY();
+		an = e.getAncho();
+		al = e.getAltura();
+		int movimiento  =miProtagonista.getMovimientoActual();
+		if (movimiento == 1)
+			y += 4;
+		else if(movimiento == 2)
+			y-=4;
+		else if(movimiento == 3)
+			x-=4;
+		else if(movimiento == 4)
+			x+=4;
+		
 		ArrayList<Entidad> toReturn = new ArrayList<Entidad>();
-		Shape boundE = e.getRectangulo();
 		for(Zona aux : l) {
 			for(Entidad auxEntidad : aux.getEntidades()) {
 				if(auxEntidad != e) {
-					if(boundE.intersects(auxEntidad.getRectangulo().getBounds())) {
+					if(auxEntidad.getRectangulo().intersects(x,y,an,al)) {
+						System.out.print("ANASHE");
 						if(!esRepetida(toReturn, auxEntidad))
 							toReturn.add(auxEntidad);
 					}
