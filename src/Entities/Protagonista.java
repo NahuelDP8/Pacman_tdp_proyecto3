@@ -7,7 +7,8 @@ import Visitors.Visitor;
 abstract public class Protagonista extends Personaje{
 	
 	protected int vidas;
-	protected int movimiento;
+	protected int movimientoActual;
+	protected int movimientoPrevio;
 	protected int puntaje;
 	protected int velocidad;
 	protected final int MOVER_ABAJO = 1;	
@@ -18,40 +19,56 @@ abstract public class Protagonista extends Personaje{
 	public Protagonista(PairTupla p, int anc, int alt) {
 		super(p, anc, alt);
 		vidas = 3;
-		movimiento = 0;
+		movimientoActual= 0;
+		movimientoPrevio = 0;
 		puntaje = 0;
 		velocidad = 4;
 		v = new ProtagonistaVisitor();
 	}
 	
 	public void realizarMovimiento() {
-		if(movimiento == MOVER_ABAJO) {
+		if(movimientoActual == MOVER_ABAJO) {
+			System.out.println("Abajo");
 			posicion.setY(posicion.getY()+ velocidad);
-		}else if(movimiento == MOVER_ARRIBA) {
+		}else if(movimientoActual == MOVER_ARRIBA) {
+			System.out.println("Arriba");
 			posicion.setY(posicion.getY()- velocidad);
-		}else if(movimiento == MOVER_IZQUIERDA) {
+		}else if(movimientoActual == MOVER_IZQUIERDA) {
+			System.out.println("Izquierda");
 			posicion.setX(posicion.getX()- velocidad);
-		}else if(movimiento == MOVER_DERECHA) {
+		}else if(movimientoActual == MOVER_DERECHA) {
+			System.out.println("Derecha");
 			posicion.setX(posicion.getX()+ velocidad);
 		}
+		movimientoPrevio = movimientoActual;
 		miGrilla.actualizarProtagonista();
 	}
 	public void moverAbajo() {
-		movimiento = MOVER_ABAJO; //Decimos que continue moviendose en esa direccion.
+		movimientoPrevio = movimientoActual;
+		movimientoActual = MOVER_ABAJO; //Decimos que continue moviendose en esa direccion.
 	}
 	public void moverArriba() {
-		movimiento = MOVER_ARRIBA; //Decimos que continue moviendose en esa direccion.
+		movimientoPrevio  = movimientoActual;
+		movimientoActual = MOVER_ARRIBA; //Decimos que continue moviendose en esa direccion.
 	}
 	public void moverIzquierda() {
-		movimiento = MOVER_IZQUIERDA; //Decimos que continue moviendose en esa direccion.
+		movimientoPrevio = movimientoActual;
+		movimientoActual = MOVER_IZQUIERDA; //Decimos que continue moviendose en esa direccion.
 	}
 	public void moverDerecha() {
-		movimiento = MOVER_DERECHA; //Decimos que continue moviendose en esa direccion.
+		movimientoPrevio = movimientoActual;
+		movimientoActual = MOVER_DERECHA; //Decimos que continue moviendose en esa direccion.
 	}
 	public void accept(Visitor v) {
 		v.visitProtagonista(this);
 	}
-	public int getMovimiento() {
-		return movimiento;
+	public int getMovimientoActual() {
+		return movimientoActual;
+	}
+	public int getMovimientoPrevio() {
+		return movimientoPrevio;
+	}
+	public void restablecerMovimiento() {
+		movimientoActual = movimientoPrevio;
 	}
 }
