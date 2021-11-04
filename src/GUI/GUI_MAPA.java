@@ -19,7 +19,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import Nivel.Nivel;
 public class GUI_MAPA {
 
 	private JFrame frame;
@@ -32,7 +32,7 @@ public class GUI_MAPA {
 	/**
 	 * Create the application.
 	 */
-	public GUI_MAPA(FactoryMapaGrilla f) {
+	public GUI_MAPA(FactoryMapaGrilla f, Nivel nivel) {
 		initialize();
 		log = new Logica(this,f, n);
 	}
@@ -69,7 +69,6 @@ public class GUI_MAPA {
 		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
 		punto.setIcon(FotoEscalada);
 		labels[i][j] = punto;
-		
 	}
 	
 	public void actualizarReloj(int min, int seg) {

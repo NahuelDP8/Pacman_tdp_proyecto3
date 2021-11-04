@@ -7,10 +7,9 @@ public class Timer implements Runnable {
 	private Thread hiloTiempo, hiloMoverPersonaje, hiloFruta, hiloPocion,hiloMusica,hiloMoverFantasmasMuertos,hiloMoverFantasmas;
 	private Logica miLogica;
 	private final int minPausa = 250;
-	private int velocidadProtagonista, velocidadFantasmas, tiempoEsperaFruta, tiempoEsperaPocion; 
+	private int SleepDeProtagonista, SleepDeFantasmas, tiempoEsperaFruta, tiempoEsperaPocion; 
 	private boolean frutaActivada = false;
 	private boolean pocionActivada = false; 
-
 	public Timer(Logica logic) {
 		miLogica = logic;
 		minutos = 0;
@@ -43,7 +42,8 @@ public class Timer implements Runnable {
 		//Actualiza el reloj
 		while (ct == hiloMoverPersonaje) {
 			try {
-				Thread.sleep(this.velocidadProtagonista);
+				Thread.sleep(this.SleepDeProtagonista);
+
 				miLogica.realizarMovimiento();
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
@@ -54,6 +54,7 @@ public class Timer implements Runnable {
 			try {
 				Thread.sleep(this.tiempoEsperaPocion);
 				if(pocionActivada) {
+				
 				}else {
 					
 				}
@@ -140,11 +141,11 @@ public class Timer implements Runnable {
 		hiloMoverPersonaje.interrupt();
 	}
 	
-	public void setVelocidadProtagonista(int i) {
-		this.velocidadProtagonista = i;
+	public void setSleepProtagonista(int i) {
+		this.SleepDeProtagonista = i;
 	}
-	public void setVelocidadFantasmas(int i) {
-		this.velocidadFantasmas = i;
+	public void setSLeepFantasmas(int i) {
+		this.SleepDeFantasmas = i;
 	}
 	public void setTiempoEsperaDeFruta(int i) {
 		this.tiempoEsperaFruta = i;

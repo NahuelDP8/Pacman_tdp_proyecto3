@@ -38,11 +38,11 @@ public class Logica {
 	}
 	
 	public void actualizarVelocidadProtagonista(int i) {
-		miReloj.setVelocidadProtagonista(i);
+		miReloj.setSleepProtagonista(i);
 	}
 	
 	public void actualizarVelocidadFantasmas(int i) {
-		miReloj.setVelocidadFantasmas(i);
+		miReloj.setSLeepFantasmas(i);
 	}
 	
 	public void actualizarProtagonista(int x,int y) {
