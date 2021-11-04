@@ -28,13 +28,13 @@ public class Mapa1 extends MapaGrilla {
 	protected void agregarMejoras() {
 		Mejora m;
 		int x,y;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(20,20),25,25);
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(40,20),25,25);
 		miLogica.actualizarFruta(m.getImagen(), m.getX(), m.getY());
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(450,20),25,25);
 		miLogica.actualizarFruta(m.getImagen(), m.getX(), m.getY());
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(20,490),25,25);
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(40,500),25,25);
 		miLogica.actualizarFruta(m.getImagen(), m.getX(), m.getY());
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(450,490),25,25);
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(450,500),25,25);
 		miLogica.actualizarFruta(m.getImagen(), m.getX(), m.getY());
 		for(int i = 1; i<31;i++) {
 			for (int j = 0; j<33;j++) {
