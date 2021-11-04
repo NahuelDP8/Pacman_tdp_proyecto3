@@ -11,6 +11,7 @@ import Entities.PuntoGrande;
 
 public class FactoryMejora{
 	private ImageIcon imagenPunto=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/punto.png"));
+	private ImageIcon imagenPocion=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/pocion.png"));
 
 	public Mejora crearPunto(PairTupla p , int ancho, int altura) {
 		Mejora punto = new Punto( p ,  ancho,  altura);
@@ -19,7 +20,7 @@ public class FactoryMejora{
 	}
 	public Mejora crearFruta(PairTupla p , int ancho, int altura) {
 		Mejora punto = new Fruta( p ,  ancho,  altura);
-		punto.setImagen(imagenPunto);
+		punto.setImagen(imagenPocion);
 		return punto;
 	}
 	public Mejora crearPuntoGrande(PairTupla p , int ancho, int altura) {

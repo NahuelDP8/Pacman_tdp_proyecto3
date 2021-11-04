@@ -30,7 +30,7 @@ public class PuntoVisitor implements Visitor {
 
 	@Override
 	public void visitProtagonista(Protagonista p) {
-		System.out.print("Hola");
+		p.realizarMovimiento();	
 
 	}
 
