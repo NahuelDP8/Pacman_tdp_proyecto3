@@ -11,7 +11,7 @@ public class Nivel1 extends Nivel{
 		activarFrutas();
 	}
 	public int velocidadProtagonista() {
-		return 30;
+		return 15;
 	}
 	
 	public int velocidadFantasmas() {
@@ -19,11 +19,11 @@ public class Nivel1 extends Nivel{
 	}
 	
 	public int apacicionFruta() {
-		return 2000;
+		return 4000;
 	}
 
 	public int aparicionPocion() {
-		return 2000;
+		return 0;
 	}
 
 }

@@ -1,8 +1,9 @@
 package Nivel;
 
 public class Nivel2 extends Nivel {
-	public Nivel2() {
-	}
+	
+	public Nivel2() {}
+
 	@Override
 	public int velocidadProtagonista() {
 		// TODO Auto-generated method stub

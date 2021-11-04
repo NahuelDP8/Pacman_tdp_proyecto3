@@ -1,9 +1,7 @@
 package Logic;
 
-import GUI.GUI;
 
 import javax.swing.ImageIcon;
-
 import GUI.GUI_MAPA;
 import Nivel.Nivel;
 import Entities.*;
@@ -33,6 +31,7 @@ public class Logica {
 		miGUI.fotoProtagonista(miMapa.getImagenProtagonista(),100,100);
 		actualizarVelocidadProtagonista(miNivel.velocidadProtagonista());
 		actualizarVelocidadFantasmas(miNivel.velocidadFantasmas());
+		this.setEsperaFruta(miNivel.apacicionFruta());
 		n.llevarACaboActivaciones();
 	}
 	
@@ -43,7 +42,13 @@ public class Logica {
 	public void actualizarVelocidadFantasmas(int i) {
 		miReloj.setSLeepFantasmas(i);
 	}
+	public void setEsperaFruta(int i) {
+		miReloj.setTiempoEsperaDeFruta(i);
+	}
 	
+	public void setEsperaPocion(int i) {
+		miReloj.setSLeepFantasmas(i);
+	}
 	public void actualizarProtagonista(int x,int y) {
 		miGUI.actualizarProtagonista(miMapa.getImagenProtagonista(),x,y);
 	}
