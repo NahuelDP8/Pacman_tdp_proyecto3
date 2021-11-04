@@ -30,7 +30,7 @@ public class PuntoVisitor implements Visitor {
 
 	@Override
 	public void visitProtagonista(Protagonista p) {
-		// TODO Auto-generated method stub
+		System.out.print("Hola");
 
 	}
 

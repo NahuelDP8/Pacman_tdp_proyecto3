@@ -149,8 +149,10 @@ abstract public class MapaGrilla {
 		ArrayList<Entidad> entidadesColisionadasConE = entidadesColisionadas(zonasActivasDeE, e);
 		if(entidadesColisionadasConE.size()!=0) {
 			huboColisiones = true;
-			for(Entidad aux : entidadesColisionadasConE)
+			for(Entidad aux : entidadesColisionadasConE) {
 				e.accept(aux.getVisitor());		
+				System.out.print("Hola");
+			}
 		}
 		return huboColisiones; 
 	}

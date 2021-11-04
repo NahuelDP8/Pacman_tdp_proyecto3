@@ -65,13 +65,9 @@ public class Timer implements Runnable {
 		
 		while (ct == hiloFruta) {
 			try {
-				Thread.sleep(this.tiempoEsperaFruta);
-				if(frutaActivada) {
+				Thread.sleep(10);
+
 					miLogica.mostrarFrutas(); 
-					frutaActivada=false;
-				}else{
-					frutaActivada=true;
-				}
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
