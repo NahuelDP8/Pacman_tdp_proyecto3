@@ -5,7 +5,7 @@ import GUI.GUI;
 import javax.swing.ImageIcon;
 
 import GUI.GUI_MAPA;
-
+import Nivel.Nivel;
 import Entities.*;
 import Factories.FactoryMapaGrilla;
 
@@ -16,14 +16,29 @@ public class Logica {
 	private MapaGrilla miMapa;
 	protected FactoryMapaGrilla miFabrica;
 	protected Timer miReloj;
+	protected Nivel miNivel;
 	
-	public Logica(GUI_MAPA g, FactoryMapaGrilla f) {
+	public Logica(GUI_MAPA g, FactoryMapaGrilla f, Nivel n) {
 		miGUI = g;
 		miFabrica = f;
 		miMapa = miFabrica.crearMapa(this);
+		miNivel = n;
+		miMapa.setNivel(n);
+		//Manejo del timer 
+		miReloj = new Timer(this);
+		actualizarVelocidadProtagonista(miNivel.velocidadProtagonista());
+		actualizarVelocidadFantasmas(miNivel.velocidadFantasmas());
+		//Trabajo con la gui
 		miGUI.actualizarFondo(miMapa.getImage());
 		miGUI.fotoProtagonista(miMapa.getImagenProtagonista(),100,100);
-		miReloj = new Timer(this); 
+	}
+	
+	public void actualizarVelocidadProtagonista(int i) {
+		miReloj.setSleepProtagonista(i);
+	}
+	
+	public void actualizarVelocidadFantasmas(int i) {
+		miReloj.setSLeepFantasmas(i);
 	}
 	
 	public void actualizarProtagonista(int x,int y) {

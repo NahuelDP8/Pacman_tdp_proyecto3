@@ -12,7 +12,6 @@ abstract public class Protagonista extends Personaje{
 	protected int movimientoActual;
 	protected int movimientoPrevio;
 	protected int puntaje;
-	protected int velocidad;
 	protected final int MOVER_ABAJO = 1;	
 	protected final int MOVER_ARRIBA = 2;
 	protected final int MOVER_IZQUIERDA = 3;
@@ -30,16 +29,12 @@ abstract public class Protagonista extends Personaje{
 	
 	public void realizarMovimiento() {
 		if(movimientoActual == MOVER_ABAJO) {
-			System.out.println("Abajo");
 			posicion.setY(posicion.getY()+ velocidad);
 		}else if(movimientoActual == MOVER_ARRIBA) {
-			System.out.println("Arriba");
 			posicion.setY(posicion.getY()- velocidad);
 		}else if(movimientoActual == MOVER_IZQUIERDA) {
-			System.out.println("Izquierda");
 			posicion.setX(posicion.getX()- velocidad);
 		}else if(movimientoActual == MOVER_DERECHA) {
-			System.out.println("Derecha");
 			posicion.setX(posicion.getX()+ velocidad);
 		}
 		movimientoPrevio = movimientoActual;

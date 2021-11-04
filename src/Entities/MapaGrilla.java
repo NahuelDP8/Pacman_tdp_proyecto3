@@ -5,6 +5,8 @@ import Factories.FactoryEnemigo;
 import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
+import Nivel.Nivel;
+
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
@@ -20,9 +22,12 @@ abstract public class MapaGrilla {
 	protected ArrayList<Enemigo> misEnemigos;
 	protected Zona [][] zonas;
 	protected int ancho, altura, anchoMapa, altoMapa;
+	protected Nivel miNivel;
 	
 	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica) {
+		//Asignamos imagen de fondo del mapa
 		miFondo = fondo;
+		//Asignamos las fabricas correspondientes 
 		fabricaProt = fp;
 		fabricaEnem = fe;
 		fabricaMejora = new FactoryMejora();
@@ -33,12 +38,23 @@ abstract public class MapaGrilla {
 		altoMapa = 540;
 	}
 	
-
+	public void setNivel(Nivel n) {
+		miNivel = n;
+	}
+	
 	protected void agregarProtagonista() {
 		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(189, 290),30,30);
 		miProtagonista.setGrilla(this);
 	}
-
+	
+	protected void agregarFantasmas() {
+		 this.misEnemigos.add(fabricaEnem.crearAzul(new PairTupla(243, 404),30,30));
+		 this.misEnemigos.add(fabricaEnem.crearRosa(new PairTupla(243, 404),30,30));
+		 this.misEnemigos.add(fabricaEnem.crearRojo(new PairTupla(243, 404),30,30));
+		 this.misEnemigos.add(fabricaEnem.crearNaranja(new PairTupla(243, 404),30,30));
+		//Faltaría setearlos a la grilla y a las zonas correspondientes
+	}
+	
 	protected void construccionZonasGrilla(int ancho, int alto) {
 		//Inicializamos el tamaño de nuestra matriz de zonas
 		zonas =  new Zona[alto][ancho];
@@ -86,7 +102,6 @@ abstract public class MapaGrilla {
 		for(Zona auxZ : l) {
 			if(!auxZ.getEntidades().contains(e)) {
 				auxZ.setEntidad(e);
-				System.out.print("kajbvbakhvb");
 			}
 		}
 	}
@@ -98,9 +113,7 @@ abstract public class MapaGrilla {
 
 	public void realizarMovimiento() {
 		boolean huboColisiones  = verificarColisiones(miProtagonista);
-		if(!huboColisiones) miProtagonista.realizarMovimiento();
-		System.out.println("REALIZAR MOVIMIENTO EN PERSONAJE"+miProtagonista.getX()+","+miProtagonista.getY());
-		
+		if(!huboColisiones) miProtagonista.realizarMovimiento();		
 	}
 
 	protected ArrayList<Zona> mapeoPosEntidadAZona(Entidad e) {
@@ -193,5 +206,20 @@ abstract public class MapaGrilla {
 	public void agregarEnemigoRosa() {
 		misEnemigos.add(fabricaEnem.crearRosa(null, ancho, altura));
 	}
+	
+	public void desactivarPociones() {
+		System.out.println("Se desactivaron las pociones");
+	}
+	public void activarPociones() {
+		//Mandaría un mensaje a la lógica activando el timer relacionado a las pociones. 
+	}
 
+	public void activarFrutas() {
+		System.out.println("Se activaron las frutas");
+		//Mandaría un mensaje a la lógica activando el timer relacionado a las frutas.
+	}
+	
+	public void desactivarFrutas() {
+		//Mandaría un mensaje a la lógica activando el timer relacionado a las frutas.
+	}
 }

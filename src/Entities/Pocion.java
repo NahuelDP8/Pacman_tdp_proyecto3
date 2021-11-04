@@ -12,7 +12,6 @@ public class Pocion extends Mejora{
 	@Override
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }
