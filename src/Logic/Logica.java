@@ -33,7 +33,6 @@ public class Logica {
 		actualizarVelocidadFantasmas(miNivel.velocidadFantasmas());
 		this.setEsperaFruta(miNivel.apacicionFruta());
 		n.llevarACaboActivaciones();
-		
 	}
 	
 	public void actualizarVelocidadProtagonista(int i) {
@@ -80,9 +79,10 @@ public class Logica {
 
 	public void activarFrutas() {
 		miReloj.activarFruta();
+		
 	}
 
 	public void mostrarFrutas() {
-		
+		miMapa.agregarFruta();
 	}
 }

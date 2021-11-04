@@ -12,6 +12,7 @@ public class Mapa1 extends MapaGrilla {
 	protected int ancho;
 	protected int altura;
 
+	
 	public Mapa1(ImageIcon fondo, FactoryProtagonista fp, FactoryEnemigo fe, int ancho, int altura, Logica miLogica) {
 		super(fondo, fp, fe, ancho, altura, miLogica);
 		construccionZonasGrilla(5,6);

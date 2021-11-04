@@ -19,6 +19,7 @@ public class FactoryMejora{
 	}
 	public Mejora crearFruta(PairTupla p , int ancho, int altura) {
 		Mejora punto = new Fruta( p ,  ancho,  altura);
+		punto.setImagen(imagenPunto);
 		return punto;
 	}
 	public Mejora crearPuntoGrande(PairTupla p , int ancho, int altura) {

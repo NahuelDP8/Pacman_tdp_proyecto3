@@ -32,5 +32,4 @@ public class Nivel2 extends Nivel {
 		desactivarPociones(); 
 		activarFrutas();
 	}
-
 }

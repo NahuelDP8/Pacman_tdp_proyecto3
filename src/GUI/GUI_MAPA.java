@@ -52,10 +52,8 @@ public class GUI_MAPA {
 	}
 	
 	public void actualizarPunto(ImageIcon imagenPunto, int x, int y) {
-		System.out.print(x+","+y);
 		int i = (x-12)/15;
 		int j = (y-12)/15;
-		System.out.print(i+"/"+j);
 		JLabel punto = labels[i][j];
 		
 		Image EscalarFoto = imagenPunto.getImage().getScaledInstance(punto.getWidth(),punto.getHeight(), Image.SCALE_DEFAULT);

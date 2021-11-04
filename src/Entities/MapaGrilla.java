@@ -194,6 +194,11 @@ abstract public class MapaGrilla {
 		}
 		return encontrado;
 	}
+	public void agregarFruta() {
+		Mejora m = fabricaMejora.crearFruta(new PairTupla(230,450-154), 20, 20);
+		zonas[3][2].setEntidad(m);
+		miLogica.actualizarPunto(m.getImagen(),m.getX(),m.getY());
+	}
 	public void agregarEnemigoNaranja(){
 		misEnemigos.add(fabricaEnem.crearNaranja(null, ancho, altura));
 	}
