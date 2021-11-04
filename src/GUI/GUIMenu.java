@@ -51,7 +51,7 @@ public class GUIMenu extends JFrame {
 	public GUIMenu() {
 		setTitle("PacMan");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(400,60,732,652);
+		setBounds(400,60,781,652);
 		ContentPanel = new JPanel();
 		ContentPanel.setBackground(Color.BLACK);
 		ContentPanel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -59,19 +59,20 @@ public class GUIMenu extends JFrame {
 		ImageIcon imagen;
 		Image EscalarFoto; 
 		ImageIcon FotoEscalada;
+		ContentPanel.setLayout(null);
 		
 
 		
 		
 		
 		JPanel PSeleccionProta = new JPanel();
+		PSeleccionProta.setBounds(10, 8, 747, 597);
 		PSeleccionProta.setBackground(Color.BLACK);
-		PSeleccionProta.setBounds(0, 10, 708, 553);
 		ContentPanel.add(PSeleccionProta);
 		PSeleccionProta.setLayout(null);
 		
 		JPanel PSeleccionNivel = new JPanel();
-		PSeleccionNivel.setBounds(0, 10, 708, 553);
+		PSeleccionNivel.setBounds(10, 8, 730, 574);
 		ContentPanel.add(PSeleccionNivel);
 		PSeleccionNivel.setLayout(null);
 		PSeleccionNivel.setVisible(false);
@@ -92,6 +93,7 @@ public class GUIMenu extends JFrame {
 					public void run() {
 						try {
 							F_Mapa_Grilla=new FactoryMapaGrillaGoku();
+							PSeleccionProta.setVisible(false);
 							PSeleccionNivel.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -119,6 +121,7 @@ public class GUIMenu extends JFrame {
 					public void run() {
 						try {
 							F_Mapa_Grilla=new FactoryMapaGrillaNaruto();
+							PSeleccionProta.setVisible(false);
 							PSeleccionNivel.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -139,7 +142,7 @@ public class GUIMenu extends JFrame {
 		
 		
 		JButton JBNivel1 = new JButton("NIVEL 1");
-		JBNivel1.setBackground(Color.RED);
+		JBNivel1.setBackground(Color.WHITE);
 		JBNivel1.setFont(new Font("Playbill", Font.BOLD, 80));
 		JBNivel1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
