@@ -27,7 +27,7 @@ public class Nivel3 extends Nivel{
 		return 2000;
 	}
 	public void llevarACaboActivaciones() {
-		desactivarPociones(); 
 		activarFrutas();
+		activarPociones();
 	}
 }

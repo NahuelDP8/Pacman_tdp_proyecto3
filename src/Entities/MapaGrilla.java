@@ -196,8 +196,10 @@ abstract public class MapaGrilla {
 		}
 		return encontrado;
 	}
+	
+	//modificar para entrega final
 	public void agregarFruta() {
-		Mejora m = fabricaMejora.crearFruta(new PairTupla(250,450-154), 20, 20);
+		Mejora m = fabricaMejora.crearFruta(new PairTupla(260,450-154), 20, 20);
 		zonas[3][2].setEntidad(m);
 		miLogica.actualizarFruta(m.getImagen(),m.getX(),m.getY());
 	}
@@ -222,7 +224,8 @@ abstract public class MapaGrilla {
 	public void desactivarPociones() {
 	}
 	public void activarPociones() {
-		//Mandaría un mensaje a la lógica activando el timer relacionado a las pociones. 
+		//Mandaría un mensaje a la lógica activando el timer relacionado a las pociones.
+		miLogica.activarPocion();
 	}
 
 	public void activarFrutas() {

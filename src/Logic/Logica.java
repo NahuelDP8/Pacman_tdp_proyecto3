@@ -32,6 +32,7 @@ public class Logica {
 		actualizarVelocidadProtagonista(miNivel.velocidadProtagonista());
 		actualizarVelocidadFantasmas(miNivel.velocidadFantasmas());
 		this.setEsperaFruta(miNivel.apacicionFruta());
+		this.setEsperaPocion(miNivel.aparicionPocion());
 		n.llevarACaboActivaciones();
 	}
 	
@@ -79,7 +80,6 @@ public class Logica {
 
 	public void activarFrutas() {
 		miReloj.activarFruta();
-		
 	}
 
 	public void mostrarFrutas() {
@@ -89,9 +89,13 @@ public class Logica {
 	}
 	
 	public void mostrarPociones() {
+		miMapa.agregarPocion();
+	}
+	
+	public void activarPocion() {
+		miReloj.activarPocion();
 		
 	}
-
 	public void eliminarPocion() {
 		
 	}
