@@ -75,9 +75,10 @@ public class Logica {
 
 	public void activarFrutas() {
 		miReloj.activarFruta();
+		
 	}
 
 	public void mostrarFrutas() {
-		
+		miMapa.agregarFruta();
 	}
 }
