@@ -4,11 +4,12 @@ import Entities.MapaGrilla;
 
 public class Nivel1 extends Nivel{
 	
-	public Nivel1() {
+	public Nivel1() {}
+
+	public void llevarACaboActivaciones() {
 		desactivarPociones(); 
 		activarFrutas();
 	}
-	
 	public int velocidadProtagonista() {
 		return 30;
 	}
@@ -20,7 +21,7 @@ public class Nivel1 extends Nivel{
 	public int apacicionFruta() {
 		return 2000;
 	}
-	@Override
+
 	public int aparicionPocion() {
 		return 2000;
 	}

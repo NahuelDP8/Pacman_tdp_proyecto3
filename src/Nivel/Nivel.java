@@ -14,6 +14,8 @@ abstract public class Nivel {
 	public Nivel () {
 	}
 	
+	abstract public void llevarACaboActivaciones();
+	
 	public void setMapa(MapaGrilla m) {
 		miMapa = m;
 	}
