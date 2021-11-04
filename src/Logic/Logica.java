@@ -22,15 +22,19 @@ public class Logica {
 		miGUI = g;
 		miFabrica = f;
 		miMapa = miFabrica.crearMapa(this);
+		n.setMapa(miMapa);
 		miNivel = n;
 		miMapa.setNivel(n);
-		//Manejo del timer 
-		miReloj = new Timer(this);
-		actualizarVelocidadProtagonista(miNivel.velocidadProtagonista());
-		actualizarVelocidadFantasmas(miNivel.velocidadFantasmas());
+
+		
 		//Trabajo con la gui
+		miReloj = new Timer(this);
 		miGUI.actualizarFondo(miMapa.getImage());
 		miGUI.fotoProtagonista(miMapa.getImagenProtagonista(),100,100);
+		actualizarVelocidadProtagonista(miNivel.velocidadProtagonista());
+		actualizarVelocidadFantasmas(miNivel.velocidadFantasmas());
+		n.llevarACaboActivaciones();
+		
 	}
 	
 	public void actualizarVelocidadProtagonista(int i) {
@@ -67,5 +71,13 @@ public class Logica {
 	}
 	public void realizarMovimiento() {
 		miMapa.realizarMovimiento();
+	}
+
+	public void activarFrutas() {
+		miReloj.activarFruta();
+	}
+
+	public void mostrarFrutas() {
+		
 	}
 }

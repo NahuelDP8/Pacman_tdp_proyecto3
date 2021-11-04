@@ -7,7 +7,9 @@ public class Timer implements Runnable {
 	private Thread hiloTiempo, hiloMoverPersonaje, hiloFruta, hiloPocion,hiloMusica,hiloMoverFantasmasMuertos,hiloMoverFantasmas;
 	private Logica miLogica;
 	private final int minPausa = 250;
-	private int velocidadProtagonista, velocidadFantasmas; 
+	private int velocidadProtagonista, velocidadFantasmas, tiempoEsperaFruta, tiempoEsperaPocion; 
+	private boolean frutaActivada = false;
+	private boolean pocionActivada = false; 
 
 	public Timer(Logica logic) {
 		miLogica = logic;
@@ -21,13 +23,10 @@ public class Timer implements Runnable {
 		//Hilo que notifica que se debe mover.
 		hiloMoverPersonaje = new Thread(this);
 		hiloMoverPersonaje.start();
-		/*
+
 		hiloFruta = new Thread(this);
-		hiloFruta.start();
 		
-		hiloPocion = new Thread(this);
-		hiloPocion.start();
-		
+		hiloPocion = new Thread(this);		
 		hiloMusica = new Thread(this);
 		hiloMusica.start();
 		
@@ -36,9 +35,8 @@ public class Timer implements Runnable {
 		
 		hiloMoverFantasmas = new Thread(this);
 		hiloMoverFantasmas.start();
-		*/
 	}
-
+	
 	@Override
 	public void run() {
 		Thread ct = Thread.currentThread();
@@ -47,6 +45,32 @@ public class Timer implements Runnable {
 			try {
 				Thread.sleep(this.velocidadProtagonista);
 				miLogica.realizarMovimiento();
+			} catch(InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+		}
+		
+		while (ct == hiloPocion) {
+			try {
+				Thread.sleep(this.tiempoEsperaPocion);
+				if(pocionActivada) {
+				}else {
+					
+				}
+			} catch(InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+		}
+		
+		while (ct == hiloFruta) {
+			try {
+				Thread.sleep(this.tiempoEsperaFruta);
+				if(frutaActivada) {
+					miLogica.mostrarFrutas(); 
+					frutaActivada=false;
+				}else{
+					frutaActivada=true;
+				}
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
@@ -69,21 +93,6 @@ public class Timer implements Runnable {
 			}
 		}
 		/*
-		while (ct == hiloPocion) {
-				try {
-					//Completar
-				} catch(InterruptedException e) {
-					Thread.currentThread().interrupt();
-				}
-		}
-		while (ct == hiloFruta) {
-				try {
-					//Completar
-				} catch(InterruptedException e) {
-					Thread.currentThread().interrupt();
-				}
-		}
-		
 		while (ct == hiloMusica) {
 
 			try {
@@ -136,6 +145,25 @@ public class Timer implements Runnable {
 	}
 	public void setVelocidadFantasmas(int i) {
 		this.velocidadFantasmas = i;
+	}
+	public void setTiempoEsperaDeFruta(int i) {
+		this.tiempoEsperaFruta = i;
+	}
+	public void setTiempoEsperaDePocion(int i) {
+		this.tiempoEsperaPocion = i;
+	}
+	
+	public void activarPocion() {
+		hiloPocion.start();
+	}
+	public void desactivarPocion() {
+		hiloPocion.interrupt();;
+	}
+	public void activarFruta() {
+		hiloFruta.start();
+	}
+	public void desactivarFruta() {
+		hiloPocion.interrupt();
 	}
 
 }

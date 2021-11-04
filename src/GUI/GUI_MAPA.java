@@ -12,6 +12,8 @@ import javax.swing.SwingConstants;
 import Factories.FactoryMapaGrilla;
 import GUI.GUI.EventoDeTeclado;
 import Logic.Logica;
+import Nivel.Nivel;
+import Nivel.Nivel1;
 
 import java.awt.Font;
 import java.awt.Image;
@@ -26,12 +28,13 @@ public class GUI_MAPA {
 	private Logica log;
 	private JLabel JLTiempo;
 	private JLabel JLFondoMapa;
+	private Nivel n = new Nivel1(); 
 	/**
 	 * Create the application.
 	 */
 	public GUI_MAPA(FactoryMapaGrilla f) {
 		initialize();
-		log = new Logica(this,f, null);
+		log = new Logica(this,f, n);
 	}
 	
 	public void actualizarFondo(ImageIcon imagen){

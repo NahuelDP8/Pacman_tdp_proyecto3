@@ -208,15 +208,15 @@ abstract public class MapaGrilla {
 	}
 	
 	public void desactivarPociones() {
-		System.out.println("Se desactivaron las pociones");
 	}
 	public void activarPociones() {
 		//Mandaría un mensaje a la lógica activando el timer relacionado a las pociones. 
 	}
 
 	public void activarFrutas() {
-		System.out.println("Se activaron las frutas");
-		//Mandaría un mensaje a la lógica activando el timer relacionado a las frutas.
+		//Mandaría un mensaje a la lógica activando el timer relacionado a las pociones.
+		miLogica.activarFrutas(); 
+		//Luego deberíamos obtener las frutas con las que se trabajará este nivel. 
 	}
 	
 	public void desactivarFrutas() {
