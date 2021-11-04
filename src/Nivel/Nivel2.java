@@ -30,7 +30,5 @@ public class Nivel2 extends Nivel {
 	public void llevarACaboActivaciones() {
 		desactivarPociones(); 
 		activarFrutas();
-		
 	}
-
 }
