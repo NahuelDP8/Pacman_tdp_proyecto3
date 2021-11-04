@@ -148,11 +148,14 @@ abstract public class MapaGrilla {
 		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(e);
 		ArrayList<Entidad> entidadesColisionadasConE = entidadesColisionadas(zonasActivasDeE, e);
 		if(entidadesColisionadasConE.size()!=0) {
-			huboColisiones = true;
 			for(Entidad aux : entidadesColisionadasConE) {
 				e.accept(aux.getVisitor());		
 			}
 		}
+		if(miProtagonista.getColisiono())
+			huboColisiones = true;
+		miProtagonista.setColisiono(false);
+			
 		return huboColisiones; 
 	}
 
@@ -232,4 +235,30 @@ abstract public class MapaGrilla {
 
 	abstract public void quitarPocion() ; //aca podríamos tener una lista de frutas y pociones por separado, entonces armar un metodo generico para quitarlas de la vistas
 	abstract public void quitarFruta() ;
+
+
+	public void verificarMovimientoPosible() {
+		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(miProtagonista);
+		ArrayList<Entidad> entidadesColisionadasConE = entidadesColisionadas(zonasActivasDeE, miProtagonista);
+		if(entidadesColisionadasConE.size()!=0) {
+			for(Entidad aux : entidadesColisionadasConE) {
+				miProtagonista.accept(aux.getVisitor());		
+			}
+		}
+	}
+
+	public void sacarPunto(Entidad punto) {
+		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(punto);
+		for(Zona z : zonasActivasDeE)
+			z.remove(punto);
+		System.out.print("X: "+punto.getX());
+		System.out.print("Y: "+punto.getY());
+		miLogica.quitarDeLaGui(punto.getX(), punto.getY());
+		punto = null;
+
+	}
+
+	public void actualizarPuntos(int i) {
+		miLogica.actualizarPuntos(i);
+	}
 }

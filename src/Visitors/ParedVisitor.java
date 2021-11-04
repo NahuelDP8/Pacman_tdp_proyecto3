@@ -1,6 +1,7 @@
 package Visitors;
 
 import Entities.Enemigo;
+import Entities.Entidad;
 import Entities.Fruta;
 import Entities.Pared;
 import Entities.Pocion;
@@ -9,7 +10,10 @@ import Entities.Punto;
 import Entities.PuntoGrande;
 
 public class ParedVisitor implements Visitor {
-
+	private Entidad miEntidad;
+	public ParedVisitor(Entidad ent) {
+		miEntidad = ent;
+	}
 	@Override
 	public void visitPunto(Punto p) {
 	}

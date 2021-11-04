@@ -72,9 +72,11 @@ public class Timer implements Runnable {
 				if(!frutaActivada) {
 					miLogica.mostrarFrutas();
 					frutaActivada = true;
+					tiempoEsperaFruta /= 2;
 				}
 				else {
 					frutaActivada = false;
+					tiempoEsperaFruta *= 2;
 					miLogica.eliminarFruta();
 				}
 			} catch(InterruptedException e) {

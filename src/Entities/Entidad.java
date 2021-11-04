@@ -42,16 +42,14 @@ abstract public class Entidad {
 	public ImageIcon getImagen() {
 		return miImagen;
 	}
-	
-	
-	//verificar abajo sacar?
+
 	public int getX() {
 		return posicion.x;
 	}
 	public int getY() {
 		return posicion.y;
 	}
-	// verificar arriba de esto
+
 	public PairTupla getPos() {
 		return posicion;
 	}
