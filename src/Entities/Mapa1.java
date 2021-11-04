@@ -21,15 +21,18 @@ public class Mapa1 extends MapaGrilla {
 		construccionParedesLimitaciones();
 		agregarMejoras();
 		agregarProtagonista();
-		fruta = fabricaMejora.crearFruta(new PairTupla(260,350-154), 20, 20);
+		fruta = fabricaMejora.crearFruta(new PairTupla(260,345-154), 20, 20);
 		pocion = fabricaMejora.crearPocion(new PairTupla(230,450-154), 20, 20);
 	}
 	
 	protected void agregarMejoras() {
 		Mejora m;
+		int x,y;
 		for(int i = 1; i<31;i++) {
 			for (int j = 0; j<33;j++) {
-				if(!((12+i*15)>155 &&  (12+i*15)<345 && (22+j*15)>183 && (22+j*15)<322)) {
+				x = 12+i*15;
+				y= 22+j*15;
+				if(!(x>155 &&  x<345 && y>183 && y<322)) {
 					m = fabricaMejora.crearPunto(new PairTupla(12+i*15,22+j*15), 10, 10);
 					ubicarPunto(m);
 				}

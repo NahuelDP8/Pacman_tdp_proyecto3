@@ -151,7 +151,6 @@ abstract public class MapaGrilla {
 			huboColisiones = true;
 			for(Entidad aux : entidadesColisionadasConE) {
 				e.accept(aux.getVisitor());		
-				System.out.print("Hola");
 			}
 		}
 		return huboColisiones; 
