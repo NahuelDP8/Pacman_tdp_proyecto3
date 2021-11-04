@@ -7,13 +7,15 @@ public class Timer implements Runnable {
 	private Thread hiloTiempo, hiloMoverPersonaje, hiloFruta, hiloPocion,hiloMusica,hiloMoverFantasmasMuertos,hiloMoverFantasmas;
 	private Logica miLogica;
 	private final int minPausa = 250;
-	private int velocidadProtagonista, velocidadFantasmas; 
+	private int SleepDeProtagonista, SleepDeFantasmas; 
 
 	public Timer(Logica logic) {
 		miLogica = logic;
 		minutos = 0;
 		segundos = 0;
 		pausa = 400;
+		SleepDeFantasmas=100;
+		SleepDeProtagonista=55;
 		//Hilo que actualiza el reloj.
 		hiloTiempo = new Thread(this);
 		hiloTiempo.start();
@@ -45,7 +47,8 @@ public class Timer implements Runnable {
 		//Actualiza el reloj
 		while (ct == hiloMoverPersonaje) {
 			try {
-				Thread.sleep(this.velocidadProtagonista);
+				Thread.sleep(this.SleepDeProtagonista);
+
 				miLogica.realizarMovimiento();
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
@@ -131,11 +134,11 @@ public class Timer implements Runnable {
 		hiloMoverPersonaje.interrupt();
 	}
 	
-	public void setVelocidadProtagonista(int i) {
-		this.velocidadProtagonista = i;
+	public void setSleepProtagonista(int i) {
+		this.SleepDeProtagonista = i;
 	}
-	public void setVelocidadFantasmas(int i) {
-		this.velocidadFantasmas = i;
+	public void setSLeepFantasmas(int i) {
+		this.SleepDeFantasmas = i;
 	}
 
 }
