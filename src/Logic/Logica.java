@@ -96,8 +96,11 @@ public class Logica {
 		
 	}
 
-	public void actualizarFruta(ImageIcon img, int x, int y) {
-		miGUI.actualizarFruta(img,x,y);
+	public void actualizarPocion(ImageIcon img, int x, int y) {
+		miGUI.actualizarMejora(img,x,y);
 		
+	}
+	public void actualizarFruta(ImageIcon img, int x, int y) {
+		miGUI.actualizarMejora(img,x,y);
 	}
 }

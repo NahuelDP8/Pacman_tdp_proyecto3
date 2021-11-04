@@ -61,7 +61,7 @@ public class GUI_MAPA {
 		punto.setIcon(FotoEscalada);
 		labels[i][j] = punto;
 	}
-	public void actualizarFruta(ImageIcon img, int x, int y) {
+	public void actualizarMejora(ImageIcon img, int x, int y) {
 		int i = (x-12)/15;
 		int j = (y-12)/15;
 		JLabel punto = labels[i][j];
