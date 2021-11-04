@@ -34,7 +34,6 @@ public class Logica {
 		actualizarVelocidadProtagonista(miNivel.velocidadProtagonista());
 		actualizarVelocidadFantasmas(miNivel.velocidadFantasmas());
 		n.llevarACaboActivaciones();
-		
 	}
 	
 	public void actualizarVelocidadProtagonista(int i) {

@@ -2,8 +2,6 @@ package Nivel;
 
 public class Nivel3 extends Nivel{
 	public Nivel3() {
-		activarPociones(); 
-		activarFrutas();
 	}
 	@Override
 	public int velocidadProtagonista() {
@@ -27,5 +25,9 @@ public class Nivel3 extends Nivel{
 	public int aparicionPocion() {
 		// TODO Auto-generated method stub
 		return 2000;
+	}
+	public void llevarACaboActivaciones() {
+		desactivarPociones(); 
+		activarFrutas();
 	}
 }
