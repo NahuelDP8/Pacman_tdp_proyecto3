@@ -158,7 +158,7 @@ public class Timer implements Runnable {
 		hiloPocion.start();
 	}
 	public void desactivarPocion() {
-		hiloPocion.interrupt();;
+		hiloPocion.interrupt();
 	}
 	public void activarFruta() {
 		hiloFruta.start();

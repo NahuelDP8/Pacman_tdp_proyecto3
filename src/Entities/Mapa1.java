@@ -24,8 +24,10 @@ public class Mapa1 extends MapaGrilla {
 		Mejora m;
 		for(int i = 1; i<31;i++) {
 			for (int j = 0; j<33;j++) {
-				m = fabricaMejora.crearPunto(new PairTupla(12+i*15,22+j*15), 10, 10);
-				ubicarPunto(m);
+				if(!((12+i*15)>155 &&  (12+i*15)<345 && (22+j*15)>183 && (22+j*15)<322)) {
+					m = fabricaMejora.crearPunto(new PairTupla(12+i*15,22+j*15), 10, 10);
+					ubicarPunto(m);
+				}
 			}
 		}
 	}
