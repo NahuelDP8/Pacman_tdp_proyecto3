@@ -28,4 +28,9 @@ public class Nivel3 extends Nivel{
 		// TODO Auto-generated method stub
 		return 2000;
 	}
+	@Override
+	public void llevarACaboActivaciones() {
+		// TODO Auto-generated method stub
+		
+	}
 }

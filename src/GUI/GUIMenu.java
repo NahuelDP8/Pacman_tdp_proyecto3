@@ -61,10 +61,6 @@ public class GUIMenu extends JFrame {
 		ImageIcon FotoEscalada;
 		ContentPanel.setLayout(null);
 		
-
-		
-		
-		
 		JPanel PSeleccionProta = new JPanel();
 		PSeleccionProta.setBounds(10, 8, 747, 597);
 		PSeleccionProta.setBackground(Color.BLACK);

@@ -37,7 +37,7 @@ abstract public class Nivel {
 	}
 	
 	public void activarPociones() {
-		miMapa.activarPociones(); 
+		miMapa.activarPociones();
 	}
 
 	public void desactivarPociones() {
@@ -45,7 +45,7 @@ abstract public class Nivel {
 	}
 	
 	public void activarFrutas() {
-		miMapa.activarFrutas(); 
+		miMapa.activarFrutas();
 	}
 	
 	public void desactivarFrutas() {

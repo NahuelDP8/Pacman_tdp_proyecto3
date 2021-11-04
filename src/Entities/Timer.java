@@ -10,6 +10,7 @@ public class Timer implements Runnable {
 	private int SleepDeProtagonista, SleepDeFantasmas, tiempoEsperaFruta, tiempoEsperaPocion; 
 	private boolean frutaActivada = false;
 	private boolean pocionActivada = false; 
+	
 	public Timer(Logica logic) {
 		miLogica = logic;
 		minutos = 0;

@@ -1,25 +1,19 @@
 package GUI;
 
 import java.awt.Color;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
 import Factories.FactoryMapaGrilla;
-import GUI.GUI.EventoDeTeclado;
 import Logic.Logica;
 import Nivel.Nivel;
-import Nivel.Nivel1;
-
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import Nivel.Nivel;
+
 public class GUI_MAPA {
 
 	private JFrame frame;
@@ -27,14 +21,13 @@ public class GUI_MAPA {
 	private JLabel [][] labels = new JLabel[31][33];
 	private Logica log;
 	private JLabel JLTiempo;
-	private JLabel JLFondoMapa;
-	private Nivel n = new Nivel1(); 
+	private JLabel JLFondoMapa; 
 	/**
 	 * Create the application.
 	 */
 	public GUI_MAPA(FactoryMapaGrilla f, Nivel nivel) {
 		initialize();
-		log = new Logica(this,f, n);
+		log = new Logica(this,f, nivel);
 	}
 	
 	public void actualizarFondo(ImageIcon imagen){
