@@ -191,4 +191,11 @@ public class Mapa1 extends MapaGrilla {
 		p = new Pared(new PairTupla(293,479), 160, 19);
 		zonas [5][2].setEntidad(p);zonas [5][3].setEntidad(p);zonas [5][4].setEntidad(p);
 	}
+
+	@Override
+	public void agregarFruta() {
+		Mejora m = fabricaMejora.crearFruta(new PairTupla(230,450-154), 20, 20);
+		zonas[3][2].setEntidad(m);
+		miLogica.actualizarFruta(m.getImagen(),m.getX(),m.getY());	
+	}
 }

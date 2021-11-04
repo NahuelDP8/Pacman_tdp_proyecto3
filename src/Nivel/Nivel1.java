@@ -11,7 +11,7 @@ public class Nivel1 extends Nivel{
 		activarFrutas();
 	}
 	public int velocidadProtagonista() {
-		return 15;
+		return 40;
 	}
 	
 	public int velocidadFantasmas() {
