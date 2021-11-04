@@ -7,11 +7,11 @@ public class Nivel1 extends Nivel{
 	public Nivel1() {}
 
 	public void llevarACaboActivaciones() {
-		desactivarPociones(); 
 		activarFrutas();
+		desactivarPociones();
 	}
 	public int velocidadProtagonista() {
-		return 40;
+		return 30;
 	}
 	
 	public int velocidadFantasmas() {

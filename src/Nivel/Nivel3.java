@@ -6,7 +6,7 @@ public class Nivel3 extends Nivel{
 	@Override
 	public int velocidadProtagonista() {
 		// TODO Auto-generated method stub
-		return 37;
+		return 40;
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class Nivel3 extends Nivel{
 		return 2000;
 	}
 	public void llevarACaboActivaciones() {
-		desactivarPociones(); 
 		activarFrutas();
+		activarPociones();
 	}
 }

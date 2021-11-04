@@ -19,7 +19,7 @@ public class Nivel2 extends Nivel {
 	@Override
 	public int apacicionFruta() {
 		// TODO Auto-generated method stub
-		return 2000;
+		return 5000;
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class Nivel2 extends Nivel {
 	}
 	@Override
 	public void llevarACaboActivaciones() {
-		desactivarPociones(); 
 		activarFrutas();
+		activarPociones();
 	}
 }

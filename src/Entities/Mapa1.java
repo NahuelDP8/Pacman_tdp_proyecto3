@@ -12,7 +12,8 @@ import Logic.Logica;
 public class Mapa1 extends MapaGrilla {
 	protected int ancho;
 	protected int altura;
-
+	protected Mejora fruta;
+	protected Mejora pocion;
 	
 	public Mapa1(ImageIcon fondo, FactoryProtagonista fp, FactoryEnemigo fe, int ancho, int altura, Logica miLogica) {
 		super(fondo, fp, fe, ancho, altura, miLogica);
@@ -20,6 +21,8 @@ public class Mapa1 extends MapaGrilla {
 		construccionParedesLimitaciones();
 		agregarMejoras();
 		agregarProtagonista();
+		fruta = fabricaMejora.crearFruta(new PairTupla(260,350-154), 20, 20);
+		pocion = fabricaMejora.crearPocion(new PairTupla(230,450-154), 20, 20);
 	}
 	
 	protected void agregarMejoras() {
@@ -194,14 +197,22 @@ public class Mapa1 extends MapaGrilla {
 
 	@Override
 	public void agregarFruta() {
-		Mejora m = fabricaMejora.crearFruta(new PairTupla(250,450-154), 20, 20);
-		zonas[3][2].setEntidad(m);
-		miLogica.actualizarFruta(m.getImagen(),m.getX(),m.getY());	
+		//zonas[3][2].setEntidad(m);
+		miLogica.actualizarFruta(fruta.getImagen(),fruta.getX(),fruta.getY());	
 	}
 	
 	public void agregarPocion() {
-		Mejora m = fabricaMejora.crearPocion(new PairTupla(230,450-154), 20, 20);
-		zonas[3][2].setEntidad(m);
-		miLogica.actualizarFruta(m.getImagen(),m.getX(),m.getY());	
+		//zonas[3][2].setEntidad(m);
+		miLogica.actualizarPocion(pocion.getImagen(),pocion.getX(),pocion.getY());	
+	}
+
+	@Override
+	public void quitarPocion() {
+		miLogica.quitarDeLaGui(pocion.getX(), pocion.getY());
+	}
+
+	@Override
+	public void quitarFruta() {
+		miLogica.quitarDeLaGui(fruta.getX(), fruta.getY());
 	}
 }

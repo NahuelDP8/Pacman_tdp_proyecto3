@@ -52,12 +52,13 @@ public class Timer implements Runnable {
 		
 		while (ct == hiloPocion) {
 			try {
-				Thread.sleep(this.tiempoEsperaFruta);
-				if(!frutaActivada) {
+				Thread.sleep(this.tiempoEsperaPocion);
+				if(!pocionActivada) {
 					miLogica.mostrarPociones(); 
-					frutaActivada = true;
+					pocionActivada = true;
 				}
 				else {
+					pocionActivada = false;
 					miLogica.eliminarPocion();
 				}
 			} catch(InterruptedException e) {
@@ -69,10 +70,11 @@ public class Timer implements Runnable {
 			try {
 				Thread.sleep(this.tiempoEsperaFruta);
 				if(!frutaActivada) {
-					miLogica.mostrarFrutas(); 
+					miLogica.mostrarFrutas();
 					frutaActivada = true;
 				}
 				else {
+					frutaActivada = false;
 					miLogica.eliminarFruta();
 				}
 			} catch(InterruptedException e) {

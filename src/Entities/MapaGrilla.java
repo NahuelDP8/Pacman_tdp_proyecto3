@@ -197,6 +197,8 @@ abstract public class MapaGrilla {
 		return encontrado;
 	}
 	abstract public void agregarFruta();
+
+	abstract public void agregarPocion(); 
 	
 	public void agregarEnemigoNaranja(){
 		misEnemigos.add(fabricaEnem.crearNaranja(null, ancho, altura));
@@ -212,9 +214,11 @@ abstract public class MapaGrilla {
 	}
 	
 	public void desactivarPociones() {
+		miLogica.desactivarPociones();
 	}
 	public void activarPociones() {
-		//Mandaría un mensaje a la lógica activando el timer relacionado a las pociones. 
+		//Mandaría un mensaje a la lógica activando el timer relacionado a las pociones.
+		miLogica.activarPocion();
 	}
 
 	public void activarFrutas() {
@@ -224,6 +228,9 @@ abstract public class MapaGrilla {
 	}
 	
 	public void desactivarFrutas() {
-		//Mandaría un mensaje a la lógica activando el timer relacionado a las frutas.
+		miLogica.desactivarFrutas(); 
 	}
+
+	abstract public void quitarPocion() ; //aca podríamos tener una lista de frutas y pociones por separado, entonces armar un metodo generico para quitarlas de la vistas
+	abstract public void quitarFruta() ;
 }

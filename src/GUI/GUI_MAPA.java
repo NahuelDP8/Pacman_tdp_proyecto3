@@ -61,7 +61,16 @@ public class GUI_MAPA {
 		punto.setIcon(FotoEscalada);
 		labels[i][j] = punto;
 	}
-	public void actualizarFruta(ImageIcon img, int x, int y) {
+	
+	
+	
+	public void quitarEntidad(int x, int y) {
+		int i = (x-12)/15;
+		int j = (y-12)/15;
+		labels[i][j].setVisible(false);
+	}
+	
+	public void actualizarMejora(ImageIcon img, int x, int y) {
 		int i = (x-12)/15;
 		int j = (y-12)/15;
 		JLabel punto = labels[i][j];
@@ -70,6 +79,7 @@ public class GUI_MAPA {
 		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
 		punto.setIcon(FotoEscalada);
 		labels[i][j] = punto;
+		punto.setVisible(true);
 		
 	}
 	
@@ -96,8 +106,6 @@ public class GUI_MAPA {
 	public void captarMovimientoDer() {
 		log.moverProtagonistaDerecha();
 	}
-	
-	
 	
 	class EventoDeTeclado implements KeyListener{
 		public void keyTyped(KeyEvent e) {
