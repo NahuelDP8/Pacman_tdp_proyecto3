@@ -85,4 +85,19 @@ public class Logica {
 	public void mostrarFrutas() {
 		miMapa.agregarFruta();
 	}
+	public void eliminarFruta() {
+	}
+	
+	public void mostrarPociones() {
+		
+	}
+
+	public void eliminarPocion() {
+		
+	}
+
+	public void actualizarFruta(ImageIcon img, int x, int y) {
+		miGUI.actualizarFruta(img,x,y);
+		
+	}
 }

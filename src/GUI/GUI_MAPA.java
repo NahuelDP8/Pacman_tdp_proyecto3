@@ -61,6 +61,17 @@ public class GUI_MAPA {
 		punto.setIcon(FotoEscalada);
 		labels[i][j] = punto;
 	}
+	public void actualizarFruta(ImageIcon img, int x, int y) {
+		int i = (x-12)/15;
+		int j = (y-12)/15;
+		JLabel punto = labels[i][j];
+		punto.setBounds(punto.getX(), punto.getY(), 20, 20);
+		Image EscalarFoto = img.getImage().getScaledInstance(20,20, Image.SCALE_DEFAULT);
+		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
+		punto.setIcon(FotoEscalada);
+		labels[i][j] = punto;
+		
+	}
 	
 	public void actualizarReloj(int min, int seg) {
 		String minutos= ""+min;

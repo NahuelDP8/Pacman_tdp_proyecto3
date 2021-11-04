@@ -10,7 +10,6 @@ public class Timer implements Runnable {
 	private int SleepDeProtagonista, SleepDeFantasmas, tiempoEsperaFruta, tiempoEsperaPocion; 
 	private boolean frutaActivada = false;
 	private boolean pocionActivada = false; 
-	
 	public Timer(Logica logic) {
 		miLogica = logic;
 		minutos = 0;
@@ -53,11 +52,13 @@ public class Timer implements Runnable {
 		
 		while (ct == hiloPocion) {
 			try {
-				Thread.sleep(this.tiempoEsperaPocion);
-				if(pocionActivada) {
-				
-				}else {
-					
+				Thread.sleep(this.tiempoEsperaFruta);
+				if(!frutaActivada) {
+					miLogica.mostrarPociones(); 
+					frutaActivada = true;
+				}
+				else {
+					miLogica.eliminarPocion();
 				}
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
@@ -67,11 +68,12 @@ public class Timer implements Runnable {
 		while (ct == hiloFruta) {
 			try {
 				Thread.sleep(this.tiempoEsperaFruta);
-				if(frutaActivada) {
+				if(!frutaActivada) {
 					miLogica.mostrarFrutas(); 
-					frutaActivada=false;
-				}else{
-					frutaActivada=true;
+					frutaActivada = true;
+				}
+				else {
+					miLogica.eliminarFruta();
 				}
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();

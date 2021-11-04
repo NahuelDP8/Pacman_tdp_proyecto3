@@ -30,7 +30,7 @@ public class FrutaVisitor implements Visitor {
 
 	@Override
 	public void visitProtagonista(Protagonista p) {
-		// TODO Auto-generated method stub
+		p.realizarMovimiento();	
 
 	}
 

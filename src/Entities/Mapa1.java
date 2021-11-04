@@ -1,6 +1,7 @@
 package Entities;
 
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
@@ -34,11 +35,13 @@ public class Mapa1 extends MapaGrilla {
 	}
 	private void ubicarPunto(Mejora m) {
 		Rectangle2D rect = m.getRectangulo().getBounds2D();
+		ArrayList<Zona> misZonas = new ArrayList<Zona>();
 		boolean colision = false;
 		for (Zona[] zz: zonas) {
 			for(Zona z: zz) {
 				
 				if(z.getRectangulo().intersects(rect)) {// el punto esta en la zona
+					misZonas.add(z);
 					for(Entidad e: z.getEntidades()) {
 						if(e.getRectangulo().intersects(rect)){
 							colision = true;
@@ -50,6 +53,10 @@ public class Mapa1 extends MapaGrilla {
 		}
 		if(!colision)
 			miLogica.actualizarPunto(m.getImagen(), m.getX(), m.getY());
+		else {
+			//for(Zona z:misZonas)
+				//z.setEntidad(m);
+		}
 	}
 	protected void construccionParedesLimitaciones() {
 		//Debemos llevar a cabo las limitaciones de acuerdo a la imagen del mapa que nosotros queremos representar
