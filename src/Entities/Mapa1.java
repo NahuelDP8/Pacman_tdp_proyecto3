@@ -68,8 +68,8 @@ public class Mapa1 extends MapaGrilla {
 		if(!colision)
 			miLogica.actualizarPunto(m.getImagen(), m.getX(), m.getY());
 		else {
-			//for(Zona z:misZonas)
-				//z.setEntidad(m);
+			for(Zona z:misZonas)
+				z.setEntidad(m);
 		}
 	}
 	protected void construccionParedesLimitaciones() {
