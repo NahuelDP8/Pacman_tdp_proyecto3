@@ -28,25 +28,35 @@ public class Mapa1 extends MapaGrilla {
 	protected void agregarMejoras() {
 		Mejora m;
 		int x,y;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(40,20),25,25);
-		miLogica.actualizarFruta(m.getImagen(), m.getX(), m.getY());
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(450,20),25,25);
-		miLogica.actualizarFruta(m.getImagen(), m.getX(), m.getY());
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(40,500),25,25);
-		miLogica.actualizarFruta(m.getImagen(), m.getX(), m.getY());
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(450,500),25,25);
-		miLogica.actualizarFruta(m.getImagen(), m.getX(), m.getY());
+		agregarPowerPellets();
 		for(int i = 1; i<31;i++) {
 			for (int j = 0; j<33;j++) {
 				x = 12+i*15;
 				y = 22+j*15;
 				if(!(x>155 &&  x<345 && y>183 && y<322) && !(x<50 && y <50) && !(y<50 && x > 440) && !(x<50 && y > 490)&& !(x>440 && y > 490)) {
-					m = fabricaMejora.crearPunto(new PairTupla(12+i*15,22+j*15), 10, 10);
+					m = fabricaMejora.crearPunto(new PairTupla(x,y), 10, 10);
 					ubicarPunto(m);
 				}
 			}
 		}
 	}
+	private void agregarPowerPellets() {
+		Mejora m;
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(40,20),25,25);
+		miLogica.actualizarFruta(m.getImagen(), m.getX(), m.getY());
+		zonas[0][0].setEntidad(m);
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(450,20),25,25);
+		miLogica.actualizarFruta(m.getImagen(), m.getX(), m.getY());
+		zonas[0][4].setEntidad(m);
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(40,500),25,25);
+		miLogica.actualizarFruta(m.getImagen(), m.getX(), m.getY());
+		zonas[5][0].setEntidad(m);
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(450,500),25,25);
+		miLogica.actualizarFruta(m.getImagen(), m.getX(), m.getY());
+		zonas[5][4].setEntidad(m);
+		
+	}
+
 	private void ubicarPunto(Mejora m) {
 		Rectangle2D rect = m.getRectangulo().getBounds2D();
 		ArrayList<Zona> misZonas = new ArrayList<Zona>();
@@ -65,9 +75,11 @@ public class Mapa1 extends MapaGrilla {
 				}
 			}
 		}
-		if(!colision)
+		if(!colision) {
+			System.out.print("X:"+m.getX());
+			System.out.print("Y:"+m.getY());
+
 			miLogica.actualizarPunto(m.getImagen(), m.getX(), m.getY());
-		else {
 			for(Zona z:misZonas)
 				z.setEntidad(m);
 		}
@@ -208,12 +220,12 @@ public class Mapa1 extends MapaGrilla {
 
 	@Override
 	public void agregarFruta() {
-		//zonas[3][2].setEntidad(m);
+		zonas[2][2].setEntidad(fruta);
 		miLogica.actualizarFruta(fruta.getImagen(),fruta.getX(),fruta.getY());	
 	}
 	
 	public void agregarPocion() {
-		//zonas[3][2].setEntidad(m);
+		zonas[3][2].setEntidad(pocion);
 		miLogica.actualizarPocion(pocion.getImagen(),pocion.getX(),pocion.getY());	
 	}
 

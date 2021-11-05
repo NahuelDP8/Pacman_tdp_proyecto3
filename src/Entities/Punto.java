@@ -10,7 +10,7 @@ public class Punto extends Mejora{
 
 	public Punto(PairTupla p, int anc, int alt) {
 		super(p, anc, alt);
-		v = new PuntoVisitor();
+		v = new PuntoVisitor(this);
 		// TODO Auto-generated constructor stub
 	}
 

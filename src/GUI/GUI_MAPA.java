@@ -22,6 +22,7 @@ public class GUI_MAPA {
 	private Logica log;
 	private JLabel JLTiempo;
 	private JLabel JLFondoMapa; 
+	private JLabel puntos;
 	/**
 	 * Create the application.
 	 */
@@ -54,6 +55,11 @@ public class GUI_MAPA {
 	public void actualizarPunto(ImageIcon imagenPunto, int x, int y) {
 		int i = (x-12)/15;
 		int j = (y-12)/15;
+		System.out.print("x:"+x);
+		System.out.print("y:"+y);
+		System.out.print("i:"+i);
+		System.out.print("j:"+j);
+		System.out.println("--");
 		JLabel punto = labels[i][j];
 		
 		Image EscalarFoto = imagenPunto.getImage().getScaledInstance(punto.getWidth(),punto.getHeight(), Image.SCALE_DEFAULT);
@@ -63,10 +69,15 @@ public class GUI_MAPA {
 	}
 	
 	
-	
 	public void quitarEntidad(int x, int y) {
 		int i = (x-12)/15;
 		int j = (y-12)/15;
+		//X: 147Y: 292x:147y:292i:9j:18--
+		System.out.print("x:"+x);
+		System.out.print("y:"+y);
+		System.out.print("i:"+i);
+		System.out.print("j:"+j);
+		System.out.println("--");
 		labels[i][j].setVisible(false);
 	}
 	
@@ -80,6 +91,11 @@ public class GUI_MAPA {
 		punto.setIcon(FotoEscalada);
 		labels[i][j] = punto;
 		punto.setVisible(true);
+		
+	}
+	
+	public void actualizarPuntos(int p) {
+		puntos.setText(String.valueOf(p));
 		
 	}
 	
@@ -174,7 +190,7 @@ public class GUI_MAPA {
 		JLFondoMapa = new JLabel("");
 		JLFondoMapa.setBounds(0, 154, 500, 540);
 		frame.getContentPane().add(JLFondoMapa);
-		JLFondoMapa.setIcon(new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/fondo.png")));
+		JLFondoMapa.setIcon(new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/fondoauxarreglo.png")));
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 965, 155);
 		frame.getContentPane().add(panel);
@@ -218,8 +234,13 @@ public class GUI_MAPA {
 		
 		JLabel JLPlayerPuntaje = new JLabel("Tu Puntaje:");
 		JLPlayerPuntaje.setFont(new Font("Rockwell", Font.BOLD, 20));
-		JLPlayerPuntaje.setBounds(340, 97, 306, 48);
+		JLPlayerPuntaje.setBounds(340, 97, 130, 48);
 		panel.add(JLPlayerPuntaje);
+		
+		puntos = new JLabel("0");
+		puntos.setFont(new Font("Rockwell", Font.BOLD, 20));
+		puntos.setBounds(470, 97, 100, 48);
+		panel.add(puntos);
 		
 		JLabel JLNIVEL = new JLabel("Nivel: ");
 		JLNIVEL.setFont(new Font("Cooper Black", Font.PLAIN, 29));
@@ -242,4 +263,5 @@ public class GUI_MAPA {
 		frame.getContentPane().add(JLHIGHSCORE);
 		JLHIGHSCORE.setFont(new Font("Rockwell", Font.BOLD, 20));
 	}
+
 }

@@ -8,7 +8,7 @@ public class Fruta extends Mejora{
 
 	public Fruta(PairTupla p, int anc, int alt) {
 		super(p, anc, alt);
-		v = new FrutaVisitor();
+		v = new FrutaVisitor(this);
 		// TODO Auto-generated constructor stub
 	}
 

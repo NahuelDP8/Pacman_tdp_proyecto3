@@ -1,14 +1,19 @@
 package Visitors;
 
 import Entities.Enemigo;
+import Entities.Entidad;
 import Entities.Fruta;
 import Entities.Pared;
 import Entities.Pocion;
 import Entities.Protagonista;
 import Entities.Punto;
 
-public class PuntoGrande implements Visitor {
+public class PuntoGrandeVisitor implements Visitor {
 
+	private Entidad miEntidad;
+	public PuntoGrandeVisitor(Entidad ent) {
+		miEntidad = ent;
+	}
 	@Override
 	public void visitPunto(Punto p) {
 		// TODO Auto-generated method stub
@@ -29,8 +34,9 @@ public class PuntoGrande implements Visitor {
 
 	@Override
 	public void visitProtagonista(Protagonista p) {
-		// TODO Auto-generated method stub
-
+		//Cambiar dsps de singleton:
+		p.sacarPunto(miEntidad);
+		p.sumarPuntos(50);
 	}
 
 	@Override

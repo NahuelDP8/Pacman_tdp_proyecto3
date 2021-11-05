@@ -46,4 +46,8 @@ public class Zona {
 	public Shape getRectangulo() {
 		return miRectangulo;
 	}
+	public void remove(Entidad e) {
+		misEntidades.remove(e);
+		
+	}
 }

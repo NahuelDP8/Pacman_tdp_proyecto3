@@ -4,6 +4,7 @@ package Entities;
 import java.util.ArrayList;
 
 import Visitors.ProtagonistaVisitor;
+import Visitors.PuntoVisitor;
 import Visitors.Visitor;
 
 abstract public class Protagonista extends Personaje{
@@ -16,6 +17,7 @@ abstract public class Protagonista extends Personaje{
 	protected final int MOVER_ARRIBA = 2;
 	protected final int MOVER_IZQUIERDA = 3;
 	protected final int MOVER_DERECHA = 4;
+	protected boolean colisiono;
 	
 	public Protagonista(PairTupla p, int anc, int alt) {
 		super(p, anc, alt);
@@ -25,6 +27,7 @@ abstract public class Protagonista extends Personaje{
 		puntaje = 0;
 		velocidad = 4;
 		v = new ProtagonistaVisitor();
+		colisiono = false;
 	}
 	
 	public void realizarMovimiento() {
@@ -43,42 +46,26 @@ abstract public class Protagonista extends Personaje{
 	public void moverAbajo() {
 		movimientoPrevio = movimientoActual;
 		movimientoActual = MOVER_ABAJO;
-		ArrayList<Zona> zonasActivasDeE = miGrilla.mapeoPosEntidadAZona(this);
-		ArrayList<Entidad> entidadesColisionadasConE = miGrilla.entidadesColisionadas(zonasActivasDeE, this);
-		if(entidadesColisionadasConE.size()!=0) {
-			for(Entidad aux : entidadesColisionadasConE)
-				this.accept(aux.getVisitor());		
-		}
+		miGrilla.verificarMovimientoPosible();
+		colisiono = false;
 	}
 	public void moverArriba() {
 		movimientoPrevio = movimientoActual;
 		movimientoActual = MOVER_ARRIBA;
-		ArrayList<Zona> zonasActivasDeE = miGrilla.mapeoPosEntidadAZona(this);
-		ArrayList<Entidad> entidadesColisionadasConE = miGrilla.entidadesColisionadas(zonasActivasDeE, this);
-		if(entidadesColisionadasConE.size()!=0) {
-			for(Entidad aux : entidadesColisionadasConE)
-				this.accept(aux.getVisitor());		
-		}
+		miGrilla.verificarMovimientoPosible();
+		colisiono = false;
 	}
 	public void moverIzquierda() {
 		movimientoPrevio = movimientoActual;
 		movimientoActual = MOVER_IZQUIERDA;
-		ArrayList<Zona> zonasActivasDeE = miGrilla.mapeoPosEntidadAZona(this);
-		ArrayList<Entidad> entidadesColisionadasConE = miGrilla.entidadesColisionadas(zonasActivasDeE, this);
-		if(entidadesColisionadasConE.size()!=0) {
-			for(Entidad aux : entidadesColisionadasConE)
-				this.accept(aux.getVisitor());		
-		}
+		miGrilla.verificarMovimientoPosible();
+		colisiono = false;
 	}
 	public void moverDerecha() {
 		movimientoPrevio = movimientoActual;
 		movimientoActual = MOVER_DERECHA;
-		ArrayList<Zona> zonasActivasDeE = miGrilla.mapeoPosEntidadAZona(this);
-		ArrayList<Entidad> entidadesColisionadasConE = miGrilla.entidadesColisionadas(zonasActivasDeE, this);
-		if(entidadesColisionadasConE.size()!=0) {
-			for(Entidad aux : entidadesColisionadasConE)
-				this.accept(aux.getVisitor());		
-		}
+		miGrilla.verificarMovimientoPosible();
+		colisiono = false;
 	}
 	public void accept(Visitor v) {
 		v.visitProtagonista(this);
@@ -91,5 +78,25 @@ abstract public class Protagonista extends Personaje{
 	}
 	public void restablecerMovimiento() {
 		movimientoActual = movimientoPrevio;
+		colisiono = true;
 	}
+	public boolean getColisiono() {
+		return colisiono;
+	}
+	public void setColisiono(boolean colision) {
+		colisiono = colision;
+	}
+
+	public void sacarPunto(Entidad punto) {
+		miGrilla.sacarPunto(punto);
+		
+	}
+
+	public void sumarPuntos(int i) {
+		puntaje += i;
+		miGrilla.actualizarPuntos(puntaje);
+		
+	}
+
+	
 }

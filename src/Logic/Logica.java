@@ -122,4 +122,10 @@ public class Logica {
 	public void quitarDeLaGui(int x, int y) {
 		miGUI.quitarEntidad(x, y);
 	}
+
+	public void actualizarPuntos(int puntos) {
+		miGUI.actualizarPuntos(puntos);
+		
+	}
+
 }
