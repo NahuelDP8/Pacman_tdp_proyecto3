@@ -41,6 +41,7 @@ public class GUIMenu extends JFrame {
 	private Nivel F_Nivel;
 	private String nombre;
 	private JTextField JTFmiNombre;
+	private TopPlayers topPlayers;
 	/**
 	 * Launch the application.
 	 */
@@ -52,7 +53,8 @@ public class GUIMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TopPlayers topPlayers=new TopPlayers();
+					//ERROR RARO REVISAR PREGUNTAR
+					topPlayers=new TopPlayers();
 					FileInputStream fileInputStream= new FileInputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
 					ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
 					topPlayers = (TopPlayers) objectInputStream.readObject();
@@ -223,7 +225,7 @@ public class GUIMenu extends JFrame {
 		JBNivel1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				F_Nivel=new FactoryNiveles().crearNivel1();
-				GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre);
+				GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,topPlayers);
 				GUIWindow.getFrame().setVisible(true);
 				ContentPanel.setLayout(null);
 				dispose();
@@ -248,7 +250,7 @@ public class GUIMenu extends JFrame {
 					public void run() {
 						try {
 							F_Nivel=new FactoryNiveles().crearNivel2();
-							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre);
+							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,topPlayers);
 							GUIWindow.getFrame().setVisible(true);
 							ContentPanel.setLayout(null);
 							dispose();
@@ -276,7 +278,7 @@ public class GUIMenu extends JFrame {
 					public void run() {
 						try {
 							F_Nivel=new FactoryNiveles().crearNivel3();
-							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre);
+							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,topPlayers);
 							GUIWindow.getFrame().setVisible(true);
 							ContentPanel.setLayout(null);
 							dispose();

@@ -30,4 +30,8 @@ public class Player implements Serializable, Comparable<Player>{
 	public void setScore(int s) {
 		score=s;
 	}
+	
+	public String toString() {
+		return ("jugador: "+player+" tiene un puntaje de: "+ score);
+	}
 }

@@ -37,9 +37,10 @@ public class GUI_MAPA {
 	/**
 	 * Create the application.
 	 */
-	public GUI_MAPA(FactoryMapaGrilla f, Nivel nivel,String nom) {
+	public GUI_MAPA(FactoryMapaGrilla f, Nivel nivel,String nom, TopPlayers TP) {
 		initialize();
 		JLNombre.setText("Nombre: "+ nom);
+		topPlayers=TP;
 		log = new Logica(this,f, nivel);
 	}
 	
@@ -277,15 +278,27 @@ public class GUI_MAPA {
 		JLNombre.setBounds(213, 105, 372, 40);
 		panel.add(JLNombre);
 		
-		JLabel JLHighScoreList = new JLabel("\"PREGUNTAR COMO HACER LOS ENTER\" LISTA DE HIGH SCORE PARA MAS ADELANTE"+"/n");
-		JLHighScoreList.setBounds(526, 222, 374, 348);
-		frame.getContentPane().add(JLHighScoreList);
+		
 		
 		JLabel JLHIGHSCORE = new JLabel("HIGH SCORE: ");
-		JLHIGHSCORE.setBounds(548, 165, 306, 48);
+		JLHIGHSCORE.setBounds(526, 165, 306, 48);
 		frame.getContentPane().add(JLHIGHSCORE);
 		JLHIGHSCORE.setFont(new Font("Rockwell", Font.BOLD, 20));
 	}
+	
+	private void CrearTablaHighScore() {
+		JLabel JLHighScoreList = new JLabel();
+		JLHighScoreList.setBounds(526, 222, 374, 472);
+		frame.getContentPane().add(JLHighScoreList);
+		if(topPlayers.size()!=0) {
+			JLHighScoreList.setText(topPlayers.getPlayer(0).toString());
+		}
+		for(int i =1; i<topPlayers.size();i++) {
+			JLHighScoreList.setText("<html>"+JLHighScoreList.getText()+"<p>"+topPlayers.getPlayer(i).toString()+"<html>");
+		}
+		
+	}
+	
 	public void gameOver() {
 		int puntosDPlayer=0;
 		puntosDPlayer = Integer.parseInt(JLPuntaje.getText());
