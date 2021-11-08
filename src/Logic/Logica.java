@@ -4,6 +4,7 @@ package Logic;
 import javax.swing.ImageIcon;
 import GUI.GUI_MAPA;
 import Nivel.Nivel;
+import Timer.Timer;
 import Entities.*;
 import Factories.FactoryMapaGrilla;
 
@@ -34,6 +35,10 @@ public class Logica {
 		this.setEsperaFruta(miNivel.apacicionFruta());
 		this.setEsperaPocion(miNivel.aparicionPocion());
 		n.llevarACaboActivaciones();
+	}
+	
+	public void gameOver(){
+		
 	}
 	
 	public void actualizarVelocidadProtagonista(int i) {

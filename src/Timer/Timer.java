@@ -1,4 +1,4 @@
-package Entities;
+package Timer;
 
 import Logic.Logica;
 

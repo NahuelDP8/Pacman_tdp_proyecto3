@@ -9,10 +9,19 @@ import javax.swing.SwingConstants;
 import Factories.FactoryMapaGrilla;
 import Logic.Logica;
 import Nivel.Nivel;
+import ranking.Player;
+import ranking.TopPlayers;
+
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 public class GUI_MAPA {
 
@@ -22,12 +31,15 @@ public class GUI_MAPA {
 	private Logica log;
 	private JLabel JLTiempo;
 	private JLabel JLFondoMapa; 
-	private JLabel puntos;
+	private JLabel JLPuntaje;
+	private TopPlayers topPlayers;
+	private JLabel JLNombre=new JLabel();
 	/**
 	 * Create the application.
 	 */
-	public GUI_MAPA(FactoryMapaGrilla f, Nivel nivel) {
+	public GUI_MAPA(FactoryMapaGrilla f, Nivel nivel,String nom) {
 		initialize();
+		JLNombre.setText("Nombre: "+ nom);
 		log = new Logica(this,f, nivel);
 	}
 	
@@ -95,7 +107,7 @@ public class GUI_MAPA {
 	}
 	
 	public void actualizarPuntos(int p) {
-		puntos.setText(String.valueOf(p));
+		JLPuntaje.setText(String.valueOf(p));
 		
 	}
 	
@@ -162,6 +174,12 @@ public class GUI_MAPA {
 	private void initialize() {
 		EventoDeTeclado tecla=new EventoDeTeclado();
 		frame = new JFrame();
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				gameClose();
+			}
+		});
 		frame.addKeyListener(tecla);
 		frame.setBounds(100, 100, 1046, 842);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -231,16 +249,16 @@ public class GUI_MAPA {
 		FotoEscalada = new ImageIcon(EscalarFoto);
 		JLVIDAS3.setIcon(FotoEscalada);
 		
+		JLPuntaje = new JLabel("0");
+		JLPuntaje.setFont(new Font("Rockwell", Font.BOLD, 20));
+		JLPuntaje.setBounds(725, 105, 213, 40);
+		panel.add(JLPuntaje);
+		
 		
 		JLabel JLPlayerPuntaje = new JLabel("Tu Puntaje:");
 		JLPlayerPuntaje.setFont(new Font("Rockwell", Font.BOLD, 20));
-		JLPlayerPuntaje.setBounds(340, 97, 130, 48);
+		JLPlayerPuntaje.setBounds(609, 105, 130, 40);
 		panel.add(JLPlayerPuntaje);
-		
-		puntos = new JLabel("0");
-		puntos.setFont(new Font("Rockwell", Font.BOLD, 20));
-		puntos.setBounds(470, 97, 100, 48);
-		panel.add(puntos);
 		
 		JLabel JLNIVEL = new JLabel("Nivel: ");
 		JLNIVEL.setFont(new Font("Cooper Black", Font.PLAIN, 29));
@@ -254,6 +272,11 @@ public class GUI_MAPA {
 		JLTiempo.setForeground(Color.RED);
 		JLTiempo.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 48));
 		
+		
+		JLNombre.setFont(new Font("Rockwell", Font.BOLD, 20));
+		JLNombre.setBounds(213, 105, 372, 40);
+		panel.add(JLNombre);
+		
 		JLabel JLHighScoreList = new JLabel("\"PREGUNTAR COMO HACER LOS ENTER\" LISTA DE HIGH SCORE PARA MAS ADELANTE"+"/n");
 		JLHighScoreList.setBounds(526, 222, 374, 348);
 		frame.getContentPane().add(JLHighScoreList);
@@ -263,5 +286,24 @@ public class GUI_MAPA {
 		frame.getContentPane().add(JLHIGHSCORE);
 		JLHIGHSCORE.setFont(new Font("Rockwell", Font.BOLD, 20));
 	}
-
+	public void gameOver() {
+		int puntosDPlayer=0;
+		puntosDPlayer = Integer.parseInt(JLPuntaje.getText());
+		topPlayers.addPlayer(new Player(JLNombre.getText(),puntosDPlayer));
+	}
+	private void gameClose() {
+		FileOutputStream fileOutputStream;
+		try {
+			fileOutputStream = new FileOutputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+			objectOutputStream.writeObject(this.topPlayers);
+			objectOutputStream.flush();
+			objectOutputStream.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		 catch (IOException e) {// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
