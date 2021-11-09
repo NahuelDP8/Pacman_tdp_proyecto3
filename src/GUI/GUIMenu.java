@@ -51,16 +51,16 @@ public class GUIMenu extends JFrame {
 	public static void main(String[] args) {
 		loadConfiguration();
 		EventQueue.invokeLater(new Runnable() {
+
 			public void run() {
 				try {
 					//ERROR RARO REVISAR PREGUNTAR
-					topPlayers=new TopPlayers();
 					FileInputStream fileInputStream= new FileInputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
 					ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
-					topPlayers = (TopPlayers) objectInputStream.readObject();
+					TopPlayers  topPlayers = (TopPlayers) objectInputStream.readObject();
 					objectInputStream.close();
 					
-					GUIMenu frame = new GUIMenu();
+					GUIMenu frame = new GUIMenu(topPlayers);
 					frame.setVisible(true);
 				}
 				
@@ -93,7 +93,8 @@ public class GUIMenu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GUIMenu() {
+	public GUIMenu(TopPlayers tp) {
+		topPlayers = tp;
 		setTitle("PacMan");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400,60,781,652);
