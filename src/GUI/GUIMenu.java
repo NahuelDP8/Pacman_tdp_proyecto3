@@ -56,10 +56,10 @@ public class GUIMenu extends JFrame {
 			public void run() {
 				try {
 					//ERROR RARO REVISAR PREGUNTAR
-					FileInputStream fileInputStream= new FileInputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
-					ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
-					TopPlayers topPlayers = (TopPlayers) objectInputStream.readObject();
-					objectInputStream.close();
+						FileInputStream fileInputStream= new FileInputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
+						ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
+						TopPlayers topPlayers = (TopPlayers) objectInputStream.readObject();
+						objectInputStream.close();
 					GUIMenu frame = new GUIMenu(topPlayers);
 					frame.setVisible(true);
 				}
