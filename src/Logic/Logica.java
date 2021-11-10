@@ -30,10 +30,10 @@ public class Logica {
 		miReloj = new Timer(this);
 		miGUI.actualizarFondo(miMapa.getImage());
 		miGUI.fotoProtagonista(miMapa.getImagenProtagonista(),100,100);
-		actualizarVelocidadProtagonista(miNivel.velocidadProtagonista());
-		actualizarVelocidadFantasmas(miNivel.velocidadFantasmas());
-		this.setEsperaFruta(miNivel.apacicionFruta());
-		this.setEsperaPocion(miNivel.aparicionPocion());
+		actualizarSleepProtagonista(miNivel.sleepProtagonista());
+		actualizarSleepFantasmas(miNivel.sleepFantasmas());
+		this.setEsperaFruta(miNivel.sleepFruta());
+		this.setEsperaPocion(miNivel.sleepPocion());
 		n.llevarACaboActivaciones();
 	}
 	
@@ -41,11 +41,11 @@ public class Logica {
 		
 	}
 	
-	public void actualizarVelocidadProtagonista(int i) {
+	public void actualizarSleepProtagonista(int i) {
 		miReloj.setSleepProtagonista(i);
 	}
 	
-	public void actualizarVelocidadFantasmas(int i) {
+	public void actualizarSleepFantasmas(int i) {
 		miReloj.setSLeepFantasmas(i);
 	}
 	public void setEsperaFruta(int i) {

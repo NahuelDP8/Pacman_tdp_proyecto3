@@ -27,6 +27,7 @@ import Factories.FactoryMapaGrillaGoku;
 import Factories.FactoryMapaGrillaNaruto;
 import Factories.FactoryNiveles;
 import Nivel.Nivel;
+import ranking.Player;
 import ranking.TopPlayers;
 
 import javax.swing.border.BevelBorder;
@@ -61,11 +62,11 @@ public class GUIMenu extends JFrame {
 					topPlayers = (TopPlayers) objectInputStream.readObject();
 
 					objectInputStream.close();
-					
 					GUIMenu frame = new GUIMenu(topPlayers);
 					frame.setVisible(true);
 				}
-				
+				/**
+				 * 
 				catch(FileNotFoundException e) {
 					e.printStackTrace();
 				}
@@ -74,7 +75,7 @@ public class GUIMenu extends JFrame {
 				}
 				catch (ClassNotFoundException  e) {
 					e.printStackTrace();
-				}
+				}**/
 				catch (Exception  e) {
 					e.printStackTrace();
 				}

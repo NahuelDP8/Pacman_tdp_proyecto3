@@ -44,6 +44,7 @@ public class GUI_MAPA{
 		initialize();
 		JLNombre.setText("Nombre: "+ nom);
 		topPlayers=TP;
+
 		crearTablaHighScore();
 		log = new Logica(this,f, nivel);
 	}
@@ -215,6 +216,7 @@ public class GUI_MAPA{
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
+				gameOver();
 				gameClose();
 			}
 		});
@@ -344,6 +346,7 @@ public class GUI_MAPA{
 	private void gameClose() {
 		FileOutputStream fileOutputStream;
 		try {
+			
 			fileOutputStream = new FileOutputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 			objectOutputStream.writeObject(this.topPlayers);

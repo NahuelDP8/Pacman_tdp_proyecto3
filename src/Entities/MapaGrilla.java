@@ -23,6 +23,10 @@ abstract public class MapaGrilla {
 	protected Zona [][] zonas;
 	protected int ancho, altura, anchoMapa, altoMapa;
 	protected Nivel miNivel;
+	protected final int MOVER_ABAJO = 1;	
+	protected final int MOVER_ARRIBA = 2;
+	protected final int MOVER_IZQUIERDA = 3;
+	protected final int MOVER_DERECHA = 4;
 	
 	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica) {
 		//Asignamos imagen de fondo del mapa
@@ -125,6 +129,7 @@ abstract public class MapaGrilla {
 		ancho = e.getAncho();
 		largo = e.getAltura();
 		int movimiento  =miProtagonista.getMovimientoActual();
+
 		int vel = miProtagonista.getVelocidad();
 		if (movimiento == 1)
 			y += vel;
@@ -177,6 +182,7 @@ abstract public class MapaGrilla {
 			x-=vel;
 		else if(movimiento == 4)
 			x +=vel;
+
 		
 		ArrayList<Entidad> toReturn = new ArrayList<Entidad>();
 		for(Zona aux : l) {
