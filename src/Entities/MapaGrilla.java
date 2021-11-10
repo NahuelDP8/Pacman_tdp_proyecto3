@@ -23,6 +23,10 @@ abstract public class MapaGrilla {
 	protected Zona [][] zonas;
 	protected int ancho, altura, anchoMapa, altoMapa;
 	protected Nivel miNivel;
+	protected final int MOVER_ABAJO = 1;	
+	protected final int MOVER_ARRIBA = 2;
+	protected final int MOVER_IZQUIERDA = 3;
+	protected final int MOVER_DERECHA = 4;
 	
 	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica) {
 		//Asignamos imagen de fondo del mapa
@@ -124,13 +128,13 @@ abstract public class MapaGrilla {
 		ancho = e.getAncho();
 		largo = e.getAltura();
 		int movimiento  =miProtagonista.getMovimientoActual();
-		if (movimiento == 1)
+		if (movimiento == MOVER_ABAJO)
 			y += 4;
-		else if(movimiento == 2)
+		else if(movimiento == MOVER_ARRIBA)
 			y-=4;
-		else if(movimiento == 3)
+		else if(movimiento == MOVER_IZQUIERDA)
 			x-=4;
-		else if(movimiento == 4)
+		else if(movimiento == MOVER_DERECHA)
 			x +=4;
 		for(int i =0; i<zonas.length; i++) {
 			for(int j = 0; j<zonas[0].length; j++) {
@@ -167,13 +171,13 @@ abstract public class MapaGrilla {
 		al = e.getAltura();
 		int movimiento  =miProtagonista.getMovimientoActual();
 		if (movimiento == 1)
-			y += 4;
+			y += miProtagonista.protagonistaVelocidadPixel();
 		else if(movimiento == 2)
-			y-=4;
+			y-=miProtagonista.protagonistaVelocidadPixel();
 		else if(movimiento == 3)
-			x-=4;
+			x-=miProtagonista.protagonistaVelocidadPixel();
 		else if(movimiento == 4)
-			x+=4;
+			x+=miProtagonista.protagonistaVelocidadPixel();
 		
 		ArrayList<Entidad> toReturn = new ArrayList<Entidad>();
 		for(Zona aux : l) {

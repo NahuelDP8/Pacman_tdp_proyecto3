@@ -25,9 +25,13 @@ abstract public class Protagonista extends Personaje{
 		movimientoActual= 0;
 		movimientoPrevio = 0;
 		puntaje = 0;
-		velocidad = 4;
+		velocidad = 2;
 		v = new ProtagonistaVisitor();
 		colisiono = false;
+	}
+	
+	public int protagonistaVelocidadPixel() {
+		return velocidad;
 	}
 	
 	public void realizarMovimiento() {
