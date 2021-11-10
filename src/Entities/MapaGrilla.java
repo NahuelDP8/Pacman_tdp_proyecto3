@@ -102,7 +102,8 @@ abstract public class MapaGrilla {
 		for(Zona auxZ : l) {
 			if(!auxZ.getEntidades().contains(e)) {
 				auxZ.setEntidad(e);
-			}
+			}else
+				auxZ.remove(e);
 		}
 	}
 	public void actualizarProtagonista() {
@@ -124,20 +125,21 @@ abstract public class MapaGrilla {
 		ancho = e.getAncho();
 		largo = e.getAltura();
 		int movimiento  =miProtagonista.getMovimientoActual();
+		int vel = miProtagonista.getVelocidad();
 		if (movimiento == 1)
-			y += 4;
+			y += vel;
 		else if(movimiento == 2)
-			y-=4;
+			y-=vel;
 		else if(movimiento == 3)
-			x-=4;
+			x-=vel;
 		else if(movimiento == 4)
-			x +=4;
+			x +=vel;
 		for(int i =0; i<zonas.length; i++) {
 			for(int j = 0; j<zonas[0].length; j++) {
 				Zona agregamos = zonas[i][j];
 				Shape auxiliar = agregamos.getRectangulo();
 				if(auxiliar.intersects(x,y,ancho,largo))
-						toReturn.add(agregamos);
+					toReturn.add(agregamos);
 			}
 		}
 		return toReturn;
@@ -166,14 +168,15 @@ abstract public class MapaGrilla {
 		an = e.getAncho();
 		al = e.getAltura();
 		int movimiento  =miProtagonista.getMovimientoActual();
+		int vel = miProtagonista.getVelocidad();
 		if (movimiento == 1)
-			y += 4;
+			y += vel;
 		else if(movimiento == 2)
-			y-=4;
+			y-=vel;
 		else if(movimiento == 3)
-			x-=4;
+			x-=vel;
 		else if(movimiento == 4)
-			x+=4;
+			x +=vel;
 		
 		ArrayList<Entidad> toReturn = new ArrayList<Entidad>();
 		for(Zona aux : l) {
@@ -242,7 +245,8 @@ abstract public class MapaGrilla {
 		ArrayList<Entidad> entidadesColisionadasConE = entidadesColisionadas(zonasActivasDeE, miProtagonista);
 		if(entidadesColisionadasConE.size()!=0) {
 			for(Entidad aux : entidadesColisionadasConE) {
-				miProtagonista.accept(aux.getVisitor());		
+				miProtagonista.accept(aux.getVisitor());	
+				return;
 			}
 		}
 	}

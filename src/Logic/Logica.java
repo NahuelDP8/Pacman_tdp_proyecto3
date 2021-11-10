@@ -80,6 +80,7 @@ public class Logica {
 		miMapa.moverProtagonistaIzquierda();
 	}
 	public void realizarMovimiento() {
+		miGUI.captar();
 		miMapa.realizarMovimiento();
 	}
 

@@ -53,11 +53,13 @@ public class GUIMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
+				TopPlayers  topPlayers = new TopPlayers();
 				try {
 					//ERROR RARO REVISAR PREGUNTAR
 					FileInputStream fileInputStream= new FileInputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
 					ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
-					TopPlayers  topPlayers = (TopPlayers) objectInputStream.readObject();
+					topPlayers = (TopPlayers) objectInputStream.readObject();
+
 					objectInputStream.close();
 					
 					GUIMenu frame = new GUIMenu(topPlayers);
@@ -254,7 +256,7 @@ public class GUIMenu extends JFrame {
 							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,topPlayers);
 							GUIWindow.getFrame().setVisible(true);
 							ContentPanel.setLayout(null);
-							dispose();
+							
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

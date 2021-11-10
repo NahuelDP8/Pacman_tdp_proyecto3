@@ -98,5 +98,10 @@ abstract public class Protagonista extends Personaje{
 		
 	}
 
+	public int getVelocidad() {
+		// TODO Auto-generated method stub
+		return velocidad;
+	}
+
 	
 }
