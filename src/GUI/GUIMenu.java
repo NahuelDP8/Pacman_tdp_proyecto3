@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -54,19 +55,22 @@ public class GUIMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
-				TopPlayers  topPlayers = new TopPlayers();
+				TopPlayers  topPlayers;
 				try {
+					File tempFile = new File(GUIMenu.configuration.getProperty("HighscoreFile"));
 					//ERROR RARO REVISAR PREGUNTAR
-					FileInputStream fileInputStream= new FileInputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
-					ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
-					topPlayers = (TopPlayers) objectInputStream.readObject();
-
-					objectInputStream.close();
+					if((tempFile.exists()) && !(tempFile.length() != 0)) {
+						FileInputStream fileInputStream= new FileInputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
+						ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
+						topPlayers = (TopPlayers) objectInputStream.readObject();
+						objectInputStream.close();
+					}	else {
+							topPlayers = new TopPlayers();
+						}
+					
 					GUIMenu frame = new GUIMenu(topPlayers);
 					frame.setVisible(true);
 				}
-				/**
-				 * 
 				catch(FileNotFoundException e) {
 					e.printStackTrace();
 				}
@@ -74,9 +78,6 @@ public class GUIMenu extends JFrame {
 					e.printStackTrace();
 				}
 				catch (ClassNotFoundException  e) {
-					e.printStackTrace();
-				}**/
-				catch (Exception  e) {
 					e.printStackTrace();
 				}
 			}
