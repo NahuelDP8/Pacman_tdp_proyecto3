@@ -13,8 +13,7 @@ public class Player implements Serializable, Comparable<Player>{
 	
 	@Override
 	public int compareTo(Player o) {
-		return 0;
-		//this.score.compareTo(GET SCORE);
+		return this.score.compareTo(o.getScore());
 	}
 	
 	public String getPlayer() {
@@ -32,6 +31,6 @@ public class Player implements Serializable, Comparable<Player>{
 	}
 	
 	public String toString() {
-		return ("jugador: "+player+" tiene un puntaje de: "+ score);
+		return (player+" tiene un puntaje de: "+ score);
 	}
 }

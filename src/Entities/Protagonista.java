@@ -27,6 +27,10 @@ abstract public class Protagonista extends Personaje{
 		colisiono = false;
 	}
 	
+	public int protagonistaVelocidadPixel() {
+		return velocidad;
+	}
+	
 	public void realizarMovimiento() {
 		if(movimientoActual == MOVER_ABAJO) {
 			posicion.setY(posicion.getY()+ velocidad);
@@ -93,6 +97,11 @@ abstract public class Protagonista extends Personaje{
 		puntaje += i;
 		miGrilla.actualizarPuntos(puntaje);
 		
+	}
+
+	public int getVelocidad() {
+		// TODO Auto-generated method stub
+		return velocidad;
 	}
 
 	

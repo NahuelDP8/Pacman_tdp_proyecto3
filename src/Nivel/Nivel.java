@@ -52,8 +52,8 @@ abstract public class Nivel {
 		miMapa.desactivarFrutas(); 
 	}
 	
-	abstract public int velocidadProtagonista();
-	abstract public int velocidadFantasmas();
-	abstract public int apacicionFruta(); 
-	abstract public int aparicionPocion();
+	abstract public int sleepProtagonista();
+	abstract public int sleepFantasmas();
+	abstract public int sleepFruta(); 
+	abstract public int sleepPocion();
 }

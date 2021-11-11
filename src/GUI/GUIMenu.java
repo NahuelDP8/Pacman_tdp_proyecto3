@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -27,6 +28,7 @@ import Factories.FactoryMapaGrillaGoku;
 import Factories.FactoryMapaGrillaNaruto;
 import Factories.FactoryNiveles;
 import Nivel.Nivel;
+import ranking.Player;
 import ranking.TopPlayers;
 
 import javax.swing.border.BevelBorder;
@@ -41,6 +43,7 @@ public class GUIMenu extends JFrame {
 	private Nivel F_Nivel;
 	private String nombre;
 	private JTextField JTFmiNombre;
+	private TopPlayers topPlayers; 
 	/**
 	 * Launch the application.
 	 */
@@ -50,19 +53,24 @@ public class GUIMenu extends JFrame {
 	public static void main(String[] args) {
 		loadConfiguration();
 		EventQueue.invokeLater(new Runnable() {
+
 			public void run() {
+				TopPlayers  topPlayers;
 				try {
+					File tempFile = new File(GUIMenu.configuration.getProperty("HighscoreFile"));
 					//ERROR RARO REVISAR PREGUNTAR
-					
-					FileInputStream fileInputStream= new FileInputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
-					ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
-					TopPlayers topPlayers = (TopPlayers) objectInputStream.readObject();
-					objectInputStream.close();
+					if((tempFile.exists()) && !(tempFile.length() != 0)) {
+						FileInputStream fileInputStream= new FileInputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
+						ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
+						topPlayers = (TopPlayers) objectInputStream.readObject();
+						objectInputStream.close();
+					}	else {
+							topPlayers = new TopPlayers();
+						}
 					
 					GUIMenu frame = new GUIMenu(topPlayers);
 					frame.setVisible(true);
 				}
-				
 				catch(FileNotFoundException e) {
 					e.printStackTrace();
 				}
@@ -70,9 +78,6 @@ public class GUIMenu extends JFrame {
 					e.printStackTrace();
 				}
 				catch (ClassNotFoundException  e) {
-					e.printStackTrace();
-				}
-				catch (Exception  e) {
 					e.printStackTrace();
 				}
 			}
@@ -93,6 +98,7 @@ public class GUIMenu extends JFrame {
 	 * Create the frame.
 	 */
 	public GUIMenu(TopPlayers tp) {
+		topPlayers = tp;
 		setTitle("PacMan");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400,60,781,652);
@@ -252,7 +258,7 @@ public class GUIMenu extends JFrame {
 							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp);
 							GUIWindow.getFrame().setVisible(true);
 							ContentPanel.setLayout(null);
-							dispose();
+							
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

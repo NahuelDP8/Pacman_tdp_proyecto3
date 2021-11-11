@@ -41,21 +41,49 @@ public abstract class EnemigoRojo extends Enemigo{
 	}
 
 	public void perseguirProtagonista() {
-		int movFinal;
-		double disMenor, disAux;
+		int movFinal = movimientoActual;
+		double disMenor = Double.MAX_VALUE;
+		double disAux = 0;
+		int posX = posicion.getX();
+		int posY = posicion.getY(); 
+		PairTupla posicionProtagonista = miGrilla.getPosicionActualProtagonista();
 		
 		ArrayList<Integer> movimientos = this.movimientosAEstudiar();
 		miGrilla.realizarMovimientoFantasma(this, movimientos);
 		
-		PairTupla posicionProtagonista = miGrilla.getPosicionActualProtagonista();
-		for(int i =0; i<3; i++) {
-			
+		for(int i =0; i<3; i++) {	
 			int movAux = movimientos.get(i); 
-			if(i == MOVER_DERECHA) {
-				if(movDerecha) {
+			if(movAux == MOVER_DERECHA && movDerecha) {
+				disAux = distanciaEntrePuntos(new PairTupla(posX+ miVelocidad, posY),posicionProtagonista);
+				if(disAux<=disMenor) {
+					disMenor= disAux; 
+					movFinal = movAux;
+				}
+			}else if(movAux == MOVER_IZQUIERDA && movIzquierda) {
+				disAux = distanciaEntrePuntos(new PairTupla(posX-miVelocidad, posY),posicionProtagonista);
+				if(disAux<=disMenor) {
+					disMenor= disAux; 
+					movFinal = movAux;
+				}
+			}else if(movAux== MOVER_ARRIBA && movArriba) {
+				disAux = distanciaEntrePuntos(new PairTupla(posX, posY-miVelocidad),posicionProtagonista);
+				if(disAux<=disMenor) {
+					disMenor= disAux; 
+					movFinal = movAux;
+				}
+			}else if(movAux == MOVER_ABAJO && movAbajo) {
+				disAux = distanciaEntrePuntos(new PairTupla(posX, posY+miVelocidad),posicionProtagonista);
+				if(disAux<=disMenor) {
+					disMenor= disAux; 
+					movFinal = movAux;
 				}
 			}
 		}
+		
+		//Ahora lo que hacemos es movernos
+		this.realizarMovimiento(movFinal);
+		movimientoActual = movFinal; 
+		
 		//al finalizar siempre debemos setear nuevamente como válidas a todas las posiciones válidas
 		this.validarMovimientos();
 	}

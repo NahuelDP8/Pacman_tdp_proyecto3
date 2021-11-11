@@ -15,11 +15,13 @@ public abstract class Enemigo extends Personaje{
 	protected final int MOVER_ARRIBA = 2;
 	protected final int MOVER_IZQUIERDA = 3;
 	protected final int MOVER_DERECHA = 4;
+	protected int miVelocidad; 
 	
 	public Enemigo(PairTupla p, int anc, int alt) {
 		super(p, anc, alt);
 		miEstado = new Persiguiendo(this); 
-		huboColisionConPared = false; 
+		huboColisionConPared = false;
+		miVelocidad = 4; 
 	}
 	
 	public void accept(Visitor v) {
@@ -39,6 +41,20 @@ public abstract class Enemigo extends Personaje{
 	}
 	public boolean getColisionPared() {
 		return huboColisionConPared; 
+	}
+	
+	public void realizarMovimiento(int mov) {
+		if(mov == MOVER_ABAJO) {
+			posicion.setY(posicion.getY()+ velocidad);
+		}else if(mov == MOVER_ARRIBA) {
+			posicion.setY(posicion.getY()- velocidad);
+		}else if(mov == MOVER_IZQUIERDA) {
+			posicion.setX(posicion.getX()- velocidad);
+		}else if(mov == MOVER_DERECHA) {
+			posicion.setX(posicion.getX()+ velocidad);
+		}
+		
+		//Acá deberíamos actualizar la entidad gráfica. 
 	}
 	
 	public void invalidarMovimiento(int movimiento) {

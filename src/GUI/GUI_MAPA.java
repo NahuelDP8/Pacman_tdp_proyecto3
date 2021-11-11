@@ -14,6 +14,8 @@ import ranking.TopPlayers;
 
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
@@ -23,7 +25,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-public class GUI_MAPA {
+public class GUI_MAPA{
 
 	private JFrame frame;
 	private JLabel JLPlayer;
@@ -34,6 +36,7 @@ public class GUI_MAPA {
 	private JLabel JLPuntaje;
 	private TopPlayers topPlayers;
 	private JLabel JLNombre=new JLabel();
+	private boolean izquierda, derecha, abajo, arriba;
 	/**
 	 * Create the application.
 	 */
@@ -41,6 +44,8 @@ public class GUI_MAPA {
 		initialize();
 		JLNombre.setText("Nombre: "+ nom);
 		topPlayers=TP;
+
+		crearTablaHighScore();
 		log = new Logica(this,f, nivel);
 	}
 	
@@ -136,6 +141,18 @@ public class GUI_MAPA {
 		log.moverProtagonistaDerecha();
 	}
 	
+	
+	public void captar() {
+		if(izquierda)
+			captarMovimientoIzq();
+		else if(derecha)
+			captarMovimientoDer();
+		else if(abajo)
+			captarMovimientoAbajo();
+		else if(arriba)
+			captarMovimientoArriba();
+	}
+
 	class EventoDeTeclado implements KeyListener{
 		public void keyTyped(KeyEvent e) {
 			
@@ -146,17 +163,17 @@ public class GUI_MAPA {
 			public void keyPressed(KeyEvent e) {
 				if(jugando) {
 					if(e.getKeyCode() == KeyEvent.VK_LEFT) {
-						captarMovimientoIzq();
+						izquierda = true;
 					}else
 						if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-							captarMovimientoDer();
+							derecha= true;
 						}else
 							if((e.getKeyCode() == KeyEvent.VK_UP)) {
-								captarMovimientoArriba();
+								arriba = true;
 							}else {
 								if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 									//captarAbajoNormalizarPausa();
-									captarMovimientoAbajo();
+									abajo = true;
 								}
 							}
 								
@@ -164,7 +181,22 @@ public class GUI_MAPA {
 			}
 
 			public void keyReleased(KeyEvent e) {
-							
+				if(jugando) {
+					if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+						izquierda = false;
+					}else
+						if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+							derecha= false;
+						}else
+							if((e.getKeyCode() == KeyEvent.VK_UP)) {
+								arriba = false;
+							}else {
+								if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+									//captarAbajoNormalizarPausa();
+									abajo = false;
+								}
+							}
+				}
 			}
 		}
 	
@@ -173,11 +205,18 @@ public class GUI_MAPA {
 	 */
 	
 	private void initialize() {
+		
+		abajo = false;
+		arriba = false;
+		izquierda = false;
+		derecha = false;
+		
 		EventoDeTeclado tecla=new EventoDeTeclado();
 		frame = new JFrame();
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
+				gameOver();
 				gameClose();
 			}
 		});
@@ -286,7 +325,7 @@ public class GUI_MAPA {
 		JLHIGHSCORE.setFont(new Font("Rockwell", Font.BOLD, 20));
 	}
 	
-	private void CrearTablaHighScore() {
+	private void crearTablaHighScore() {
 		JLabel JLHighScoreList = new JLabel();
 		JLHighScoreList.setBounds(526, 222, 374, 472);
 		frame.getContentPane().add(JLHighScoreList);
@@ -307,6 +346,7 @@ public class GUI_MAPA {
 	private void gameClose() {
 		FileOutputStream fileOutputStream;
 		try {
+			
 			fileOutputStream = new FileOutputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 			objectOutputStream.writeObject(this.topPlayers);
@@ -319,4 +359,5 @@ public class GUI_MAPA {
 			e.printStackTrace();
 		}
 	}
+
 }

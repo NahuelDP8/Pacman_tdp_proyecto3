@@ -10,19 +10,19 @@ public class Nivel1 extends Nivel{
 		activarFrutas();
 		desactivarPociones();
 	}
-	public int velocidadProtagonista() {
+	public int sleepProtagonista() {
 		return 30;
 	}
 	
-	public int velocidadFantasmas() {
+	public int sleepFantasmas() {
 		return 30;
 	}
 	
-	public int apacicionFruta() {
+	public int sleepFruta() {
 		return 4000;
 	}
 
-	public int aparicionPocion() {
+	public int sleepPocion() {
 		return 0;
 	}
 

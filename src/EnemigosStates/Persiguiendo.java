@@ -11,7 +11,7 @@ public class Persiguiendo implements EstadoEnemigo{
 	}
 	
 	public void realizarMovimiento() {
-		miEnemigo.perseguirPrincipal(); 
+		miEnemigo.perseguirProtagonista(); 
 	}
 
 	@Override
