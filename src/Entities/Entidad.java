@@ -16,12 +16,15 @@ abstract public class Entidad {
 	protected Visitor v;
 	protected Zona miZona;
 	protected ImageIcon miImagen;
+	protected EntidadGrafica miEntidad;
 
 	public Entidad (PairTupla p, int anc,int alt) {
 		ancho = anc;
 		altura = alt;
 		posicion = p;
 		miRectangulo =  new Rectangle(p.getX(), p.getY(), anc, alt); 
+		miEntidad = new EntidadGrafica();
+		miEntidad.setBounds(p.getX(), p.getY(), ancho, altura);
 	}
 	
 	public int getAltura() {
