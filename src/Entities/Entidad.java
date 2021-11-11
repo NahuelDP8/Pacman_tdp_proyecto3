@@ -16,7 +16,8 @@ abstract public class Entidad {
 	protected Visitor v;
 	protected Zona miZona;
 	protected ImageIcon miImagen;
-
+	protected EntidadGrafica miEntidadGrafica;
+	
 	public Entidad (PairTupla p, int anc,int alt) {
 		ancho = anc;
 		altura = alt;
@@ -60,5 +61,11 @@ abstract public class Entidad {
 	public Visitor getVisitor() {
 		return v;
 	}
+	
+	public void removeMe() {
+		miGrilla.sacarPunto(this);
+	}
+	
 	abstract public void accept(Visitor v);
+	abstract public int getMovimientoActual(); 
 }

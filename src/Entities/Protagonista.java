@@ -1,10 +1,7 @@
 package Entities;
 
 
-import java.util.ArrayList;
-
 import Visitors.ProtagonistaVisitor;
-import Visitors.PuntoVisitor;
 import Visitors.Visitor;
 
 abstract public class Protagonista extends Personaje{

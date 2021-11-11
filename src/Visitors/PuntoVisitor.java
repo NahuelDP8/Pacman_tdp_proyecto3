@@ -1,4 +1,4 @@
-package Visitors;
+                                                                                                                                                                                                                                                                                                                                                                                                         package Visitors;
 
 import Entities.Enemigo;
 import Entities.Entidad;
@@ -35,7 +35,7 @@ public class PuntoVisitor implements Visitor {
 	@Override
 	public void visitProtagonista(Protagonista p) {
 		//Cambiar dsps de singleton:
-		p.sacarPunto(miEntidad);
+		miEntidad.removeMe();
 		p.sumarPuntos(10);
 	}
 

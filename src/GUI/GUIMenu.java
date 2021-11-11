@@ -41,7 +41,6 @@ public class GUIMenu extends JFrame {
 	private Nivel F_Nivel;
 	private String nombre;
 	private JTextField JTFmiNombre;
-	private TopPlayers topPlayers;
 	/**
 	 * Launch the application.
 	 */
@@ -54,13 +53,13 @@ public class GUIMenu extends JFrame {
 			public void run() {
 				try {
 					//ERROR RARO REVISAR PREGUNTAR
-					topPlayers=new TopPlayers();
+					
 					FileInputStream fileInputStream= new FileInputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
 					ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
-					topPlayers = (TopPlayers) objectInputStream.readObject();
+					TopPlayers topPlayers = (TopPlayers) objectInputStream.readObject();
 					objectInputStream.close();
 					
-					GUIMenu frame = new GUIMenu();
+					GUIMenu frame = new GUIMenu(topPlayers);
 					frame.setVisible(true);
 				}
 				
@@ -93,7 +92,7 @@ public class GUIMenu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GUIMenu() {
+	public GUIMenu(TopPlayers tp) {
 		setTitle("PacMan");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400,60,781,652);
@@ -225,7 +224,7 @@ public class GUIMenu extends JFrame {
 		JBNivel1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				F_Nivel=new FactoryNiveles().crearNivel1();
-				GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,topPlayers);
+				GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp);
 				GUIWindow.getFrame().setVisible(true);
 				ContentPanel.setLayout(null);
 				dispose();
@@ -250,7 +249,7 @@ public class GUIMenu extends JFrame {
 					public void run() {
 						try {
 							F_Nivel=new FactoryNiveles().crearNivel2();
-							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,topPlayers);
+							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp);
 							GUIWindow.getFrame().setVisible(true);
 							ContentPanel.setLayout(null);
 							dispose();
@@ -278,7 +277,7 @@ public class GUIMenu extends JFrame {
 					public void run() {
 						try {
 							F_Nivel=new FactoryNiveles().crearNivel3();
-							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,topPlayers);
+							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp);
 							GUIWindow.getFrame().setVisible(true);
 							ContentPanel.setLayout(null);
 							dispose();

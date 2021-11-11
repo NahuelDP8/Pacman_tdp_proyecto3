@@ -11,6 +11,7 @@ import Entities.PuntoGrande;
 
 public class FrutaVisitor implements Visitor {
 	private Entidad miEntidad;
+	
 	public FrutaVisitor(Entidad ent) {
 		miEntidad = ent;
 	}
@@ -34,7 +35,7 @@ public class FrutaVisitor implements Visitor {
 
 	@Override
 	public void visitProtagonista(Protagonista p) {
-		p.sacarPunto(miEntidad);//Cambiar dsps de singleton
+		miEntidad.removeMe();//Cambiar dsps de singleton
 	}
 
 	@Override
