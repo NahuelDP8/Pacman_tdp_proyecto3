@@ -11,7 +11,7 @@ public class FactoryMapaGrillaNaruto extends FactoryMapaGrilla{
 	
 	public MapaGrilla crearMapa(Logica logica) {	
 		FactoryProtagonista fabricaProt = new FactoryNaruto(); 
-		FactoryEnemigo fabricaEnem = new FactoryNinja(); 
+		FactoryEnemigo fabricaEnem = new FactoryNinjaMalvado(); 
 		
 		MapaGrilla mapa = new Mapa1(miImagen,fabricaProt,fabricaEnem, 0, 0,logica);
 		
