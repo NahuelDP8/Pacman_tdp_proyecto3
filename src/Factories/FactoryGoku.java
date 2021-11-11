@@ -3,15 +3,15 @@ package Factories;
 import javax.swing.ImageIcon;
 
 import Entities.Goku;
+import Entities.MapaGrilla;
 import Entities.PairTupla;
 import Entities.Protagonista;
 
 public class FactoryGoku extends FactoryProtagonista{
 	private ImageIcon miImagen=new ImageIcon(FactoryMapaGrillaGoku.class.getResource("/Imagenes/goku.png"));
 
-	public Protagonista crearProtagonista(PairTupla p , int ancho, int altura) {
-		Protagonista goku = new Goku( p ,  ancho,  altura);
-		goku.setImagen(miImagen);
+	public Protagonista crearProtagonista(PairTupla p , int ancho, int altura,MapaGrilla grilla) {
+		Protagonista goku = new Goku( p ,  ancho,  altura,miImagen,grilla);
 		return goku;
 	}
 }

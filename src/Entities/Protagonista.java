@@ -3,6 +3,8 @@ package Entities;
 
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+
 import Visitors.ProtagonistaVisitor;
 import Visitors.PuntoVisitor;
 import Visitors.Visitor;
@@ -19,8 +21,8 @@ abstract public class Protagonista extends Personaje{
 	protected final int MOVER_DERECHA = 4;
 	protected boolean colisiono;
 	
-	public Protagonista(PairTupla p, int anc, int alt) {
-		super(p, anc, alt);
+	public Protagonista(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
+		super(p, anc, alt,img, grilla);
 		vidas = 3;
 		movimientoActual= 0;
 		movimientoPrevio = 0;

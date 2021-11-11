@@ -28,13 +28,13 @@ public class Logica {
 		
 		//Trabajo con la gui
 		miReloj = new Timer(this);
-		miGUI.actualizarFondo(miMapa.getImage());
-		miGUI.fotoProtagonista(miMapa.getImagenProtagonista(),100,100);
+
 		actualizarSleepProtagonista(miNivel.sleepProtagonista());
 		actualizarSleepFantasmas(miNivel.sleepFantasmas());
 		this.setEsperaFruta(miNivel.sleepFruta());
 		this.setEsperaPocion(miNivel.sleepPocion());
 		n.llevarACaboActivaciones();
+		miGUI.añadirFondo();
 	}
 	
 	public void gameOver(){
@@ -54,12 +54,6 @@ public class Logica {
 	
 	public void setEsperaPocion(int i) {
 		miReloj.setTiempoEsperaDePocion(i);
-	}
-	public void actualizarProtagonista(int x,int y) {
-		miGUI.actualizarProtagonista(miMapa.getImagenProtagonista(),x,y);
-	}
-	public void actualizarPunto(ImageIcon img, int x,int y) {
-		miGUI.actualizarPunto(img,x,y);
 	}
 
 	public void actualizarReloj() {
@@ -107,14 +101,9 @@ public class Logica {
 		miReloj.activarPocion();
 		
 	}
-	
 
-	public void actualizarPocion(ImageIcon img, int x, int y) {
-		miGUI.actualizarMejora(img,x,y);
-		
-	}
-	public void actualizarFruta(ImageIcon img, int x, int y) {
-		miGUI.actualizarMejora(img,x,y);
+	public void actualizarEntidad(EntidadGrafica entidad, int x, int y) {
+		miGUI.actualizarEntidad(entidad,x,y);
 	}
 
 	public void desactivarPociones() {
@@ -125,12 +114,16 @@ public class Logica {
 		miReloj.desactivarFruta(); 
 	}
 
-	public void quitarDeLaGui(int x, int y) {
-		miGUI.quitarEntidad(x, y);
+	public void quitarDeLaGui(EntidadGrafica entidad) {
+		miGUI.quitarEntidad(entidad);
 	}
 
 	public void actualizarPuntos(int puntos) {
 		miGUI.actualizarPuntos(puntos);
+		
+	}
+	public void añadirEntidad(EntidadGrafica miEntidad) {
+		miGUI.añadirEntidadGrafica(miEntidad);
 		
 	}
 

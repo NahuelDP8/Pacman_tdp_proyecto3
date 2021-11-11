@@ -1,11 +1,13 @@
 package Entities;
 
+import javax.swing.ImageIcon;
+
 import Visitors.Visitor;
 
 public class Enemigo extends Personaje{
 
-	public Enemigo(PairTupla p, int anc, int alt) {
-		super(p, anc, alt);
+	public Enemigo(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
+		super(p, anc, alt,img, grilla);
 
 	}
 

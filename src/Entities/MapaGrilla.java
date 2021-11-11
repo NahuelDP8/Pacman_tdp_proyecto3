@@ -47,15 +47,15 @@ abstract public class MapaGrilla {
 	}
 	
 	protected void agregarProtagonista() {
-		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(189, 290),30,30);
+		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(189, 290),30,30,this);
 		miProtagonista.setGrilla(this);
 	}
 	
 	protected void agregarFantasmas() {
-		 this.misEnemigos.add(fabricaEnem.crearAzul(new PairTupla(243, 404),30,30));
-		 this.misEnemigos.add(fabricaEnem.crearRosa(new PairTupla(243, 404),30,30));
-		 this.misEnemigos.add(fabricaEnem.crearRojo(new PairTupla(243, 404),30,30));
-		 this.misEnemigos.add(fabricaEnem.crearNaranja(new PairTupla(243, 404),30,30));
+		 this.misEnemigos.add(fabricaEnem.crearAzul(new PairTupla(243, 404),30,30,this));
+		 this.misEnemigos.add(fabricaEnem.crearRosa(new PairTupla(243, 404),30,30,this));
+		 this.misEnemigos.add(fabricaEnem.crearRojo(new PairTupla(243, 404),30,30,this));
+		 this.misEnemigos.add(fabricaEnem.crearNaranja(new PairTupla(243, 404),30,30,this));
 		//Faltaría setearlos a la grilla y a las zonas correspondientes
 	}
 	
@@ -113,7 +113,7 @@ abstract public class MapaGrilla {
 	public void actualizarProtagonista() {
 		ArrayList<Zona> zonasActivasDePro = mapeoPosEntidadAZona(miProtagonista);
 		actualizarZonas(zonasActivasDePro, miProtagonista);
-		miLogica.actualizarProtagonista(miProtagonista.getX(),miProtagonista.getY());
+		miLogica.actualizarEntidad(miProtagonista.getEntidad(),miProtagonista.getX(),miProtagonista.getY());
 	}
 
 	public void realizarMovimiento() {
@@ -212,16 +212,16 @@ abstract public class MapaGrilla {
 	abstract public void agregarPocion(); 
 	
 	public void agregarEnemigoNaranja(){
-		misEnemigos.add(fabricaEnem.crearNaranja(null, ancho, altura));
+		misEnemigos.add(fabricaEnem.crearNaranja(null, ancho, altura,this));
 	}
 	public void agregarEnemigoAzul() {
-		misEnemigos.add(fabricaEnem.crearAzul(null, ancho, altura));
+		misEnemigos.add(fabricaEnem.crearAzul(null, ancho, altura,this));
 	}
 	public void agregarEnemigoRojo() {
-		misEnemigos.add(fabricaEnem.crearRojo(null, ancho, altura));
+		misEnemigos.add(fabricaEnem.crearRojo(null, ancho, altura,this));
 	}
 	public void agregarEnemigoRosa() {
-		misEnemigos.add(fabricaEnem.crearRosa(null, ancho, altura));
+		misEnemigos.add(fabricaEnem.crearRosa(null, ancho, altura,this));
 	}
 	
 	public void desactivarPociones() {
@@ -263,12 +263,17 @@ abstract public class MapaGrilla {
 			z.remove(punto);
 		System.out.print("X: "+punto.getX());
 		System.out.print("Y: "+punto.getY());
-		miLogica.quitarDeLaGui(punto.getX(), punto.getY());
+		miLogica.quitarDeLaGui(punto.getEntidad());
 		punto = null;
 
 	}
 
 	public void actualizarPuntos(int i) {
 		miLogica.actualizarPuntos(i);
+	}
+
+	public void añadirEntidad(EntidadGrafica miEntidad) {
+		miLogica.añadirEntidad(miEntidad);
+		
 	}
 }

@@ -4,6 +4,8 @@ import java.awt.Shape;
 
 import javax.swing.ImageIcon;
 
+import java.awt.Color;
+import java.awt.Image;
 import java.awt.Rectangle;
 import Visitors.Visitor;
 
@@ -18,13 +20,14 @@ abstract public class Entidad {
 	protected ImageIcon miImagen;
 	protected EntidadGrafica miEntidad;
 
-	public Entidad (PairTupla p, int anc,int alt) {
+	public Entidad (PairTupla p, int anc,int alt, ImageIcon img, MapaGrilla grilla) {
+		miGrilla = grilla;
 		ancho = anc;
 		altura = alt;
 		posicion = p;
 		miRectangulo =  new Rectangle(p.getX(), p.getY(), anc, alt); 
-		miEntidad = new EntidadGrafica();
-		miEntidad.setBounds(p.getX(), p.getY(), ancho, altura);
+		miImagen = img;
+		agregarEntidadGrafica();
 	}
 	
 	public int getAltura() {
@@ -45,6 +48,19 @@ abstract public class Entidad {
 	public ImageIcon getImagen() {
 		return miImagen;
 	}
+	public void agregarEntidadGrafica() {
+		miEntidad = new EntidadGrafica("");
+		miEntidad.setBounds(posicion.getX(), posicion.getY()+155, ancho, altura);
+		if(miImagen != null) {
+			Image EscalarFoto = miImagen.getImage().getScaledInstance(ancho,altura, Image.SCALE_DEFAULT);
+			ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
+			miEntidad.setIcon(FotoEscalada);
+		}
+		miEntidad.setVisible(true);
+		miEntidad.setForeground(new Color(0, 128, 0));
+		miEntidad.setBackground(Color.WHITE);
+		miGrilla.añadirEntidad(miEntidad);
+	}
 
 	public int getX() {
 		return posicion.x;
@@ -64,4 +80,11 @@ abstract public class Entidad {
 		return v;
 	}
 	abstract public void accept(Visitor v);
+
+	public EntidadGrafica getEntidad() {
+		return miEntidad;
+	}
+	public void setEntidad(EntidadGrafica ent) {
+		miEntidad= ent;
+	} 
 }
