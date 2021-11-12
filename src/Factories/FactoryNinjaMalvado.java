@@ -18,6 +18,7 @@ public class FactoryNinjaMalvado extends FactoryEnemigo{
 	
 	public Enemigo crearRosa(PairTupla p , int ancho, int altura,MapaGrilla grilla) {
 		Enemigo rosa = new NinjaPinky( p ,  ancho,  altura, NinjaRosa,grilla);
+		rosa.setImagen(NinjaRosa);
 		return rosa;
 	}
 

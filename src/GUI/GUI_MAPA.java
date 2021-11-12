@@ -282,7 +282,6 @@ public class GUI_MAPA{
 	private void gameClose() {
 		FileOutputStream fileOutputStream;
 		try {
-			
 			fileOutputStream = new FileOutputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 			objectOutputStream.writeObject(this.topPlayers);
