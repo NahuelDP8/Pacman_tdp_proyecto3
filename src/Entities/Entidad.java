@@ -84,6 +84,9 @@ abstract public class Entidad {
 	public EntidadGrafica getEntidad() {
 		return miEntidad;
 	}
+	public void sacarEntidad(Entidad ent) {
+		miGrilla.sacarEntidad(ent);	
+	}
 	public void setEntidad(EntidadGrafica ent) {
 		miEntidad= ent;
 	} 

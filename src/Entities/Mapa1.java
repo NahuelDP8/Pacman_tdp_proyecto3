@@ -28,6 +28,7 @@ public class Mapa1 extends MapaGrilla {
 	protected void agregarMejoras() {
 		Mejora m;
 		int x,y;
+		cantPuntos = 0;;
 		agregarPowerPellets();
 		for(int i = 1; i<31;i++) {
 			for (int j = 0; j<33;j++) {
@@ -45,16 +46,19 @@ public class Mapa1 extends MapaGrilla {
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(40,20),25,25,this);
 		miLogica.actualizarEntidad(m.getEntidad(), m.getX(), m.getY());
 		zonas[0][0].setEntidad(m);
+		cantPuntos++;
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(450,20),25,25,this);
 		miLogica.actualizarEntidad(m.getEntidad(), m.getX(), m.getY());
 		zonas[0][4].setEntidad(m);
+		cantPuntos++;
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(40,500),25,25,this);
 		miLogica.actualizarEntidad(m.getEntidad(), m.getX(), m.getY());
 		zonas[5][0].setEntidad(m);
+		cantPuntos++;
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(450,500),25,25,this);
 		miLogica.actualizarEntidad(m.getEntidad(), m.getX(), m.getY());
 		zonas[5][4].setEntidad(m);
-		
+		cantPuntos++;
 	}
 
 	private void ubicarPunto(Mejora m) {
@@ -76,6 +80,7 @@ public class Mapa1 extends MapaGrilla {
 			}
 		}
 		if(!colision) {
+			cantPuntos++;
 			for(Zona z:misZonas)
 				z.setEntidad(m);
 		}else {

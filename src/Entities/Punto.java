@@ -20,4 +20,9 @@ public class Punto extends Mejora{
 		
 	}
 	
+	public void sacarEntidad(Entidad ent) {
+		miGrilla.restarPunto();
+		miGrilla.sacarEntidad(ent);	
+	}
+	
 }

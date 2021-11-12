@@ -18,5 +18,10 @@ public class PuntoGrande extends Mejora{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void sacarEntidad(Entidad ent) {
+		miGrilla.restarPunto();
+		miGrilla.sacarEntidad(ent);	
+	}
 
 }

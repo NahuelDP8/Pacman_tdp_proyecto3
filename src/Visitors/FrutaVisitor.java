@@ -34,7 +34,7 @@ public class FrutaVisitor implements Visitor {
 
 	@Override
 	public void visitProtagonista(Protagonista p) {
-		p.sacarPunto(miEntidad);//Cambiar dsps de singleton
+		miEntidad.sacarEntidad(miEntidad);//Cambiar dsps de singleton
 	}
 
 	@Override

@@ -93,21 +93,14 @@ abstract public class Protagonista extends Personaje{
 		colisiono = colision;
 	}
 
-	public void sacarPunto(Entidad punto) {
-		miGrilla.sacarPunto(punto);
-		
-	}
-
 	public void sumarPuntos(int i) {
 		puntaje += i;
-		miGrilla.actualizarPuntos(puntaje);
-		
+		miGrilla.actualizarPuntos(puntaje);	
 	}
 
 	public int getVelocidad() {
 		// TODO Auto-generated method stub
 		return velocidad;
 	}
-
 	
 }

@@ -27,6 +27,7 @@ abstract public class MapaGrilla {
 	protected final int MOVER_ARRIBA = 2;
 	protected final int MOVER_IZQUIERDA = 3;
 	protected final int MOVER_DERECHA = 4;
+	protected int cantPuntos;
 	
 	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica) {
 		//Asignamos imagen de fondo del mapa
@@ -128,7 +129,7 @@ abstract public class MapaGrilla {
 		y = e.getY();
 		ancho = e.getAncho();
 		largo = e.getAltura();
-		int movimiento  =miProtagonista.getMovimientoActual();
+		int movimiento = miProtagonista.getMovimientoActual();
 
 		int vel = miProtagonista.getVelocidad();
 		if (movimiento == 1)
@@ -257,15 +258,12 @@ abstract public class MapaGrilla {
 		}
 	}
 
-	public void sacarPunto(Entidad punto) {
-		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(punto);
+	public void sacarEntidad(Entidad entidad) {
+		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(entidad);
 		for(Zona z : zonasActivasDeE)
-			z.remove(punto);
-		System.out.print("X: "+punto.getX());
-		System.out.print("Y: "+punto.getY());
-		miLogica.quitarDeLaGui(punto.getEntidad());
-		punto = null;
-
+			z.remove(entidad);
+		miLogica.quitarDeLaGui(entidad.getEntidad());
+		entidad = null;
 	}
 
 	public void actualizarPuntos(int i) {
@@ -273,7 +271,14 @@ abstract public class MapaGrilla {
 	}
 
 	public void añadirEntidad(EntidadGrafica miEntidad) {
-		miLogica.añadirEntidad(miEntidad);
-		
+		miLogica.añadirEntidad(miEntidad);	
+	}
+
+	public void restarPunto() {
+		cantPuntos--;
+		System.out.print(cantPuntos);
+		if(cantPuntos == 0) {
+			miLogica.nivelSiguiente(miNivel);
+		}	
 	}
 }

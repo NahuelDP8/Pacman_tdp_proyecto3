@@ -35,7 +35,7 @@ public class PuntoGrandeVisitor implements Visitor {
 	@Override
 	public void visitProtagonista(Protagonista p) {
 		//Cambiar dsps de singleton:
-		p.sacarPunto(miEntidad);
+		miEntidad.sacarEntidad(miEntidad);
 		p.sumarPuntos(50);
 	}
 

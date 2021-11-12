@@ -21,21 +21,14 @@ public class Logica {
 		miGUI = g;
 		miFabrica = f;
 		miMapa = miFabrica.crearMapa(this);
-		n.setMapa(miMapa);
-		miNivel = n;
-		miMapa.setNivel(n);
-
 		
-		//Trabajo con la gui
 		miReloj = new Timer(this);
+		nivelSiguiente(n);
 
-		actualizarSleepProtagonista(miNivel.sleepProtagonista());
-		actualizarSleepFantasmas(miNivel.sleepFantasmas());
-		this.setEsperaFruta(miNivel.sleepFruta());
-		this.setEsperaPocion(miNivel.sleepPocion());
-		n.llevarACaboActivaciones();
 		miGUI.añadirFondo();
 	}
+	
+	
 	
 	public void gameOver(){
 		
@@ -124,6 +117,18 @@ public class Logica {
 	}
 	public void añadirEntidad(EntidadGrafica miEntidad) {
 		miGUI.añadirEntidadGrafica(miEntidad);
+		
+	}
+
+	public void nivelSiguiente(Nivel n) {
+		n.setMapa(miMapa);
+		miNivel = n;
+		miMapa.setNivel(n);
+		actualizarSleepProtagonista(miNivel.sleepProtagonista());
+		actualizarSleepFantasmas(miNivel.sleepFantasmas());
+		this.setEsperaFruta(miNivel.sleepFruta());
+		this.setEsperaPocion(miNivel.sleepPocion());
+		n.llevarACaboActivaciones();
 		
 	}
 
