@@ -6,6 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import Entities.EntidadGrafica;
 import Factories.FactoryMapaGrilla;
 import Logic.Logica;
 import Nivel.Nivel;
@@ -28,9 +30,6 @@ import java.io.ObjectOutputStream;
 public class GUI_MAPA{
 
 	private JFrame frame;
-	private JLabel JLPlayer;
-	private JLabel fantasmaRojo; 
-	private JLabel [][] labels = new JLabel[31][33];
 	private Logica log;
 	private JLabel JLTiempo;
 	private JLabel JLFondoMapa; 
@@ -50,76 +49,20 @@ public class GUI_MAPA{
 		log = new Logica(this,f, nivel);
 	}
 	
-	public void actualizarFondo(ImageIcon imagen){
-		Image EscalarFoto = imagen.getImage().getScaledInstance(JLFondoMapa.getWidth(),JLFondoMapa.getHeight(), Image.SCALE_DEFAULT);
-		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
-		//fondo.setIcon(FotoEscalada);
-	}
-	
 	public JFrame getFrame() {
 		return frame;
 	}
-	
-	public void actualizarProtagonista(ImageIcon imagenProtagonista, int xProtagonista, int yProtagonista) {
-		JLPlayer.setLocation(xProtagonista,yProtagonista+155);
-		
-	}
-	public void actualizarFantasma(ImageIcon imagenProtagonista, int xProtagonista, int yProtagonista) {
-		fantasmaRojo.setLocation(xProtagonista,yProtagonista+155);
-		
-	}
-	public void fotoProtagonista(ImageIcon imagenProtagonista, int xProtagonista, int yProtagonista) {
-		Image EscalarFoto = imagenProtagonista.getImage().getScaledInstance(JLPlayer.getWidth(),JLPlayer.getHeight(), Image.SCALE_DEFAULT);
-		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
-		JLPlayer.setIcon(FotoEscalada);
-		
-	}
-	public void fotoFantasmaRojo(ImageIcon imagenProtagonista, int xProtagonista, int yProtagonista) {
-		Image EscalarFoto = imagenProtagonista.getImage().getScaledInstance(fantasmaRojo.getWidth(),fantasmaRojo.getHeight(), Image.SCALE_DEFAULT);
-		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
-		fantasmaRojo.setIcon(FotoEscalada);
-		
-	}
-	public void actualizarPunto(ImageIcon imagenPunto, int x, int y) {
-		int i = (x-12)/15;
-		int j = (y-12)/15;
-		System.out.print("x:"+x);
-		System.out.print("y:"+y);
-		System.out.print("i:"+i);
-		System.out.print("j:"+j);
-		System.out.println("--");
-		JLabel punto = labels[i][j];
-		
-		Image EscalarFoto = imagenPunto.getImage().getScaledInstance(punto.getWidth(),punto.getHeight(), Image.SCALE_DEFAULT);
-		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
-		punto.setIcon(FotoEscalada);
-		labels[i][j] = punto;
+
+	public void quitarEntidad(EntidadGrafica entidad) {
+		entidad.setVisible(false);
 	}
 	
-	
-	public void quitarEntidad(int x, int y) {
-		int i = (x-12)/15;
-		int j = (y-12)/15;
-		//X: 147Y: 292x:147y:292i:9j:18--
-		System.out.print("x:"+x);
-		System.out.print("y:"+y);
-		System.out.print("i:"+i);
-		System.out.print("j:"+j);
-		System.out.println("--");
-		labels[i][j].setVisible(false);
+	public void añadirEntidadGrafica(EntidadGrafica entidad) {
+		frame.getContentPane().add(entidad);
 	}
 	
-	public void actualizarMejora(ImageIcon img, int x, int y) {
-		int i = (x-12)/15;
-		int j = (y-12)/15;
-		JLabel punto = labels[i][j];
-		punto.setBounds(punto.getX(), punto.getY(), 20, 20);
-		Image EscalarFoto = img.getImage().getScaledInstance(20,20, Image.SCALE_DEFAULT);
-		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
-		punto.setIcon(FotoEscalada);
-		labels[i][j] = punto;
-		punto.setVisible(true);
-		
+	public void actualizarEntidad(EntidadGrafica entidad, int x, int y) {
+		entidad.setLocation(x, y+155);
 	}
 	
 	public void actualizarPuntos(int p) {
@@ -151,6 +94,12 @@ public class GUI_MAPA{
 		log.moverProtagonistaDerecha();
 	}
 	
+	public void añadirFondo() {
+		JLFondoMapa = new JLabel("");
+		JLFondoMapa.setBounds(0, 154, 500, 540);
+		frame.getContentPane().add(JLFondoMapa);
+		JLFondoMapa.setIcon(new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/fondoauxarreglo.png")));
+	}
 	
 	public void captar() {
 		if(izquierda)
@@ -234,37 +183,7 @@ public class GUI_MAPA{
 		frame.setBounds(100, 100, 1046, 842);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		
-		
-		
-		
-		JLPlayer = new JLabel("");
-		JLPlayer.setBounds(189, 290+155, 30,30);
-		frame.getContentPane().add(JLPlayer);
-		JLPlayer.setForeground(new Color(0, 128, 0));
-		JLPlayer.setBackground(Color.WHITE);
-		
-		fantasmaRojo = new JLabel("");
-		fantasmaRojo.setBounds(189, 290+155, 30,30);
-		frame.getContentPane().add(fantasmaRojo);
-		fantasmaRojo.setForeground(new Color(0, 128, 0));
-		fantasmaRojo.setBackground(Color.WHITE);
-		
-		for (int i =0; i< labels.length;i++) {
-			for (int j =0; j< labels[0].length;j++) {
-				JLabel lab = new JLabel("");
-				lab.setBounds(12+i*15,22+j*15 + 155, 10,10);
-				frame.getContentPane().add(lab);
-				lab.setForeground(new Color(0, 128, 0));
-				lab.setBackground(Color.WHITE);
-				labels[i][j]= lab;
-			}}
-		
-		JLFondoMapa = new JLabel("");
-		JLFondoMapa.setBounds(0, 154, 500, 540);
-		frame.getContentPane().add(JLFondoMapa);
-		JLFondoMapa.setIcon(new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/fondoauxarreglo.png")));
+
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 965, 155);
 		frame.getContentPane().add(panel);
@@ -362,7 +281,6 @@ public class GUI_MAPA{
 	private void gameClose() {
 		FileOutputStream fileOutputStream;
 		try {
-			
 			fileOutputStream = new FileOutputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 			objectOutputStream.writeObject(this.topPlayers);

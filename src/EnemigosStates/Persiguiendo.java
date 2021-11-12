@@ -4,12 +4,13 @@ import javax.swing.ImageIcon;
 import Entities.Enemigo;
 
 public class Persiguiendo implements EstadoEnemigo{
-	private Enemigo miEnemigo; 
+	protected Enemigo miEnemigo; 
 	
+
 	public Persiguiendo(Enemigo e) {
-		miEnemigo = e; 
+		// TODO Auto-generated constructor stub
 	}
-	
+
 	public void realizarMovimiento() {
 		miEnemigo.perseguirProtagonista(); 
 	}
@@ -18,5 +19,6 @@ public class Persiguiendo implements EstadoEnemigo{
 	public ImageIcon getImagen() {
 		return null;
 	}
+
 
 }

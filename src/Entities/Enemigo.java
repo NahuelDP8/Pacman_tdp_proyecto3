@@ -2,6 +2,8 @@ package Entities;
 
 import EnemigosStates.*;
 import Visitors.Visitor;
+import javax.swing.ImageIcon;
+import Mapas.MapaGrilla;
 
 public abstract class Enemigo extends Personaje{
 	protected EstadoEnemigo miEstado; 
@@ -17,8 +19,8 @@ public abstract class Enemigo extends Personaje{
 	protected final int MOVER_DERECHA = 4;
 	protected int miVelocidad; 
 	
-	public Enemigo(PairTupla p, int anc, int alt) {
-		super(p, anc, alt);
+	public Enemigo(PairTupla p, int anc, int alt, ImageIcon img, MapaGrilla grilla) {
+		super(p, anc, alt,img, grilla );
 		miEstado = new Persiguiendo(this); 
 		huboColisionConPared = false;
 		miVelocidad = 4; 
@@ -39,6 +41,7 @@ public abstract class Enemigo extends Personaje{
 	public void noColisioPared() {
 		huboColisionConPared=false; 
 	}
+	
 	public boolean getColisionPared() {
 		return huboColisionConPared; 
 	}

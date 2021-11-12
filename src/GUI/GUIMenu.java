@@ -58,8 +58,7 @@ public class GUIMenu extends JFrame {
 				TopPlayers  topPlayers;
 				try {
 					File tempFile = new File(GUIMenu.configuration.getProperty("HighscoreFile"));
-					//ERROR RARO REVISAR PREGUNTAR
-					if((tempFile.exists()) && !(tempFile.length() != 0)) {
+					if((tempFile.exists()) && (tempFile.length() != 0)) {
 						FileInputStream fileInputStream= new FileInputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
 						ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
 						topPlayers = (TopPlayers) objectInputStream.readObject();

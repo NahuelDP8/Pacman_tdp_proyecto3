@@ -1,13 +1,16 @@
 package Entities;
 
-import Visitors.PuntoGrandeVisitor;
-import Visitors.PuntoVisitor;
+import javax.swing.ImageIcon;
+
+
 import Visitors.Visitor;
+import Mapas.MapaGrilla; 
+import Visitors.PuntoGrandeVisitor;
 
 public class PuntoGrande extends Mejora{
 
-	public PuntoGrande(PairTupla p, int anc, int alt) {
-		super(p, anc, alt);
+	public PuntoGrande(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
+		super(p, anc, alt,img, grilla);
 		v = new PuntoGrandeVisitor(this);
 	}
 

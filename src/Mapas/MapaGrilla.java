@@ -1,20 +1,17 @@
 package Mapas;
 
 import javax.swing.ImageIcon;
-
 import Entities.Enemigo;
 import Entities.Entidad;
 import Entities.PairTupla;
 import Entities.Protagonista;
+import Entities.EntidadGrafica; 
 import Factories.FactoryEnemigo;
 import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
 import Nivel.Nivel;
-
-import java.awt.Rectangle;
 import java.awt.Shape;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 abstract public class MapaGrilla {
@@ -54,17 +51,17 @@ abstract public class MapaGrilla {
 	}
 	
 	protected void agregarProtagonista() {
-		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(189, 290),30,30);
+		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(189, 290),30,30,this);
 		miProtagonista.setGrilla(this);
 	}
 	
 	protected void agregarFantasmas() {
-		 this.misEnemigos.add(fabricaEnem.crearRojo(new PairTupla(189, 290),30,30));
-		 
+		 //this.misEnemigos.add(fabricaEnem.crearRojo(new PairTupla(189, 290),30,30));
+		 //this.misEnemigos.add(fabricaEnem.crearAzul(new PairTupla(243, 404),30,30,this));
+		 //this.misEnemigos.add(fabricaEnem.crearRosa(new PairTupla(243, 404),30,30,this));
+		 this.misEnemigos.add(fabricaEnem.crearRojo(new PairTupla(243, 404),30,30,this));
+		// this.misEnemigos.add(fabricaEnem.crearNaranja(new PairTupla(243, 404),30,30,this));
 		//Faltaría setearlos a la grilla y a las zonas correspondientes
-		 for (Enemigo e : misEnemigos) {
-			 e.setGrilla(this);	 
-		 }
 	}
 	
 	protected void construccionZonasGrilla(int ancho, int alto) {
@@ -106,6 +103,7 @@ abstract public class MapaGrilla {
 	public ImageIcon getImagenProtagonista() {
 		return miProtagonista.getImagen();
 	}	
+	
 	private void actualizarZonas(ArrayList<Zona> l, Entidad e) {
 		for(Zona auxZ : l) {
 			if(!auxZ.getEntidades().contains(e)) {
@@ -114,11 +112,11 @@ abstract public class MapaGrilla {
 				auxZ.remove(e);
 		}
 	}
-	
-	public void actualizarProtagonista(Entidad e) {
-		ArrayList<Zona> zonasActivasDePro = mapeoPosEntidadAZona(e, e.getMovimientoActual());
-		actualizarZonas(zonasActivasDePro, e);
-		miLogica.actualizarProtagonista(e.getX(),e.getY());
+
+	public void actualizarProtagonista() {
+		ArrayList<Zona> zonasActivasDePro = mapeoPosEntidadAZona(miProtagonista, miProtagonista.getMovimientoActual());
+		actualizarZonas(zonasActivasDePro, miProtagonista);
+		miLogica.actualizarEntidad(miProtagonista.getEntidad(),miProtagonista.getX(),miProtagonista.getY());
 	}
 
 	public void realizarMovimiento() {
@@ -220,16 +218,16 @@ abstract public class MapaGrilla {
 	abstract public void agregarPocion(); 
 	
 	public void agregarEnemigoNaranja(){
-		misEnemigos.add(fabricaEnem.crearNaranja(null, ancho, altura));
+		misEnemigos.add(fabricaEnem.crearNaranja(null, ancho, altura,this));
 	}
 	public void agregarEnemigoAzul() {
-		misEnemigos.add(fabricaEnem.crearAzul(null, ancho, altura));
+		misEnemigos.add(fabricaEnem.crearAzul(null, ancho, altura,this));
 	}
 	public void agregarEnemigoRojo() {
-		misEnemigos.add(fabricaEnem.crearRojo(null, ancho, altura));
+		misEnemigos.add(fabricaEnem.crearRojo(null, ancho, altura,this));
 	}
 	public void agregarEnemigoRosa() {
-		misEnemigos.add(fabricaEnem.crearRosa(null, ancho, altura));
+		misEnemigos.add(fabricaEnem.crearRosa(null, ancho, altura,this));
 	}
 	
 	public void desactivarPociones() {
@@ -269,14 +267,14 @@ abstract public class MapaGrilla {
 		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(punto, punto.getMovimientoActual());
 		for(Zona z : zonasActivasDeE)
 			z.remove(punto);
-		miLogica.quitarDeLaGui(punto.getX(), punto.getY());
+		miLogica.quitarDeLaGui(punto.getEntidad());
 		punto = null;
-
 	}
 
 	public void actualizarPuntos(int i) {
 		miLogica.actualizarPuntos(i);
 	}
+
 	
 	public void colisionEnemigo(Enemigo e, int movimiento) {
 		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(e, movimiento);
@@ -311,5 +309,9 @@ abstract public class MapaGrilla {
 
 	public ImageIcon getImagenFantasma() {
 		return misEnemigos.get(0).getImagen();
+	}
+	public void añadirEntidad(EntidadGrafica miEntidad) {
+		miLogica.añadirEntidad(miEntidad);
+
 	}
 }
