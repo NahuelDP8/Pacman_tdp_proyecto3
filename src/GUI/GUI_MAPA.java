@@ -29,6 +29,7 @@ public class GUI_MAPA{
 
 	private JFrame frame;
 	private JLabel JLPlayer;
+	private JLabel fantasmaRojo; 
 	private JLabel [][] labels = new JLabel[31][33];
 	private Logica log;
 	private JLabel JLTiempo;
@@ -63,13 +64,22 @@ public class GUI_MAPA{
 		JLPlayer.setLocation(xProtagonista,yProtagonista+155);
 		
 	}
+	public void actualizarFantasma(ImageIcon imagenProtagonista, int xProtagonista, int yProtagonista) {
+		fantasmaRojo.setLocation(xProtagonista,yProtagonista+155);
+		
+	}
 	public void fotoProtagonista(ImageIcon imagenProtagonista, int xProtagonista, int yProtagonista) {
 		Image EscalarFoto = imagenProtagonista.getImage().getScaledInstance(JLPlayer.getWidth(),JLPlayer.getHeight(), Image.SCALE_DEFAULT);
 		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
 		JLPlayer.setIcon(FotoEscalada);
 		
 	}
-	
+	public void fotoFantasmaRojo(ImageIcon imagenProtagonista, int xProtagonista, int yProtagonista) {
+		Image EscalarFoto = imagenProtagonista.getImage().getScaledInstance(fantasmaRojo.getWidth(),fantasmaRojo.getHeight(), Image.SCALE_DEFAULT);
+		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
+		fantasmaRojo.setIcon(FotoEscalada);
+		
+	}
 	public void actualizarPunto(ImageIcon imagenPunto, int x, int y) {
 		int i = (x-12)/15;
 		int j = (y-12)/15;
@@ -234,6 +244,12 @@ public class GUI_MAPA{
 		frame.getContentPane().add(JLPlayer);
 		JLPlayer.setForeground(new Color(0, 128, 0));
 		JLPlayer.setBackground(Color.WHITE);
+		
+		fantasmaRojo = new JLabel("");
+		fantasmaRojo.setBounds(189, 290+155, 30,30);
+		frame.getContentPane().add(fantasmaRojo);
+		fantasmaRojo.setForeground(new Color(0, 128, 0));
+		fantasmaRojo.setBackground(Color.WHITE);
 		
 		for (int i =0; i< labels.length;i++) {
 			for (int j =0; j< labels[0].length;j++) {

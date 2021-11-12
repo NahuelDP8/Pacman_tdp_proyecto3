@@ -2,8 +2,8 @@ package Factories;
 
 import javax.swing.ImageIcon;
 
-import Entities.Mapa1;
-import Entities.MapaGrilla;
+import Mapas.Mapa1;
+import Mapas.MapaGrilla;
 import Logic.Logica;
 
 public class FactoryMapaGrillaGoku extends FactoryMapaGrilla{

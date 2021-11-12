@@ -77,6 +77,10 @@ public abstract class Enemigo extends Personaje{
 	
 	abstract public void perseguirProtagonista();
 	
+	public void moverme() {
+		miEstado.realizarMovimiento();
+	}
+	
 	public int getMovimientoActual() {
 		return movimientoActual; 
 	} 

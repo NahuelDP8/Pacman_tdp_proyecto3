@@ -1,10 +1,14 @@
-package Entities;
+package Mapas;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import Entities.Entidad;
+import Entities.Mejora;
+import Entities.PairTupla;
+import Entities.Pared;
 import Factories.FactoryEnemigo;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
@@ -21,6 +25,7 @@ public class Mapa1 extends MapaGrilla {
 		construccionParedesLimitaciones();
 		agregarMejoras();
 		agregarProtagonista();
+		this.agregarFantasmas();
 		fruta = fabricaMejora.crearFruta(new PairTupla(260,345-154), 20, 20);
 		pocion = fabricaMejora.crearPocion(new PairTupla(230,450-154), 20, 20);
 	}

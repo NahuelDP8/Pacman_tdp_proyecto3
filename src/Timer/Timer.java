@@ -100,6 +100,17 @@ public class Timer implements Runnable {
 				Thread.currentThread().interrupt();
 			}
 		}
+		
+		while (ct == hiloMoverFantasmas) {
+			try {
+				Thread.sleep(this.SleepDeFantasmas);
+				miLogica.moverFantasmas();
+			} catch(InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+
+		}
+		
 		/*
 		while (ct == hiloMusica) {
 
@@ -109,15 +120,6 @@ public class Timer implements Runnable {
 				Thread.currentThread().interrupt();
 			}
 /
-		}
-		while (ct == hiloMoverFantasmas) {
-
-			try {
-				//Completar
-			} catch(InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-
 		}
 		while (ct == hiloMoverFantasmasMuertos) {
 

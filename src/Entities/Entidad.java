@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 
 import java.awt.Rectangle;
 import Visitors.Visitor;
+import Mapas.MapaGrilla;
 
 abstract public class Entidad {
 	protected Shape miRectangulo;
@@ -14,7 +15,6 @@ abstract public class Entidad {
 	protected int altura;
 	protected MapaGrilla miGrilla;
 	protected Visitor v;
-	protected Zona miZona;
 	protected ImageIcon miImagen;
 	protected EntidadGrafica miEntidadGrafica;
 	

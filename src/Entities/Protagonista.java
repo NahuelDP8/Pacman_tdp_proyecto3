@@ -42,7 +42,7 @@ abstract public class Protagonista extends Personaje{
 			posicion.setX(posicion.getX()+ velocidad);
 		}
 		movimientoPrevio = movimientoActual;
-		miGrilla.actualizarProtagonista();
+		miGrilla.actualizarProtagonista(this);
 	}
 	public void moverAbajo() {
 		movimientoPrevio = movimientoActual;

@@ -1,6 +1,11 @@
-package Entities;
+package Mapas;
 
 import javax.swing.ImageIcon;
+
+import Entities.Enemigo;
+import Entities.Entidad;
+import Entities.PairTupla;
+import Entities.Protagonista;
 import Factories.FactoryEnemigo;
 import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
@@ -37,9 +42,11 @@ abstract public class MapaGrilla {
 		fabricaMejora = new FactoryMejora();
 		ancho = an;
 		altura = al;
-		this.miLogica = miLogica;
+		
 		anchoMapa = 500;
 		altoMapa = 540;
+		this.miLogica = miLogica;
+		misEnemigos= new ArrayList<Enemigo>(); 
 	}
 	
 	public void setNivel(Nivel n) {
@@ -52,11 +59,12 @@ abstract public class MapaGrilla {
 	}
 	
 	protected void agregarFantasmas() {
-		 this.misEnemigos.add(fabricaEnem.crearAzul(new PairTupla(243, 404),30,30));
-		 this.misEnemigos.add(fabricaEnem.crearRosa(new PairTupla(243, 404),30,30));
-		 this.misEnemigos.add(fabricaEnem.crearRojo(new PairTupla(243, 404),30,30));
-		 this.misEnemigos.add(fabricaEnem.crearNaranja(new PairTupla(243, 404),30,30));
+		 this.misEnemigos.add(fabricaEnem.crearRojo(new PairTupla(189, 290),30,30));
+		 
 		//Faltaría setearlos a la grilla y a las zonas correspondientes
+		 for (Enemigo e : misEnemigos) {
+			 e.setGrilla(this);	 
+		 }
 	}
 	
 	protected void construccionZonasGrilla(int ancho, int alto) {
@@ -106,10 +114,11 @@ abstract public class MapaGrilla {
 				auxZ.remove(e);
 		}
 	}
-	public void actualizarProtagonista() {
-		ArrayList<Zona> zonasActivasDePro = mapeoPosEntidadAZona(miProtagonista, miProtagonista.getMovimientoActual());
-		actualizarZonas(zonasActivasDePro, miProtagonista);
-		miLogica.actualizarProtagonista(miProtagonista.getX(),miProtagonista.getY());
+	
+	public void actualizarProtagonista(Entidad e) {
+		ArrayList<Zona> zonasActivasDePro = mapeoPosEntidadAZona(e, e.getMovimientoActual());
+		actualizarZonas(zonasActivasDePro, e);
+		miLogica.actualizarProtagonista(e.getX(),e.getY());
 	}
 
 	public void realizarMovimiento() {
@@ -292,5 +301,15 @@ abstract public class MapaGrilla {
 
 	public PairTupla getPosicionActualProtagonista() {
 		return new PairTupla(miProtagonista.getX(),miProtagonista.getY());
+	}
+
+	public void moverTodosLosFantasmas() {
+		for(Enemigo enemigo : misEnemigos) {
+			enemigo.moverme(); 
+		}
+	}
+
+	public ImageIcon getImagenFantasma() {
+		return misEnemigos.get(0).getImagen();
 	}
 }
