@@ -16,8 +16,6 @@ import ranking.TopPlayers;
 
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
@@ -262,7 +260,10 @@ public class GUI_MAPA{
 	
 	private void crearTablaHighScore() {
 		JLabel JLHighScoreList = new JLabel();
-		JLHighScoreList.setBounds(526, 222, 374, 472);
+		JLHighScoreList.setVerticalAlignment(SwingConstants.TOP);
+		JLHighScoreList.setHorizontalAlignment(SwingConstants.LEFT);
+		JLHighScoreList.setFont(new Font("SimSun", Font.BOLD, 18));
+		JLHighScoreList.setBounds(526, 222, 496, 472);
 		frame.getContentPane().add(JLHighScoreList);
 		if(topPlayers.size()!=0) {
 			JLHighScoreList.setText(topPlayers.getPlayer(0).toString());
@@ -273,6 +274,7 @@ public class GUI_MAPA{
 		
 	}
 	
+	// SE NECESITA VER COMO COPIAR UN STRING DESDE CIERTO CARACTER PARA BORRAR ("NOMBRE")
 	public void gameOver() {
 		int puntosDPlayer=0;
 		puntosDPlayer = Integer.parseInt(JLPuntaje.getText());
