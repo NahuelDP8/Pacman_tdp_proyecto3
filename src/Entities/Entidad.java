@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Rectangle;
 import Visitors.Visitor;
+import Mapas.MapaGrilla;
 
 abstract public class Entidad {
 	protected Shape miRectangulo;
@@ -16,8 +17,8 @@ abstract public class Entidad {
 	protected int altura;
 	protected MapaGrilla miGrilla;
 	protected Visitor v;
-	protected Zona miZona;
 	protected ImageIcon miImagen;
+
 	protected EntidadGrafica miEntidad;
 
 	public Entidad (PairTupla p, int anc,int alt, ImageIcon img, MapaGrilla grilla) {
@@ -48,8 +49,9 @@ abstract public class Entidad {
 	public ImageIcon getImagen() {
 		return miImagen;
 	}
+	
 	public void agregarEntidadGrafica() {
-		miEntidad = new EntidadGrafica("");
+		miEntidad = new EntidadGrafica();
 		miEntidad.setBounds(posicion.getX(), posicion.getY()+155, ancho, altura);
 		if(miImagen != null) {
 			Image EscalarFoto = miImagen.getImage().getScaledInstance(ancho,altura, Image.SCALE_DEFAULT);
@@ -79,7 +81,10 @@ abstract public class Entidad {
 	public Visitor getVisitor() {
 		return v;
 	}
+	
 	abstract public void accept(Visitor v);
+
+	abstract public int getMovimientoActual(); 
 
 	public EntidadGrafica getEntidad() {
 		return miEntidad;
@@ -90,4 +95,5 @@ abstract public class Entidad {
 	public void setEntidad(EntidadGrafica ent) {
 		miEntidad= ent;
 	} 
+
 }

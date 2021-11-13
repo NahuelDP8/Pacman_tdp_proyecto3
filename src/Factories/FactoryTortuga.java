@@ -3,7 +3,7 @@ package Factories;
 import javax.swing.ImageIcon;
 
 import Entities.Enemigo;
-import Entities.MapaGrilla;
+import Mapas.MapaGrilla;
 import Entities.PairTupla;
 import Entities.TortugaBlinky;
 import Entities.TortugaClyde;

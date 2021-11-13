@@ -2,6 +2,8 @@ package Entities;
 
 import javax.swing.ImageIcon;
 
+import Mapas.MapaGrilla;
+
 public class NinjaPinky extends EnemigoRosa{
 
 	public NinjaPinky(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {

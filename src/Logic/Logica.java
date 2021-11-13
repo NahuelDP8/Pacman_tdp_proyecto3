@@ -1,8 +1,8 @@
 package Logic;
 
 
-import javax.swing.ImageIcon;
 import GUI.GUI_MAPA;
+import Mapas.MapaGrilla;
 import Nivel.Nivel;
 import Timer.Timer;
 import Entities.*;
@@ -11,7 +11,6 @@ import Factories.FactoryMapaGrilla;
 public class Logica {
 
 	private GUI_MAPA miGUI;
-	private Timer miTimer;
 	private MapaGrilla miMapa;
 	protected FactoryMapaGrilla miFabrica;
 	protected Timer miReloj;
@@ -21,10 +20,8 @@ public class Logica {
 		miGUI = g;
 		miFabrica = f;
 		miMapa = miFabrica.crearMapa(this);
-		
 		miReloj = new Timer(this);
 		nivelSiguiente(n);
-
 		miGUI.añadirFondo();
 	}
 	
@@ -129,6 +126,9 @@ public class Logica {
 		this.setEsperaFruta(miNivel.sleepFruta());
 		this.setEsperaPocion(miNivel.sleepPocion());
 		n.llevarACaboActivaciones();
+	}
+	public void moverFantasmas() {
+		miMapa.moverTodosLosFantasmas(); 
 		
 	}
 

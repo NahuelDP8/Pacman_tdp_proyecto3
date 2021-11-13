@@ -1,6 +1,7 @@
 package Entities;
 
 import javax.swing.ImageIcon;
+import Mapas.MapaGrilla;
 
 abstract public class Personaje extends Entidad{
 	protected ImageIcon miImagen;

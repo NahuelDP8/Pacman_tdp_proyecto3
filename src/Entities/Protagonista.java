@@ -1,13 +1,9 @@
 package Entities;
 
-
-import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
-
 import Visitors.ProtagonistaVisitor;
-import Visitors.PuntoVisitor;
 import Visitors.Visitor;
+import Mapas.MapaGrilla; 
 
 abstract public class Protagonista extends Personaje{
 	
@@ -47,7 +43,7 @@ abstract public class Protagonista extends Personaje{
 			posicion.setX(posicion.getX()+ velocidad);
 		}
 		movimientoPrevio = movimientoActual;
-		miGrilla.actualizarProtagonista();
+		miGrilla.actualizarEntidad(this);
 	}
 	public void moverAbajo() {
 		movimientoPrevio = movimientoActual;

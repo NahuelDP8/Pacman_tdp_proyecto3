@@ -1,6 +1,6 @@
 package Factories;
 
-import Entities.MapaGrilla;
+import Mapas.MapaGrilla;
 import Logic.Logica;
 
 abstract public class FactoryMapaGrilla{

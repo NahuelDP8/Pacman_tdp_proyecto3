@@ -11,6 +11,7 @@ import Entities.PuntoGrande;
 
 public class FrutaVisitor implements Visitor {
 	private Entidad miEntidad;
+	
 	public FrutaVisitor(Entidad ent) {
 		miEntidad = ent;
 	}

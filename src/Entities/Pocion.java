@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 
 import Visitors.PocionVisitor;
 import Visitors.Visitor;
+import Mapas.MapaGrilla;
 
 public class Pocion extends Mejora{
 
@@ -15,7 +16,7 @@ public class Pocion extends Mejora{
 
 	@Override
 	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
+		v.visitPocion(this);
 	}
 
 }

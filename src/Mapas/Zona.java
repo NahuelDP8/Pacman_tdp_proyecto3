@@ -1,7 +1,10 @@
-package Entities;
+package Mapas;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.util.ArrayList;
+
+import Entities.Entidad;
+import Entities.PairTupla;
 
 public class Zona {
 	protected PairTupla posicionEnMatriz;

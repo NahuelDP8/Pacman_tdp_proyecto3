@@ -1,6 +1,6 @@
 package Nivel;
 
-import Entities.MapaGrilla;
+import Mapas.MapaGrilla;
 
 abstract public class Nivel {
 	/* protected ArrayList<Fruta> misFrutas;

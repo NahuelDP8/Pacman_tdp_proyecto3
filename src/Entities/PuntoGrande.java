@@ -2,9 +2,10 @@ package Entities;
 
 import javax.swing.ImageIcon;
 
-import Visitors.PuntoGrandeVisitor;
-import Visitors.PuntoVisitor;
+
 import Visitors.Visitor;
+import Mapas.MapaGrilla; 
+import Visitors.PuntoGrandeVisitor;
 
 public class PuntoGrande extends Mejora{
 

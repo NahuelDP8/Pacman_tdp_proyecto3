@@ -3,9 +3,8 @@ package Entities;
 import javax.swing.ImageIcon;
 
 import Visitors.FrutaVisitor;
-import Visitors.ProtagonistaVisitor;
 import Visitors.Visitor;
-
+import Mapas.MapaGrilla; 
 public class Fruta extends Mejora{
 
 	public Fruta(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {

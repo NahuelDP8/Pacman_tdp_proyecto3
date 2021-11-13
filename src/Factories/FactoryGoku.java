@@ -3,7 +3,7 @@ package Factories;
 import javax.swing.ImageIcon;
 
 import Entities.Goku;
-import Entities.MapaGrilla;
+import Mapas.MapaGrilla;
 import Entities.PairTupla;
 import Entities.Protagonista;
 

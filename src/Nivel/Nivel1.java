@@ -1,6 +1,5 @@
 package Nivel;
 
-import Entities.MapaGrilla;
 
 public class Nivel1 extends Nivel{
 	
@@ -15,7 +14,7 @@ public class Nivel1 extends Nivel{
 	}
 	
 	public int sleepFantasmas() {
-		return 30;
+		return 50;
 	}
 	
 	public int sleepFruta() {

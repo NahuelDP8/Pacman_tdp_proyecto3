@@ -1,10 +1,14 @@
-package Entities;
+package Mapas;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import Entities.Entidad;
+import Entities.Mejora;
+import Entities.PairTupla;
+import Entities.Pared;
 import Factories.FactoryEnemigo;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
@@ -19,10 +23,14 @@ public class Mapa1 extends MapaGrilla {
 		super(fondo, fp, fe, ancho, altura, miLogica);
 		construccionZonasGrilla(5,6);
 		construccionParedesLimitaciones();
+		
+		agregarFantasmas();
 		agregarMejoras();
 		agregarProtagonista();
-		fruta = fabricaMejora.crearFruta(new PairTupla(260,345-154), 20, 20,this);
-		pocion = fabricaMejora.crearPocion(new PairTupla(230,450-154), 20, 20,this);
+
+		fruta = fabricaMejora.crearFruta(new PairTupla(260,191), 20, 20,this);
+		pocion = fabricaMejora.crearPocion(new PairTupla(230,196), 20, 20,this);
+
 	}
 	
 	protected void agregarMejoras() {
@@ -30,12 +38,12 @@ public class Mapa1 extends MapaGrilla {
 		int x,y;
 		cantPuntos = 0;;
 		agregarPowerPellets();
-		for(int i = 1; i<31;i++) {
-			for (int j = 0; j<33;j++) {
-				x = 12+i*15;
-				y = 22+j*15;
-				if(!(x>155 &&  x<345 && y>183 && y<322) && !(x<50 && y <50) && !(y<50 && x > 440) && !(x<50 && y > 490)&& !(x>440 && y > 490)) {
-					m = fabricaMejora.crearPunto(new PairTupla(x,y), 10, 10,this);
+		for(int i = 1; i<21;i++) {
+			for (int j = 0; j<22;j++) {
+				x = 9+i*24;
+				y = 22+j*24;
+				if(!(x>155 &&  x<345 && y>183 && y<322)) {
+					m = fabricaMejora.crearPunto(new PairTupla(x,y), 10,10,this);
 					ubicarPunto(m);
 				}
 			}
@@ -43,19 +51,19 @@ public class Mapa1 extends MapaGrilla {
 	}
 	private void agregarPowerPellets() {
 		Mejora m;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(40,20),25,25,this);
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(30,20),22,22,this);
 		miLogica.actualizarEntidad(m.getEntidad(), m.getX(), m.getY());
 		zonas[0][0].setEntidad(m);
 		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(450,20),25,25,this);
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(460,20),22,22,this);
 		miLogica.actualizarEntidad(m.getEntidad(), m.getX(), m.getY());
 		zonas[0][4].setEntidad(m);
 		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(40,500),25,25,this);
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(30,500),22,22,this);
 		miLogica.actualizarEntidad(m.getEntidad(), m.getX(), m.getY());
 		zonas[5][0].setEntidad(m);
 		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(450,500),25,25,this);
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(460,500),22,22,this);
 		miLogica.actualizarEntidad(m.getEntidad(), m.getX(), m.getY());
 		zonas[5][4].setEntidad(m);
 		cantPuntos++;

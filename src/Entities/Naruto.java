@@ -1,8 +1,7 @@
 package Entities;
 
 import javax.swing.ImageIcon;
-
-import Visitors.Visitor;
+import Mapas.MapaGrilla;
 
 public class Naruto extends Protagonista{
 

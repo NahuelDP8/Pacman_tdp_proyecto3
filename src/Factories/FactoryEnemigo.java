@@ -1,7 +1,7 @@
 package Factories;
 
 import Entities.Enemigo;
-import Entities.MapaGrilla;
+import Mapas.MapaGrilla;
 import Entities.PairTupla;
 
 abstract public class FactoryEnemigo{

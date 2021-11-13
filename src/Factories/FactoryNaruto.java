@@ -2,7 +2,7 @@ package Factories;
 
 import javax.swing.ImageIcon;
 
-import Entities.MapaGrilla;
+import Mapas.MapaGrilla;
 import Entities.Naruto;
 import Entities.PairTupla;
 import Entities.Protagonista;

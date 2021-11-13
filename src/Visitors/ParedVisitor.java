@@ -11,9 +11,11 @@ import Entities.PuntoGrande;
 
 public class ParedVisitor implements Visitor {
 	private Entidad miEntidad;
+	
 	public ParedVisitor(Entidad ent) {
 		miEntidad = ent;
 	}
+	
 	@Override
 	public void visitPunto(Punto p) {
 	}
@@ -25,7 +27,7 @@ public class ParedVisitor implements Visitor {
 
 	@Override
 	public void visitEnemigo(Enemigo e) {
-		
+		e.colisionPared();
 	}
 
 	@Override

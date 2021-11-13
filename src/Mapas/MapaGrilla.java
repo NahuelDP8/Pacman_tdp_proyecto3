@@ -1,15 +1,17 @@
-package Entities;
+package Mapas;
 
 import javax.swing.ImageIcon;
+import Entities.Enemigo;
+import Entities.Entidad;
+import Entities.PairTupla;
+import Entities.Protagonista;
+import Entities.EntidadGrafica; 
 import Factories.FactoryEnemigo;
 import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
 import Nivel.Nivel;
-
-import java.awt.Rectangle;
 import java.awt.Shape;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 abstract public class MapaGrilla {
@@ -38,9 +40,11 @@ abstract public class MapaGrilla {
 		fabricaMejora = new FactoryMejora();
 		ancho = an;
 		altura = al;
-		this.miLogica = miLogica;
+		
 		anchoMapa = 500;
 		altoMapa = 540;
+		this.miLogica = miLogica;
+		misEnemigos= new ArrayList<Enemigo>(); 
 	}
 	
 	public void setNivel(Nivel n) {
@@ -53,10 +57,13 @@ abstract public class MapaGrilla {
 	}
 	
 	protected void agregarFantasmas() {
-		 this.misEnemigos.add(fabricaEnem.crearAzul(new PairTupla(243, 404),30,30,this));
-		 this.misEnemigos.add(fabricaEnem.crearRosa(new PairTupla(243, 404),30,30,this));
-		 this.misEnemigos.add(fabricaEnem.crearRojo(new PairTupla(243, 404),30,30,this));
-		 this.misEnemigos.add(fabricaEnem.crearNaranja(new PairTupla(243, 404),30,30,this));
+		 //this.misEnemigos.add(fabricaEnem.crearRojo(new PairTupla(189, 290),30,30));
+		 //this.misEnemigos.add(fabricaEnem.crearAzul(new PairTupla(243, 404),30,30,this));
+		 //this.misEnemigos.add(fabricaEnem.crearRosa(new PairTupla(243, 404),30,30,this));
+		Enemigo rojo = fabricaEnem.crearRojo(new PairTupla(365,50),30,30,this);
+		 this.misEnemigos.add(rojo);
+		 añadirEntidad(rojo.getEntidad());
+		// this.misEnemigos.add(fabricaEnem.crearNaranja(new PairTupla(243, 404),30,30,this));
 		//Faltaría setearlos a la grilla y a las zonas correspondientes
 	}
 	
@@ -84,7 +91,6 @@ abstract public class MapaGrilla {
 	public ImageIcon getImage() {
 		return miFondo;
 	}
-	
 	public void moverProtagonistaAbajo() {
 		miProtagonista.moverAbajo();
 	}
@@ -97,11 +103,9 @@ abstract public class MapaGrilla {
 	public void moverProtagonistaIzquierda() {
 		miProtagonista.moverIzquierda();
 	}
-
-
 	public ImageIcon getImagenProtagonista() {
 		return miProtagonista.getImagen();
-	}
+	}	
 	
 	private void actualizarZonas(ArrayList<Zona> l, Entidad e) {
 		for(Zona auxZ : l) {
@@ -111,10 +115,11 @@ abstract public class MapaGrilla {
 				auxZ.remove(e);
 		}
 	}
-	public void actualizarProtagonista() {
-		ArrayList<Zona> zonasActivasDePro = mapeoPosEntidadAZona(miProtagonista);
-		actualizarZonas(zonasActivasDePro, miProtagonista);
-		miLogica.actualizarEntidad(miProtagonista.getEntidad(),miProtagonista.getX(),miProtagonista.getY());
+	
+	public void actualizarEntidad(Entidad e) {
+		ArrayList<Zona> zonasActivasDePro = mapeoPosEntidadAZona(e, e.getMovimientoActual());
+		actualizarZonas(zonasActivasDePro, e);
+		miLogica.actualizarEntidad(e.getEntidad(),e.getX(),e.getY());
 	}
 
 	public void realizarMovimiento() {
@@ -122,39 +127,10 @@ abstract public class MapaGrilla {
 		if(!huboColisiones) miProtagonista.realizarMovimiento();		
 	}
 
-	protected ArrayList<Zona> mapeoPosEntidadAZona(Entidad e) {
-		ArrayList<Zona> toReturn = new ArrayList<Zona>();
-		int x, y, ancho, largo;
-		x = e.getX();
-		y = e.getY();
-		ancho = e.getAncho();
-		largo = e.getAltura();
-		int movimiento = miProtagonista.getMovimientoActual();
-
-		int vel = miProtagonista.getVelocidad();
-		if (movimiento == 1)
-			y += vel;
-		else if(movimiento == 2)
-			y-=vel;
-		else if(movimiento == 3)
-			x-=vel;
-		else if(movimiento == 4)
-			x +=vel;
-		for(int i =0; i<zonas.length; i++) {
-			for(int j = 0; j<zonas[0].length; j++) {
-				Zona agregamos = zonas[i][j];
-				Shape auxiliar = agregamos.getRectangulo();
-				if(auxiliar.intersects(x,y,ancho,largo))
-					toReturn.add(agregamos);
-			}
-		}
-		return toReturn;
-	}
-	
 	public boolean verificarColisiones(Entidad e) {
 		boolean huboColisiones = false;
-		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(e);
-		ArrayList<Entidad> entidadesColisionadasConE = entidadesColisionadas(zonasActivasDeE, e);
+		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(e, e.getMovimientoActual());
+		ArrayList<Entidad> entidadesColisionadasConE = entidadesColisionadas(zonasActivasDeE, e, e.getMovimientoActual()); 
 		if(entidadesColisionadasConE.size()!=0) {
 			for(Entidad aux : entidadesColisionadasConE) {
 				e.accept(aux.getVisitor());		
@@ -166,25 +142,55 @@ abstract public class MapaGrilla {
 			
 		return huboColisiones; 
 	}
+	
+	protected ArrayList<Zona> mapeoPosEntidadAZona(Entidad e, int movimiento) {
+		ArrayList<Zona> toReturn = new ArrayList<Zona>();
+		int x, y, ancho, largo;
+		x = e.getX();
+		y = e.getY();
+		ancho = e.getAncho();
+		largo = e.getAltura();
 
-	public ArrayList<Entidad> entidadesColisionadas(ArrayList<Zona> l, Entidad e){
+		if(movimiento != 0) {
+			int vel = miProtagonista.getVelocidad();
+			if (movimiento == MOVER_ABAJO)
+				y += vel;
+			else if(movimiento == MOVER_ARRIBA)
+				y-=vel;
+			else if(movimiento == MOVER_IZQUIERDA)
+				x-=vel;
+			else if(movimiento == MOVER_DERECHA)
+				x +=vel;
+		}
+		for(int i =0; i<zonas.length; i++) {
+			for(int j = 0; j<zonas[0].length; j++) {
+				Zona agregamos = zonas[i][j];
+				Shape auxiliar = agregamos.getRectangulo();
+				if(auxiliar.intersects(x,y,ancho,largo))
+					toReturn.add(agregamos);
+			}
+		}
+		return toReturn;
+	}
+
+	public ArrayList<Entidad> entidadesColisionadas(ArrayList<Zona> l, Entidad e, int movimiento){
 		int x,y,an,al;
 		x = e.getX();
 		y = e.getY();
 		an = e.getAncho();
 		al = e.getAltura();
-		int movimiento  =miProtagonista.getMovimientoActual();
-		int vel = miProtagonista.getVelocidad();
-		if (movimiento == 1)
-			y += vel;
-		else if(movimiento == 2)
-			y-=vel;
-		else if(movimiento == 3)
-			x-=vel;
-		else if(movimiento == 4)
-			x +=vel;
-
 		
+		if(movimiento != 0) {
+			int vel = 4;
+			if (movimiento == MOVER_ABAJO)
+				y += vel;
+			else if(movimiento == MOVER_ARRIBA)
+				y-=vel;
+			else if(movimiento == MOVER_IZQUIERDA)
+				x-=vel;
+			else if(movimiento == MOVER_DERECHA)
+				x +=vel;
+		}
 		ArrayList<Entidad> toReturn = new ArrayList<Entidad>();
 		for(Zona aux : l) {
 			for(Entidad auxEntidad : aux.getEntidades()) {
@@ -244,12 +250,12 @@ abstract public class MapaGrilla {
 	}
 
 	abstract public void quitarPocion() ; //aca podríamos tener una lista de frutas y pociones por separado, entonces armar un metodo generico para quitarlas de la vistas
+	
 	abstract public void quitarFruta() ;
 
-
 	public void verificarMovimientoPosible() {
-		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(miProtagonista);
-		ArrayList<Entidad> entidadesColisionadasConE = entidadesColisionadas(zonasActivasDeE, miProtagonista);
+		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(miProtagonista, miProtagonista.getMovimientoActual());
+		ArrayList<Entidad> entidadesColisionadasConE = entidadesColisionadas(zonasActivasDeE, miProtagonista, miProtagonista.getMovimientoActual()); 
 		if(entidadesColisionadasConE.size()!=0) {
 			for(Entidad aux : entidadesColisionadasConE) {
 				miProtagonista.accept(aux.getVisitor());	
@@ -258,8 +264,9 @@ abstract public class MapaGrilla {
 		}
 	}
 
+
 	public void sacarEntidad(Entidad entidad) {
-		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(entidad);
+		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(entidad,0);
 		for(Zona z : zonasActivasDeE)
 			z.remove(entidad);
 		miLogica.quitarDeLaGui(entidad.getEntidad());
@@ -270,13 +277,48 @@ abstract public class MapaGrilla {
 		miLogica.actualizarPuntos(i);
 	}
 
+	
+	public void colisionEnemigo(Enemigo e, int movimiento) {
+		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(e, movimiento);
+		ArrayList<Entidad> entidadesColisionadasConE = entidadesColisionadas(zonasActivasDeE, e, movimiento);		
+		if(entidadesColisionadasConE.size()!=0) {
+			for(int i = 0 ; i<entidadesColisionadasConE.size(); i++) {
+				Entidad aux = entidadesColisionadasConE.get(i); 
+				e.accept(aux.getVisitor());		
+			}
+			if(e.getColisionPared()){
+				e.invalidarMovimiento(movimiento); 
+				e.noColisioPared();
+			}
+			
+		}
+	}
+	
+	public void realizarMovimientoFantasma(Enemigo e, ArrayList<Integer> movimientos) {
+		for(int i = 0 ; i<3; i++) {
+			colisionEnemigo(e, movimientos.get(i));
+		}
+	}
+
+	public PairTupla getPosicionActualProtagonista() {
+		return new PairTupla(miProtagonista.getX(),miProtagonista.getY());
+	}
+
+	public void moverTodosLosFantasmas() {
+		for(Enemigo enemigo : misEnemigos) {
+			enemigo.moverme(); 
+		}
+	}
+
+	public ImageIcon getImagenFantasma() {
+		return misEnemigos.get(0).getImagen();
+	}
 	public void añadirEntidad(EntidadGrafica miEntidad) {
 		miLogica.añadirEntidad(miEntidad);	
 	}
 
 	public void restarPunto() {
 		cantPuntos--;
-		System.out.print(cantPuntos);
 		if(cantPuntos == 0) {
 			miLogica.nivelSiguiente(miNivel);
 		}	

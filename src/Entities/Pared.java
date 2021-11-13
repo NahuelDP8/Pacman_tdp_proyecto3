@@ -1,9 +1,9 @@
 package Entities;
 
 import javax.swing.ImageIcon;
-
 import Visitors.ParedVisitor;
 import Visitors.Visitor;
+import Mapas.MapaGrilla;
 
 public class Pared extends Entidad{
 	public Pared(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
@@ -20,6 +20,11 @@ public class Pared extends Entidad{
 	@Override
 	public void accept(Visitor v) {
 		v.visitPared(this);
+	}
+
+	@Override
+	public int getMovimientoActual() {
+		return 0;
 	}
 
 }

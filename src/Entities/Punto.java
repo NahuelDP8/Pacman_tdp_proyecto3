@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import Visitors.ProtagonistaVisitor;
 import Visitors.PuntoVisitor;
 import Visitors.Visitor;
-
+import Mapas.MapaGrilla; 
 public class Punto extends Mejora{
 
 	public Punto(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
