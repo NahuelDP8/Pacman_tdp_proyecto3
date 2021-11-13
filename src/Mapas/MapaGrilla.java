@@ -122,7 +122,22 @@ abstract public class MapaGrilla {
 		miLogica.actualizarEntidad(e.getEntidad(),e.getX(),e.getY());
 	}
 
-	public void realizarMovimiento() {
+	public synchronized void realizarMovimiento(int constante) {
+		if (constante == miLogica.getCteFantasma()) {
+			moverTodosLosFantasmas();
+		}else if(constante == miLogica.getCteProtagonista()){
+			realizarMovimientoProtagonista();
+		}
+	}
+	
+	public void moverTodosLosFantasmas() {
+		for(Enemigo enemigo : misEnemigos) {
+			enemigo.moverme(); 
+		}
+	}
+	
+	public void realizarMovimientoProtagonista() {
+		miLogica.captar();
 		boolean huboColisiones  = verificarColisiones(miProtagonista);
 		if(!huboColisiones) miProtagonista.realizarMovimiento();		
 	}
@@ -304,12 +319,6 @@ abstract public class MapaGrilla {
 		return new PairTupla(miProtagonista.getX(),miProtagonista.getY());
 	}
 
-	public void moverTodosLosFantasmas() {
-		for(Enemigo enemigo : misEnemigos) {
-			enemigo.moverme(); 
-		}
-	}
-
 	public ImageIcon getImagenFantasma() {
 		return misEnemigos.get(0).getImagen();
 	}
@@ -321,6 +330,9 @@ abstract public class MapaGrilla {
 		cantPuntos--;
 		if(cantPuntos == 0) {
 			miLogica.nivelSiguiente(miNivel);
+			reiniciar();
 		}	
 	}
+
+	protected abstract void reiniciar();
 }

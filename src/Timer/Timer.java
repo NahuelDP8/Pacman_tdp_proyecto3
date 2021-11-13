@@ -24,8 +24,7 @@ public class Timer implements Runnable {
 		hiloMoverPersonaje.start();
 
 		hiloFruta = new Thread(this);
-		
-		hiloPocion = new Thread(this);		
+		hiloPocion = new Thread(this);	
 		hiloMusica = new Thread(this);
 		hiloMusica.start();
 		
@@ -44,7 +43,7 @@ public class Timer implements Runnable {
 			try {
 				Thread.sleep(this.SleepDeProtagonista);
 
-				miLogica.realizarMovimiento();
+				miLogica.realizarMovimiento(miLogica.getCteProtagonista());
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
@@ -104,7 +103,7 @@ public class Timer implements Runnable {
 		while (ct == hiloMoverFantasmas) {
 			try {
 				Thread.sleep(this.SleepDeFantasmas);
-				miLogica.moverFantasmas();
+				miLogica.realizarMovimiento(miLogica.getCteFantasma());
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
@@ -167,13 +166,13 @@ public class Timer implements Runnable {
 		hiloPocion.start();
 	}
 	public void desactivarPocion() {
-		hiloPocion.interrupt();
+		pocionActivada = false;
 	}
 	public void activarFruta() {
 		hiloFruta.start();
 	}
 	public void desactivarFruta() {
-		hiloPocion.interrupt();
+		frutaActivada = false;
 	}
 
 }

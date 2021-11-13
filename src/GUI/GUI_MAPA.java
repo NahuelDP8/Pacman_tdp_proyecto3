@@ -61,6 +61,7 @@ public class GUI_MAPA{
 	
 	public void actualizarEntidad(EntidadGrafica entidad, int x, int y) {
 		entidad.setLocation(x, y+155);
+		frame.getContentPane().setComponentZOrder(entidad, 0);
 	}
 	
 	public void actualizarPuntos(int p) {
@@ -98,7 +99,6 @@ public class GUI_MAPA{
 		frame.getContentPane().add(JLFondoMapa);
 		JLFondoMapa.setIcon(new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/fondoauxarreglo.png")));
 	}
-	
 	public void captar() {
 		if(izquierda)
 			captarMovimientoIzq();

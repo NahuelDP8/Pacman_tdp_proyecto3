@@ -33,6 +33,11 @@ public class Mapa1 extends MapaGrilla {
 
 	}
 	
+	protected void reiniciar() {
+		agregarMejoras();
+		miProtagonista.setPos(new PairTupla(189, 290));
+		misEnemigos.get(0).setPos(new PairTupla(365,50));
+	}
 	protected void agregarMejoras() {
 		Mejora m;
 		int x,y;
@@ -91,6 +96,7 @@ public class Mapa1 extends MapaGrilla {
 			cantPuntos++;
 			for(Zona z:misZonas)
 				z.setEntidad(m);
+			miLogica.actualizarEntidad(m.getEntidad(),m.getX(),m.getY());
 		}else {
 			miLogica.quitarDeLaGui(m.getEntidad());
 			m.setEntidad(null);

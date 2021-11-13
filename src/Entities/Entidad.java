@@ -74,6 +74,9 @@ abstract public class Entidad {
 	public PairTupla getPos() {
 		return posicion;
 	}
+	public void setPos(PairTupla p) {
+		posicion = p;
+	}
 	public void setGrilla(MapaGrilla g) {
 		miGrilla = g;
 	}

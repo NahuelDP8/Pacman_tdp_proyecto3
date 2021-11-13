@@ -15,6 +15,8 @@ public class Logica {
 	protected FactoryMapaGrilla miFabrica;
 	protected Timer miReloj;
 	protected Nivel miNivel;
+	protected final int MOVER_PROTAGONISTA = 1;
+	protected final int MOVER_FANTASMA= 0;
 	
 	public Logica(GUI_MAPA g, FactoryMapaGrilla f, Nivel n) {
 		miGUI = g;
@@ -63,9 +65,11 @@ public class Logica {
 	public void moverProtagonistaIzquierda() {
 		miMapa.moverProtagonistaIzquierda();
 	}
-	public void realizarMovimiento() {
+	public void realizarMovimiento(int constante) {
+		miMapa.realizarMovimiento(constante);
+	}
+	public void captar() {
 		miGUI.captar();
-		miMapa.realizarMovimiento();
 	}
 
 	public void activarFrutas() {
@@ -125,11 +129,21 @@ public class Logica {
 		actualizarSleepFantasmas(miNivel.sleepFantasmas());
 		this.setEsperaFruta(miNivel.sleepFruta());
 		this.setEsperaPocion(miNivel.sleepPocion());
-		n.llevarACaboActivaciones();
-	}
-	public void moverFantasmas() {
-		miMapa.moverTodosLosFantasmas(); 
-		
 	}
 
+	public int getCteFantasma() {
+		// TODO Auto-generated method stub
+		return MOVER_FANTASMA;
+	}
+	public int getCteProtagonista() {
+		// TODO Auto-generated method stub
+		return MOVER_PROTAGONISTA;
+	}
+
+
+
+	public void añadirFondo() {
+		miGUI.añadirFondo();
+		
+	}
 }
