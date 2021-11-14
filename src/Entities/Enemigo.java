@@ -1,9 +1,11 @@
 package Entities;
 
 import EnemigosStates.*;
-import Visitors.FantasmaVisitor;
-import Visitors.FrutaVisitor;
+import Visitors.EnemigoVisitor;
 import Visitors.Visitor;
+
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import Mapas.MapaGrilla;
 
@@ -25,7 +27,7 @@ public abstract class Enemigo extends Personaje{
 		miEstado = new Persiguiendo(this); 
 		huboColisionConPared = false;
 		velocidad = 4; 
-		v = new FantasmaVisitor(this);
+		v = new EnemigoVisitor(this);
 		movimientoActual = 4;
 	}
 	
@@ -90,4 +92,75 @@ public abstract class Enemigo extends Personaje{
 	public int getMovimientoActual() {
 		return movimientoActual; 
 	} 
+	public void deboEscapar() {
+		miEstado.deboEscapar(); 
+	}
+	
+	protected double distanciaEntrePuntos(PairTupla A, PairTupla B) {
+		double x = Math.pow(B.getX()-A.getX(),2);
+		double y = Math.pow(B.getY()-A.getY(),2);
+		double distancia = Math.sqrt(x+y); 
+		return distancia; 
+	}
+	
+	//Todos los enemigos a priori, tendrán el mismo mecanismo de escape, dependiendo de la posición de pacman 
+	public void realizarEscape() {
+		int movFinal = movimientoActual;
+		double disMayor = Double.MIN_VALUE;
+		double disAux = 0;
+		int posX = posicion.getX();
+		int posY = posicion.getY(); 
+		PairTupla posicionProtagonista = miGrilla.getPosicionActualProtagonista();
+		ArrayList<Integer> movimientos = new ArrayList<Integer>(); 
+		movimientos.add(MOVER_ARRIBA);
+		movimientos.add(MOVER_ABAJO);
+		movimientos.add(MOVER_IZQUIERDA);
+		movimientos.add(MOVER_DERECHA); 
+		
+		miGrilla.realizarMovimientoFantasma(this, movimientos);
+		
+		for(int i =0; i<=movimientos.size()-1; i++) {	
+			int movAux = movimientos.get(i); 
+			if(movAux == MOVER_DERECHA && movDerecha) {
+				disAux = distanciaEntrePuntos(new PairTupla(posX+ velocidad, posY),posicionProtagonista);
+				if(disAux>=disMayor) {
+					disMayor= disAux; 
+					movFinal = movAux;
+				}
+			}else if(movAux == MOVER_IZQUIERDA && movIzquierda) {
+				disAux = distanciaEntrePuntos(new PairTupla(posX-velocidad, posY),posicionProtagonista);
+				if(disAux>=disMayor) {
+					disMayor= disAux; 
+					movFinal = movAux;
+				}
+			}else if(movAux== MOVER_ARRIBA && movArriba) {
+				disAux = distanciaEntrePuntos(new PairTupla(posX, posY-velocidad),posicionProtagonista);
+				if(disAux>=disMayor) {
+					disMayor= disAux; 
+					movFinal = movAux;
+				}
+			}else if(movAux == MOVER_ABAJO && movAbajo) {
+				disAux = distanciaEntrePuntos(new PairTupla(posX, posY+velocidad),posicionProtagonista);
+				if(disAux>=disMayor) {
+					disMayor= disAux; 
+					movFinal = movAux;
+				}
+			}
+		}
+		this.validarMovimientos();
+		//Ahora lo que hacemos es movernos
+		this.realizarMovimiento(movFinal);
+		movimientoActual = movFinal; 
+	}
+
+	public void interactuarConProtagonista() {
+		miEstado.interactuarConProtagonista(); 
+	}
+
+	public void notificarMuerteProtagonista() {
+		miGrilla.protagonistaPierdeVida(); 
+	}
+
+	public void retornarZonaEnemigo() {
+	}
 }

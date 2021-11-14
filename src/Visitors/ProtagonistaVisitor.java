@@ -18,14 +18,12 @@ public class ProtagonistaVisitor implements Visitor {
 
 	@Override
 	public void visitPuntoGrande(PuntoGrande p) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void visitEnemigo(Enemigo e) {
-		// TODO Auto-generated method stub
-
+		e.interactuarConProtagonista(); 
 	}
 
 	@Override

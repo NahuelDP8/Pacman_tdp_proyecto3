@@ -9,9 +9,9 @@ import Entities.Protagonista;
 import Entities.Punto;
 import Entities.PuntoGrande;
 
-public class FantasmaVisitor implements Visitor {
+public class EnemigoVisitor implements Visitor {
 	private Entidad miEntidad;
-	public FantasmaVisitor(Entidad ent) {
+	public EnemigoVisitor(Entidad ent) {
 		miEntidad = ent;
 	}
 	@Override
@@ -21,6 +21,8 @@ public class FantasmaVisitor implements Visitor {
 	
 	@Override
 	public void visitProtagonista(Protagonista p) {
+		//Acá no estoy seguro, no me queda otra que poner un método abstracto en entidad 
+		//Debería estar interactuarConEnemigo(); 
 	}
 
 	@Override

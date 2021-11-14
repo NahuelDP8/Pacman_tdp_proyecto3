@@ -42,7 +42,6 @@ public class Timer implements Runnable {
 		while (ct == hiloMoverPersonaje) {
 			try {
 				Thread.sleep(this.SleepDeProtagonista);
-
 				miLogica.realizarMovimiento(miLogica.getCteProtagonista());
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();

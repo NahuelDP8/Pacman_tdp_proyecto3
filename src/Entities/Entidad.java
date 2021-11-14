@@ -98,5 +98,9 @@ abstract public class Entidad {
 	public void setEntidad(EntidadGrafica ent) {
 		miEntidad= ent;
 	} 
-
+	
+	//Método que quizás debamos sacar.
+	public void enemigosEnPeligro() {
+		miGrilla.enemigosEscapar(); 
+	}
 }

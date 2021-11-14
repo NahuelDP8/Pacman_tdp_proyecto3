@@ -28,13 +28,13 @@ public class PuntoGrandeVisitor implements Visitor {
 
 	@Override
 	public void visitEnemigo(Enemigo e) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void visitProtagonista(Protagonista p) {
 		//Cambiar dsps de singleton:
+		miEntidad.enemigosEnPeligro(); 
 		miEntidad.sacarEntidad(miEntidad);
 		p.sumarPuntos(50);
 	}

@@ -310,7 +310,7 @@ abstract public class MapaGrilla {
 	}
 	
 	public void realizarMovimientoFantasma(Enemigo e, ArrayList<Integer> movimientos) {
-		for(int i = 0 ; i<3; i++) {
+		for(int i = 0 ; i<movimientos.size(); i++) {
 			colisionEnemigo(e, movimientos.get(i));
 		}
 	}
@@ -335,4 +335,22 @@ abstract public class MapaGrilla {
 	}
 
 	protected abstract void reiniciar();
+
+	public void enemigosEscapar() {
+		for(Enemigo e : misEnemigos) {
+			e.moverme();
+		}
+	}
+
+	public void gameOver() {
+		//el juego se acaba por el protagonista ha perdido todas sus vidas. 
+		//o ha ganado. 
+	}
+
+	public void protagonistaPierdeVida() {
+		miProtagonista.quitarVida();
+		//Debereíamos actualizar los labels de las vidas quitando una
+		//Además, reiniciar el juego solo con las localizaciones originales del las entidades móviles y nada más. 
+	}
+
 }

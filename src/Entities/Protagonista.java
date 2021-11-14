@@ -95,8 +95,16 @@ abstract public class Protagonista extends Personaje{
 	}
 
 	public int getVelocidad() {
-		// TODO Auto-generated method stub
 		return velocidad;
+	}
+	
+	public void quitarVida() {
+		if(vidas==1) {
+			vidas = 0;
+			miGrilla.gameOver(); 
+		}else {
+			vidas--;
+		}
 	}
 	
 }
