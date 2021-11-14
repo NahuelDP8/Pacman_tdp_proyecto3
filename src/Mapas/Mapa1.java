@@ -255,6 +255,6 @@ public class Mapa1 extends MapaGrilla {
 
 	@Override
 	public void quitarFruta() {
-		miLogica.quitarDeLaGui(pocion.getEntidad());
+		miLogica.quitarDeLaGui(fruta.getEntidad());
 	}
 }

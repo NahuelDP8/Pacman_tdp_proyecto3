@@ -8,6 +8,7 @@ import Entities.Pocion;
 import Entities.Protagonista;
 import Entities.Punto;
 import Entities.PuntoGrande;
+import Entities.ZonaEnemigo;
 
 public class EnemigoVisitor implements Visitor {
 	private Entidad miEntidad;
@@ -45,5 +46,10 @@ public class EnemigoVisitor implements Visitor {
 
 	@Override
 	public void visitPuntoGrande(PuntoGrande p) {}
+	
+	public void visitZonaEnemigo(ZonaEnemigo z) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

@@ -9,46 +9,48 @@ import Entities.Punto;
 import Entities.PuntoGrande;
 import Entities.ZonaEnemigo;
 
-public class ProtagonistaVisitor implements Visitor {
+public class ZonaFantasmaVisitor implements Visitor{
 
 	@Override
 	public void visitPunto(Punto p) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void visitPuntoGrande(PuntoGrande p) {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void visitEnemigo(Enemigo e) {
-		e.interactuarConProtagonista(); 
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void visitProtagonista(Protagonista p) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void visitPared(Pared p) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void visitFruta(Fruta f) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void visitPocion(Pocion p) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override

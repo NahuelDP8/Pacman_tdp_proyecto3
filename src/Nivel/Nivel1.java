@@ -10,7 +10,7 @@ public class Nivel1 extends Nivel{
 		desactivarPociones();
 	}
 	public int sleepProtagonista() {
-		return 15;
+		return 20;
 	}
 	
 	public int sleepFantasmas() {

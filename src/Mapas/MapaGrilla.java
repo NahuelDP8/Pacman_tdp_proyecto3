@@ -338,8 +338,9 @@ abstract public class MapaGrilla {
 
 	public void enemigosEscapar() {
 		for(Enemigo e : misEnemigos) {
-			e.moverme();
+			e.deboEscapar();
 		}
+		
 	}
 
 	public void gameOver() {
