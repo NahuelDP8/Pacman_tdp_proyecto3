@@ -163,5 +163,56 @@ public abstract class Enemigo extends Personaje{
 	}
 
 	public void retornarZonaEnemigo() {
+		int movFinal = movimientoActual;
+		double disMenor = Double.MAX_VALUE;
+		double disAux = 0;
+		int posX = posicion.getX();
+		int posY = posicion.getY(); 
+		PairTupla posicionCelda = new PairTupla(229,186);
+		ArrayList<Integer> movimientos = new ArrayList<Integer>(); 
+		movimientos.add(MOVER_ARRIBA);
+		movimientos.add(MOVER_ABAJO);
+		movimientos.add(MOVER_IZQUIERDA);
+		movimientos.add(MOVER_DERECHA); 
+		
+		miGrilla.realizarMovimientoFantasma(this, movimientos);
+		
+		if(posX == posicionCelda.getX() && posY == posicionCelda.getY())
+			changeState(new Persiguiendo(this));
+		else {
+			
+			for(int i =0; i<=movimientos.size()-1; i++) {	
+				int movAux = movimientos.get(i); 
+				if(movAux == MOVER_DERECHA && movDerecha) {
+					disAux = distanciaEntrePuntos(new PairTupla(posX+ velocidad, posY),posicionCelda);
+					if(disAux<=disMenor) {
+						disMenor= disAux; 
+						movFinal = movAux;
+					}
+				}else if(movAux == MOVER_IZQUIERDA && movIzquierda) {
+					disAux = distanciaEntrePuntos(new PairTupla(posX-velocidad, posY),posicionCelda);
+					if(disAux<=disMenor) {
+						disMenor= disAux; 
+						movFinal = movAux;
+					}
+				}else if(movAux== MOVER_ARRIBA && movArriba) {
+					disAux = distanciaEntrePuntos(new PairTupla(posX, posY-velocidad),posicionCelda);
+					if(disAux<=disMenor) {
+						disMenor= disAux; 
+						movFinal = movAux;
+					}
+				}else if(movAux == MOVER_ABAJO && movAbajo) {
+					disAux = distanciaEntrePuntos(new PairTupla(posX, posY+velocidad),posicionCelda);
+					if(disAux<=disMenor) {
+						disMenor= disAux; 
+						movFinal = movAux;
+					}
+				}
+			}
+		}
+		this.validarMovimientos();
+		//Ahora lo que hacemos es movernos
+		this.realizarMovimiento(movFinal);
+		movimientoActual = movFinal; 
 	}
 }

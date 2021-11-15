@@ -151,7 +151,6 @@ abstract public class MapaGrilla {
 		for(Enemigo enemigo : misEnemigos) {
 			actualizarEntidad(enemigo);
 			enemigo.moverme(); 
-			
 		}
 	}
 	
@@ -278,11 +277,9 @@ abstract public class MapaGrilla {
 		if(entidadesColisionadasConE.size()!=0) {
 			for(Entidad aux : entidadesColisionadasConE) {
 				miProtagonista.accept(aux.getVisitor());	
-				
 			}
 		}
 	}
-
 
 	public void sacarEntidad(Entidad entidad) {
 		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(entidad,0);
@@ -295,7 +292,6 @@ abstract public class MapaGrilla {
 	public void actualizarPuntos(int i) {
 		miLogica.actualizarPuntos(i);
 	}
-
 	
 	public void colisionEnemigo(Enemigo e, int movimiento) {
 		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(e, movimiento);
@@ -329,6 +325,7 @@ abstract public class MapaGrilla {
 		return miProtagonista.getAncho();
 	}
 	public PairTupla getPosicionRojo() {
+
 		return misEnemigos.get(3).getPos();
 	}
 
@@ -384,5 +381,6 @@ abstract public class MapaGrilla {
 	private  void setearProtagonistaAPosicionInicial() {
 		miProtagonista.setPos(new PairTupla(posInicialProtagonista.getX(),posInicialProtagonista.getY()));
 	}
+
 
 }
