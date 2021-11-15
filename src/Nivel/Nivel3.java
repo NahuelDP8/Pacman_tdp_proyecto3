@@ -30,4 +30,8 @@ public class Nivel3 extends Nivel{
 		activarFrutas();
 		activarPociones();
 	}
+	@Override
+	public int sleepPowerPellets() {
+		return 3000;
+	}
 }

@@ -24,6 +24,7 @@ abstract public class Protagonista extends Personaje{
 		colisiono = false;
 	}
 	
+	
 	public int protagonistaVelocidadPixel() {
 		return velocidad;
 	}
