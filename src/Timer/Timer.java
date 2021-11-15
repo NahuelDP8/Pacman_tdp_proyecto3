@@ -3,12 +3,9 @@ package Timer;
 import Logic.Logica;
 
 public class Timer implements Runnable {
-	private int minutos, segundos, pausa,cantS,duracionP,iniciarP,terminarP;
-	private final int DURACION_POCIONES=8;
-	private final int REAPARECER_POCIONES=15;
+	private int minutos, segundos;
 	private Thread hiloTiempo, hiloMoverPersonaje, hiloFruta, hiloPocion,hiloMusica,hiloMoverFantasmasMuertos,hiloMoverFantasmas;
 	private Logica miLogica;
-	private final int minPausa = 250;
 	private int SleepDeProtagonista, SleepDeFantasmas, tiempoEsperaFruta, tiempoEsperaPocion; 
 	private boolean frutaActivada = false;
 	private boolean pocionActivada = false; 
@@ -16,8 +13,6 @@ public class Timer implements Runnable {
 		miLogica = logic;
 		minutos = 0;
 		segundos = 0;
-		pausa = 400;
-		iniciarP=5;
 		//Hilo que actualiza el reloj.
 		hiloTiempo = new Thread(this);
 		hiloTiempo.start();
@@ -101,28 +96,12 @@ public class Timer implements Runnable {
 					minutos++;
 					segundos = 0;
 				}
-				if(segundos % 5 == 0 && pausa >= minPausa)
-					pausa -= 40;
 				miLogica.actualizarReloj();
-				//MANEJO DE POCION
-				cantS=((minutos*60)+(segundos));
-				if(cantS>=iniciarP) {
-					if(cantS==iniciarP) {
-						miLogica.mostrarPociones();
-						duracionP=iniciarP+DURACION_POCIONES;
-					}
-					if(cantS==duracionP-3) {
-						//cambiar pocion a gif para que parpadee
-					}
-					if(cantS==duracionP) {
-						miLogica.eliminarPocion();
-						iniciarP=cantS+REAPARECER_POCIONES;
-					}
-				}
-			} catch(InterruptedException e) {
-				Thread.currentThread().interrupt();
+					
+				}catch(InterruptedException e) {
+					Thread.currentThread().interrupt();
 			}
-		}
+		
 		
 		while (ct == hiloMoverFantasmas) {
 			try {
@@ -131,8 +110,10 @@ public class Timer implements Runnable {
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
-
+			}
 		}
+
+		
 		
 		/*
 		while (ct == hiloMusica) {
@@ -162,12 +143,7 @@ public class Timer implements Runnable {
 	public int getSegundos() {
 		return segundos;
 	}
-	public void setPausa(int p) {
-		pausa=p;
-	}
-	public int getPausa() {
-		return pausa;
-	}
+	
 	public void gameOver() {
 		hiloTiempo.interrupt();
 		hiloMoverPersonaje.interrupt();
