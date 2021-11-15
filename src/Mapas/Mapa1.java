@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import Entities.Enemigo;
 import Entities.Entidad;
 import Entities.Mejora;
 import Entities.PairTupla;
@@ -36,8 +37,14 @@ public class Mapa1 extends MapaGrilla {
 	
 	protected void reiniciar() {
 		agregarMejoras();
+		Enemigo enemigo = misEnemigos.get(0);
 		miProtagonista.setPos(new PairTupla(189, 290));
-		misEnemigos.get(0).setPos(new PairTupla(365,50));
+		enemigo.setPos(new PairTupla(365,50));
+		
+		miLogica.actualizarEntidad(enemigo.getEntidad(),enemigo.getX(),enemigo.getY());
+		miLogica.actualizarEntidad(miProtagonista.getEntidad(),miProtagonista.getX(),miProtagonista.getY());
+		
+		miLogica.pintar();
 	}
 	protected void agregarMejoras() {
 		Mejora m;
@@ -98,6 +105,7 @@ public class Mapa1 extends MapaGrilla {
 			for(Zona z:misZonas)
 				z.setEntidad(m);
 			miLogica.actualizarEntidad(m.getEntidad(),m.getX(),m.getY());
+			
 		}else {
 			miLogica.quitarDeLaGui(m.getEntidad());
 			m.setEntidad(null);

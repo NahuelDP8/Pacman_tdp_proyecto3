@@ -78,6 +78,9 @@ public class GUI_MAPA{
 			segundos= "0"+seg;
 		JLTiempo.setText(minutos+":"+segundos);
 	}
+	public void pintar() {
+		frame.paint(frame.getGraphics());
+	}
 	
 	
 	public void captarMovimientoAbajo() {

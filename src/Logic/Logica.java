@@ -146,4 +146,11 @@ public class Logica {
 		miGUI.añadirFondo();
 		
 	}
+
+
+
+	public void pintar() {
+		miGUI.pintar();
+		
+	}
 }
