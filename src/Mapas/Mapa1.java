@@ -28,6 +28,7 @@ public class Mapa1 extends MapaGrilla {
 		
 		agregarFantasmas();
 		agregarMejoras();
+		agregarPortales();
 		agregarProtagonista();
 
 		fruta = fabricaMejora.crearFruta(new PairTupla(260,191), 20, 20,this);
@@ -248,10 +249,12 @@ public class Mapa1 extends MapaGrilla {
 
 	public void agregarPortales() {
 		//Hay que posicionarlos bien 
-		Portal portalIzquierda = new Portal(new PairTupla(2,2),1,1,null,this); 
-		Portal portalDerecha  = new Portal(new PairTupla(2,2),1,1,null,this);
-		portalIzquierda.setMiDestino(portalDerecha);
-		portalDerecha.setMiDestino(portalIzquierda);
+		Portal portalIzquierda = new Portal(new PairTupla(0,237),30,20,null,this);
+		zonas [2][0].setEntidad(portalIzquierda);
+		Portal portalDerecha  = new Portal(new PairTupla(480,237),30,20,null,this);
+		zonas [2][4].setEntidad(portalDerecha);
+		portalIzquierda.setMiDestino(portalDerecha.getX()-30);
+		portalDerecha.setMiDestino(portalIzquierda.getX()+30);
 	}
 	
 	@Override

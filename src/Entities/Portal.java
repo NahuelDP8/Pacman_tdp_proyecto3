@@ -7,7 +7,7 @@ import Visitors.PortalVisitor;
 import Visitors.Visitor;
 
 public class Portal extends Entidad{
-	protected Portal miDestino;
+	protected int miDestino;
 	protected int carga = 5; 
 	
 	public Portal(PairTupla p, int anc, int alt, ImageIcon img, MapaGrilla grilla) {
@@ -21,10 +21,10 @@ public class Portal extends Entidad{
 	}
 
 	public boolean cargaRequerida(int c) {
-		return false;
+		return carga >= c;
 	}
 
-	public void setMiDestino(Portal des) {
+	public void setMiDestino(int des) {
 		miDestino = des; 
 	}
 	@Override
@@ -32,10 +32,10 @@ public class Portal extends Entidad{
 		return 0;
 	}
 	public int getPosicionXDestino() {
-		return miDestino.getX();
+		return miDestino;
 	}
 	
 	public int getPosicionYDestino() {
-		return miDestino.getY();
+		return getY();
 	}
 }

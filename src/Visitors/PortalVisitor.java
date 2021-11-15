@@ -32,6 +32,7 @@ public class PortalVisitor implements Visitor{
 	public void visitEnemigo(Enemigo e) {
 		if(miPortal.cargaRequerida(e.getEnergiaPortal())) {
 			e.teletransportarme(miPortal.getPosicionXDestino(), miPortal.getPosicionYDestino());
+			System.out.print("MAGIA");
 		}else {
 			e.recargarEnergiaPortal();
 		}
@@ -41,6 +42,7 @@ public class PortalVisitor implements Visitor{
 	public void visitProtagonista(Protagonista p) {
 		if(miPortal.cargaRequerida(p.getEnergiaPortal())) {
 			p.teletransportarme(miPortal.getPosicionXDestino(), miPortal.getPosicionYDestino());
+			System.out.print("MAGIA");
 		}else {
 			p.recargarEnergiaPortal();
 		}
