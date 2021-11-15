@@ -143,7 +143,6 @@ public class Logica {
 
 
 	public void añadirFondo() {
-		miGUI.añadirFondo();
 		
 	}
 

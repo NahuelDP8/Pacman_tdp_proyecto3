@@ -136,7 +136,6 @@ public class GUI_MAPA{
 									abajo = true;
 								}
 							}
-								
 				}
 			}
 

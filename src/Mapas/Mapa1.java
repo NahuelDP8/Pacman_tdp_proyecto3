@@ -254,7 +254,7 @@ public class Mapa1 extends MapaGrilla {
 		Portal portalDerecha  = new Portal(new PairTupla(499,237),1,30,null,this);
 		zonas [2][4].setEntidad(portalDerecha);
 		portalIzquierda.setMiDestino(portalDerecha.getX()-30);
-		portalDerecha.setMiDestino(portalIzquierda.getX()+30);
+		portalDerecha.setMiDestino(portalIzquierda.getX()+29);
 	}
 	
 	@Override
@@ -270,11 +270,13 @@ public class Mapa1 extends MapaGrilla {
 
 	@Override
 	public void quitarPocion() {
+		zonas[3][2].remove(pocion);
 		miLogica.quitarDeLaGui(pocion.getEntidad());
 	}
 
 	@Override
 	public void quitarFruta() {
+		zonas[2][2].remove(fruta);
 		miLogica.quitarDeLaGui(fruta.getEntidad());
 	}
 }

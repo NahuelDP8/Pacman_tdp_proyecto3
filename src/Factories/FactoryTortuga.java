@@ -16,7 +16,7 @@ public class FactoryTortuga extends FactoryEnemigo{
 	private ImageIcon imgAzul=new ImageIcon(FactoryNinjaMalvado.class.getResource("/Imagenes/kisameRun.gif"));
 	private ImageIcon imgNaranja=new ImageIcon(FactoryNinjaMalvado.class.getResource("/Imagenes/danzoRun.gif"));
 	public Enemigo crearRojo(PairTupla p , int ancho, int altura,MapaGrilla grilla) {
-		Enemigo rojo = new TortugaBlinky(null, ancho, altura,imgRoja,grilla);
+		Enemigo rojo = new TortugaBlinky(p, ancho, altura,imgRoja,grilla);
 		return rojo;
 	}
 

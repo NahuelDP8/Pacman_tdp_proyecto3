@@ -37,6 +37,7 @@ public class PuntoGrandeVisitor implements Visitor {
 		//Cambiar dsps de singleton:
 		miEntidad.enemigosEnPeligro();
 		miEntidad.sacarEntidad(miEntidad);
+		p.setComiendo(true);
 		p.sumarPuntos(50);
 	}
 

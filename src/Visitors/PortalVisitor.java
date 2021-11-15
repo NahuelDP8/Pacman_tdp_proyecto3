@@ -30,22 +30,12 @@ public class PortalVisitor implements Visitor{
 
 	@Override
 	public void visitEnemigo(Enemigo e) {
-		if(miPortal.cargaRequerida(e.getEnergiaPortal())) {
-			e.teletransportarme(miPortal.getPosicionXDestino(),e.getY());
-			System.out.print("MAGIA");
-		}else {
-			e.recargarEnergiaPortal();
-		}
+		e.teletransportarme(miPortal.getPosicionXDestino(),e.getY());
 	}
 
 	@Override
 	public void visitProtagonista(Protagonista p) {
-		if(miPortal.cargaRequerida(p.getEnergiaPortal())) {
-			p.teletransportarme(miPortal.getPosicionXDestino(), p.getY());
-			System.out.print("MAGIA");
-		}else {
-			p.recargarEnergiaPortal();
-		}
+		p.teletransportarme(miPortal.getPosicionXDestino(), p.getY());
 	}
 	@Override
 	public void visitPared(Pared p) {

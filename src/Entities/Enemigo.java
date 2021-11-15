@@ -56,9 +56,7 @@ public abstract class Enemigo extends Personaje{
 			posicion.setX(posicion.getX()- velocidad);
 		}else if(mov == MOVER_DERECHA) {
 			posicion.setX(posicion.getX()+ velocidad);
-		}
-		
-		miGrilla.actualizarEntidad(this); 
+		} 
 	}
 	
 	public void invalidarMovimiento(int movimiento) {

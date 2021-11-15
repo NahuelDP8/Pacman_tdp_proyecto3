@@ -57,14 +57,18 @@ abstract public class MapaGrilla {
 	}
 	
 	protected void agregarFantasmas() {
-		 //this.misEnemigos.add(fabricaEnem.crearRojo(new PairTupla(189, 290),30,30));
-		 //this.misEnemigos.add(fabricaEnem.crearAzul(new PairTupla(243, 404),30,30,this));
-		 //this.misEnemigos.add(fabricaEnem.crearRosa(new PairTupla(243, 404),30,30,this));
-		Enemigo rojo = fabricaEnem.crearRojo(new PairTupla(365,50),30,30,this);
+		 Enemigo azul = fabricaEnem.crearAzul(new PairTupla(365,350),30,30,this);
+		 this.misEnemigos.add(azul);
+		 añadirEntidad(azul.getEntidad());
+		 Enemigo naranja = fabricaEnem.crearNaranja(new PairTupla(365,50),30,30,this);
+		 this.misEnemigos.add(naranja);
+		 añadirEntidad(naranja.getEntidad());
+		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(365,350),30,30,this);
+		 this.misEnemigos.add(rosa);
+		 añadirEntidad(rosa.getEntidad());
+		 Enemigo rojo = fabricaEnem.crearRojo(new PairTupla(365,50),30,30,this);
 		 this.misEnemigos.add(rojo);
 		 añadirEntidad(rojo.getEntidad());
-		// this.misEnemigos.add(fabricaEnem.crearNaranja(new PairTupla(243, 404),30,30,this));
-		//Faltaría setearlos a la grilla y a las zonas correspondientes
 	}
 	
 	protected void construccionZonasGrilla(int ancho, int alto) {
@@ -108,18 +112,20 @@ abstract public class MapaGrilla {
 	}	
 	
 	private void actualizarZonas(ArrayList<Zona> l, Entidad e) {
-		for(Zona auxZ : l) {
-			if(!auxZ.getEntidades().contains(e)) {
-				auxZ.setEntidad(e);
-			}else
-				auxZ.remove(e);
+		for (Zona []zz: zonas) {
+			for (Zona z: zz) {
+					z.remove(e);
+			}
 		}
+		for (Zona z: l)
+			z.setEntidad(e);
 	}
 	
 	public void actualizarEntidad(Entidad e) {
-		ArrayList<Zona> zonasActivasDePro = mapeoPosEntidadAZona(e, e.getMovimientoActual());
+		ArrayList<Zona> zonasActivasDePro = mapeoPosEntidadAZona(e, 0);
 		actualizarZonas(zonasActivasDePro, e);
 		miLogica.actualizarEntidad(e.getEntidad(),e.getX(),e.getY());
+		
 	}
 
 	public synchronized void realizarMovimiento(int constante) {
@@ -133,6 +139,7 @@ abstract public class MapaGrilla {
 	public void moverTodosLosFantasmas() {
 		for(Enemigo enemigo : misEnemigos) {
 			enemigo.moverme(); 
+			actualizarEntidad(enemigo);
 		}
 	}
 	
@@ -274,7 +281,7 @@ abstract public class MapaGrilla {
 		if(entidadesColisionadasConE.size()!=0) {
 			for(Entidad aux : entidadesColisionadasConE) {
 				miProtagonista.accept(aux.getVisitor());	
-				return;
+				
 			}
 		}
 	}
@@ -318,10 +325,16 @@ abstract public class MapaGrilla {
 	public PairTupla getPosicionActualProtagonista() {
 		return new PairTupla(miProtagonista.getX(),miProtagonista.getY());
 	}
-
-	public ImageIcon getImagenFantasma() {
-		return misEnemigos.get(0).getImagen();
+	public int getMovimientoProtagonista() {
+		return miProtagonista.getMovimientoActual();
 	}
+	public int getAnchoProtagonista() {
+		return miProtagonista.getAncho();
+	}
+	public PairTupla getPosicionRojo() {
+		return misEnemigos.get(3).getPos();
+	}
+
 	public void añadirEntidad(EntidadGrafica miEntidad) {
 		miLogica.añadirEntidad(miEntidad);	
 	}
@@ -353,5 +366,6 @@ abstract public class MapaGrilla {
 		//Debereíamos actualizar los labels de las vidas quitando una
 		//Además, reiniciar el juego solo con las localizaciones originales del las entidades móviles y nada más. 
 	}
+
 
 }
