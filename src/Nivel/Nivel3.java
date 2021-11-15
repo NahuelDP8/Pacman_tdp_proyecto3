@@ -26,10 +26,6 @@ public class Nivel3 extends Nivel{
 		// TODO Auto-generated method stub
 		return 2000;
 	}
-	public void llevarACaboActivaciones() {
-		activarFrutas();
-		activarPociones();
-	}
 	@Override
 	public int sleepPowerPellets() {
 		return 3000;

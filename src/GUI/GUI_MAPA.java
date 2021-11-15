@@ -33,7 +33,7 @@ public class GUI_MAPA{
 	private JLabel JLFondoMapa; 
 	private JLabel JLPuntaje;
 	private TopPlayers topPlayers;
-	private JLabel JLNombre=new JLabel();
+	private JLabel JLNombre = new JLabel();
 	private boolean izquierda, derecha, abajo, arriba;
 	private JLabel JLVIDAS1, JLVIDAS2,JLVIDAS3;
 	/**

@@ -31,5 +31,9 @@ public class Encerrado implements EstadoEnemigo{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void deboPerseguir() {
+		
+	}
 
 }

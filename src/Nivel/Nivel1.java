@@ -5,10 +5,6 @@ public class Nivel1 extends Nivel{
 	
 	public Nivel1() {}
 
-	public void llevarACaboActivaciones() {
-		activarFrutas();
-		desactivarPociones();
-	}
 	public int sleepProtagonista() {
 		return 20;
 	}
@@ -25,7 +21,7 @@ public class Nivel1 extends Nivel{
 		return 0;
 	}
 
-	@Override
+	
 	public int sleepPowerPellets() {
 		return 10000;
 	}

@@ -14,8 +14,6 @@ abstract public class Nivel {
 	public Nivel () {
 	}
 	
-	abstract public void llevarACaboActivaciones();
-	
 	public void setMapa(MapaGrilla m) {
 		miMapa = m;
 	}
@@ -34,22 +32,6 @@ abstract public class Nivel {
 	
 	public void aumentarFanstamaRojo() {
 		miMapa.agregarEnemigoRojo();
-	}
-	
-	public void activarPociones() {
-		miMapa.activarPociones();
-	}
-
-	public void desactivarPociones() {
-		miMapa.desactivarPociones();
-	}
-	
-	public void activarFrutas() {
-		miMapa.activarFrutas();
-	}
-	
-	public void desactivarFrutas() {
-		miMapa.desactivarFrutas(); 
 	}
 	
 	abstract public int sleepProtagonista();
