@@ -48,7 +48,7 @@ public class Mapa1 extends MapaGrilla {
 	protected void agregarMejoras() {
 		Mejora m;
 		int x,y;
-		cantPuntos = 0;;
+		cantPuntos = 0;
 		agregarPowerPellets();
 		for(int i = 1; i<21;i++) {
 			for (int j = 0; j<22;j++) {
