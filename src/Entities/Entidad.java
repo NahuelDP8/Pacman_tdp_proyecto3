@@ -104,5 +104,5 @@ abstract public class Entidad {
 
 	public void interactuarConProtagonista() {
 		
-	};
+	}
 }

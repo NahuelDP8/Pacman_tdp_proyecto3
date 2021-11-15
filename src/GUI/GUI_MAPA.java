@@ -53,7 +53,6 @@ public class GUI_MAPA{
 
 	public void quitarEntidad(EntidadGrafica entidad) {
 		entidad.setVisible(false);
-		entidad = null;
 	}
 	
 	public void añadirEntidadGrafica(EntidadGrafica entidad) {
