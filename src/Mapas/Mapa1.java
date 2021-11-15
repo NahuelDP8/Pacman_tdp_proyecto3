@@ -130,7 +130,7 @@ public class Mapa1 extends MapaGrilla {
 		
 		//Ahora las paredes verticales realizamos las paredes en vertical límitrofes
 		//Pared vertical, eje izquierdo parte superior. 
-		p = new Pared(new PairTupla(0,0), 16, 240,this);
+		p = new Pared(new PairTupla(0,0), 16, 237,this);
 		for(int i = 0; i<=2; i++) {
 			zonas [i][0].setEntidad(p);
 		}
@@ -141,7 +141,7 @@ public class Mapa1 extends MapaGrilla {
 		}
 		
 		//Pared vertical, eje derecho parte superior. 
-		p = new Pared(new PairTupla(483,0), 18, 240,this);
+		p = new Pared(new PairTupla(483,0), 18, 237,this);
 		for(int i = 0; i<=2; i++) {
 			zonas [i][4].setEntidad(p);
 		}
@@ -249,9 +249,9 @@ public class Mapa1 extends MapaGrilla {
 
 	public void agregarPortales() {
 		//Hay que posicionarlos bien 
-		Portal portalIzquierda = new Portal(new PairTupla(0,237),30,20,null,this);
+		Portal portalIzquierda = new Portal(new PairTupla(0,237),1,30,null,this);
 		zonas [2][0].setEntidad(portalIzquierda);
-		Portal portalDerecha  = new Portal(new PairTupla(480,237),30,20,null,this);
+		Portal portalDerecha  = new Portal(new PairTupla(499,237),1,30,null,this);
 		zonas [2][4].setEntidad(portalDerecha);
 		portalIzquierda.setMiDestino(portalDerecha.getX()-30);
 		portalDerecha.setMiDestino(portalIzquierda.getX()+30);
