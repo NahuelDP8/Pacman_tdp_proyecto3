@@ -22,7 +22,7 @@ public class EnemigoVisitor implements Visitor {
 	
 	@Override
 	public void visitProtagonista(Protagonista p) {
-		System.out.print("GGG");
+		
 	}
 
 	@Override

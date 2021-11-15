@@ -102,7 +102,6 @@ public class Timer implements Runnable {
 			try {
 				Thread.sleep(this.SleepDeFantasmas);
 				miLogica.realizarMovimiento(miLogica.getCteFantasma());
-				System.out.print("af");
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}

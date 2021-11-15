@@ -26,6 +26,8 @@ public class Mapa1 extends MapaGrilla {
 		construccionZonasGrilla(5,6);
 		construccionParedesLimitaciones();
 		
+		posInicialProtagonista = new PairTupla(189, 290);
+		
 		agregarFantasmas();
 		agregarMejoras();
 		agregarPortales();
@@ -33,7 +35,6 @@ public class Mapa1 extends MapaGrilla {
 
 		fruta = fabricaMejora.crearFruta(new PairTupla(260,191), 20, 20,this);
 		pocion = fabricaMejora.crearPocion(new PairTupla(230,196), 20, 20,this);
-
 	}
 	
 	protected void reiniciar() {

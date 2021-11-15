@@ -1,5 +1,7 @@
 package Entities;
 
+import java.awt.Rectangle;
+
 import javax.swing.ImageIcon;
 import Visitors.ProtagonistaVisitor;
 import Visitors.Visitor;
@@ -43,6 +45,8 @@ abstract public class Protagonista extends Personaje{
 		}
 		movimientoPrevio = movimientoActual;
 		miGrilla.actualizarEntidad(this);
+		miRectangulo =  new Rectangle(posicion.getX(), posicion.getY(), ancho, altura);
+
 	}
 	public void moverAbajo() {
 		movimientoPrevio = movimientoActual;

@@ -2,6 +2,7 @@ package Mapas;
 
 import javax.swing.ImageIcon;
 import Entities.Enemigo;
+import Entities.EnemigoRojo;
 import Entities.Entidad;
 import Entities.PairTupla;
 import Entities.Protagonista;
@@ -23,6 +24,7 @@ abstract public class MapaGrilla {
 	protected FactoryEnemigo fabricaEnem;
 	protected FactoryMejora fabricaMejora;
 	protected Protagonista miProtagonista;
+	protected PairTupla posInicialProtagonista;
 	protected ArrayList<Enemigo> misEnemigos;
 	protected Zona [][] zonas;
 	protected int ancho, altura, anchoMapa, altoMapa;
@@ -43,7 +45,6 @@ abstract public class MapaGrilla {
 		fabricaMejora = new FactoryMejora();
 		ancho = an;
 		altura = al;
-		
 		anchoMapa = 500;
 		altoMapa = 540;
 		this.miLogica = miLogica;
@@ -55,7 +56,7 @@ abstract public class MapaGrilla {
 	}
 	
 	protected void agregarProtagonista() {
-		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(189, 290),30,30,this);
+		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(posInicialProtagonista.getX(),posInicialProtagonista.getY()),30,30,this);
 		miProtagonista.setGrilla(this);
 	}
 	
@@ -119,13 +120,16 @@ abstract public class MapaGrilla {
 	}	
 	
 	private void actualizarZonas(ArrayList<Zona> l, Entidad e) {
-		for (Zona []zz: zonas) {
-			for (Zona z: zz) {
+		for(int i =0; i<zonas.length; i++) {
+			for(int j = 0; j<zonas[0].length; j++) {
+				Zona z = zonas[i][j];
+				if(l.contains(z) && !z.getEntidades().contains(e)) {
+					z.setEntidad(e);
+				}else
 					z.remove(e);
+					
 			}
 		}
-		for (Zona z: l)
-			z.setEntidad(e);
 	}
 	
 	public void actualizarEntidad(Entidad e) {
@@ -145,18 +149,20 @@ abstract public class MapaGrilla {
 	
 	public void moverTodosLosFantasmas() {
 		for(Enemigo enemigo : misEnemigos) {
-			enemigo.moverme(); 
 			actualizarEntidad(enemigo);
+			enemigo.moverme(); 
+			
 		}
 	}
 	
 	public void realizarMovimientoProtagonista() {
 		miLogica.captar();
-		boolean huboColisiones  = verificarColisiones(miProtagonista);
+		boolean huboColisiones = verificarColisiones(miProtagonista);
 		if(!huboColisiones) miProtagonista.realizarMovimiento();		
 	}
 
 	public boolean verificarColisiones(Entidad e) {
+		actualizarEntidad(miProtagonista);
 		boolean huboColisiones = false;
 		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(e, e.getMovimientoActual());
 		ArrayList<Entidad> entidadesColisionadasConE = entidadesColisionadas(zonasActivasDeE, e, e.getMovimientoActual()); 
@@ -195,8 +201,10 @@ abstract public class MapaGrilla {
 			for(int j = 0; j<zonas[0].length; j++) {
 				Zona agregamos = zonas[i][j];
 				Shape auxiliar = agregamos.getRectangulo();
-				if(auxiliar.intersects(x,y,ancho,largo))
+				if(auxiliar.intersects(x,y,ancho,largo)) {
 					toReturn.add(agregamos);
+				}
+					
 			}
 		}
 		return toReturn;
@@ -356,7 +364,9 @@ abstract public class MapaGrilla {
 	}
 
 	public void protagonistaPierdeVida() {
+		setearProtagonistaAPosicionInicial();
 		miProtagonista.quitarVida();
+		miLogica.quitarVida();
 		//Debereíamos actualizar los labels de las vidas quitando una
 		//Además, reiniciar el juego solo con las localizaciones originales del las entidades móviles y nada más. 
 	}
@@ -370,5 +380,9 @@ abstract public class MapaGrilla {
 		}
 	}
 
+
+	private  void setearProtagonistaAPosicionInicial() {
+		miProtagonista.setPos(new PairTupla(posInicialProtagonista.getX(),posInicialProtagonista.getY()));
+	}
 
 }

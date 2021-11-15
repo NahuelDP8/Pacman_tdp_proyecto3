@@ -121,6 +121,9 @@ public class Logica {
 		
 	}
 	
+	public void quitarVida() {
+		miGUI.quitarVida();
+	}
 
 	public void nivelSiguiente(Nivel n) {
 		n.setMapa(miMapa);
@@ -147,10 +150,9 @@ public class Logica {
 		
 	}
 
-
-
 	public void pintar() {
 		miGUI.pintar();
 		
 	}
+
 }
