@@ -43,7 +43,7 @@ public class Mapa1 extends MapaGrilla {
 		miLogica.actualizarEntidad(enemigo.getEntidad(),enemigo.getX(),enemigo.getY());
 		miLogica.actualizarEntidad(miProtagonista.getEntidad(),miProtagonista.getX(),miProtagonista.getY());
 		
-		miLogica.miGUI.frame.paint(miLogica.miGUI.frame.getGraphics());
+		miLogica.pintar();
 	}
 	protected void agregarMejoras() {
 		Mejora m;
@@ -263,6 +263,6 @@ public class Mapa1 extends MapaGrilla {
 
 	@Override
 	public void quitarFruta() {
-		miLogica.quitarDeLaGui(pocion.getEntidad());
+		miLogica.quitarDeLaGui(fruta.getEntidad());
 	}
 }

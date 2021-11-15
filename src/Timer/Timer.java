@@ -22,12 +22,13 @@ public class Timer implements Runnable {
 		//Hilo que notifica que se debe mover.
 		hiloMoverPersonaje = new Thread(this);
 		hiloMoverPersonaje.start();
-
+		//Hilo que se encarga del manejo de las frutas
 		hiloFruta = new Thread(this);
-		hiloPocion = new Thread(this);	
+		hiloPocion = new Thread(this);
+		//Hilo que se encarga del manejo de la musica
 		hiloMusica = new Thread(this);
 		hiloMusica.start();
-		
+		//
 		hiloMoverFantasmasMuertos = new Thread(this);
 		hiloMoverFantasmasMuertos.start();
 		
@@ -42,7 +43,6 @@ public class Timer implements Runnable {
 		while (ct == hiloMoverPersonaje) {
 			try {
 				Thread.sleep(this.SleepDeProtagonista);
-
 				miLogica.realizarMovimiento(miLogica.getCteProtagonista());
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();

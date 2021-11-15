@@ -2,7 +2,6 @@ package Entities;
 
 
 import java.util.ArrayList;
-import java.lang.Math;
 import javax.swing.ImageIcon;
 import Mapas.MapaGrilla;
 
@@ -39,13 +38,6 @@ public class EnemigoRojo extends Enemigo{
 		return toReturn; 
 	}
 	
-	private double distanciaEntrePuntos(PairTupla A, PairTupla B) {
-		double x = Math.pow(B.getX()-A.getX(),2);
-		double y = Math.pow(B.getY()-A.getY(),2);
-		double distancia = Math.sqrt(x+y); 
-		return distancia; 
-	}
-
 	public void perseguirProtagonista() {
 		int movFinal = movimientoActual;
 		double disMenor = Double.MAX_VALUE;

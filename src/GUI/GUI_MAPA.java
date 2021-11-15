@@ -27,7 +27,7 @@ import java.io.ObjectOutputStream;
 
 public class GUI_MAPA{
 
-	public JFrame frame;
+	private JFrame frame;
 	private Logica log;
 	private JLabel JLTiempo;
 	private JLabel JLFondoMapa; 
@@ -77,6 +77,9 @@ public class GUI_MAPA{
 		if(seg<10)
 			segundos= "0"+seg;
 		JLTiempo.setText(minutos+":"+segundos);
+	}
+	public void pintar() {
+		frame.paint(frame.getGraphics());
 	}
 	
 	

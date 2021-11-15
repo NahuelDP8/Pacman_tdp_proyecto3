@@ -10,7 +10,7 @@ import Factories.FactoryMapaGrilla;
 
 public class Logica {
 
-	public GUI_MAPA miGUI;
+	private GUI_MAPA miGUI;
 	private MapaGrilla miMapa;
 	protected FactoryMapaGrilla miFabrica;
 	protected Timer miReloj;
@@ -144,6 +144,13 @@ public class Logica {
 
 	public void añadirFondo() {
 		miGUI.añadirFondo();
+		
+	}
+
+
+
+	public void pintar() {
+		miGUI.pintar();
 		
 	}
 }

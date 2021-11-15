@@ -2,18 +2,36 @@ package EnemigosStates;
 
 import javax.swing.ImageIcon;
 
+import Entities.Enemigo;
+
 public class Escapando implements EstadoEnemigo{
+	
+	protected Enemigo miEnemigo; 
+	
+	public Escapando(Enemigo enemigo) {
+		miEnemigo = enemigo; 
+		//Deberiamos actualizar a imagen del enemigo particular
+		miEnemigo.validarMovimientos();
+	}
 
 	@Override
 	public void realizarMovimiento() {
-		// TODO Auto-generated method stub
-		
+		miEnemigo.realizarEscape(); 
 	}
 
 	@Override
 	public ImageIcon getImagen() {
-		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void deboEscapar() {
+		//no debemos hacer nada, ya que, ya estamos escapando.		
+	}
+
+	@Override
+	public void interactuarConProtagonista() {
+		miEnemigo.changeState(new Muerto(miEnemigo));
 	}
 
 }

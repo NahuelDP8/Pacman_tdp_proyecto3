@@ -2,8 +2,15 @@ package EnemigosStates;
 
 import javax.swing.ImageIcon;
 
-public class Encerrado implements EstadoEnemigo{
+import Entities.Enemigo;
 
+public class Encerrado implements EstadoEnemigo{
+	protected Enemigo miEnemigo;
+	
+	public Encerrado(Enemigo e) {
+		miEnemigo = e; 
+		//deberiamos cambiar la imagen del enemigo en particular
+	}
 	public void realizarMovimiento() {
 		// TODO Auto-generated method stub
 		
@@ -12,6 +19,17 @@ public class Encerrado implements EstadoEnemigo{
 	public ImageIcon getImagen() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void deboEscapar() {
+		
+	}
+
+	@Override
+	public void interactuarConProtagonista() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
