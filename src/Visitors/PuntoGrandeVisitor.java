@@ -8,12 +8,13 @@ import Entities.Pocion;
 import Entities.Protagonista;
 import Entities.Punto;
 import Entities.ZonaEnemigo;
+import Entities.PuntoGrande;
 
 public class PuntoGrandeVisitor implements Visitor {
 
-	private Entidad miEntidad;
-	public PuntoGrandeVisitor(Entidad ent) {
-		miEntidad = ent;
+	private PuntoGrande miPuntoGrande;
+	public PuntoGrandeVisitor(PuntoGrande ent) {
+		miPuntoGrande = ent;
 	}
 	@Override
 	public void visitPunto(Punto p) {
@@ -22,7 +23,7 @@ public class PuntoGrandeVisitor implements Visitor {
 	}
 
 	@Override
-	public void visitPuntoGrande(Entities.PuntoGrande p) {
+	public void visitPuntoGrande(PuntoGrande p) {
 		// TODO Auto-generated method stub
 
 	}
@@ -34,10 +35,8 @@ public class PuntoGrandeVisitor implements Visitor {
 
 	@Override
 	public void visitProtagonista(Protagonista p) {
-		//Cambiar dsps de singleton:
-		miEntidad.enemigosEnPeligro();
-		miEntidad.sacarEntidad(miEntidad);
-		p.sumarPuntos(50);
+		miPuntoGrande.afectar(); 
+		p.sumarPuntos(miPuntoGrande.getPuntaje());
 	}
 
 	@Override

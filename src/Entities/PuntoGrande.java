@@ -8,7 +8,7 @@ import Mapas.MapaGrilla;
 import Visitors.PuntoGrandeVisitor;
 
 public class PuntoGrande extends Mejora{
-
+	protected static final int puntaje  = 50;  
 	public PuntoGrande(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
 		super(p, anc, alt,img, grilla);
 		v = new PuntoGrandeVisitor(this);
@@ -16,8 +16,8 @@ public class PuntoGrande extends Mejora{
 
 	@Override
 	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
-		
+		v.visitPuntoGrande(this);
+	
 	}
 	
 	public void sacarEntidad(Entidad ent) {
@@ -25,4 +25,12 @@ public class PuntoGrande extends Mejora{
 		miGrilla.sacarEntidad(ent);	
 	}
 
+	public void afectar() {
+		miGrilla.enemigosEscapar();
+		sacarEntidad(this);
+	}
+	
+	public int getPuntaje() {
+		return puntaje; 
+	}
 }

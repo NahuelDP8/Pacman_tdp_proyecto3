@@ -257,7 +257,6 @@ public class Mapa1 extends MapaGrilla {
 		portalDerecha.setMiDestino(portalIzquierda.getX()+30);
 	}
 	
-	@Override
 	public void agregarFruta() {
 		zonas[2][2].setEntidad(fruta);
 		miLogica.actualizarEntidad(fruta.getEntidad(),fruta.getX(),fruta.getY());	
@@ -270,11 +269,12 @@ public class Mapa1 extends MapaGrilla {
 
 	@Override
 	public void quitarPocion() {
-		miLogica.quitarDeLaGui(pocion.getEntidad());
+				
 	}
 
 	@Override
 	public void quitarFruta() {
-		miLogica.quitarDeLaGui(fruta.getEntidad());
+		// TODO Auto-generated method stub
+		
 	}
 }

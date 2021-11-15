@@ -245,26 +245,8 @@ abstract public class MapaGrilla {
 	public void agregarEnemigoRosa() {
 		misEnemigos.add(fabricaEnem.crearRosa(null, ancho, altura,this));
 	}
-	
-	public void desactivarPociones() {
-		miLogica.desactivarPociones();
-	}
-	public void activarPociones() {
-		//Mandaría un mensaje a la lógica activando el timer relacionado a las pociones.
-		miLogica.activarPocion();
-	}
 
-	public void activarFrutas() {
-		//Mandaría un mensaje a la lógica activando el timer relacionado a las pociones.
-		miLogica.activarFrutas(); 
-		//Luego deberíamos obtener las frutas con las que se trabajará este nivel. 
-	}
-	
-	public void desactivarFrutas() {
-		miLogica.desactivarFrutas(); 
-	}
-
-	abstract public void quitarPocion() ; //aca podríamos tener una lista de frutas y pociones por separado, entonces armar un metodo generico para quitarlas de la vistas
+	abstract public void quitarPocion() ;
 	
 	abstract public void quitarFruta() ;
 
