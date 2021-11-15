@@ -10,7 +10,7 @@ import Factories.FactoryMapaGrilla;
 
 public class Logica {
 
-	private GUI_MAPA miGUI;
+	public GUI_MAPA miGUI;
 	private MapaGrilla miMapa;
 	protected FactoryMapaGrilla miFabrica;
 	protected Timer miReloj;

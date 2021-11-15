@@ -27,7 +27,7 @@ import java.io.ObjectOutputStream;
 
 public class GUI_MAPA{
 
-	private JFrame frame;
+	public JFrame frame;
 	private Logica log;
 	private JLabel JLTiempo;
 	private JLabel JLFondoMapa; 
