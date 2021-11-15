@@ -1,3 +1,4 @@
+
 package Entities;
 
 import javax.swing.ImageIcon;
@@ -11,10 +12,9 @@ public class Pared extends Entidad{
 		v = new ParedVisitor(this);  
 	}
 
-	public Pared(PairTupla p, int anc, int alt, MapaGrilla grilla) {
-		super(p, anc, alt,null, grilla);
-		v = new ParedVisitor(this);  
-		
+	public Pared(PairTupla pairTupla, int i, int j, MapaGrilla mapa) {
+		super(pairTupla, i,j,null,mapa);	
+		v = new ParedVisitor(this); 
 	}
 
 	@Override

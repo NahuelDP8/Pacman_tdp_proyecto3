@@ -18,9 +18,7 @@ public class EnemigoRojo extends Enemigo{
 		toReturn.add(MOVER_ARRIBA);
 		toReturn.add(MOVER_IZQUIERDA);
 		toReturn.add(MOVER_DERECHA);
-		
 		int movActual = this.getMovimientoActual(); 
-		
 		if(movActual == MOVER_DERECHA) { 
 			toReturn.remove(MOVER_IZQUIERDA-1);
 			this.invalidarMovimiento(MOVER_IZQUIERDA);

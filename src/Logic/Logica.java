@@ -5,7 +5,7 @@ import GUI.GUI_MAPA;
 import Mapas.MapaGrilla;
 import Nivel.Nivel;
 import Timer.Timer;
-import Entities.*;
+import Entities.EntidadGrafica;
 import Factories.FactoryMapaGrilla;
 
 public class Logica {

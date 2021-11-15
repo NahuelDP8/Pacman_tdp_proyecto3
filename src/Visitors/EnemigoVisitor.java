@@ -33,13 +33,11 @@ public class EnemigoVisitor implements Visitor {
 	@Override
 	public void visitFruta(Fruta f) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void visitPocion(Pocion p) {
 		// TODO Auto-generated method stub
-
 	}
 	@Override
 	public void visitPunto(Punto p) {}
@@ -49,7 +47,6 @@ public class EnemigoVisitor implements Visitor {
 	
 	public void visitZonaEnemigo(ZonaEnemigo z) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }
