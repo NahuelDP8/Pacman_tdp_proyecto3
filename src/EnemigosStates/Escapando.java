@@ -3,10 +3,12 @@ package EnemigosStates;
 import javax.swing.ImageIcon;
 
 import Entities.Enemigo;
+import Factories.FactoryMapaGrillaNaruto;
 
 public class Escapando implements EstadoEnemigo{
 	
 	protected Enemigo miEnemigo; 
+	private ImageIcon miImagen=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/debilAzul.png"));
 	
 	public Escapando(Enemigo enemigo) {
 		miEnemigo = enemigo; 
@@ -21,7 +23,7 @@ public class Escapando implements EstadoEnemigo{
 
 	@Override
 	public ImageIcon getImagen() {
-		return null;
+		return miImagen;
 	}
 
 	@Override

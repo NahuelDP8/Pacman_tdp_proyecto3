@@ -4,6 +4,7 @@ import EnemigosStates.*;
 import Visitors.EnemigoVisitor;
 import Visitors.Visitor;
 
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
@@ -34,6 +35,9 @@ public abstract class Enemigo extends Personaje{
 	
 	public void changeState(EstadoEnemigo e) {
 		miEstado = e;
+		Image EscalarFoto = miEstado.getImagen().getImage().getScaledInstance(ancho,altura, Image.SCALE_DEFAULT);
+		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
+		miEntidad.setIcon(FotoEscalada);
 	}
 	
 	public void colisionPared() {
@@ -104,6 +108,31 @@ public abstract class Enemigo extends Personaje{
 		return distancia; 
 	}
 	
+	private ArrayList<Integer> movimientosAEstudiar(){
+		ArrayList<Integer> toReturn  = new ArrayList<Integer>();
+		this.validarMovimientos();
+		toReturn.add(MOVER_ABAJO);
+		toReturn.add(MOVER_ARRIBA);
+		toReturn.add(MOVER_IZQUIERDA);
+		toReturn.add(MOVER_DERECHA);
+		int movActual = this.getMovimientoActual(); 
+		if(movActual == MOVER_DERECHA) { 
+			toReturn.remove(MOVER_IZQUIERDA-1);
+			this.invalidarMovimiento(MOVER_IZQUIERDA);
+		}else if (movActual == MOVER_IZQUIERDA) {			
+			toReturn.remove(MOVER_DERECHA-1);
+			this.invalidarMovimiento(MOVER_DERECHA);
+		}else if (movActual == MOVER_ARRIBA) {
+			toReturn.remove(MOVER_ABAJO-1);
+			this.invalidarMovimiento(MOVER_ABAJO);
+		}else if (movActual == MOVER_ABAJO) {
+			toReturn.remove(MOVER_ARRIBA-1);
+			this.invalidarMovimiento(MOVER_ARRIBA);
+		}	
+		
+		return toReturn; 
+	}
+	
 	//Todos los enemigos a priori, tendrán el mismo mecanismo de escape, dependiendo de la posición de pacman 
 	public void realizarEscape() {
 		int movFinal = movimientoActual;
@@ -112,12 +141,7 @@ public abstract class Enemigo extends Personaje{
 		int posX = posicion.getX();
 		int posY = posicion.getY(); 
 		PairTupla posicionProtagonista = miGrilla.getPosicionActualProtagonista();
-		ArrayList<Integer> movimientos = new ArrayList<Integer>(); 
-		movimientos.add(MOVER_ARRIBA);
-		movimientos.add(MOVER_ABAJO);
-		movimientos.add(MOVER_IZQUIERDA);
-		movimientos.add(MOVER_DERECHA); 
-		
+		ArrayList<Integer> movimientos = this.movimientosAEstudiar();
 		miGrilla.realizarMovimientoFantasma(this, movimientos);
 		
 		for(int i =0; i<=movimientos.size()-1; i++) {	
@@ -169,11 +193,7 @@ public abstract class Enemigo extends Personaje{
 		int posX = posicion.getX();
 		int posY = posicion.getY(); 
 		PairTupla posicionCelda = new PairTupla(229,186);
-		ArrayList<Integer> movimientos = new ArrayList<Integer>(); 
-		movimientos.add(MOVER_ARRIBA);
-		movimientos.add(MOVER_ABAJO);
-		movimientos.add(MOVER_IZQUIERDA);
-		movimientos.add(MOVER_DERECHA); 
+		ArrayList<Integer> movimientos = this.movimientosAEstudiar();
 		
 		miGrilla.realizarMovimientoFantasma(this, movimientos);
 		
@@ -214,5 +234,9 @@ public abstract class Enemigo extends Personaje{
 		//Ahora lo que hacemos es movernos
 		this.realizarMovimiento(movFinal);
 		movimientoActual = movFinal; 
+	}
+
+	public void setMovimientoActual(int mov) {
+		movimientoActual = mov;
 	}
 }
