@@ -3,10 +3,9 @@ package Timer;
 import Logic.Logica;
 
 public class Timer implements Runnable {
-	private int minutos, segundos, pausa;
+	private int minutos, segundos;
 	private Thread hiloTiempo, hiloMoverPersonaje, hiloFruta, hiloPocion,hiloMusica,hiloMoverFantasmasMuertos,hiloMoverFantasmas;
 	private Logica miLogica;
-	private final int minPausa = 250;
 	private int SleepDeProtagonista, SleepDeFantasmas, tiempoEsperaFruta, tiempoEsperaPocion; 
 	private boolean frutaActivada = false;
 	private boolean pocionActivada = false; 
@@ -14,7 +13,6 @@ public class Timer implements Runnable {
 		miLogica = logic;
 		minutos = 0;
 		segundos = 0;
-		pausa = 400;
 		//Hilo que actualiza el reloj.
 		hiloTiempo = new Thread(this);
 		hiloTiempo.start();
@@ -49,21 +47,9 @@ public class Timer implements Runnable {
 			}
 		}
 		
-		while (ct == hiloPocion) {
-			try {
-				Thread.sleep(this.tiempoEsperaPocion);
-				if(!pocionActivada) {
-					miLogica.mostrarPociones(); 
-					pocionActivada = true;
-				}
-				else {
-					pocionActivada = false;
-					miLogica.eliminarPocion();
-				}
-			} catch(InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-		}
+		
+		
+
 		
 		while (ct == hiloFruta) {
 			try {
@@ -83,22 +69,39 @@ public class Timer implements Runnable {
 			}
 		}
 		
+		/**
+		while (ct == hiloPocion) {
+			try {
+				Thread.sleep(this.tiempoEsperaPocion);
+				if(!pocionActivada) {
+					miLogica.mostrarPociones(); 
+					pocionActivada = true;
+				}
+				else {
+					pocionActivada = false;
+					miLogica.eliminarPocion();
+				}
+			} catch(InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+		}
+		**/
+		
 		while (ct == hiloTiempo) {
 			try {
+				//MANEJO DE TIEMPO
 				Thread.sleep(1000);
 				segundos += 1;
 				if(segundos == 60) {
 					minutos++;
 					segundos = 0;
 				}
-				if(segundos % 5 == 0 && pausa >= minPausa)
-					pausa -= 40;
-					
 				miLogica.actualizarReloj();
-			} catch(InterruptedException e) {
-				Thread.currentThread().interrupt();
+					
+				}catch(InterruptedException e) {
+					Thread.currentThread().interrupt();
 			}
-		}
+		
 		
 		while (ct == hiloMoverFantasmas) {
 			try {
@@ -107,8 +110,10 @@ public class Timer implements Runnable {
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
-
+			}
 		}
+
+		
 		
 		/*
 		while (ct == hiloMusica) {
@@ -138,12 +143,7 @@ public class Timer implements Runnable {
 	public int getSegundos() {
 		return segundos;
 	}
-	public void setPausa(int p) {
-		pausa=p;
-	}
-	public int getPausa() {
-		return pausa;
-	}
+	
 	public void gameOver() {
 		hiloTiempo.interrupt();
 		hiloMoverPersonaje.interrupt();

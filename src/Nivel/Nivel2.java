@@ -32,4 +32,9 @@ public class Nivel2 extends Nivel {
 		activarFrutas();
 		activarPociones();
 	}
+
+	@Override
+	public int sleepPowerPellets() {
+		return 6000;
+	}
 }

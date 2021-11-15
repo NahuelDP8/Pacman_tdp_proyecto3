@@ -56,4 +56,5 @@ abstract public class Nivel {
 	abstract public int sleepFantasmas();
 	abstract public int sleepFruta(); 
 	abstract public int sleepPocion();
+	abstract public int sleepPowerPellets();
 }
