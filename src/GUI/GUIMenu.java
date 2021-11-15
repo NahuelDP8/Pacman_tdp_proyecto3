@@ -233,7 +233,6 @@ public class GUIMenu extends JFrame {
 				F_Nivel=new FactoryNiveles().crearNivel1();
 				GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp);
 				GUIWindow.getFrame().setVisible(true);
-				ContentPanel.setLayout(null);
 				dispose();
 			}
 		});
@@ -258,8 +257,7 @@ public class GUIMenu extends JFrame {
 							F_Nivel=new FactoryNiveles().crearNivel2();
 							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp);
 							GUIWindow.getFrame().setVisible(true);
-							ContentPanel.setLayout(null);
-							
+							dispose();
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

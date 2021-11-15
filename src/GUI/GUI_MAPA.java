@@ -44,7 +44,7 @@ public class GUI_MAPA{
 		JLNombre.setText("Nombre: "+ nom);
 		topPlayers=TP;
 		crearTablaHighScore();
-		log = new Logica(this,f, nivel);
+		log = log.getLogic(this, f, nivel);
 	}
 	
 	public JFrame getFrame() {

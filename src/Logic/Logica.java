@@ -4,12 +4,16 @@ package Logic;
 import GUI.GUI_MAPA;
 import Mapas.MapaGrilla;
 import Nivel.Nivel;
+import Timer.PowerPelletsTimer;
 import Timer.Timer;
+
+import java.util.ArrayList;
+
 import Entities.EntidadGrafica;
 import Factories.FactoryMapaGrilla;
 
 public class Logica {
-
+	private static Logica logic;
 	private GUI_MAPA miGUI;
 	private MapaGrilla miMapa;
 	protected FactoryMapaGrilla miFabrica;
@@ -18,13 +22,19 @@ public class Logica {
 	protected final int MOVER_PROTAGONISTA = 1;
 	protected final int MOVER_FANTASMA= 0;
 	
-	public Logica(GUI_MAPA g, FactoryMapaGrilla f, Nivel n) {
+	private Logica(GUI_MAPA g, FactoryMapaGrilla f, Nivel n) {
 		miGUI = g;
 		miFabrica = f;
 		miMapa = miFabrica.crearMapa(this);
 		miReloj = new Timer(this);
 		nivelSiguiente(n);
-		miGUI.añadirFondo();
+		miGUI.añadirFondo(); 
+	}
+	
+	public static Logica getLogic(GUI_MAPA g, FactoryMapaGrilla f, Nivel n) {
+		if(logic == null) 
+			logic = new Logica(g,f,n);
+		return logic;
 	}
 	
 
