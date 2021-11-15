@@ -43,7 +43,6 @@ public class GUI_MAPA{
 		initialize();
 		JLNombre.setText("Nombre: "+ nom);
 		topPlayers=TP;
-
 		crearTablaHighScore();
 		log = new Logica(this,f, nivel);
 	}
@@ -128,7 +127,6 @@ public class GUI_MAPA{
 
 	class EventoDeTeclado implements KeyListener{
 		public void keyTyped(KeyEvent e) {
-			
 			}
 	
 	boolean jugando=true; //REVISAR SACAR

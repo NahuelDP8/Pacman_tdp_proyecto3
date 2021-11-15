@@ -200,6 +200,7 @@ public class GUIMenu extends JFrame {
 				JBAceptar.setEnabled(false);
 			}
 		});
+		
 		JBAceptar.setBounds(480, 542, 102, 32);
 		PSeleccionProta.add(JBAceptar);
 		
@@ -207,12 +208,13 @@ public class GUIMenu extends JFrame {
 		JTFmiNombre = new JTextField();
 		JTFmiNombre.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyTyped(KeyEvent e) {
-				if(e.getKeyCode() == KeyEvent. VK_ENTER) {
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 					JBAceptar.doClick();
 				}
 			}
 		});
+		
 		JTFmiNombre.setFont(new Font("Bernard MT Condensed", Font.PLAIN, 18));
 		JTFmiNombre.setText("\"Mi nombre\"");
 		JTFmiNombre.setHorizontalAlignment(SwingConstants.LEFT);
