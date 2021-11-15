@@ -8,7 +8,6 @@ import Visitors.Visitor;
 import Mapas.MapaGrilla; 
 
 abstract public class Protagonista extends Personaje{
-	
 	protected int vidas;
 	protected int movimientoActual;
 	protected int movimientoPrevio;
