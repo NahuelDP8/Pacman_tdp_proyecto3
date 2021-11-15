@@ -93,6 +93,10 @@ public abstract class Enemigo extends Personaje{
 		miEstado.deboEscapar(); 
 	}
 	
+	public void deboPerseguir() {
+		miEstado.deboPerseguir();
+	}
+	
 	protected double distanciaEntrePuntos(PairTupla A, PairTupla B) {
 		double x = Math.pow(B.getX()-A.getX(),2);
 		double y = Math.pow(B.getY()-A.getY(),2);

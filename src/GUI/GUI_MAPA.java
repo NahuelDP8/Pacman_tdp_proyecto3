@@ -33,7 +33,7 @@ public class GUI_MAPA{
 	private JLabel JLFondoMapa; 
 	private JLabel JLPuntaje;
 	private TopPlayers topPlayers;
-	private JLabel JLNombre=new JLabel();
+	private JLabel JLNombre = new JLabel();
 	private boolean izquierda, derecha, abajo, arriba;
 	private JLabel JLVIDAS1, JLVIDAS2,JLVIDAS3;
 	/**
@@ -43,7 +43,6 @@ public class GUI_MAPA{
 		initialize();
 		JLNombre.setText("Nombre: "+ nom);
 		topPlayers=TP;
-
 		crearTablaHighScore();
 		log = new Logica(this,f, nivel);
 	}
@@ -128,7 +127,6 @@ public class GUI_MAPA{
 
 	class EventoDeTeclado implements KeyListener{
 		public void keyTyped(KeyEvent e) {
-			
 			}
 	
 	boolean jugando=true; //REVISAR SACAR

@@ -1,43 +1,65 @@
 package Timer;
 
-import Logic.Logica;
+import java.util.ArrayList;
+import Mapas.MapaGrilla;
 
-public class PowerPelletsTimer implements Runnable  {
-	private Thread hiloPP;
-	private int SleepDePP; //PP=Power Pellets
-	private Logica miLogica;
-	private boolean protaImparable = false;
-	public PowerPelletsTimer(Logica logic) {
-		hiloPP= new Thread(this);
-		hiloPP.start();
-		SleepDePP=1000;
+public class PowerPelletsTimer extends Thread  {
+	private static PowerPelletsTimer hiloPP;
+	private static int sleepDePP; //PP=Power Pellets
+	private MapaGrilla miGrilla;
+	private boolean activado= false; 
+	private ArrayList<Integer> tiempoAdicional; //Se utilizará en caso de que el protagonista tome otro powerPellet si es que este timer ya esté activado
+	
+	private PowerPelletsTimer(MapaGrilla miMapa) {
+		miGrilla = miMapa; 
+		tiempoAdicional = new ArrayList<Integer>(); 
 	}
 
-	@Override
+	public static PowerPelletsTimer getPowerPelletsTimer(MapaGrilla miMapa) {
+		if(hiloPP == null) 
+			hiloPP = new PowerPelletsTimer(miMapa);
+		sleepDePP = miMapa.getSleepPowerPellets();
+		return hiloPP; 
+	}
+	
 	public void run() {
-		Thread ct = Thread.currentThread();
-		//Actualiza el reloj
-		while (ct == hiloPP) {
-			try {
-				Thread.sleep(this.SleepDePP);
-				if(!protaImparable) {
-					protaImparable=true;
-					//falta metodo
-				}
-				else {
-					protaImparable = false;
-					//falta metodo
-				}
-			} catch(InterruptedException e) {
+		try {
+			activarHilo();
+			PowerPelletsTimer.sleep(sleepDePP);
+			realizarActividad(); 
+		} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
+		}		
+	}
+ 
+	public void setSleepDePP(int s) {
+		sleepDePP=s;
+	}
+	
+	private void realizarActividad() {
+		if(!tiempoAdicional.isEmpty()) {
+			for(int i = 0 ; i<tiempoAdicional.size(); i++) {
+				try {
+					PowerPelletsTimer.sleep(tiempoAdicional.remove(i));
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
-    }
-	
-	public void setSleepDePP(int s) {
-		SleepDePP=s;
+		miGrilla.enemigosPerseguir();
+		hiloPP = null; 
+		activado = false; 
 	}
 	
+	private void activarHilo() {
+		activado = false; 
+	}
 	
+	public boolean yaFueActivado() {
+		return activado; 
+	}
 	
+	public void adherirTiempoAdicional(int i) {
+		tiempoAdicional.add(i); 
+	}
 }

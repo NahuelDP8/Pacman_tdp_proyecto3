@@ -12,6 +12,8 @@ import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
 import Nivel.Nivel;
+import Timer.PowerPelletsTimer;
+
 import java.awt.Shape;
 import java.util.ArrayList;
 
@@ -32,6 +34,7 @@ abstract public class MapaGrilla {
 	protected final int MOVER_IZQUIERDA = 3;
 	protected final int MOVER_DERECHA = 4;
 	protected int cantPuntos;
+	protected PowerPelletsTimer ppTimer; 
 	
 	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica) {
 		//Asignamos imagen de fondo del mapa
@@ -70,6 +73,10 @@ abstract public class MapaGrilla {
 		 Enemigo rojo = fabricaEnem.crearRojo(new PairTupla(365,50),30,30,this);
 		 this.misEnemigos.add(rojo);
 		 añadirEntidad(rojo.getEntidad());
+	}
+	
+	public int getSleepPowerPellets() {
+		return miNivel.sleepPowerPellets(); 
 	}
 	
 	protected void construccionZonasGrilla(int ancho, int alto) {
@@ -260,26 +267,8 @@ abstract public class MapaGrilla {
 	public void agregarEnemigoRosa() {
 		misEnemigos.add(fabricaEnem.crearRosa(null, ancho, altura,this));
 	}
-	
-	public void desactivarPociones() {
-		miLogica.desactivarPociones();
-	}
-	public void activarPociones() {
-		//Mandaría un mensaje a la lógica activando el timer relacionado a las pociones.
-		miLogica.activarPocion();
-	}
 
-	public void activarFrutas() {
-		//Mandaría un mensaje a la lógica activando el timer relacionado a las pociones.
-		miLogica.activarFrutas(); 
-		//Luego deberíamos obtener las frutas con las que se trabajará este nivel. 
-	}
-	
-	public void desactivarFrutas() {
-		miLogica.desactivarFrutas(); 
-	}
-
-	abstract public void quitarPocion() ; //aca podríamos tener una lista de frutas y pociones por separado, entonces armar un metodo generico para quitarlas de la vistas
+	abstract public void quitarPocion() ;
 	
 	abstract public void quitarFruta() ;
 
@@ -361,7 +350,12 @@ abstract public class MapaGrilla {
 		}
 		
 	}
-
+	public void enemigosPerseguir() {
+		for(Enemigo e : misEnemigos) {
+			e.deboPerseguir();
+		}
+		
+	}
 	public void gameOver() {
 		//el juego se acaba por el protagonista ha perdido todas sus vidas. 
 		//o ha ganado. 
@@ -374,6 +368,16 @@ abstract public class MapaGrilla {
 		//Debereíamos actualizar los labels de las vidas quitando una
 		//Además, reiniciar el juego solo con las localizaciones originales del las entidades móviles y nada más. 
 	}
+
+	public void activarPowerPellet() {
+		ppTimer = PowerPelletsTimer.getPowerPelletsTimer(this); 
+		if(!ppTimer.isAlive()) {
+			ppTimer.start();
+		}else {
+			ppTimer.adherirTiempoAdicional(miNivel.sleepPowerPellets());
+		}
+	}
+
 
 	private  void setearProtagonistaAPosicionInicial() {
 		miProtagonista.setPos(new PairTupla(posInicialProtagonista.getX(),posInicialProtagonista.getY()));

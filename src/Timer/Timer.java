@@ -22,7 +22,9 @@ public class Timer implements Runnable {
 		hiloMoverPersonaje.start();
 		//Hilo que se encarga del manejo de las frutas
 		hiloFruta = new Thread(this);
+		hiloFruta.start();
 		hiloPocion = new Thread(this);
+		hiloPocion.start();
 		//Hilo que se encarga del manejo de la musica
 		hiloMusica = new Thread(this);
 		hiloMusica.start();
@@ -37,6 +39,7 @@ public class Timer implements Runnable {
 	@Override
 	public void run() {
 		Thread ct = Thread.currentThread();
+		
 		//Actualiza el reloj
 		while (ct == hiloMoverPersonaje) {
 			try {
@@ -54,16 +57,7 @@ public class Timer implements Runnable {
 		while (ct == hiloFruta) {
 			try {
 				Thread.sleep(this.tiempoEsperaFruta);
-				if(!frutaActivada) {
-					miLogica.mostrarFrutas();
-					frutaActivada = true;
-					tiempoEsperaFruta /= 2;
-				}
-				else {
-					frutaActivada = false;
-					tiempoEsperaFruta *= 2;
-					miLogica.eliminarFruta();
-				}
+				
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
@@ -169,7 +163,7 @@ public class Timer implements Runnable {
 		pocionActivada = false;
 	}
 	public void activarFruta() {
-		hiloFruta.start();
+		
 	}
 	public void desactivarFruta() {
 		frutaActivada = false;
