@@ -24,8 +24,6 @@ public class Nivel1 extends Nivel{
 	public int sleepPocion() {
 		return 0;
 	}
-
-	@Override
 	public int sleepPowerPellets() {
 		return 10000;
 	}

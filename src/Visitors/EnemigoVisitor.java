@@ -22,7 +22,7 @@ public class EnemigoVisitor implements Visitor {
 	
 	@Override
 	public void visitProtagonista(Protagonista p) {
-		
+		miEntidad.interactuarConProtagonista(); 
 	}
 
 	@Override

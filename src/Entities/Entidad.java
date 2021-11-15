@@ -101,4 +101,8 @@ abstract public class Entidad {
 	public void enemigosEnPeligro() {
 		miGrilla.enemigosEscapar(); 
 	}
+
+	public void interactuarConProtagonista() {
+		
+	};
 }

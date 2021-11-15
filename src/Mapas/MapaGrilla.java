@@ -289,11 +289,9 @@ abstract public class MapaGrilla {
 		if(entidadesColisionadasConE.size()!=0) {
 			for(Entidad aux : entidadesColisionadasConE) {
 				miProtagonista.accept(aux.getVisitor());	
-				
 			}
 		}
 	}
-
 
 	public void sacarEntidad(Entidad entidad) {
 		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(entidad,0);
