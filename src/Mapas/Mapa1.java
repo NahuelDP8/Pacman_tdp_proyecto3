@@ -9,6 +9,7 @@ import Entities.Entidad;
 import Entities.Mejora;
 import Entities.PairTupla;
 import Entities.Pared;
+import Entities.Portal;
 import Factories.FactoryEnemigo;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
@@ -237,6 +238,14 @@ public class Mapa1 extends MapaGrilla {
 		zonas [5][2].setEntidad(p);zonas [5][3].setEntidad(p);zonas [5][4].setEntidad(p);
 	}
 
+	public void agregarPortales() {
+		//Hay que posicionarlos bien 
+		Portal portalIzquierda = new Portal(new PairTupla(2,2),1,1,null,this); 
+		Portal portalDerecha  = new Portal(new PairTupla(2,2),1,1,null,this);
+		portalIzquierda.setMiDestino(portalDerecha);
+		portalDerecha.setMiDestino(portalIzquierda);
+	}
+	
 	@Override
 	public void agregarFruta() {
 		zonas[2][2].setEntidad(fruta);

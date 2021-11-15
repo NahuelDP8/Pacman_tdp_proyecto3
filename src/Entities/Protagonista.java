@@ -11,10 +11,6 @@ abstract public class Protagonista extends Personaje{
 	protected int movimientoActual;
 	protected int movimientoPrevio;
 	protected int puntaje;
-	protected final int MOVER_ABAJO = 1;	
-	protected final int MOVER_ARRIBA = 2;
-	protected final int MOVER_IZQUIERDA = 3;
-	protected final int MOVER_DERECHA = 4;
 	protected boolean colisiono;
 	
 	public Protagonista(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {

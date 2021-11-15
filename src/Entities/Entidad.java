@@ -18,7 +18,6 @@ abstract public class Entidad {
 	protected MapaGrilla miGrilla;
 	protected Visitor v;
 	protected ImageIcon miImagen;
-
 	protected EntidadGrafica miEntidad;
 
 	public Entidad (PairTupla p, int anc,int alt, ImageIcon img, MapaGrilla grilla) {
@@ -28,7 +27,7 @@ abstract public class Entidad {
 		posicion = p;
 		miRectangulo =  new Rectangle(p.getX(), p.getY(), anc, alt); 
 		miImagen = img;
-		agregarEntidadGrafica();
+		agregarEntidadGrafica(); 
 	}
 	
 	public int getAltura() {
@@ -97,8 +96,7 @@ abstract public class Entidad {
 	}
 	public void setEntidad(EntidadGrafica ent) {
 		miEntidad= ent;
-	} 
-	
+	} 	
 	//Método que quizás debamos sacar.
 	public void enemigosEnPeligro() {
 		miGrilla.enemigosEscapar(); 
