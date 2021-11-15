@@ -3,7 +3,9 @@ package Timer;
 import Logic.Logica;
 
 public class Timer implements Runnable {
-	private int minutos, segundos, pausa;
+	private int minutos, segundos, pausa,cantS,duracionP,iniciarP,terminarP;
+	private final int DURACION_POCIONES=8;
+	private final int REAPARECER_POCIONES=15;
 	private Thread hiloTiempo, hiloMoverPersonaje, hiloFruta, hiloPocion,hiloMusica,hiloMoverFantasmasMuertos,hiloMoverFantasmas;
 	private Logica miLogica;
 	private final int minPausa = 250;
@@ -15,6 +17,7 @@ public class Timer implements Runnable {
 		minutos = 0;
 		segundos = 0;
 		pausa = 400;
+		iniciarP=5;
 		//Hilo que actualiza el reloj.
 		hiloTiempo = new Thread(this);
 		hiloTiempo.start();
@@ -49,21 +52,9 @@ public class Timer implements Runnable {
 			}
 		}
 		
-		while (ct == hiloPocion) {
-			try {
-				Thread.sleep(this.tiempoEsperaPocion);
-				if(!pocionActivada) {
-					miLogica.mostrarPociones(); 
-					pocionActivada = true;
-				}
-				else {
-					pocionActivada = false;
-					miLogica.eliminarPocion();
-				}
-			} catch(InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-		}
+		
+		
+
 		
 		while (ct == hiloFruta) {
 			try {
@@ -83,8 +74,27 @@ public class Timer implements Runnable {
 			}
 		}
 		
+		/**
+		while (ct == hiloPocion) {
+			try {
+				Thread.sleep(this.tiempoEsperaPocion);
+				if(!pocionActivada) {
+					miLogica.mostrarPociones(); 
+					pocionActivada = true;
+				}
+				else {
+					pocionActivada = false;
+					miLogica.eliminarPocion();
+				}
+			} catch(InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+		}
+		**/
+		
 		while (ct == hiloTiempo) {
 			try {
+				//MANEJO DE TIEMPO
 				Thread.sleep(1000);
 				segundos += 1;
 				if(segundos == 60) {
@@ -93,8 +103,22 @@ public class Timer implements Runnable {
 				}
 				if(segundos % 5 == 0 && pausa >= minPausa)
 					pausa -= 40;
-					
 				miLogica.actualizarReloj();
+				//MANEJO DE POCION
+				cantS=((minutos*60)+(segundos));
+				if(cantS>=iniciarP) {
+					if(cantS==iniciarP) {
+						miLogica.mostrarPociones();
+						duracionP=iniciarP+DURACION_POCIONES;
+					}
+					if(cantS==duracionP-3) {
+						//cambiar pocion a gif para que parpadee
+					}
+					if(cantS==duracionP) {
+						miLogica.eliminarPocion();
+						iniciarP=cantS+REAPARECER_POCIONES;
+					}
+				}
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
