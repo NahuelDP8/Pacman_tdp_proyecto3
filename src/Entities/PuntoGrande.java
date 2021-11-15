@@ -22,11 +22,12 @@ public class PuntoGrande extends Mejora{
 	
 	public void sacarEntidad(Entidad ent) {
 		miGrilla.restarPunto();
-		miGrilla.sacarEntidad(ent);	
+		miGrilla.sacarEntidad(ent);
 	}
 
 	public void afectar() {
 		miGrilla.enemigosEscapar();
+		miGrilla.activarPowerPellet(); 
 		sacarEntidad(this);
 	}
 	

@@ -56,9 +56,8 @@ public abstract class Enemigo extends Personaje{
 			posicion.setX(posicion.getX()- velocidad);
 		}else if(mov == MOVER_DERECHA) {
 			posicion.setX(posicion.getX()+ velocidad);
-		}
-		
-		miGrilla.actualizarEntidad(this); 
+		} 
+		miGrilla.actualizarEntidad(this);
 	}
 	
 	public void invalidarMovimiento(int movimiento) {
@@ -90,6 +89,10 @@ public abstract class Enemigo extends Personaje{
 	} 
 	public void deboEscapar() {
 		miEstado.deboEscapar(); 
+	}
+	
+	public void deboPerseguir() {
+		miEstado.deboPerseguir();
 	}
 	
 	protected double distanciaEntrePuntos(PairTupla A, PairTupla B) {

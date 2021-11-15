@@ -22,8 +22,7 @@ public class EnemigoVisitor implements Visitor {
 	
 	@Override
 	public void visitProtagonista(Protagonista p) {
-		//Acá no estoy seguro, no me queda otra que poner un método abstracto en entidad 
-		//Debería estar interactuarConEnemigo(); 
+		System.out.print("GGG");
 	}
 
 	@Override

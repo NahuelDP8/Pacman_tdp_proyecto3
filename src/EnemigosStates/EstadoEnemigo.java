@@ -5,5 +5,6 @@ public interface EstadoEnemigo {
 	public void realizarMovimiento(); 
 	public ImageIcon getImagen();
 	public void deboEscapar();
-	public void interactuarConProtagonista(); 
+	public void interactuarConProtagonista();
+	public void deboPerseguir(); 
 }

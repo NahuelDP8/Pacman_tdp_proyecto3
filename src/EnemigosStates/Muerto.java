@@ -26,4 +26,9 @@ public class Muerto implements EstadoEnemigo{
 	@Override
 	public void interactuarConProtagonista() {}
 
+	
+	public void deboPerseguir() {
+		
+	}
+
 }

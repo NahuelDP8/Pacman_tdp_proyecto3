@@ -27,7 +27,7 @@ public class Logica {
 		miGUI.añadirFondo();
 	}
 	
-	
+
 	
 	public void gameOver(){
 		
@@ -120,6 +120,7 @@ public class Logica {
 		miGUI.añadirEntidadGrafica(miEntidad);
 		
 	}
+	
 
 	public void nivelSiguiente(Nivel n) {
 		n.setMapa(miMapa);
@@ -143,7 +144,6 @@ public class Logica {
 
 
 	public void añadirFondo() {
-		miGUI.añadirFondo();
 		
 	}
 

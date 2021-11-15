@@ -34,4 +34,10 @@ public class Escapando implements EstadoEnemigo{
 		miEnemigo.changeState(new Muerto(miEnemigo));
 	}
 
+	
+	public void deboPerseguir() {
+		miEnemigo.changeState(new Persiguiendo(miEnemigo));
+		System.out.println("Pasamos al estado persiguiendo");
+	}
+
 }

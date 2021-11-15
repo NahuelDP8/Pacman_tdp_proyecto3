@@ -12,6 +12,7 @@ abstract public class Protagonista extends Personaje{
 	protected int movimientoPrevio;
 	protected int puntaje;
 	protected boolean colisiono;
+	protected boolean comiendo;
 	
 	public Protagonista(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
 		super(p, anc, alt,img, grilla);
@@ -22,7 +23,9 @@ abstract public class Protagonista extends Personaje{
 		velocidad = 4;
 		v = new ProtagonistaVisitor();
 		colisiono = false;
+		comiendo = false;
 	}
+	
 	
 	public int protagonistaVelocidadPixel() {
 		return velocidad;
@@ -101,6 +104,13 @@ abstract public class Protagonista extends Personaje{
 		}else {
 			vidas--;
 		}
+	}
+
+	public boolean getComiendo() {
+		return comiendo;
+	}
+	public void setComiendo(boolean comer) {
+		comiendo  = comer;
 	}
 	
 }

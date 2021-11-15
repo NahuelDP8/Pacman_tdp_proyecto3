@@ -1,7 +1,6 @@
 package Visitors;
 
 import Entities.Enemigo;
-import Entities.Entidad;
 import Entities.Fruta;
 import Entities.Pared;
 import Entities.Pocion;
@@ -37,6 +36,13 @@ public class PuntoGrandeVisitor implements Visitor {
 	public void visitProtagonista(Protagonista p) {
 		miPuntoGrande.afectar(); 
 		p.sumarPuntos(miPuntoGrande.getPuntaje());
+		p.setComiendo(true);
+		/*
+		//Cambiar dsps de singleton:
+		miEntidad.enemigosEnPeligro();
+		miEntidad.sacarEntidad(miEntidad);
+		p.sumarPuntos(50);
+		 */
 	}
 
 	@Override

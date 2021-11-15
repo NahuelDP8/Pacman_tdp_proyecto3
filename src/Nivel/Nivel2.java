@@ -27,4 +27,10 @@ public class Nivel2 extends Nivel {
 		// TODO Auto-generated method stub
 		return 2000;
 	}
+
+	@Override
+	public int sleepPowerPellets() {
+		return 6000;
+	}
+
 }
