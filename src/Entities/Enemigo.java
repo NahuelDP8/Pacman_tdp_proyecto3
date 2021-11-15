@@ -4,6 +4,7 @@ import EnemigosStates.*;
 import Visitors.EnemigoVisitor;
 import Visitors.Visitor;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -57,6 +58,7 @@ public abstract class Enemigo extends Personaje{
 		}else if(mov == MOVER_DERECHA) {
 			posicion.setX(posicion.getX()+ velocidad);
 		} 
+		miRectangulo.setBounds(posicion.getX(), posicion.getY(), ancho, altura);
 		miGrilla.actualizarEntidad(this);
 	}
 	

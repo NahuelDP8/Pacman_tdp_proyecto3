@@ -35,6 +35,7 @@ public class GUI_MAPA{
 	private TopPlayers topPlayers;
 	private JLabel JLNombre=new JLabel();
 	private boolean izquierda, derecha, abajo, arriba;
+	private JLabel JLVIDAS1, JLVIDAS2,JLVIDAS3;
 	/**
 	 * Create the application.
 	 */
@@ -53,6 +54,7 @@ public class GUI_MAPA{
 
 	public void quitarEntidad(EntidadGrafica entidad) {
 		entidad.setVisible(false);
+		entidad = null;
 	}
 	
 	public void añadirEntidadGrafica(EntidadGrafica entidad) {
@@ -69,6 +71,17 @@ public class GUI_MAPA{
 		
 	}
 	
+	public void quitarVida() {
+		if(JLVIDAS3.isVisible()) {
+			JLVIDAS3.setVisible(false);
+		}else if(JLVIDAS2.isVisible()) {
+			JLVIDAS2.setVisible(false);
+		}else{
+			JLVIDAS1.setVisible(false);
+		}
+		
+	}
+
 	public void actualizarReloj(int min, int seg) {
 		String minutos= ""+min;
 		String segundos= ""+seg;
@@ -201,28 +214,31 @@ public class GUI_MAPA{
 		panel_1.setLayout(null);
 	
 		
-		JLabel JLVIDAS1 = new JLabel("New label");
+		JLVIDAS1 = new JLabel("New label");
 		JLVIDAS1.setBounds(20, 0, 87, 104);
 		panel_1.add(JLVIDAS1);
 		Image EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")).getImage().getScaledInstance(JLVIDAS1.getWidth(),JLVIDAS1.getHeight(), Image.SCALE_DEFAULT);
 		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
 		JLVIDAS1.setIcon(FotoEscalada);
+		JLVIDAS1.setVisible(true);
 		
-		JLabel JLVIDAS2 = new JLabel("New label");
+		JLVIDAS2 = new JLabel("New label");
 		JLVIDAS2.setIcon(new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")));
 		JLVIDAS2.setBounds(120, 0, 87, 104);
 		panel_1.add(JLVIDAS2);
 		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")).getImage().getScaledInstance(JLVIDAS2.getWidth(),JLVIDAS2.getHeight(), Image.SCALE_DEFAULT);
 		FotoEscalada = new ImageIcon(EscalarFoto);
 		JLVIDAS2.setIcon(FotoEscalada);
+		JLVIDAS1.setVisible(true);
 		
-		JLabel JLVIDAS3 = new JLabel("New label");
+		JLVIDAS3 = new JLabel("New label");
 		JLVIDAS3.setIcon(new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")));
 		JLVIDAS3.setBounds(220, 0, 87, 104);
 		panel_1.add(JLVIDAS3);
 		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")).getImage().getScaledInstance(JLVIDAS3.getWidth(),JLVIDAS3.getHeight(), Image.SCALE_DEFAULT);
 		FotoEscalada = new ImageIcon(EscalarFoto);
 		JLVIDAS3.setIcon(FotoEscalada);
+		JLVIDAS1.setVisible(true);
 		
 		JLPuntaje = new JLabel("0");
 		JLPuntaje.setFont(new Font("Rockwell", Font.BOLD, 20));
@@ -297,5 +313,4 @@ public class GUI_MAPA{
 			e.printStackTrace();
 		}
 	}
-
 }

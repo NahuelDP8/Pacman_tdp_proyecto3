@@ -31,7 +31,8 @@ public class Escapando implements EstadoEnemigo{
 
 	@Override
 	public void interactuarConProtagonista() {
-		miEnemigo.changeState(new Muerto(miEnemigo));
+		miEnemigo.sacarEntidad(miEnemigo);
+		//miEnemigo.changeState(new Muerto(miEnemigo));
 	}
 
 }

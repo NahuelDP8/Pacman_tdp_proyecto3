@@ -11,7 +11,7 @@ import Visitors.Visitor;
 import Mapas.MapaGrilla;
 
 abstract public class Entidad {
-	protected Shape miRectangulo;
+	protected Rectangle miRectangulo;
 	protected PairTupla posicion;
 	protected int ancho;
 	protected int altura;
@@ -25,7 +25,7 @@ abstract public class Entidad {
 		ancho = anc;
 		altura = alt;
 		posicion = p;
-		miRectangulo =  new Rectangle(p.getX(), p.getY(), anc, alt); 
+		miRectangulo = new Rectangle(p.getX(), p.getY(), anc, alt); 
 		miImagen = img;
 		agregarEntidadGrafica(); 
 	}

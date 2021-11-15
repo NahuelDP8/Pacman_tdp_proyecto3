@@ -25,7 +25,6 @@ public class ProtagonistaVisitor implements Visitor {
 	@Override
 	public void visitEnemigo(Enemigo e) {
 		e.interactuarConProtagonista(); 
-		System.out.print("GGG");
 	}
 
 	@Override
