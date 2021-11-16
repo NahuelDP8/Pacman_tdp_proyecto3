@@ -8,7 +8,7 @@ import Factories.FactoryMapaGrillaNaruto;
 public class Escapando implements EstadoEnemigo{
 	
 	protected Enemigo miEnemigo; 
-	private ImageIcon miImagen=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/debilAzul.png"));
+	private ImageIcon miImagen=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/debilAzul.gif"));
 	
 	public Escapando(Enemigo enemigo) {
 		miEnemigo = enemigo; 
