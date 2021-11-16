@@ -10,10 +10,11 @@ import Entities.PuntoGrande;
 import Entities.ZonaEnemigo;
 
 public class FrutaVisitor implements Visitor {
-	private Fruta miEntidad;
+	
+	private Fruta miFruta;
 	
 	public FrutaVisitor(Fruta ent) {
-		miEntidad = ent;
+		miFruta = ent;
 	}
 	@Override
 	public void visitPunto(Punto p) {
@@ -35,13 +36,13 @@ public class FrutaVisitor implements Visitor {
 
 	@Override
 	public void visitProtagonista(Protagonista p) {
-		miEntidad.sacarEntidad(miEntidad);//Cambiar dsps de singleton
-		p.sumarPuntos(miEntidad.miPuntaje());
+		miFruta.afectar();
+		p.sumarPuntos(miFruta.getPuntaje()); 
+
 	}
 
 	@Override
 	public void visitPared(Pared p) {
-		// TODO Auto-generated method stub
 
 	}
 

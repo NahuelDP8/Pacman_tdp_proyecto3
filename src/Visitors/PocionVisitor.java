@@ -11,9 +11,9 @@ import Entities.PuntoGrande;
 import Entities.ZonaEnemigo;
 
 public class PocionVisitor implements Visitor {
-	private Entidad miEntidad;
-	public PocionVisitor(Entidad ent) {
-		miEntidad = ent;
+	private Pocion miPocion;
+	public PocionVisitor(Pocion ent) {
+		miPocion = ent;
 	}
 	@Override
 	public void visitPunto(Punto p) {
@@ -35,7 +35,7 @@ public class PocionVisitor implements Visitor {
 
 	@Override
 	public void visitProtagonista(Protagonista p) {
-		miEntidad.sacarEntidad(miEntidad);//Cambiar dsps de singleton
+		miPocion.afectar(); 
 	}
 
 	@Override

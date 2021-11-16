@@ -6,7 +6,7 @@ public class Nivel1 extends Nivel{
 	public Nivel1() {}
 
 	public int sleepProtagonista() {
-		return 20;
+		return 30;
 	}
 	
 	public int sleepFantasmas() {
@@ -18,7 +18,7 @@ public class Nivel1 extends Nivel{
 	}
 
 	public int sleepPocion() {
-		return 0;
+		return 5000;
 	}
 
 	public int sleepPowerPellets() {

@@ -7,11 +7,11 @@ import Visitors.Visitor;
 import Mapas.MapaGrilla; 
 public class Fruta extends Mejora{
 
-	private final int PUNTAJE=250;
+	private final static int miPuntaje = 300; 
+
 	public Fruta(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
 		super(p, anc, alt,img, grilla);
 		v = new FrutaVisitor(this);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -21,7 +21,15 @@ public class Fruta extends Mejora{
 	}
 	
 	public int miPuntaje() {
-		return PUNTAJE;
+		return miPuntaje;
+	}
+
+	public void afectar() {
+		sacarEntidad(this); 
+	}
+
+	public int getPuntaje() {
+		return miPuntaje;
 	}
 
 }

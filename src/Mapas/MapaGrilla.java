@@ -11,6 +11,7 @@ import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
 import Nivel.Nivel;
+import Timer.PotionVelocidadTimer;
 import Timer.PowerPelletsTimer;
 
 import java.awt.Shape;
@@ -34,6 +35,7 @@ abstract public class MapaGrilla {
 	protected final int MOVER_DERECHA = 4;
 	protected int cantPuntos;
 	protected PowerPelletsTimer ppTimer; 
+	protected PotionVelocidadTimer pvTimer; 
 	
 	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica) {
 		//Asignamos imagen de fondo del mapa
@@ -378,6 +380,24 @@ abstract public class MapaGrilla {
 
 	private  void setearProtagonistaAPosicionInicial() {
 		miProtagonista.setPos(new PairTupla(posInicialProtagonista.getX(),posInicialProtagonista.getY()));
+	}
+
+	public void normalizarVelocidadPacman() {
+		miLogica.actualizarSleepProtagonista(miNivel.sleepProtagonista());
+	}
+
+	public void activarSuperVelocidadDePacman(int velocidad) {
+		pvTimer = PotionVelocidadTimer.getPotionVelocidadTimer(this); 
+		if(!pvTimer.isAlive()) {
+			pvTimer.start();
+			miLogica.actualizarSleepProtagonista(velocidad);
+		}else {
+			pvTimer.adherirTiempoAdicional(miNivel.sleepPocion());
+		}
+	}
+
+	public int getSleepPocionVelocidad() {
+		return miNivel.sleepPocion();	
 	}
 
 

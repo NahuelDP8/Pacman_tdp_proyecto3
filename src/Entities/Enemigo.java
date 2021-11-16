@@ -3,10 +3,8 @@ package Entities;
 import EnemigosStates.*;
 import Visitors.EnemigoVisitor;
 import Visitors.Visitor;
-
 import java.awt.Image;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import Mapas.MapaGrilla;
 
