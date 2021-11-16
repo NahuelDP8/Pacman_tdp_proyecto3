@@ -15,28 +15,27 @@ import Factories.FactoryEnemigo;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
 
-public class Mapa1 extends MapaGrilla {
+public class Mapa2 extends MapaGrilla {
 	protected int ancho;
 	protected int altura;
 	protected Mejora fruta;
 	protected Mejora pocion;
 	
-	public Mapa1(ImageIcon fondo, FactoryProtagonista fp, FactoryEnemigo fe, int ancho, int altura, Logica miLogica) {
+	public Mapa2(ImageIcon fondo, FactoryProtagonista fp, FactoryEnemigo fe, int ancho, int altura, Logica miLogica) {
 		super(fondo, fp, fe, ancho, altura, miLogica);
-		anchoMapa = 500;
-		altoMapa = 540;
-		construccionZonasGrilla(5,6);
-		paredes = new String[]{"50 45 55 38","136 45 72 38","240 0 20 83", "292 45 72 38","396 45 56 38", //Primer fila
-				"50 116 55 18", "138 116 19 120", "188 116 124 18", "344 116 20 121", "396 116 56 18",//Segunda fila
-				"0 165 105 72", "157 165 52 20","240 134 20 50","293 165 52 20", "396 165 105 72", "189 218 124 72",// Tercer fila
-				"0 270 105 72","137 270 20 72", "189 323 124 19", "344 270 20 72", "396 270 105 72",// Cuarta fila
-				"49 372 56 18","137 372 72 18","241 343 20 47","293 372 72 18","396 372 56 18",// Quinta fila
-				"0 423 52 20","85 393 20 50", "137 423 20 50", "189 423 124 20", "344 423 20 50","396 393 20 50","447 423 53 20",//Sexta fila
-				"49 479 160 19", "241 449 20 49", "293 479 160 19",//Septima fila
-				"0 0 500 12","0 528 500 12","0 0 16 237", "0 270 16 270", "483 0 18 237", "483 270 18 270"};//Bordes
+		anchoMapa = 680;
+		altoMapa = 680;
+		construccionZonasGrilla(8,8);
+		posInicialProtagonista = new PairTupla(300, 14);
+		paredes = new String[]{"47 45 10 290","90 45 31 314","154 45 32 249 ", "186 45 150 12", "369 45 159 12","496 45 32 249","561 45 32 314","626 45 10 290", //Primera fila
+				"219 88 244 11","186 132 277 11","219 176 277 10","219 219 244 11",//Arriba del centro
+				"186 263 150 30","369 263 159 30","219 263 31 200", "455 263 31 200","283 326 139 75", "219 434 117 29","369 434 117 29",//Centro del mapa
+				"47 368 10 20","47 392 32 243","112 392 10 243","90 326 96 33","155 326 31 309",//Esquina inferior izquierda
+				"219 463 10 172", "262 496 181 12","262 541 214 10","262 584 181 10","229 627 108 10","370 627 106 10", "476 463 10 172",//Abajo del centro
+				"626 368 10 20","583 392 53 243","519 326 31 309", "519 326 74 33",//Esquina inferior derecha
+				"0 0 14 335","0 368 14 312","0 0 336 14", "369 0 311 14", "0 668 335 14","369 668 335 12","669 0 11 335","669 368 11 312"};//Bordes
 		construccionParedesLimitaciones();
 		
-		posInicialProtagonista = new PairTupla(189, 290);
 		agregarMejoras();
 		agregarFantasmas();
 		agregarPortales();
@@ -64,43 +63,29 @@ public class Mapa1 extends MapaGrilla {
 		int x,y;
 		cantPuntos = 0;
 		agregarPowerPellets();
-		for(int i = 1; i<21;i++) {
-			for (int j = 0; j<22;j++) {
+		for(int i = 1; i<28;i++) {
+			for (int j = 0; j<28;j++) {
 				x = 9+i*24;
 				y = 22+j*24;
-				if(!(x>155 &&  x<345 && y>183 && y<322)) {
+				if(!(x>250 &&  x<455 && y>293 && y<434)) {
 					m = fabricaMejora.crearPunto(new PairTupla(x,y), 10,10,this);
 					ubicarPunto(m);
 				}
 			}
 		}
 	}
-	protected void agregarFantasmas() {
-		 Enemigo azul = fabricaEnem.crearAzul(new PairTupla(365,350),30,30,this);
-		 this.misEnemigos.add(azul);
-		 añadirEntidad(azul.getEntidad());
-		 Enemigo naranja = fabricaEnem.crearNaranja(new PairTupla(365,50),30,30,this);
-		 this.misEnemigos.add(naranja);
-		 añadirEntidad(naranja.getEntidad());
-		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(105,350),30,30,this);
-		 this.misEnemigos.add(rosa);
-		 añadirEntidad(rosa.getEntidad());
-		 Enemigo rojo = fabricaEnem.crearRojo(new PairTupla(105,50),30,30,this);
-		 this.misEnemigos.add(rojo);
-		 añadirEntidad(rojo.getEntidad());
-	}
 	private void agregarPowerPellets() {
 		Mejora m;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(30,20),22,22,this);
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,20),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(460,20),22,22,this);
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(630,20),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(30,500),22,22,this);
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,630),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(460,500),22,22,this);
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(630,630),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
 	}
@@ -136,7 +121,6 @@ public class Mapa1 extends MapaGrilla {
 		}
 	}
 	protected void construccionParedesLimitaciones() {
-		System.out.print(false);
 		int xPared,yPared,anchoPared,largoPared;
 		Entidad p;
 		for(String pared:paredes) {
@@ -149,15 +133,36 @@ public class Mapa1 extends MapaGrilla {
 			actualizarEntidad(p);
 		}
 	}
-
+	protected void agregarFantasmas() {
+		 Enemigo azul = fabricaEnem.crearAzul(new PairTupla(600,14),30,30,this);
+		 this.misEnemigos.add(azul);
+		 añadirEntidad(azul.getEntidad());
+		 Enemigo naranja = fabricaEnem.crearNaranja(new PairTupla(16,638),30,30,this);
+		 this.misEnemigos.add(naranja);
+		 añadirEntidad(naranja.getEntidad());
+		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(600,638),30,30,this);
+		 this.misEnemigos.add(rosa);
+		 añadirEntidad(rosa.getEntidad());
+		 Enemigo rojo = fabricaEnem.crearRojo(new PairTupla(636,498),30,30,this);
+		 this.misEnemigos.add(rojo);
+		 añadirEntidad(rojo.getEntidad());
+	}
 	public void agregarPortales() {
 		//Hay que posicionarlos bien 
-		Portal portalIzquierda = new Portal(new PairTupla(0,237),1,30,null,this);
-		zonas [2][0].setEntidad(portalIzquierda);
-		Portal portalDerecha  = new Portal(new PairTupla(499,237),1,30,null,this);
-		zonas [2][4].setEntidad(portalDerecha);
+		Portal portalIzquierda = new Portal(new PairTupla(0,335),1,30,null,this);
+		Portal portalDerecha  = new Portal(new PairTupla(679,335),1,30,null,this);
+		Portal portalArriba = new Portal(new PairTupla(336,0),30,1,null,this);
+		Portal portalAbajo  = new Portal(new PairTupla(336,679),30,1,null,this);
 		portalIzquierda.setMiDestino(portalDerecha.getX()-30,0);
-		portalDerecha.setMiDestino(portalIzquierda.getX()+29,0);
+		portalDerecha.setMiDestino(portalIzquierda.getX()+4,0);
+		portalArriba.setMiDestino(0,portalAbajo.getY()-30);
+		portalAbajo.setMiDestino(0,portalArriba.getY()+14);
+		
+		actualizarEntidad(portalIzquierda);
+		actualizarEntidad(portalDerecha);
+		actualizarEntidad(portalAbajo);
+		actualizarEntidad(portalArriba);
+		
 	}
 	
 	public void agregarFruta() {

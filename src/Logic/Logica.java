@@ -25,7 +25,7 @@ public class Logica {
 		miMapa = miFabrica.crearMapa(this);
 		miReloj = new Timer(this);
 		nivelSiguiente(n);
-		miGUI.añadirFondo(); 
+		miGUI.añadirFondo(miMapa.getImage()); 
 	}
 	
 	public static Logica getLogic(GUI_MAPA g, FactoryMapaGrilla f, Nivel n) {
