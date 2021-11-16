@@ -3,6 +3,7 @@ package Entities;
 import EnemigosStates.*;
 import Visitors.EnemigoVisitor;
 import Visitors.Visitor;
+import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import Mapas.MapaGrilla;
@@ -31,6 +32,9 @@ public abstract class Enemigo extends Personaje{
 	
 	public void changeState(EstadoEnemigo e) {
 		miEstado = e;
+		Image EscalarFoto = miEstado.getImagen().getImage().getScaledInstance(ancho,altura, Image.SCALE_DEFAULT);
+		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
+		miEntidad.setIcon(FotoEscalada);
 	}
 	
 	public void colisionPared() {
@@ -101,6 +105,31 @@ public abstract class Enemigo extends Personaje{
 		return distancia; 
 	}
 	
+	private ArrayList<Integer> movimientosAEstudiar(){
+		ArrayList<Integer> toReturn  = new ArrayList<Integer>();
+		this.validarMovimientos();
+		toReturn.add(MOVER_ABAJO);
+		toReturn.add(MOVER_ARRIBA);
+		toReturn.add(MOVER_IZQUIERDA);
+		toReturn.add(MOVER_DERECHA);
+		int movActual = this.getMovimientoActual(); 
+		if(movActual == MOVER_DERECHA) { 
+			toReturn.remove(MOVER_IZQUIERDA-1);
+			this.invalidarMovimiento(MOVER_IZQUIERDA);
+		}else if (movActual == MOVER_IZQUIERDA) {			
+			toReturn.remove(MOVER_DERECHA-1);
+			this.invalidarMovimiento(MOVER_DERECHA);
+		}else if (movActual == MOVER_ARRIBA) {
+			toReturn.remove(MOVER_ABAJO-1);
+			this.invalidarMovimiento(MOVER_ABAJO);
+		}else if (movActual == MOVER_ABAJO) {
+			toReturn.remove(MOVER_ARRIBA-1);
+			this.invalidarMovimiento(MOVER_ARRIBA);
+		}	
+		
+		return toReturn; 
+	}
+	
 	//Todos los enemigos a priori, tendrán el mismo mecanismo de escape, dependiendo de la posición de pacman 
 	public void realizarEscape() {
 		int movFinal = movimientoActual;
@@ -109,12 +138,7 @@ public abstract class Enemigo extends Personaje{
 		int posX = posicion.getX();
 		int posY = posicion.getY(); 
 		PairTupla posicionProtagonista = miGrilla.getPosicionActualProtagonista();
-		ArrayList<Integer> movimientos = new ArrayList<Integer>(); 
-		movimientos.add(MOVER_ARRIBA);
-		movimientos.add(MOVER_ABAJO);
-		movimientos.add(MOVER_IZQUIERDA);
-		movimientos.add(MOVER_DERECHA); 
-		
+		ArrayList<Integer> movimientos = this.movimientosAEstudiar();
 		miGrilla.realizarMovimientoFantasma(this, movimientos);
 		
 		for(int i =0; i<=movimientos.size()-1; i++) {	
@@ -160,5 +184,56 @@ public abstract class Enemigo extends Personaje{
 	}
 
 	public void retornarZonaEnemigo() {
+		int movFinal = movimientoActual;
+		double disMenor = Double.MAX_VALUE;
+		double disAux = 0;
+		int posX = posicion.getX();
+		int posY = posicion.getY(); 
+		PairTupla posicionCelda = new PairTupla(229,186);
+		ArrayList<Integer> movimientos = this.movimientosAEstudiar();
+		
+		miGrilla.realizarMovimientoFantasma(this, movimientos);
+		
+		if(posX == posicionCelda.getX() && posY == posicionCelda.getY())
+			changeState(new Persiguiendo(this));
+		else {
+			
+			for(int i =0; i<=movimientos.size()-1; i++) {	
+				int movAux = movimientos.get(i); 
+				if(movAux == MOVER_DERECHA && movDerecha) {
+					disAux = distanciaEntrePuntos(new PairTupla(posX+ velocidad, posY),posicionCelda);
+					if(disAux<=disMenor) {
+						disMenor= disAux; 
+						movFinal = movAux;
+					}
+				}else if(movAux == MOVER_IZQUIERDA && movIzquierda) {
+					disAux = distanciaEntrePuntos(new PairTupla(posX-velocidad, posY),posicionCelda);
+					if(disAux<=disMenor) {
+						disMenor= disAux; 
+						movFinal = movAux;
+					}
+				}else if(movAux== MOVER_ARRIBA && movArriba) {
+					disAux = distanciaEntrePuntos(new PairTupla(posX, posY-velocidad),posicionCelda);
+					if(disAux<=disMenor) {
+						disMenor= disAux; 
+						movFinal = movAux;
+					}
+				}else if(movAux == MOVER_ABAJO && movAbajo) {
+					disAux = distanciaEntrePuntos(new PairTupla(posX, posY+velocidad),posicionCelda);
+					if(disAux<=disMenor) {
+						disMenor= disAux; 
+						movFinal = movAux;
+					}
+				}
+			}
+		}
+		this.validarMovimientos();
+		//Ahora lo que hacemos es movernos
+		this.realizarMovimiento(movFinal);
+		movimientoActual = movFinal; 
+	}
+
+	public void setMovimientoActual(int mov) {
+		movimientoActual = mov;
 	}
 }

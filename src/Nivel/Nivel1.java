@@ -21,7 +21,6 @@ public class Nivel1 extends Nivel{
 		return 5000;
 	}
 
-	
 	public int sleepPowerPellets() {
 		return 10000;
 	}

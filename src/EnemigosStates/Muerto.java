@@ -2,9 +2,11 @@ package EnemigosStates;
 
 import javax.swing.ImageIcon;
 import Entities.Enemigo;
+import Factories.FactoryMapaGrillaNaruto;
 
 public class Muerto implements EstadoEnemigo{
 	protected Enemigo miEnemigo; 
+	private ImageIcon miImagen=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/muerte.png"));
 	public Muerto(Enemigo e) {
 		miEnemigo = e; 
 		//Deberiamos actualizar la imagen del enemigo particular
@@ -17,7 +19,7 @@ public class Muerto implements EstadoEnemigo{
 
 	@Override
 	public ImageIcon getImagen() {
-		return null;
+		return miImagen;
 	}
 
 	@Override

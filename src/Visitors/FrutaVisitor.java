@@ -10,6 +10,7 @@ import Entities.PuntoGrande;
 import Entities.ZonaEnemigo;
 
 public class FrutaVisitor implements Visitor {
+	
 	private Fruta miFruta;
 	
 	public FrutaVisitor(Fruta ent) {
@@ -37,6 +38,7 @@ public class FrutaVisitor implements Visitor {
 	public void visitProtagonista(Protagonista p) {
 		miFruta.afectar();
 		p.sumarPuntos(miFruta.getPuntaje()); 
+
 	}
 
 	@Override

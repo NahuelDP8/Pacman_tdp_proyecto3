@@ -18,7 +18,7 @@ public class PowerPelletsTimer extends Thread  {
 		if(hiloPP == null) 
 			hiloPP = new PowerPelletsTimer(miMapa);
 		sleepDePP = miMapa.getSleepPowerPellets();
-		return hiloPP; 
+		return hiloPP;
 	}
 	
 	public void run() {
