@@ -2,7 +2,6 @@ package EnemigosStates;
 
 import javax.swing.ImageIcon;
 import Entities.Enemigo;
-import Factories.FactoryMapaGrillaNaruto;
 
 public class Persiguiendo implements EstadoEnemigo{
 	protected Enemigo miEnemigo; 

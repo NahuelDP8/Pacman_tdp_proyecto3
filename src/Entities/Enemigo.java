@@ -5,7 +5,6 @@ import Visitors.EnemigoVisitor;
 import Visitors.Visitor;
 
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;

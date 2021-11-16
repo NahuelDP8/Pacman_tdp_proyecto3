@@ -2,7 +2,6 @@ package Mapas;
 
 import javax.swing.ImageIcon;
 import Entities.Enemigo;
-import Entities.EnemigoRojo;
 import Entities.Entidad;
 import Entities.PairTupla;
 import Entities.Protagonista;
@@ -67,10 +66,10 @@ abstract public class MapaGrilla {
 		 Enemigo naranja = fabricaEnem.crearNaranja(new PairTupla(365,50),30,30,this);
 		 this.misEnemigos.add(naranja);
 		 añadirEntidad(naranja.getEntidad());
-		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(365,350),30,30,this);
+		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(105,350),30,30,this);
 		 this.misEnemigos.add(rosa);
 		 añadirEntidad(rosa.getEntidad());
-		 Enemigo rojo = fabricaEnem.crearRojo(new PairTupla(365,50),30,30,this);
+		 Enemigo rojo = fabricaEnem.crearRojo(new PairTupla(105,50),30,30,this);
 		 this.misEnemigos.add(rojo);
 		 añadirEntidad(rojo.getEntidad());
 	}
@@ -126,8 +125,7 @@ abstract public class MapaGrilla {
 				if(l.contains(z) && !z.getEntidades().contains(e)) {
 					z.setEntidad(e);
 				}else
-					z.remove(e);
-					
+					z.remove(e);	
 			}
 		}
 	}

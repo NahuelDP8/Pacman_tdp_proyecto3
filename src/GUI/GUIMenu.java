@@ -28,7 +28,6 @@ import Factories.FactoryMapaGrillaGoku;
 import Factories.FactoryMapaGrillaNaruto;
 import Factories.FactoryNiveles;
 import Nivel.Nivel;
-import ranking.Player;
 import ranking.TopPlayers;
 
 import javax.swing.border.BevelBorder;

@@ -2,7 +2,6 @@ package Entities;
 
 import javax.swing.ImageIcon;
 
-import Visitors.ProtagonistaVisitor;
 import Visitors.PuntoVisitor;
 import Visitors.Visitor;
 import Mapas.MapaGrilla; 

@@ -4,10 +4,7 @@ package Logic;
 import GUI.GUI_MAPA;
 import Mapas.MapaGrilla;
 import Nivel.Nivel;
-import Timer.PowerPelletsTimer;
 import Timer.Timer;
-
-import java.util.ArrayList;
 
 import Entities.EntidadGrafica;
 import Factories.FactoryMapaGrilla;

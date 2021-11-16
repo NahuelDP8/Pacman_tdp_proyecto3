@@ -1,6 +1,5 @@
 package Factories;
 
-import javax.swing.ImageIcon;
 import Nivel.Nivel;
 import Nivel.Nivel1;
 import Nivel.Nivel2;
