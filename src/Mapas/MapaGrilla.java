@@ -33,6 +33,7 @@ abstract public class MapaGrilla {
 	protected final int MOVER_ARRIBA = 2;
 	protected final int MOVER_IZQUIERDA = 3;
 	protected final int MOVER_DERECHA = 4;
+	
 	protected int cantPuntos;
 	protected PowerPelletsTimer ppTimer; 
 	protected PotionVelocidadTimer pvTimer; 
@@ -78,7 +79,6 @@ abstract public class MapaGrilla {
 			j=0;
 			i++;
 		}
-
 	}
 	
 	abstract protected void construccionParedesLimitaciones();
@@ -239,19 +239,6 @@ abstract public class MapaGrilla {
 
 	abstract public void agregarPocion(); 
 	
-	public void agregarEnemigoNaranja(){
-		misEnemigos.add(fabricaEnem.crearNaranja(null, ancho, altura,this));
-	}
-	public void agregarEnemigoAzul() {
-		misEnemigos.add(fabricaEnem.crearAzul(null, ancho, altura,this));
-	}
-	public void agregarEnemigoRojo() {
-		misEnemigos.add(fabricaEnem.crearRojo(null, ancho, altura,this));
-	}
-	public void agregarEnemigoRosa() {
-		misEnemigos.add(fabricaEnem.crearRosa(null, ancho, altura,this));
-	}
-
 	abstract public void quitarPocion() ;
 	
 	abstract public void quitarFruta() ;
@@ -308,10 +295,6 @@ abstract public class MapaGrilla {
 	}
 	public int getAnchoProtagonista() {
 		return miProtagonista.getAncho();
-	}
-	public PairTupla getPosicionRojo() {
-
-		return misEnemigos.get(3).getPos();
 	}
 
 	public void añadirEntidad(EntidadGrafica miEntidad) {

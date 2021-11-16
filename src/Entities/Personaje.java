@@ -24,6 +24,9 @@ abstract public class Personaje extends Entidad{
 	public int getArriba() {
 		return MOVER_ARRIBA;
 	}
+	public int getVelocidad() {
+		return velocidad;
+	}
 	public Personaje(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
 		super(p, anc, alt,img, grilla);
 		cargaPortal = 0;

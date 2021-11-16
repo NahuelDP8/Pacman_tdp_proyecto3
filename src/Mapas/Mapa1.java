@@ -76,7 +76,10 @@ public class Mapa1 extends MapaGrilla {
 		}
 	}
 	protected void agregarFantasmas() {
-		 Enemigo azul = fabricaEnem.crearAzul(new PairTupla(365,350),30,30,this);
+		
+		 Enemigo rojo = fabricaEnem.crearRojo(new PairTupla(105,50),30,30,this);
+		
+		 Enemigo azul = fabricaEnem.crearAzul(new PairTupla(365,350),30,30,this,rojo);
 		 this.misEnemigos.add(azul);
 		 añadirEntidad(azul.getEntidad());
 		 Enemigo naranja = fabricaEnem.crearNaranja(new PairTupla(365,50),30,30,this);
@@ -85,7 +88,6 @@ public class Mapa1 extends MapaGrilla {
 		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(105,350),30,30,this);
 		 this.misEnemigos.add(rosa);
 		 añadirEntidad(rosa.getEntidad());
-		 Enemigo rojo = fabricaEnem.crearRojo(new PairTupla(105,50),30,30,this);
 		 this.misEnemigos.add(rojo);
 		 añadirEntidad(rojo.getEntidad());
 	}
