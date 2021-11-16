@@ -57,11 +57,14 @@ public class GUI_MAPA{
 	
 	public void añadirEntidadGrafica(EntidadGrafica entidad) {
 		frame.getContentPane().add(entidad);
+		frame.getContentPane().setComponentZOrder(entidad, 0);
+		
 	}
 	
-	public void actualizarEntidad(EntidadGrafica entidad, int x, int y) {
+	public void actualizarEntidad(EntidadGrafica entidad, int x, int y,boolean frente) {
 		entidad.setLocation(x, y+155);
-		frame.getContentPane().setComponentZOrder(entidad, 0);
+		if(frente)
+			frame.getContentPane().setComponentZOrder(entidad, 0);
 	}
 	
 	public void actualizarPuntos(int p) {

@@ -135,7 +135,7 @@ abstract public class MapaGrilla {
 	public void actualizarEntidad(Entidad e) {
 		ArrayList<Zona> zonasActivasDePro = mapeoPosEntidadAZona(e, 0);
 		actualizarZonas(zonasActivasDePro, e);
-		miLogica.actualizarEntidad(e.getEntidad(),e.getX(),e.getY());
+		miLogica.actualizarEntidad(e.getEntidad(),e.getX(),e.getY(),false);
 		
 	}
 
@@ -331,6 +331,7 @@ abstract public class MapaGrilla {
 
 	public void añadirEntidad(EntidadGrafica miEntidad) {
 		miLogica.añadirEntidad(miEntidad);	
+	
 	}
 
 	public void restarPunto() {

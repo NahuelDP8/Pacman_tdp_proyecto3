@@ -28,8 +28,8 @@ public class Mapa1 extends MapaGrilla {
 		
 		posInicialProtagonista = new PairTupla(189, 290);
 		
-		agregarFantasmas();
 		agregarMejoras();
+		agregarFantasmas();
 		agregarPortales();
 		agregarProtagonista();
 
@@ -45,8 +45,8 @@ public class Mapa1 extends MapaGrilla {
 		miProtagonista.setPos(new PairTupla(189, 290));
 		enemigo.setPos(new PairTupla(365,50));
 		
-		miLogica.actualizarEntidad(enemigo.getEntidad(),enemigo.getX(),enemigo.getY());
-		miLogica.actualizarEntidad(miProtagonista.getEntidad(),miProtagonista.getX(),miProtagonista.getY());
+		miLogica.actualizarEntidad(enemigo.getEntidad(),enemigo.getX(),enemigo.getY(),false);
+		miLogica.actualizarEntidad(miProtagonista.getEntidad(),miProtagonista.getX(),miProtagonista.getY(),false);
 		
 		miLogica.pintar();
 	}
@@ -69,19 +69,19 @@ public class Mapa1 extends MapaGrilla {
 	private void agregarPowerPellets() {
 		Mejora m;
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(30,20),22,22,this);
-		miLogica.actualizarEntidad(m.getEntidad(), m.getX(), m.getY());
+		miLogica.actualizarEntidad(m.getEntidad(), m.getX(), m.getY(), true);
 		zonas[0][0].setEntidad(m);
 		cantPuntos++;
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(460,20),22,22,this);
-		miLogica.actualizarEntidad(m.getEntidad(), m.getX(), m.getY());
+		miLogica.actualizarEntidad(m.getEntidad(), m.getX(), m.getY(),true);
 		zonas[0][4].setEntidad(m);
 		cantPuntos++;
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(30,500),22,22,this);
-		miLogica.actualizarEntidad(m.getEntidad(), m.getX(), m.getY());
+		miLogica.actualizarEntidad(m.getEntidad(), m.getX(), m.getY(),true);
 		zonas[5][0].setEntidad(m);
 		cantPuntos++;
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(460,500),22,22,this);
-		miLogica.actualizarEntidad(m.getEntidad(), m.getX(), m.getY());
+		miLogica.actualizarEntidad(m.getEntidad(), m.getX(), m.getY(),true);
 		zonas[5][4].setEntidad(m);
 		cantPuntos++;
 	}
@@ -108,7 +108,7 @@ public class Mapa1 extends MapaGrilla {
 			cantPuntos++;
 			for(Zona z:misZonas)
 				z.setEntidad(m);
-			miLogica.actualizarEntidad(m.getEntidad(),m.getX(),m.getY());
+			miLogica.actualizarEntidad(m.getEntidad(),m.getX(),m.getY(),true);
 			
 		}else {
 			miLogica.quitarDeLaGui(m.getEntidad());
@@ -262,12 +262,12 @@ public class Mapa1 extends MapaGrilla {
 	
 	public void agregarFruta() {
 		zonas[2][2].setEntidad(fruta);
-		miLogica.actualizarEntidad(fruta.getEntidad(),fruta.getX(),fruta.getY());	
+		miLogica.actualizarEntidad(fruta.getEntidad(),fruta.getX(),fruta.getY(),false);	
 	}
 	
 	public void agregarPocion() {
 		zonas[2][2].setEntidad(pocion);
-		miLogica.actualizarEntidad(pocion.getEntidad(),pocion.getX(),pocion.getY());	
+		miLogica.actualizarEntidad(pocion.getEntidad(),pocion.getX(),pocion.getY(),false);	
 	}
 
 	@Override

@@ -103,8 +103,8 @@ public class Logica {
 		
 	}
 
-	public void actualizarEntidad(EntidadGrafica entidad, int x, int y) {
-		miGUI.actualizarEntidad(entidad,x,y);
+	public void actualizarEntidad(EntidadGrafica entidad, int x, int y,boolean frente) {
+		miGUI.actualizarEntidad(entidad,x,y,frente);
 	}
 
 	public void desactivarPociones() {
