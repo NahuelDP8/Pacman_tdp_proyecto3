@@ -24,7 +24,6 @@ public class ProtagonistaVisitor implements Visitor {
 
 	@Override
 	public void visitEnemigo(Enemigo e) {
-		System.out.println(e.getClass());
 		e.interactuarConProtagonista(); 
 	}
 

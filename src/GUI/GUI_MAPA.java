@@ -116,7 +116,7 @@ public class GUI_MAPA{
 		JLFondoMapa = new JLabel("");
 		JLFondoMapa.setBounds(0, 154, 500, 540);
 		frame.getContentPane().add(JLFondoMapa);
-		JLFondoMapa.setIcon(new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/fondoauxarreglo.png")));
+		JLFondoMapa.setIcon(new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/fondo.png")));
 	}
 	public void captar() {
 		if(izquierda)

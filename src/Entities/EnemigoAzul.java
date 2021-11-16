@@ -7,10 +7,13 @@ import javax.swing.ImageIcon;
 import Mapas.MapaGrilla;
 
 public class EnemigoAzul extends Enemigo{
-
-	public EnemigoAzul(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
+ private boolean bMov;
+ private Enemigo E_Rojo;
+	public EnemigoAzul(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla,Enemigo rojo) {
 		super(p, anc, alt,img, grilla);
-		// TODO Auto-generated constructor stub
+		velocidad=4;
+		E_Rojo=rojo;
+		bMov=true;
 	}
 
 	private ArrayList<Integer> movimientosAEstudiar(){
@@ -38,6 +41,11 @@ public class EnemigoAzul extends Enemigo{
 		return toReturn; 
 	}
 	
+	private boolean cambiarBooleanoMov() {
+		bMov=(bMov==false);
+		return (bMov);
+	}
+	
 	public void perseguirProtagonista() {
 		int movFinal = movimientoActual;
 		double disMenor = Double.MAX_VALUE;
@@ -45,7 +53,7 @@ public class EnemigoAzul extends Enemigo{
 		int posX = posicion.getX();
 		int posY = posicion.getY(); 
 		PairTupla posicionProtagonista = miGrilla.getPosicionActualProtagonista();
-		PairTupla posicionBlinky = miGrilla.getPosicionRojo();
+		PairTupla posicionBlinky = E_Rojo.getPos();
 		int movimientoProtagonista = miGrilla.getMovimientoProtagonista();
 		int anchoProtagonista = miGrilla.getAnchoProtagonista();
 		//Inky persigue una posicion que depende de la posicion de Blinky y el protagonista.

@@ -33,6 +33,7 @@ abstract public class MapaGrilla {
 	protected final int MOVER_ARRIBA = 2;
 	protected final int MOVER_IZQUIERDA = 3;
 	protected final int MOVER_DERECHA = 4;
+	
 	protected int cantPuntos;
 	protected PowerPelletsTimer ppTimer; 
 	protected PotionVelocidadTimer pvTimer; 
@@ -62,9 +63,6 @@ abstract public class MapaGrilla {
 	}
 	
 	protected void agregarFantasmas() {
-		 Enemigo azul = fabricaEnem.crearAzul(new PairTupla(365,350),30,30,this);
-		 this.misEnemigos.add(azul);
-		 añadirEntidad(azul.getEntidad());
 		 Enemigo naranja = fabricaEnem.crearNaranja(new PairTupla(365,50),30,30,this);
 		 this.misEnemigos.add(naranja);
 		 añadirEntidad(naranja.getEntidad());
@@ -74,6 +72,9 @@ abstract public class MapaGrilla {
 		 Enemigo rojo = fabricaEnem.crearRojo(new PairTupla(105,50),30,30,this);
 		 this.misEnemigos.add(rojo);
 		 añadirEntidad(rojo.getEntidad());
+		 Enemigo azul = fabricaEnem.crearAzul(new PairTupla(365,350),30,30,this,rojo);
+		 this.misEnemigos.add(azul);
+		 añadirEntidad(azul.getEntidad());
 	}
 	
 	public int getSleepPowerPellets() {
@@ -254,19 +255,6 @@ abstract public class MapaGrilla {
 
 	abstract public void agregarPocion(); 
 	
-	public void agregarEnemigoNaranja(){
-		misEnemigos.add(fabricaEnem.crearNaranja(null, ancho, altura,this));
-	}
-	public void agregarEnemigoAzul() {
-		misEnemigos.add(fabricaEnem.crearAzul(null, ancho, altura,this));
-	}
-	public void agregarEnemigoRojo() {
-		misEnemigos.add(fabricaEnem.crearRojo(null, ancho, altura,this));
-	}
-	public void agregarEnemigoRosa() {
-		misEnemigos.add(fabricaEnem.crearRosa(null, ancho, altura,this));
-	}
-
 	abstract public void quitarPocion() ;
 	
 	abstract public void quitarFruta() ;
@@ -323,10 +311,6 @@ abstract public class MapaGrilla {
 	}
 	public int getAnchoProtagonista() {
 		return miProtagonista.getAncho();
-	}
-	public PairTupla getPosicionRojo() {
-
-		return misEnemigos.get(3).getPos();
 	}
 
 	public void añadirEntidad(EntidadGrafica miEntidad) {
