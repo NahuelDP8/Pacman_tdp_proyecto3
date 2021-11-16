@@ -33,4 +33,10 @@ public class Nivel2 extends Nivel {
 		return 6000;
 	}
 
+	@Override
+	public int getNivel() {
+		// TODO Auto-generated method stub
+		return 2;
+	}
+
 }

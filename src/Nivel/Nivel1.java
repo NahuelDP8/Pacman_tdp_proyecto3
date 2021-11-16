@@ -5,6 +5,9 @@ public class Nivel1 extends Nivel{
 	
 	public Nivel1() {}
 
+	public int getNivel(){
+		return 1;
+	}
 	public int sleepProtagonista() {
 		return 30;
 	}

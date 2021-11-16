@@ -30,4 +30,8 @@ public class Nivel3 extends Nivel{
 	public int sleepPowerPellets() {
 		return 3000;
 	}
+	@Override
+	public int getNivel() {
+		return 3;
+	}
 }
