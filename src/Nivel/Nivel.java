@@ -11,8 +11,6 @@ abstract public class Nivel {
 	protected MapaGrilla miMapa;
 	
 	//Constructor
-	public Nivel () {
-	}
 	
 	public void setMapa(MapaGrilla m) {
 		miMapa = m;
@@ -33,7 +31,7 @@ abstract public class Nivel {
 	public void aumentarFanstamaRojo() {
 		miMapa.agregarEnemigoRojo();
 	}
-	
+	abstract public int getNivel();
 	abstract public int sleepProtagonista();
 	abstract public int sleepFantasmas();
 	abstract public int sleepFruta(); 

@@ -34,6 +34,7 @@ public class GUI_MAPA{
 	private JLabel JLPuntaje;
 	private TopPlayers topPlayers;
 	private JLabel JLNombre = new JLabel();
+	private JLabel JLNivel = new JLabel();
 	private boolean izquierda, derecha, abajo, arriba;
 	private JLabel JLVIDAS1, JLVIDAS2,JLVIDAS3;
 	/**
@@ -42,6 +43,7 @@ public class GUI_MAPA{
 	public GUI_MAPA(FactoryMapaGrilla f, Nivel nivel,String nom, TopPlayers TP) {
 		initialize();
 		JLNombre.setText("Nombre: "+ nom);
+		JLNivel.setText("Nivel: "+ nivel.getNivel());
 		topPlayers=TP;
 		crearTablaHighScore();
 		log = log.getLogic(this, f, nivel);
@@ -248,10 +250,10 @@ public class GUI_MAPA{
 		JLPlayerPuntaje.setBounds(609, 105, 130, 40);
 		panel.add(JLPlayerPuntaje);
 		
-		JLabel JLNIVEL = new JLabel("Nivel: ");
-		JLNIVEL.setFont(new Font("Cooper Black", Font.PLAIN, 29));
-		JLNIVEL.setBounds(43, 96, 160, 45);
-		panel.add(JLNIVEL);
+		
+		JLNivel.setFont(new Font("Cooper Black", Font.PLAIN, 29));
+		JLNivel.setBounds(10, 100, 160, 45);
+		panel.add(JLNivel);
 		//JLABEL
 		JLTiempo = new JLabel("00:00");
 		JLTiempo.setHorizontalAlignment(SwingConstants.CENTER);
