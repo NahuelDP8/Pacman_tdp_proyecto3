@@ -35,6 +35,8 @@ public class Mapa1 extends MapaGrilla {
 
 		fruta = fabricaMejora.crearFruta(new PairTupla(260,191), 20, 20,this);
 		pocion = fabricaMejora.crearPocion(new PairTupla(230,196), 20, 20,this);
+		agregarFruta(); 
+		agregarPocion(); 
 	}
 	
 	protected void reiniciar() {
@@ -264,7 +266,7 @@ public class Mapa1 extends MapaGrilla {
 	}
 	
 	public void agregarPocion() {
-		zonas[3][2].setEntidad(pocion);
+		zonas[2][2].setEntidad(pocion);
 		miLogica.actualizarEntidad(pocion.getEntidad(),pocion.getX(),pocion.getY());	
 	}
 

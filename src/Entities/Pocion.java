@@ -7,7 +7,7 @@ import Visitors.Visitor;
 import Mapas.MapaGrilla;
 
 public class Pocion extends Mejora{
-
+	private final static int velocidad = 15; 
 	public Pocion(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
 		super(p, anc, alt,img, grilla);
 		v = new PocionVisitor(this); 
@@ -17,6 +17,11 @@ public class Pocion extends Mejora{
 	@Override
 	public void accept(Visitor v) {
 		v.visitPocion(this);
+	}
+
+	public void afectar() {
+		miGrilla.activarSuperVelocidadDePacman(velocidad);
+		this.sacarEntidad(this);
 	}
 
 }
