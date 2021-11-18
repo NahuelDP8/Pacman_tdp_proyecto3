@@ -30,11 +30,11 @@ public class GUI_MAPA{
 	private JFrame frame;
 	private Logica log;
 	private JLabel JLTiempo;
-	private JLabel JLFondoMapa; 
 	private JLabel JLPuntaje;
 	private TopPlayers topPlayers;
-	private JLabel JLNombre = new JLabel();
-	private JLabel JLNivel = new JLabel();
+	private JLabel JLFondoMapa;
+	private JLabel JLNombre;
+	private JLabel JLNivel;
 	private boolean izquierda, derecha, abajo, arriba;
 	private JLabel JLVIDAS1, JLVIDAS2,JLVIDAS3;
 	/**
@@ -112,10 +112,11 @@ public class GUI_MAPA{
 	}
 	
 	public void añadirFondo(ImageIcon imageIcon) {
-		JLFondoMapa = new JLabel("");
-		JLFondoMapa.setBounds(0, 154, 680, 680);
+		JLabel JLFondoMapa = new JLabel("");
+		JLFondoMapa.setBounds(0, 95, imageIcon.getIconWidth(), imageIcon.getIconHeight());
 		frame.getContentPane().add(JLFondoMapa);
 		JLFondoMapa.setIcon(imageIcon);
+		
 	}
 	public void captar() {
 		if(izquierda)
@@ -194,85 +195,74 @@ public class GUI_MAPA{
 			}
 		});
 		frame.addKeyListener(tecla);
-		frame.setBounds(100, 100, 1046, 1000);
+		frame.setBounds(6, 6, 1500, 890);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 965, 155);
+		panel.setBounds(0, 0, 1476, 97);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("vidas");
-		lblNewLabel.setFont(new Font("Engravers MT", Font.BOLD, 40));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(0, 9, 213, 62);
-		panel.add(lblNewLabel);
+		JLabel JLVIDAS = new JLabel("vidas");
+		JLVIDAS.setFont(new Font("Engravers MT", Font.BOLD, 40));
+		JLVIDAS.setHorizontalAlignment(SwingConstants.CENTER);
+		JLVIDAS.setBounds(0, 9, 213, 62);
+		panel.add(JLVIDAS);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(213, 0, 313, 104);
+		panel_1.setBounds(213, 0, 308, 87);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 	
 		
-		JLVIDAS1 = new JLabel("New label");
-		JLVIDAS1.setBounds(20, 0, 87, 104);
+		JLVIDAS1 = new JLabel("");
+		JLVIDAS1.setBounds(20, 0, 87, 88);
 		panel_1.add(JLVIDAS1);
 		Image EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")).getImage().getScaledInstance(JLVIDAS1.getWidth(),JLVIDAS1.getHeight(), Image.SCALE_DEFAULT);
 		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
 		JLVIDAS1.setIcon(FotoEscalada);
 		JLVIDAS1.setVisible(true);
 		
-		JLVIDAS2 = new JLabel("New label");
+		JLVIDAS2 = new JLabel("");
 		JLVIDAS2.setIcon(new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")));
-		JLVIDAS2.setBounds(120, 0, 87, 104);
+		JLVIDAS2.setBounds(120, 0, 87, 88);
 		panel_1.add(JLVIDAS2);
 		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")).getImage().getScaledInstance(JLVIDAS2.getWidth(),JLVIDAS2.getHeight(), Image.SCALE_DEFAULT);
 		FotoEscalada = new ImageIcon(EscalarFoto);
 		JLVIDAS2.setIcon(FotoEscalada);
 		JLVIDAS1.setVisible(true);
 		
-		JLVIDAS3 = new JLabel("New label");
+		JLVIDAS3 = new JLabel("");
 		JLVIDAS3.setIcon(new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")));
-		JLVIDAS3.setBounds(220, 0, 87, 104);
+		JLVIDAS3.setBounds(220, 0, 87, 88);
 		panel_1.add(JLVIDAS3);
 		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")).getImage().getScaledInstance(JLVIDAS3.getWidth(),JLVIDAS3.getHeight(), Image.SCALE_DEFAULT);
 		FotoEscalada = new ImageIcon(EscalarFoto);
 		JLVIDAS3.setIcon(FotoEscalada);
 		JLVIDAS1.setVisible(true);
 		
-		JLPuntaje = new JLabel("0");
-		JLPuntaje.setFont(new Font("Rockwell", Font.BOLD, 20));
-		JLPuntaje.setBounds(725, 105, 213, 40);
-		panel.add(JLPuntaje);
-		
-		
-		JLabel JLPlayerPuntaje = new JLabel("Tu Puntaje:");
-		JLPlayerPuntaje.setFont(new Font("Rockwell", Font.BOLD, 20));
-		JLPlayerPuntaje.setBounds(609, 105, 130, 40);
-		panel.add(JLPlayerPuntaje);
-		
-		
+		JLNivel = new JLabel();
 		JLNivel.setFont(new Font("Cooper Black", Font.PLAIN, 29));
-		JLNivel.setBounds(10, 100, 160, 45);
+		JLNivel.setBounds(824, 22, 160, 45);
 		panel.add(JLNivel);
 		//JLABEL
 		JLTiempo = new JLabel("00:00");
 		JLTiempo.setHorizontalAlignment(SwingConstants.CENTER);
-		JLTiempo.setBounds(651, 12, 213, 75);
+		JLTiempo.setBounds(544, 0, 213, 75);
 		panel.add(JLTiempo);
 		JLTiempo.setForeground(Color.RED);
 		JLTiempo.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 48));
 		
-		
+		JLNombre = new JLabel();
 		JLNombre.setFont(new Font("Rockwell", Font.BOLD, 20));
-		JLNombre.setBounds(213, 105, 372, 40);
+		JLNombre.setBounds(1036, 27, 372, 40);
 		panel.add(JLNombre);
 		
 		
 		
 		JLabel JLHIGHSCORE = new JLabel("HIGH SCORE: ");
-		JLHIGHSCORE.setBounds(680, 165, 306, 48);
+		JLHIGHSCORE.setBounds(716, 182, 306, 48);
 		frame.getContentPane().add(JLHIGHSCORE);
 		JLHIGHSCORE.setFont(new Font("Rockwell", Font.BOLD, 20));
 	}
@@ -282,8 +272,21 @@ public class GUI_MAPA{
 		JLHighScoreList.setVerticalAlignment(SwingConstants.TOP);
 		JLHighScoreList.setHorizontalAlignment(SwingConstants.LEFT);
 		JLHighScoreList.setFont(new Font("SimSun", Font.BOLD, 18));
-		JLHighScoreList.setBounds(680, 222, 496, 472);
+		JLHighScoreList.setBounds(716, 218, 482, 472);
 		frame.getContentPane().add(JLHighScoreList);
+		
+		
+		JLabel JLPlayerPuntaje = new JLabel("Tu Puntaje:");
+		JLPlayerPuntaje.setBounds(716, 130, 130, 40);
+		frame.getContentPane().add(JLPlayerPuntaje);
+		JLPlayerPuntaje.setFont(new Font("Rockwell", Font.BOLD, 20));
+		
+		JLPuntaje = new JLabel("0");
+		JLPuntaje.setBounds(835, 130, 276, 40);
+		frame.getContentPane().add(JLPuntaje);
+		JLPuntaje.setFont(new Font("Rockwell", Font.BOLD, 20));
+		
+		
 
 		if(topPlayers.size()!=0) {
 			JLHighScoreList.setText(topPlayers.getPlayer(0).toString());
