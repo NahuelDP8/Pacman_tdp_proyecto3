@@ -45,7 +45,6 @@ public class GUI_MAPA{
 		JLNombre.setText("Nombre: "+ nom);
 		JLNivel.setText("Nivel: "+ nivel.getNivel());
 		topPlayers=TP;
-		crearTablaHighScore();
 		log = log.getLogic(this, f, nivel);
 	}
 	
@@ -113,9 +112,15 @@ public class GUI_MAPA{
 	
 	public void añadirFondo(ImageIcon imageIcon) {
 		JLFondoMapa = new JLabel("");
-		JLFondoMapa.setBounds(0, 154, 680, 680);
+		JLFondoMapa.setBounds(0, 154, imageIcon.getIconWidth(), imageIcon.getIconHeight());
 		frame.getContentPane().add(JLFondoMapa);
 		JLFondoMapa.setIcon(imageIcon);
+		
+		JLabel JLHIGHSCORE = new JLabel("HIGH SCORE: ");
+		JLHIGHSCORE.setBounds(imageIcon.getIconWidth(), 165, 306, 48);
+		frame.getContentPane().add(JLHIGHSCORE);
+		JLHIGHSCORE.setFont(new Font("Rockwell", Font.BOLD, 20));
+		crearTablaHighScore(imageIcon.getIconWidth());
 	}
 	public void captar() {
 		if(izquierda)
@@ -194,7 +199,7 @@ public class GUI_MAPA{
 			}
 		});
 		frame.addKeyListener(tecla);
-		frame.setBounds(100, 100, 1046, 1000);
+		frame.setBounds(100, 100, 1100, 1000);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -270,19 +275,14 @@ public class GUI_MAPA{
 		panel.add(JLNombre);
 		
 		
-		
-		JLabel JLHIGHSCORE = new JLabel("HIGH SCORE: ");
-		JLHIGHSCORE.setBounds(680, 165, 306, 48);
-		frame.getContentPane().add(JLHIGHSCORE);
-		JLHIGHSCORE.setFont(new Font("Rockwell", Font.BOLD, 20));
 	}
 	
-	private void crearTablaHighScore() {
+	private void crearTablaHighScore(int width) {
 		JLabel JLHighScoreList = new JLabel();
 		JLHighScoreList.setVerticalAlignment(SwingConstants.TOP);
 		JLHighScoreList.setHorizontalAlignment(SwingConstants.LEFT);
 		JLHighScoreList.setFont(new Font("SimSun", Font.BOLD, 18));
-		JLHighScoreList.setBounds(680, 222, 496, 472);
+		JLHighScoreList.setBounds(width, 222, 496, 472);
 		frame.getContentPane().add(JLHighScoreList);
 
 		if(topPlayers.size()!=0) {
