@@ -20,7 +20,7 @@ public class Nivel1 extends Nivel{
 		return 4000;
 	}
 
-	public int sleepPocion() {
+	public int sleepSuperSpeedPocion() {
 		return 5000;
 	}
 

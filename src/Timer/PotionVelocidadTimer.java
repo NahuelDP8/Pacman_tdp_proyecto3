@@ -1,29 +1,28 @@
 package Timer;
 
 import java.util.ArrayList;
-import Mapas.MapaGrilla;
+import Controladores.SpeedPotionControler;
 
 public class PotionVelocidadTimer extends Thread {
 	private static PotionVelocidadTimer hiloPotionVel;
 	private static int sleepDePotionVel; //PP=Power Pellets
-	private MapaGrilla miGrilla; 
+	private SpeedPotionControler miControlador; 
 	private ArrayList<Integer> tiempoAdicional; //Se utilizará en caso de que el protagonista tome otro powerPellet si es que este timer ya esté activado
 	
-	private PotionVelocidadTimer(MapaGrilla miMapa) {
-		miGrilla = miMapa; 
+	private PotionVelocidadTimer(SpeedPotionControler miCon) {
+		miControlador = miCon; 
 		tiempoAdicional = new ArrayList<Integer>(); 
 	}
 
-	public static PotionVelocidadTimer getPotionVelocidadTimer(MapaGrilla miMapa) {
+	public static PotionVelocidadTimer getPotionVelocidadTimer(SpeedPotionControler miC, int speedVP) {
 		if(hiloPotionVel == null) 
-			hiloPotionVel = new PotionVelocidadTimer(miMapa);
-		sleepDePotionVel = miMapa.getSleepPocionVelocidad();
+			hiloPotionVel = new PotionVelocidadTimer(miC);
+		sleepDePotionVel = speedVP;
 		return hiloPotionVel; 
 	}
 	
 	public void run() {
 		try {
-			activarHilo();
 			PowerPelletsTimer.sleep(sleepDePotionVel);
 			realizarActividad(); 
 		} catch(InterruptedException e) {
@@ -39,20 +38,16 @@ public class PotionVelocidadTimer extends Thread {
 		if(!tiempoAdicional.isEmpty()) {
 			for(int i = 0 ; i<tiempoAdicional.size(); i++) {
 				try {
-					PowerPelletsTimer.sleep(tiempoAdicional.remove(i));
+					PotionVelocidadTimer.sleep(tiempoAdicional.remove(i)/2);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
 		}
-		miGrilla.normalizarVelocidadPacman();
+		miControlador.normalizarVelocidadPacman();
 		hiloPotionVel = null; 
 	}
 
-	private void activarHilo() {
-		// TODO Auto-generated method stub
-		
-	}
 	public void adherirTiempoAdicional(int i) {
 		tiempoAdicional.add(i); 
 	}
