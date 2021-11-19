@@ -74,21 +74,6 @@ public class Mapa3 extends MapaGrilla {
 			}
 		}
 	}
-	private void agregarPowerPellets() {
-		Mejora m;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,20),22,22,this);
-		actualizarEntidad(m);
-		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(630,20),22,22,this);
-		actualizarEntidad(m);
-		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,630),22,22,this);
-		actualizarEntidad(m);
-		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(630,630),22,22,this);
-		actualizarEntidad(m);
-		cantPuntos++;
-	}
 
 	private void ubicarPunto(Mejora m) {
 		Rectangle2D rect = m.getRectangulo().getBounds2D();
@@ -182,5 +167,10 @@ public class Mapa3 extends MapaGrilla {
 	@Override
 	public void quitarFruta() {
 		sacarEntidad(fruta);
+	}
+	@Override
+	public MapaGrilla mapaSiguiente() {
+		
+		return this;
 	}
 }

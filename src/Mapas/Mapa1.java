@@ -91,21 +91,6 @@ public class Mapa1 extends MapaGrilla {
 		 this.misEnemigos.add(rojo);
 		 añadirEntidad(rojo.getEntidad());
 	}
-	private void agregarPowerPellets() {
-		Mejora m;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(30,20),22,22,this);
-		actualizarEntidad(m);
-		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(460,20),22,22,this);
-		actualizarEntidad(m);
-		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(30,500),22,22,this);
-		actualizarEntidad(m);
-		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(460,500),22,22,this);
-		actualizarEntidad(m);
-		cantPuntos++;
-	}
 
 	private void ubicarPunto(Mejora m) {
 		Rectangle2D rect = m.getRectangulo().getBounds2D();
@@ -178,5 +163,10 @@ public class Mapa1 extends MapaGrilla {
 	@Override
 	public void quitarFruta() {
 		sacarEntidad(fruta);
+	}
+
+	@Override
+	public MapaGrilla mapaSiguiente() {
+		return fabrica.crearMapa2(miLogica);
 	}
 }

@@ -1,23 +1,25 @@
 package Timer;
 
 import java.util.ArrayList;
+
+import Controladores.PPControler;
 import Mapas.MapaGrilla;
 
 public class PowerPelletsTimer extends Thread  {
 	private static PowerPelletsTimer hiloPP;
 	private static int sleepDePP; //PP=Power Pellets
-	private MapaGrilla miGrilla;
+	private static PPControler miControlador;
 	private ArrayList<Integer> tiempoAdicional; //Se utilizará en caso de que el protagonista tome otro powerPellet si es que este timer ya esté activado
 	
-	private PowerPelletsTimer(MapaGrilla miMapa) {
-		miGrilla = miMapa; 
+	private PowerPelletsTimer(PPControler miCon) {
+		miControlador = miCon; 
 		tiempoAdicional = new ArrayList<Integer>(); 
 	}
 
-	public static PowerPelletsTimer getPowerPelletsTimer(MapaGrilla miMapa) {
+	public static PowerPelletsTimer getPowerPelletsTimer(PPControler miC) {
 		if(hiloPP == null) 
-			hiloPP = new PowerPelletsTimer(miMapa);
-		sleepDePP = miMapa.getSleepPowerPellets();
+			hiloPP = new PowerPelletsTimer(miC);
+		sleepDePP = miControlador.getSleepPowerPellets();
 		return hiloPP;
 	}
 	
@@ -38,13 +40,13 @@ public class PowerPelletsTimer extends Thread  {
 		if(!tiempoAdicional.isEmpty()) {
 			for(int i = 0 ; i<tiempoAdicional.size(); i++) {
 				try {
-					PowerPelletsTimer.sleep(tiempoAdicional.remove(i));
+					PowerPelletsTimer.sleep(tiempoAdicional.remove(i)/2);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
 		}
-		miGrilla.enemigosPerseguir();
+		miControlador.enemigosPerseguir();
 		hiloPP = null;
 	}
 	

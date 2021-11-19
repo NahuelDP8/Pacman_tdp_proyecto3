@@ -22,7 +22,7 @@ public class Logica {
 	private Logica(GUI_MAPA g, FactoryMapaGrilla f, Nivel n) {
 		miGUI = g;
 		miFabrica = f;
-		miMapa = miFabrica.crearMapa(this);
+		miMapa = miFabrica.crearMapa2(this);
 		miReloj = new Timer(this);
 		nivelSiguiente(n);
 		miGUI.añadirFondo(miMapa.getImage()); 

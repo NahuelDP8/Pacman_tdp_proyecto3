@@ -65,7 +65,7 @@ public class GUI_MAPA{
 	}
 	
 	public void actualizarEntidad(EntidadGrafica entidad, int x, int y,boolean frente) {
-		entidad.setLocation(x, y+95);
+		entidad.setLocation(x, y+96);
 		if(frente)
 			frame.getContentPane().setComponentZOrder(entidad, 0);
 	}
@@ -114,15 +114,11 @@ public class GUI_MAPA{
 	
 	public void añadirFondo(ImageIcon imageIcon) {
 		JLFondoMapa = new JLabel("");
-		JLFondoMapa.setBounds(0, 95, imageIcon.getIconWidth(), imageIcon.getIconHeight());
+		JLFondoMapa.setBounds(0, 96, imageIcon.getIconWidth(), imageIcon.getIconHeight());
 		frame.getContentPane().add(JLFondoMapa);
 		JLFondoMapa.setIcon(imageIcon);
-		
-		JLabel JLHIGHSCORE = new JLabel("HIGH SCORE: ");
-		JLHIGHSCORE.setBounds(imageIcon.getIconWidth(), 165, 306, 48);
-		frame.getContentPane().add(JLHIGHSCORE);
-		JLHIGHSCORE.setFont(new Font("Rockwell", Font.BOLD, 20));
-		crearTablaHighScore(imageIcon.getIconWidth());
+
+		crearTablaHighScore(716);
 
 	}
 	public void captar() {

@@ -99,7 +99,7 @@ abstract public class Entidad {
 	} 	
 	//Método que quizás debamos sacar.
 	public void enemigosEnPeligro() {
-		miGrilla.enemigosEscapar(); 
+		//miGrilla.enemigosEscapar(); 
 	}
 
 	public void interactuarConProtagonista() {

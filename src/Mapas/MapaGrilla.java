@@ -1,12 +1,16 @@
 package Mapas;
 
 import javax.swing.ImageIcon;
+
+import Controladores.PPControler;
 import Entities.Enemigo;
 import Entities.Entidad;
 import Entities.PairTupla;
 import Entities.Protagonista;
-import Entities.EntidadGrafica; 
+import Entities.EntidadGrafica;
+import Entities.Mejora;
 import Factories.FactoryEnemigo;
+import Factories.FactoryMapaGrilla;
 import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
@@ -23,6 +27,7 @@ abstract public class MapaGrilla {
 	protected FactoryProtagonista fabricaProt;
 	protected FactoryEnemigo fabricaEnem;
 	protected FactoryMejora fabricaMejora;
+	protected FactoryMapaGrilla fabrica;
 	protected Protagonista miProtagonista;
 	protected PairTupla posInicialProtagonista;
 	protected ArrayList<Enemigo> misEnemigos;
@@ -33,7 +38,7 @@ abstract public class MapaGrilla {
 	protected final int MOVER_ARRIBA = 2;
 	protected final int MOVER_IZQUIERDA = 3;
 	protected final int MOVER_DERECHA = 4;
-	
+	protected PPControler controladorPowerPellets; 
 	protected int cantPuntos;
 	protected PowerPelletsTimer ppTimer; 
 	protected PotionVelocidadTimer pvTimer; 
@@ -49,7 +54,8 @@ abstract public class MapaGrilla {
 		ancho = an;
 		altura = al;
 		this.miLogica = miLogica;
-		misEnemigos= new ArrayList<Enemigo>(); 
+		misEnemigos= new ArrayList<Enemigo>();
+		controladorPowerPellets = new PPControler(); 
 	}
 	
 	public void setNivel(Nivel n) {
@@ -310,20 +316,24 @@ abstract public class MapaGrilla {
 		}	
 	}
 
+	protected void agregarPowerPellets() {
+		Mejora m;
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,20),22,22,this);
+		actualizarEntidad(m);
+		cantPuntos++;
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(anchoMapa-50,20),22,22,this);
+		actualizarEntidad(m);
+		cantPuntos++;
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,altoMapa-50),22,22,this);
+		actualizarEntidad(m);
+		cantPuntos++;
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(anchoMapa-50,altoMapa-50),22,22,this);
+		actualizarEntidad(m);
+		cantPuntos++;
+	}
+	
 	protected abstract void reiniciar();
 
-	public void enemigosEscapar() {
-		for(Enemigo e : misEnemigos) {
-			e.deboEscapar();
-		}
-		
-	}
-	public void enemigosPerseguir() {
-		for(Enemigo e : misEnemigos) {
-			e.deboPerseguir();
-		}
-		
-	}
 	public void gameOver() {
 		//el juego se acaba por el protagonista ha perdido todas sus vidas. 
 		//o ha ganado. 
@@ -335,15 +345,6 @@ abstract public class MapaGrilla {
 		miLogica.quitarVida();
 		//Debereíamos actualizar los labels de las vidas quitando una
 		//Además, reiniciar el juego solo con las localizaciones originales del las entidades móviles y nada más. 
-	}
-
-	public void activarPowerPellet() {
-		ppTimer = PowerPelletsTimer.getPowerPelletsTimer(this); 
-		if(!ppTimer.isAlive()) {
-			ppTimer.start();
-		}else {
-			ppTimer.adherirTiempoAdicional(miNivel.sleepPowerPellets());
-		}
 	}
 
 
@@ -369,5 +370,11 @@ abstract public class MapaGrilla {
 		return miNivel.sleepPocion();	
 	}
 
+	
+	public void comunicarControlPowerPellet() {
+		controladorPowerPellets.activarPowerPellet(miNivel.sleepPowerPellets(), misEnemigos); 
+	}
+
+	public abstract MapaGrilla mapaSiguiente();
 
 }

@@ -26,8 +26,7 @@ public class PuntoGrande extends Mejora{
 	}
 
 	public void afectar() {
-		miGrilla.enemigosEscapar();
-		miGrilla.activarPowerPellet(); 
+		miGrilla.comunicarControlPowerPellet(); 
 		sacarEntidad(this);
 	}
 	
