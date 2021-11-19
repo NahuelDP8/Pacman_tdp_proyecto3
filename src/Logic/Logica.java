@@ -156,7 +156,7 @@ public class Logica {
 		actualizarSleepProtagonista(miNivel.sleepProtagonista());
 		actualizarSleepFantasmas(miNivel.sleepFantasmas());
 		this.setEsperaFruta(miNivel.sleepFruta());
-		this.setEsperaPocion(miNivel.sleepPocion());
+		this.setEsperaPocion(miNivel.sleepSuperSpeedPocion());
 	}
 
 	public int getCteFantasma() {

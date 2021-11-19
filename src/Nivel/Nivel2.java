@@ -23,8 +23,7 @@ public class Nivel2 extends Nivel {
 	}
 
 	@Override
-	public int sleepPocion() {
-		// TODO Auto-generated method stub
+	public int sleepSuperSpeedPocion() {
 		return 2000;
 	}
 

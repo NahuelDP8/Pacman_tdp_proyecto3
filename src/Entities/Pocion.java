@@ -20,7 +20,7 @@ public class Pocion extends Mejora{
 	}
 
 	public void afectar() {
-		miGrilla.activarSuperVelocidadDePacman(velocidad);
+		miGrilla.comunicarControlPrincipalSpeed(velocidad);
 		this.sacarEntidad(this);
 	}
 
