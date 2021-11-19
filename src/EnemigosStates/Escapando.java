@@ -42,4 +42,8 @@ public class Escapando implements EstadoEnemigo{
 		System.out.println("Pasamos al estado persiguiendo");
 	}
 
+	@Override
+	public void actualizarFoto() {
+	}
+
 }

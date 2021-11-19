@@ -48,17 +48,6 @@ public class Mapa1 extends MapaGrilla {
 		agregarPocion(); 
 	}
 	
-	protected void reiniciar() {
-		agregarMejoras();
-		Enemigo enemigo = misEnemigos.get(0);
-		miProtagonista.setPos(new PairTupla(189, 290));
-		enemigo.setPos(new PairTupla(365,50));
-		
-		miLogica.actualizarEntidad(enemigo.getEntidad(),enemigo.getX(),enemigo.getY(),false);
-		miLogica.actualizarEntidad(miProtagonista.getEntidad(),miProtagonista.getX(),miProtagonista.getY(),false);
-		
-		miLogica.pintar();
-	}
 	protected void agregarMejoras() {
 		Mejora m;
 		int x,y;
@@ -90,21 +79,6 @@ public class Mapa1 extends MapaGrilla {
 		 añadirEntidad(rosa.getEntidad());
 		 this.misEnemigos.add(rojo);
 		 añadirEntidad(rojo.getEntidad());
-	}
-	private void agregarPowerPellets() {
-		Mejora m;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(30,20),22,22,this);
-		actualizarEntidad(m);
-		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(460,20),22,22,this);
-		actualizarEntidad(m);
-		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(30,500),22,22,this);
-		actualizarEntidad(m);
-		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(460,500),22,22,this);
-		actualizarEntidad(m);
-		cantPuntos++;
 	}
 
 	private void ubicarPunto(Mejora m) {
@@ -178,5 +152,12 @@ public class Mapa1 extends MapaGrilla {
 	@Override
 	public void quitarFruta() {
 		sacarEntidad(fruta);
+	}
+
+	@Override
+	public MapaGrilla mapaSiguiente() {
+		MapaGrilla mapa = fabrica.crearMapa2(miLogica);
+		mapa.setFabrica(fabrica);
+		return mapa;
 	}
 }

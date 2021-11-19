@@ -5,12 +5,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+
 import javax.swing.SwingConstants;
 
 import Entities.EntidadGrafica;
 import Factories.FactoryMapaGrilla;
 import Logic.Logica;
-import Music.AudioPlayer;
 import Nivel.Nivel;
 import ranking.Player;
 import ranking.TopPlayers;
@@ -36,33 +36,24 @@ public class GUI_MAPA{
 	private JLabel JLFondoMapa;
 	private JLabel JLNombre;
 	private JLabel JLNivel;
+	private JPanel panelCargando;
 	private boolean izquierda, derecha, abajo, arriba;
 	private JLabel JLVIDAS1, JLVIDAS2,JLVIDAS3;
-	private AudioPlayer audio;
+	private final JLabel lblNewLabel = new JLabel("New label");
 	/**
 	 * Create the application.
 	 */
-	public GUI_MAPA(FactoryMapaGrilla f, Nivel nivel,String nom, TopPlayers TP,AudioPlayer audioP) {
+	public GUI_MAPA(FactoryMapaGrilla f, Nivel nivel,String nom, TopPlayers TP) {
 		initialize();
-		audio=audioP;
 		JLNombre.setText("Nombre: "+ nom);
 		JLNivel.setText("Nivel: "+ nivel.getNivel());
+		frame.getContentPane().add(lblNewLabel);
 		topPlayers=TP;
-		crearTablaHighScore();
 		log = log.getLogic(this, f, nivel);
-		initAudio();
 	}
 	
 	public JFrame getFrame() {
 		return frame;
-	}
-	
-	private void initAudio(){
-		
-	}
-	
-	private void audioOn() {
-		
 	}
 
 	public void quitarEntidad(EntidadGrafica entidad) {
@@ -71,14 +62,14 @@ public class GUI_MAPA{
 	
 	public void añadirEntidadGrafica(EntidadGrafica entidad) {
 		frame.getContentPane().add(entidad);
-		frame.getContentPane().setComponentZOrder(entidad, 0);
+		frame.getContentPane().setComponentZOrder(entidad, 1);
 		
 	}
 	
 	public void actualizarEntidad(EntidadGrafica entidad, int x, int y,boolean frente) {
-		entidad.setLocation(x, y+155);
+		entidad.setLocation(x, y+95);
 		if(frente)
-			frame.getContentPane().setComponentZOrder(entidad, 0);
+			frame.getContentPane().setComponentZOrder(entidad, 1);
 	}
 	
 	public void actualizarPuntos(int p) {
@@ -124,11 +115,12 @@ public class GUI_MAPA{
 	}
 	
 	public void añadirFondo(ImageIcon imageIcon) {
-		JLabel JLFondoMapa = new JLabel("");
 		JLFondoMapa.setBounds(0, 95, imageIcon.getIconWidth(), imageIcon.getIconHeight());
 		frame.getContentPane().add(JLFondoMapa);
 		JLFondoMapa.setIcon(imageIcon);
-		
+
+		crearTablaHighScore(716);
+
 	}
 	public void captar() {
 		if(izquierda)
@@ -191,7 +183,6 @@ public class GUI_MAPA{
 	 */
 	
 	private void initialize() {
-		
 		abajo = false;
 		arriba = false;
 		izquierda = false;
@@ -211,6 +202,9 @@ public class GUI_MAPA{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
+		
+		JLFondoMapa = new JLabel("");
+		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1476, 97);
 		frame.getContentPane().add(panel);
@@ -271,23 +265,6 @@ public class GUI_MAPA{
 		JLNombre.setBounds(1036, 27, 372, 40);
 		panel.add(JLNombre);
 		
-		
-		
-		JLabel JLHIGHSCORE = new JLabel("HIGH SCORE: ");
-		JLHIGHSCORE.setBounds(716, 182, 306, 48);
-		frame.getContentPane().add(JLHIGHSCORE);
-		JLHIGHSCORE.setFont(new Font("Rockwell", Font.BOLD, 20));
-	}
-	
-	private void crearTablaHighScore() {
-		JLabel JLHighScoreList = new JLabel();
-		JLHighScoreList.setVerticalAlignment(SwingConstants.TOP);
-		JLHighScoreList.setHorizontalAlignment(SwingConstants.LEFT);
-		JLHighScoreList.setFont(new Font("SimSun", Font.BOLD, 18));
-		JLHighScoreList.setBounds(716, 218, 482, 472);
-		frame.getContentPane().add(JLHighScoreList);
-		
-		
 		JLabel JLPlayerPuntaje = new JLabel("Tu Puntaje:");
 		JLPlayerPuntaje.setBounds(716, 130, 130, 40);
 		frame.getContentPane().add(JLPlayerPuntaje);
@@ -298,8 +275,29 @@ public class GUI_MAPA{
 		frame.getContentPane().add(JLPuntaje);
 		JLPuntaje.setFont(new Font("Rockwell", Font.BOLD, 20));
 		
+		JLabel JLHIGHSCORE = new JLabel("HIGH SCORE: ");
+		JLHIGHSCORE.setBounds(716, 182, 306, 48);
+		frame.getContentPane().add(JLHIGHSCORE);
+		JLHIGHSCORE.setFont(new Font("Rockwell", Font.BOLD, 20));
 		
-
+		panelCargando = new JPanel();
+		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/cargando.gif")).getImage().getScaledInstance(800,800, Image.SCALE_DEFAULT);
+		FotoEscalada = new ImageIcon(EscalarFoto);
+		panelCargando.add(
+			    new JLabel("",FotoEscalada, SwingConstants.CENTER));
+		
+		panelCargando.setBounds(0,95,800,800);
+		frame.getContentPane().add(panelCargando);
+		panelCargando.setVisible(false);
+	}
+	
+	private void crearTablaHighScore(int width) {
+		JLabel JLHighScoreList = new JLabel();
+		JLHighScoreList.setVerticalAlignment(SwingConstants.TOP);
+		JLHighScoreList.setHorizontalAlignment(SwingConstants.LEFT);
+		JLHighScoreList.setFont(new Font("SimSun", Font.BOLD, 18));
+		JLHighScoreList.setBounds(716, 218, 482, 472);
+		frame.getContentPane().add(JLHighScoreList);
 		if(topPlayers.size()!=0) {
 			JLHighScoreList.setText(topPlayers.getPlayer(0).toString());
 		}
@@ -329,5 +327,12 @@ public class GUI_MAPA{
 		 catch (IOException e) {// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public void win() {
+	}
+	public void cargando(boolean visibilidad) {
+		frame.getContentPane().setComponentZOrder(panelCargando, 0);
+		panelCargando.setVisible(visibilidad);
 	}
 }

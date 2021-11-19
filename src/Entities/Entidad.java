@@ -97,6 +97,7 @@ abstract public class Entidad {
 	public void setEntidad(EntidadGrafica ent) {
 		miEntidad= ent;
 	} 	
+
 	public void interactuarConProtagonista() {
 		
 	}

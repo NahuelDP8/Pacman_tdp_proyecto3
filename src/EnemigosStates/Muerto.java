@@ -33,4 +33,8 @@ public class Muerto implements EstadoEnemigo{
 		
 	}
 
+	@Override
+	public void actualizarFoto() {
+	}
+
 }

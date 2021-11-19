@@ -35,5 +35,8 @@ public class Encerrado implements EstadoEnemigo{
 	public void deboPerseguir() {
 		
 	}
+	@Override
+	public void actualizarFoto() {
+	}
 
 }

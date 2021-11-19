@@ -6,6 +6,8 @@ import Mapas.MapaGrilla;
 import Nivel.Nivel;
 import Timer.Timer;
 
+import javax.swing.ImageIcon;
+
 import Entities.EntidadGrafica;
 import Factories.FactoryMapaGrilla;
 
@@ -22,12 +24,20 @@ public class Logica {
 	private Logica(GUI_MAPA g, FactoryMapaGrilla f, Nivel n) {
 		miGUI = g;
 		miFabrica = f;
-		miMapa = miFabrica.crearMapa(this);
+		miNivel = n;
+		miMapa = miFabrica.crearMapa1(this);
+		miMapa.setFabrica(miFabrica);
+		miMapa.setNivel(n);
+		n.setMapa(miMapa);
 		miReloj = new Timer(this);
-		nivelSiguiente(n);
-		miGUI.añadirFondo(miMapa.getImage()); 
+		setearSleeps();
 	}
 	
+	public void actualizarFondo(ImageIcon img) {
+		miGUI.añadirFondo(img); 
+		
+	}
+
 	public static Logica getLogic(GUI_MAPA g, FactoryMapaGrilla f, Nivel n) {
 		if(logic == null) 
 			logic = new Logica(g,f,n);
@@ -133,9 +143,16 @@ public class Logica {
 	}
 
 	public void nivelSiguiente(Nivel n) {
+		miGUI.cargando(true);
+		miMapa = miMapa.mapaSiguiente();
 		n.setMapa(miMapa);
 		miNivel = n;
 		miMapa.setNivel(n);
+		setearSleeps();
+		miGUI.cargando(false);
+	}
+	
+	private void setearSleeps() {
 		actualizarSleepProtagonista(miNivel.sleepProtagonista());
 		actualizarSleepFantasmas(miNivel.sleepFantasmas());
 		this.setEsperaFruta(miNivel.sleepFruta());
@@ -160,6 +177,10 @@ public class Logica {
 	public void pintar() {
 		miGUI.pintar();
 		
+	}
+
+	public void win() {
+		//miGUI.win();
 	}
 
 }
