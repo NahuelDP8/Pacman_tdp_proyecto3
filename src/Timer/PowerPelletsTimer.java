@@ -1,9 +1,8 @@
 package Timer;
 
 import java.util.ArrayList;
-
 import Controladores.PPControler;
-import Mapas.MapaGrilla;
+
 
 public class PowerPelletsTimer extends Thread  {
 	private static PowerPelletsTimer hiloPP;
@@ -16,10 +15,10 @@ public class PowerPelletsTimer extends Thread  {
 		tiempoAdicional = new ArrayList<Integer>(); 
 	}
 
-	public static PowerPelletsTimer getPowerPelletsTimer(PPControler miC) {
+	public static PowerPelletsTimer getPowerPelletsTimer(PPControler miC, int sleepPP) {
 		if(hiloPP == null) 
 			hiloPP = new PowerPelletsTimer(miC);
-		sleepDePP = miControlador.getSleepPowerPellets();
+		sleepDePP = sleepPP; 
 		return hiloPP;
 	}
 	

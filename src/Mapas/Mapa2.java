@@ -47,18 +47,6 @@ public class Mapa2 extends MapaGrilla {
 		agregarFruta(); 
 		agregarPocion(); 
 	}
-	
-	protected void reiniciar() {
-		agregarMejoras();
-		Enemigo enemigo = misEnemigos.get(0);
-		miProtagonista.setPos(new PairTupla(189, 290));
-		enemigo.setPos(new PairTupla(365,50));
-		
-		miLogica.actualizarEntidad(enemigo.getEntidad(),enemigo.getX(),enemigo.getY(),false);
-		miLogica.actualizarEntidad(miProtagonista.getEntidad(),miProtagonista.getX(),miProtagonista.getY(),false);
-		
-		miLogica.pintar();
-	}
 	protected void agregarMejoras() {
 		Mejora m;
 		int x,y;
@@ -172,6 +160,8 @@ public class Mapa2 extends MapaGrilla {
 	
 	@Override
 	public MapaGrilla mapaSiguiente() {
-		return fabrica.crearMapa3(miLogica);
+		MapaGrilla mapa = fabrica.crearMapa3(miLogica);
+		mapa.setFabrica(fabrica);
+		return mapa;
 	}
 }

@@ -10,7 +10,6 @@ import Mapas.MapaGrilla;
 
 public abstract class Enemigo extends Personaje{
 	protected EstadoEnemigo miEstado; 
-	protected int movimientoActual; 
 	protected boolean huboColisionConPared;
 	protected boolean movIzquierda; 
 	protected boolean movDerecha;
@@ -60,6 +59,7 @@ public abstract class Enemigo extends Personaje{
 			posicion.setX(posicion.getX()+ velocidad);
 		} 
 		miRectangulo.setBounds(posicion.getX(), posicion.getY(), ancho, altura);
+		miEstado.actualizarFoto();
 		miGrilla.actualizarEntidad(this);
 	}
 	

@@ -49,5 +49,11 @@ public class Persiguiendo implements EstadoEnemigo{
 	public void deboPerseguir() {
 		
 	}
+
+	@Override
+	public void actualizarFoto() {
+		miEnemigo.actualizarFoto();
+		
+	}
 	
 }

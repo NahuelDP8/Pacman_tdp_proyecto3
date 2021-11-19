@@ -48,6 +48,7 @@ public class GUIMenu extends JFrame {
 	 */
 	
 	public static Properties configuration;
+	private final JButton btnVerHighscores = new JButton("VER HIGHSCORES");
 	
 	public static void main(String[] args) {
 		loadConfiguration();
@@ -121,6 +122,13 @@ public class GUIMenu extends JFrame {
 		PSeleccionNivel.setLayout(null);
 		PSeleccionNivel.setVisible(false);
 		
+		JPanel PHighscore = new JPanel();
+		PHighscore.setBounds(10, 8, 747, 597);
+		PHighscore.setBackground(Color.BLACK);
+		ContentPanel.add(PHighscore);
+		PHighscore.setLayout(null);
+		PHighscore.setVisible(false);
+		
 		
 		JButton JBGoku = new JButton("JUGAR GOKU");
 		JBGoku.setBounds(54, 98, 255, 353);
@@ -187,20 +195,33 @@ public class GUIMenu extends JFrame {
 		JLIngresaN.setFont(new Font("Segoe Script", Font.BOLD, 25));
 		JLIngresaN.setHorizontalAlignment(SwingConstants.CENTER);
 		JLIngresaN.setForeground(Color.WHITE);
-		JLIngresaN.setBounds(0, 476, 337, 87);
+		JLIngresaN.setBounds(0, 462, 337, 87);
 		PSeleccionProta.add(JLIngresaN);
 		
-		JButton JBAceptar = new JButton("ACEPTAR\r\n");
+		btnVerHighscores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PHighscore.setVisible(true);
+				PSeleccionProta.setVisible(false);
+				PSeleccionNivel.setVisible(false);
+			}
+		});
+		btnVerHighscores.setBounds(111, 550, 143, 31);
+		PSeleccionProta.add(btnVerHighscores);
+		btnVerHighscores.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		
+		JButton JBAceptar = new JButton("JUGAR");
+		JBAceptar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		JBAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				nombre=JTFmiNombre.getText();
 				JBGoku.setEnabled(true);
 				JBNaruto.setEnabled(true);
+				btnVerHighscores.setEnabled(false);
 				JBAceptar.setEnabled(false);
 			}
 		});
 		
-		JBAceptar.setBounds(480, 542, 102, 32);
+		JBAceptar.setBounds(468, 542, 129, 44);
 		PSeleccionProta.add(JBAceptar);
 		
 		
@@ -220,9 +241,6 @@ public class GUIMenu extends JFrame {
 		JTFmiNombre.setBounds(347, 473, 377, 53);
 		PSeleccionProta.add(JTFmiNombre);
 		JTFmiNombre.setColumns(10);
-		
-		
-		
 		
 		JButton JBNivel1 = new JButton("NIVEL 1");
 		JBNivel1.setBackground(Color.WHITE);
@@ -297,5 +315,40 @@ public class GUIMenu extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(45, 23, 630, 95);
 		PSeleccionNivel.add(lblNewLabel);
+		
+		//Creacion de la tabla highscores
+		JLabel lblHighscore = new JLabel("HIGHSCORES");
+		lblHighscore.setFont(new Font("SimSun", Font.BOLD, 40));
+		lblHighscore.setForeground(Color.WHITE);
+		lblHighscore.setBounds(50, 10, 647, 50);
+		PHighscore.add(lblHighscore);
+		JLabel lblmejores = new JLabel("Mejores puntuaciones:");
+		lblmejores.setFont(new Font("SimSun", Font.BOLD, 30));
+		lblmejores.setForeground(Color.WHITE);
+		lblmejores.setBounds(20, 75, 647, 50);
+		PHighscore.add(lblmejores);
+		JLabel JLHighScoreList = new JLabel();
+		JLHighScoreList.setVerticalAlignment(SwingConstants.TOP);
+		JLHighScoreList.setHorizontalAlignment(SwingConstants.LEFT);
+		JLHighScoreList.setFont(new Font("SimSun", Font.BOLD, 28));
+		JLHighScoreList.setBounds(0, 150, 647, 500);
+		JLHighScoreList.setForeground(Color.WHITE);
+		PHighscore.add(JLHighScoreList);
+		if(topPlayers.size()!=0) 
+			JLHighScoreList.setText(topPlayers.getPlayer(0).toString());
+		for(int i =1; i<topPlayers.size();i++) 
+			JLHighScoreList.setText("<html>"+JLHighScoreList.getText()+"<p>"+topPlayers.getPlayer(i).toString().substring(7)+"<html>");
+		
+		JButton JBVolver = new JButton("VOLVER AL MENU");
+		JBVolver.setFont(new Font("Playbill", Font.BOLD, 50));
+		JBVolver.setBounds(400, 15, 300, 60);
+		PHighscore.add(JBVolver);
+		JBVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PHighscore.setVisible(false);
+				PSeleccionProta.setVisible(true);
+			}
+		});
+		
 	}
 }

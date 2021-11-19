@@ -35,6 +35,7 @@ public class GUI_MAPA{
 	private JLabel JLFondoMapa;
 	private JLabel JLNombre;
 	private JLabel JLNivel;
+	private JPanel panelCargando;
 	private boolean izquierda, derecha, abajo, arriba;
 	private JLabel JLVIDAS1, JLVIDAS2,JLVIDAS3;
 	private final JLabel lblNewLabel = new JLabel("New label");
@@ -60,14 +61,14 @@ public class GUI_MAPA{
 	
 	public void añadirEntidadGrafica(EntidadGrafica entidad) {
 		frame.getContentPane().add(entidad);
-		frame.getContentPane().setComponentZOrder(entidad, 0);
+		frame.getContentPane().setComponentZOrder(entidad, 1);
 		
 	}
 	
 	public void actualizarEntidad(EntidadGrafica entidad, int x, int y,boolean frente) {
-		entidad.setLocation(x, y+96);
+		entidad.setLocation(x, y+95);
 		if(frente)
-			frame.getContentPane().setComponentZOrder(entidad, 0);
+			frame.getContentPane().setComponentZOrder(entidad, 1);
 	}
 	
 	public void actualizarPuntos(int p) {
@@ -113,8 +114,7 @@ public class GUI_MAPA{
 	}
 	
 	public void añadirFondo(ImageIcon imageIcon) {
-		JLFondoMapa = new JLabel("");
-		JLFondoMapa.setBounds(0, 96, imageIcon.getIconWidth(), imageIcon.getIconHeight());
+		JLFondoMapa.setBounds(0, 95, imageIcon.getIconWidth(), imageIcon.getIconHeight());
 		frame.getContentPane().add(JLFondoMapa);
 		JLFondoMapa.setIcon(imageIcon);
 
@@ -182,7 +182,6 @@ public class GUI_MAPA{
 	 */
 	
 	private void initialize() {
-		
 		abajo = false;
 		arriba = false;
 		izquierda = false;
@@ -202,6 +201,9 @@ public class GUI_MAPA{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
+		
+		JLFondoMapa = new JLabel("");
+		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1476, 97);
 		frame.getContentPane().add(panel);
@@ -276,6 +278,16 @@ public class GUI_MAPA{
 		JLHIGHSCORE.setBounds(716, 182, 306, 48);
 		frame.getContentPane().add(JLHIGHSCORE);
 		JLHIGHSCORE.setFont(new Font("Rockwell", Font.BOLD, 20));
+		
+		panelCargando = new JPanel();
+		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/cargando.gif")).getImage().getScaledInstance(800,800, Image.SCALE_DEFAULT);
+		FotoEscalada = new ImageIcon(EscalarFoto);
+		panelCargando.add(
+			    new JLabel("",FotoEscalada, SwingConstants.CENTER));
+		
+		panelCargando.setBounds(0,95,800,800);
+		frame.getContentPane().add(panelCargando);
+		panelCargando.setVisible(false);
 	}
 	
 	private void crearTablaHighScore(int width) {
@@ -314,5 +326,12 @@ public class GUI_MAPA{
 		 catch (IOException e) {// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public void win() {
+	}
+	public void cargando(boolean visibilidad) {
+		frame.getContentPane().setComponentZOrder(panelCargando, 0);
+		panelCargando.setVisible(visibilidad);
 	}
 }

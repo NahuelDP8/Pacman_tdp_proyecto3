@@ -50,10 +50,7 @@ public class Timer implements Runnable {
 			}
 		}
 		
-		
-		
 
-		
 		while (ct == hiloFruta) {
 			try {
 				Thread.sleep(this.tiempoEsperaFruta);

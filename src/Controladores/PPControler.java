@@ -12,10 +12,6 @@ public class PPControler extends ThreadControl{
 		super(); 
 	}
 
-	public int getSleepPowerPellets() {
-		return 0;
-	}
-
 	public void enemigosPerseguir() {
 		for(Enemigo e : misEnemigos) {
 			e.deboPerseguir();
@@ -25,13 +21,14 @@ public class PPControler extends ThreadControl{
 	public void activarPowerPellet(int sleepPP, ArrayList<Enemigo> enemigos) {
 		misEnemigos = enemigos;
 		enemigosEscapar(); 
-		miTimer = PowerPelletsTimer.getPowerPelletsTimer(this); 
+		miTimer = PowerPelletsTimer.getPowerPelletsTimer(this, sleepPP); 
 		if(!miTimer.isAlive()) {
 			miTimer.start();
 		}else {
 			miTimer.adherirTiempoAdicional(sleepPP);
 		}
 	}
+	
 	public void enemigosEscapar() {
 		for(Enemigo e : misEnemigos) {
 			e.deboEscapar();

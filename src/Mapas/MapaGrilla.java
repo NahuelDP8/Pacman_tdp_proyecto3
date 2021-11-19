@@ -47,6 +47,7 @@ abstract public class MapaGrilla {
 	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica) {
 		//Asignamos imagen de fondo del mapa
 		miFondo = fondo;
+		miLogica.actualizarFondo(fondo);
 		//Asignamos las fabricas correspondientes 
 		fabricaProt = fp;
 		fabricaEnem = fe;
@@ -311,8 +312,10 @@ abstract public class MapaGrilla {
 	public void restarPunto() {
 		cantPuntos--;
 		if(cantPuntos == 0) {
+			for(Enemigo e: misEnemigos)
+				sacarEntidad(e);
+			sacarEntidad(miProtagonista);
 			miLogica.nivelSiguiente(miNivel);
-			reiniciar();
 		}	
 	}
 
@@ -332,7 +335,6 @@ abstract public class MapaGrilla {
 		cantPuntos++;
 	}
 	
-	protected abstract void reiniciar();
 
 	public void gameOver() {
 		//el juego se acaba por el protagonista ha perdido todas sus vidas. 
@@ -376,5 +378,9 @@ abstract public class MapaGrilla {
 	}
 
 	public abstract MapaGrilla mapaSiguiente();
+
+	public void setFabrica(FactoryMapaGrilla fab) {
+		fabrica = fab;
+	}
 
 }
