@@ -82,7 +82,6 @@ public class GUI_MAPA{
 		}else{
 			JLVIDAS1.setVisible(false);
 		}
-		
 	}
 
 	public void actualizarReloj(int min, int seg) {
@@ -112,11 +111,11 @@ public class GUI_MAPA{
 		log.moverProtagonistaDerecha();
 	}
 	
-	public void añadirFondo() {
+	public void añadirFondo(ImageIcon imageIcon) {
 		JLFondoMapa = new JLabel("");
-		JLFondoMapa.setBounds(0, 154, 500, 540);
+		JLFondoMapa.setBounds(0, 154, 680, 680);
 		frame.getContentPane().add(JLFondoMapa);
-		JLFondoMapa.setIcon(new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/fondoauxarreglo.png")));
+		JLFondoMapa.setIcon(imageIcon);
 	}
 	public void captar() {
 		if(izquierda)
@@ -195,7 +194,7 @@ public class GUI_MAPA{
 			}
 		});
 		frame.addKeyListener(tecla);
-		frame.setBounds(100, 100, 1046, 842);
+		frame.setBounds(100, 100, 1046, 1000);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -273,7 +272,7 @@ public class GUI_MAPA{
 		
 		
 		JLabel JLHIGHSCORE = new JLabel("HIGH SCORE: ");
-		JLHIGHSCORE.setBounds(526, 165, 306, 48);
+		JLHIGHSCORE.setBounds(680, 165, 306, 48);
 		frame.getContentPane().add(JLHIGHSCORE);
 		JLHIGHSCORE.setFont(new Font("Rockwell", Font.BOLD, 20));
 	}
@@ -283,8 +282,9 @@ public class GUI_MAPA{
 		JLHighScoreList.setVerticalAlignment(SwingConstants.TOP);
 		JLHighScoreList.setHorizontalAlignment(SwingConstants.LEFT);
 		JLHighScoreList.setFont(new Font("SimSun", Font.BOLD, 18));
-		JLHighScoreList.setBounds(526, 222, 496, 472);
+		JLHighScoreList.setBounds(680, 222, 496, 472);
 		frame.getContentPane().add(JLHighScoreList);
+
 		if(topPlayers.size()!=0) {
 			JLHighScoreList.setText(topPlayers.getPlayer(0).toString());
 		}

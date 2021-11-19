@@ -45,10 +45,10 @@ public class PowerPelletsTimer extends Thread  {
 			}
 		}
 		miGrilla.enemigosPerseguir();
-		hiloPP = null; 
+		hiloPP = null;
 	}
 	
 	public void adherirTiempoAdicional(int i) {
-		tiempoAdicional.add(i); 
+		tiempoAdicional.add(i);
 	}
 }

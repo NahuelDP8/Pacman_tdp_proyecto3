@@ -16,21 +16,7 @@ abstract public class Nivel {
 		miMapa = m;
 	}
 	
-	public void aumentarFanstamaNaranja() {
-		miMapa.agregarEnemigoNaranja();
-	}
 	
-	public void aumentarFantasmaAzul() {
-		miMapa.agregarEnemigoAzul();
-	}
-	
-	public void aumentarFanstamaRosa() {
-		miMapa.agregarEnemigoRosa();
-	}
-	
-	public void aumentarFanstamaRojo() {
-		miMapa.agregarEnemigoRojo();
-	}
 	abstract public int getNivel();
 	abstract public int sleepProtagonista();
 	abstract public int sleepFantasmas();

@@ -3,6 +3,7 @@ package Factories;
 import javax.swing.ImageIcon;
 
 import Entities.Enemigo;
+import Entities.EnemigoRojo;
 import Mapas.MapaGrilla;
 import Entities.NinjaBlinky;
 import Entities.NinjaClyde;
@@ -28,8 +29,8 @@ public class FactoryNinjaMalvado extends FactoryEnemigo{
 		return rojo;
 	}
 
-	public Enemigo crearAzul(PairTupla p , int ancho, int altura,MapaGrilla grilla) {
-		Enemigo azul = new NinjaInky(p ,  ancho,  altura,NinjaAzul,grilla);
+	public Enemigo crearAzul(PairTupla p , int ancho, int altura,MapaGrilla grilla,Enemigo rojo) {
+		Enemigo azul = new NinjaInky(p ,  ancho,  altura,NinjaAzul,grilla,rojo);
 		azul.setImagen(NinjaAzul);
 		return azul;
 	}
@@ -39,4 +40,6 @@ public class FactoryNinjaMalvado extends FactoryEnemigo{
 		naranja.setImagen(NinjaNaranja);
 		return naranja;
 	}
+
+
 }

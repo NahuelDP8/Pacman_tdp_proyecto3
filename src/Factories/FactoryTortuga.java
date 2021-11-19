@@ -20,8 +20,8 @@ public class FactoryTortuga extends FactoryEnemigo{
 		return rojo;
 	}
 
-	public Enemigo crearAzul(PairTupla p , int ancho, int altura,MapaGrilla grilla) {
-		Enemigo azul = new TortugaInky( p ,  ancho,  altura,imgAzul,grilla);
+	public Enemigo crearAzul(PairTupla p , int ancho, int altura,MapaGrilla grilla,Enemigo rojo) {
+		Enemigo azul = new TortugaInky( p ,  ancho,  altura,imgAzul,grilla,rojo);
 		return azul;
 	}
 

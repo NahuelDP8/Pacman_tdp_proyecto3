@@ -3,6 +3,7 @@ package Factories;
 import javax.swing.ImageIcon;
 
 import Mapas.Mapa1;
+import Mapas.Mapa2;
 import Mapas.MapaGrilla;
 import Logic.Logica;
 

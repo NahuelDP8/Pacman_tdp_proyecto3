@@ -33,9 +33,11 @@ abstract public class MapaGrilla {
 	protected final int MOVER_ARRIBA = 2;
 	protected final int MOVER_IZQUIERDA = 3;
 	protected final int MOVER_DERECHA = 4;
+	
 	protected int cantPuntos;
 	protected PowerPelletsTimer ppTimer; 
 	protected PotionVelocidadTimer pvTimer; 
+	protected String[] paredes;
 	
 	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica) {
 		//Asignamos imagen de fondo del mapa
@@ -46,8 +48,6 @@ abstract public class MapaGrilla {
 		fabricaMejora = new FactoryMejora();
 		ancho = an;
 		altura = al;
-		anchoMapa = 500;
-		altoMapa = 540;
 		this.miLogica = miLogica;
 		misEnemigos= new ArrayList<Enemigo>(); 
 	}
@@ -61,21 +61,6 @@ abstract public class MapaGrilla {
 		miProtagonista.setGrilla(this);
 	}
 	
-	protected void agregarFantasmas() {
-		 Enemigo azul = fabricaEnem.crearAzul(new PairTupla(365,350),30,30,this);
-		 this.misEnemigos.add(azul);
-		 añadirEntidad(azul.getEntidad());
-		 Enemigo naranja = fabricaEnem.crearNaranja(new PairTupla(365,50),30,30,this);
-		 this.misEnemigos.add(naranja);
-		 añadirEntidad(naranja.getEntidad());
-		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(105,350),30,30,this);
-		 this.misEnemigos.add(rosa);
-		 añadirEntidad(rosa.getEntidad());
-		 Enemigo rojo = fabricaEnem.crearRojo(new PairTupla(105,50),30,30,this);
-		 this.misEnemigos.add(rojo);
-		 añadirEntidad(rojo.getEntidad());
-	}
-	
 	public int getSleepPowerPellets() {
 		return miNivel.sleepPowerPellets(); 
 	}
@@ -87,14 +72,13 @@ abstract public class MapaGrilla {
 		int i = 0,j = 0;
 		for(Zona[] zz:zonas) {
 			for(Zona z:zz) {
-				z = new Zona(1,new PairTupla(j*(anchoMapa/5),i*(altoMapa/6)),anchoMapa/5,altoMapa/6);
+				z = new Zona(1,new PairTupla(j*(anchoMapa/ancho),i*(altoMapa/alto)),anchoMapa/ancho,altoMapa/alto);
 				zonas[i][j] = z;
 				j++;
 			}
 			j=0;
 			i++;
 		}
-
 	}
 	
 	abstract protected void construccionParedesLimitaciones();
@@ -135,7 +119,8 @@ abstract public class MapaGrilla {
 	public void actualizarEntidad(Entidad e) {
 		ArrayList<Zona> zonasActivasDePro = mapeoPosEntidadAZona(e, 0);
 		actualizarZonas(zonasActivasDePro, e);
-		miLogica.actualizarEntidad(e.getEntidad(),e.getX(),e.getY(),false);
+		if(e.getEntidad() != null) // Si tiene foto que represente esa entidad
+			miLogica.actualizarEntidad(e.getEntidad(),e.getX(),e.getY(),false);
 		
 	}
 
@@ -254,19 +239,6 @@ abstract public class MapaGrilla {
 
 	abstract public void agregarPocion(); 
 	
-	public void agregarEnemigoNaranja(){
-		misEnemigos.add(fabricaEnem.crearNaranja(null, ancho, altura,this));
-	}
-	public void agregarEnemigoAzul() {
-		misEnemigos.add(fabricaEnem.crearAzul(null, ancho, altura,this));
-	}
-	public void agregarEnemigoRojo() {
-		misEnemigos.add(fabricaEnem.crearRojo(null, ancho, altura,this));
-	}
-	public void agregarEnemigoRosa() {
-		misEnemigos.add(fabricaEnem.crearRosa(null, ancho, altura,this));
-	}
-
 	abstract public void quitarPocion() ;
 	
 	abstract public void quitarFruta() ;
@@ -323,10 +295,6 @@ abstract public class MapaGrilla {
 	}
 	public int getAnchoProtagonista() {
 		return miProtagonista.getAncho();
-	}
-	public PairTupla getPosicionRojo() {
-
-		return misEnemigos.get(3).getPos();
 	}
 
 	public void añadirEntidad(EntidadGrafica miEntidad) {
