@@ -1,6 +1,8 @@
 package Mapas;
 
 import javax.swing.ImageIcon;
+
+import Controladores.PPControler;
 import Entities.Enemigo;
 import Entities.Entidad;
 import Entities.PairTupla;
@@ -33,7 +35,7 @@ abstract public class MapaGrilla {
 	protected final int MOVER_ARRIBA = 2;
 	protected final int MOVER_IZQUIERDA = 3;
 	protected final int MOVER_DERECHA = 4;
-	
+	protected PPControler controladorPowerPellets; 
 	protected int cantPuntos;
 	protected PowerPelletsTimer ppTimer; 
 	protected PotionVelocidadTimer pvTimer; 
@@ -49,7 +51,8 @@ abstract public class MapaGrilla {
 		ancho = an;
 		altura = al;
 		this.miLogica = miLogica;
-		misEnemigos= new ArrayList<Enemigo>(); 
+		misEnemigos= new ArrayList<Enemigo>();
+		controladorPowerPellets = new PPControler(); 
 	}
 	
 	public void setNivel(Nivel n) {
@@ -312,18 +315,6 @@ abstract public class MapaGrilla {
 
 	protected abstract void reiniciar();
 
-	public void enemigosEscapar() {
-		for(Enemigo e : misEnemigos) {
-			e.deboEscapar();
-		}
-		
-	}
-	public void enemigosPerseguir() {
-		for(Enemigo e : misEnemigos) {
-			e.deboPerseguir();
-		}
-		
-	}
 	public void gameOver() {
 		//el juego se acaba por el protagonista ha perdido todas sus vidas. 
 		//o ha ganado. 
@@ -335,15 +326,6 @@ abstract public class MapaGrilla {
 		miLogica.quitarVida();
 		//Debereíamos actualizar los labels de las vidas quitando una
 		//Además, reiniciar el juego solo con las localizaciones originales del las entidades móviles y nada más. 
-	}
-
-	public void activarPowerPellet() {
-		ppTimer = PowerPelletsTimer.getPowerPelletsTimer(this); 
-		if(!ppTimer.isAlive()) {
-			ppTimer.start();
-		}else {
-			ppTimer.adherirTiempoAdicional(miNivel.sleepPowerPellets());
-		}
 	}
 
 
@@ -369,5 +351,9 @@ abstract public class MapaGrilla {
 		return miNivel.sleepPocion();	
 	}
 
+	
+	public void comunicarControlPowerPellet() {
+		controladorPowerPellets.activarPowerPellet(miNivel.sleepPowerPellets(), misEnemigos); 
+	}
 
 }
