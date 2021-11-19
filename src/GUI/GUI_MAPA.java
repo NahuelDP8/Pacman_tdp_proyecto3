@@ -10,6 +10,7 @@ import javax.swing.SwingConstants;
 import Entities.EntidadGrafica;
 import Factories.FactoryMapaGrilla;
 import Logic.Logica;
+import Music.AudioPlayer;
 import Nivel.Nivel;
 import ranking.Player;
 import ranking.TopPlayers;
@@ -37,20 +38,31 @@ public class GUI_MAPA{
 	private JLabel JLNivel;
 	private boolean izquierda, derecha, abajo, arriba;
 	private JLabel JLVIDAS1, JLVIDAS2,JLVIDAS3;
+	private AudioPlayer audio;
 	/**
 	 * Create the application.
 	 */
-	public GUI_MAPA(FactoryMapaGrilla f, Nivel nivel,String nom, TopPlayers TP) {
+	public GUI_MAPA(FactoryMapaGrilla f, Nivel nivel,String nom, TopPlayers TP,AudioPlayer audioP) {
 		initialize();
+		audio=audioP;
 		JLNombre.setText("Nombre: "+ nom);
 		JLNivel.setText("Nivel: "+ nivel.getNivel());
 		topPlayers=TP;
 		crearTablaHighScore();
 		log = log.getLogic(this, f, nivel);
+		initAudio();
 	}
 	
 	public JFrame getFrame() {
 		return frame;
+	}
+	
+	private void initAudio(){
+		
+	}
+	
+	private void audioOn() {
+		
 	}
 
 	public void quitarEntidad(EntidadGrafica entidad) {

@@ -27,6 +27,7 @@ import Factories.FactoryMapaGrilla;
 import Factories.FactoryMapaGrillaGoku;
 import Factories.FactoryMapaGrillaNaruto;
 import Factories.FactoryNiveles;
+import Music.AudioPlayer;
 import Nivel.Nivel;
 import ranking.TopPlayers;
 
@@ -42,7 +43,8 @@ public class GUIMenu extends JFrame {
 	private Nivel F_Nivel;
 	private String nombre;
 	private JTextField JTFmiNombre;
-	private TopPlayers topPlayers; 
+	private TopPlayers topPlayers;
+	private AudioPlayer audio;
 	/**
 	 * Launch the application.
 	 */
@@ -55,8 +57,10 @@ public class GUIMenu extends JFrame {
 
 			public void run() {
 				TopPlayers  topPlayers;
+				AudioPlayer audio;
 				try {
 					File tempFile = new File(GUIMenu.configuration.getProperty("HighscoreFile"));
+					System.out.println(tempFile);
 					if((tempFile.exists()) && (tempFile.length() != 0)) {
 						FileInputStream fileInputStream= new FileInputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
 						ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
@@ -165,6 +169,8 @@ public class GUIMenu extends JFrame {
 					public void run() {
 						try {
 							F_Mapa_Grilla=new FactoryMapaGrillaNaruto();
+							File MusicFile = new File(GUIMenu.configuration.getProperty("NarutoMusic"));
+							audio=new AudioPlayer(MusicFile);
 							PSeleccionProta.setVisible(false);
 							PSeleccionNivel.setVisible(true);
 						} catch (Exception e) {
@@ -177,7 +183,7 @@ public class GUIMenu extends JFrame {
 		JBNaruto.setEnabled(false);
 		
 		JLabel ModoDeJuego = new JLabel("MODO DE JUEGO");
-		ModoDeJuego.setBounds(75, 10, 522, 78);
+		ModoDeJuego.setBounds(97, 10, 522, 78);
 		PSeleccionProta.add(ModoDeJuego);
 		ModoDeJuego.setHorizontalAlignment(SwingConstants.CENTER);
 		ModoDeJuego.setForeground(Color.WHITE);
@@ -224,13 +230,15 @@ public class GUIMenu extends JFrame {
 		
 		
 		
+		
+		
 		JButton JBNivel1 = new JButton("NIVEL 1");
 		JBNivel1.setBackground(Color.WHITE);
 		JBNivel1.setFont(new Font("Playbill", Font.BOLD, 80));
 		JBNivel1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				F_Nivel=new FactoryNiveles().crearNivel1();
-				GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp);
+				GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp,audio);
 				GUIWindow.getFrame().setVisible(true);
 				dispose();
 			}
@@ -254,7 +262,7 @@ public class GUIMenu extends JFrame {
 					public void run() {
 						try {
 							F_Nivel=new FactoryNiveles().crearNivel2();
-							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp);
+							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp,audio);
 							GUIWindow.getFrame().setVisible(true);
 							dispose();
 						} catch (Exception e) {
@@ -281,7 +289,7 @@ public class GUIMenu extends JFrame {
 					public void run() {
 						try {
 							F_Nivel=new FactoryNiveles().crearNivel3();
-							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp);
+							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp,audio);
 							GUIWindow.getFrame().setVisible(true);
 							ContentPanel.setLayout(null);
 							dispose();
@@ -292,10 +300,21 @@ public class GUIMenu extends JFrame {
 				});
 			}
 		});
-		JLabel lblNewLabel = new JLabel("Elije el nivel que quieres jugar");
-		lblNewLabel.setFont(new Font("Rockwell", Font.BOLD, 40));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(45, 23, 630, 95);
-		PSeleccionNivel.add(lblNewLabel);
+		JLabel JLElijeNivel = new JLabel("Elije el nivel que quieres jugar");
+		JLElijeNivel.setFont(new Font("Rockwell", Font.BOLD, 40));
+		JLElijeNivel.setHorizontalAlignment(SwingConstants.CENTER);
+		JLElijeNivel.setBounds(45, 23, 630, 95);
+		PSeleccionNivel.add(JLElijeNivel);
+		
+		JButton JBMusic = new JButton("M\u00FAsica");
+		JBMusic.setBounds(628, 0, 119, 46);
+		JBMusic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				audio.alternarSilencio();
+			}
+		});
+		PSeleccionNivel.add(JBMusic);
+		JBMusic.setForeground(Color.BLACK);
+		JBMusic.setFont(new Font("Impact", Font.PLAIN, 28));
 	}
 }
