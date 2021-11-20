@@ -7,7 +7,6 @@ import Mapas.MapaGrilla;
 
 abstract public class Protagonista extends Personaje{
 	protected int vidas;
-	protected int movimientoActual;
 	protected int movimientoPrevio;
 	protected int puntaje;
 	protected boolean colisiono;
@@ -41,11 +40,12 @@ abstract public class Protagonista extends Personaje{
 			posicion.setX(posicion.getX()+ velocidad);
 		}
 		movimientoPrevio = movimientoActual;
+		actualizarFoto();
 		miGrilla.actualizarEntidad(this);
 		miRectangulo.setBounds(posicion.getX(), posicion.getY(), ancho, altura);
-		System.out.println(getX()+" "+getY());
 
 	}
+
 	public void moverAbajo() {
 		movimientoPrevio = movimientoActual;
 		movimientoActual = MOVER_ABAJO;

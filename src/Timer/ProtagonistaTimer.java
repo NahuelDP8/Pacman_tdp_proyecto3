@@ -4,17 +4,27 @@ import Controladores.MovimientosControler;
 
 public class ProtagonistaTimer extends Thread {
 	private MovimientosControler miControlador; 
-	private Thread hiloPro; 
+	private static ProtagonistaTimer hiloPro; 
 	private int sleepProtagonista; 
 	private int cnsProtagonista;
 	
-	public ProtagonistaTimer (MovimientosControler miC, int cnsPro) {
+	private ProtagonistaTimer (MovimientosControler miC, int cnsPro) {
 		miControlador = miC; 
-		hiloPro = new Thread ();
 		hiloPro.start();
 		sleepProtagonista = miControlador.getSleepGeneralProtagonista(); 
 		cnsProtagonista = cnsPro; 
 	} 
+	
+	public static ProtagonistaTimer getProtagonistaTimer(MovimientosControler miC, int cnsPro) {
+		if (hiloPro == null) {
+			hiloPro = new ProtagonistaTimer(miC, cnsPro); 
+		}
+		return hiloPro; 
+	}
+	
+	public static ProtagonistaTimer getProtagonistaTimer() {
+		return hiloPro; 
+	}
 	
 	public void run() {
 		try {
@@ -23,5 +33,10 @@ public class ProtagonistaTimer extends Thread {
 		} catch(InterruptedException e) {
 			Thread.currentThread().interrupt();
 		}
+	}
+
+	public void actualizarSleepProtagonista(int sleepGeneralProtagonista) {
+		sleepProtagonista =sleepGeneralProtagonista; 
+		
 	}
 }

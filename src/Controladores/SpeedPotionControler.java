@@ -1,7 +1,7 @@
 package Controladores;
 
-import Logic.Logica;
 import Timer.PotionVelocidadTimer;
+import Timer.ProtagonistaTimer;
 
 public class SpeedPotionControler extends ThreadControl {
 	private PotionVelocidadTimer miTimer; 
@@ -13,14 +13,14 @@ public class SpeedPotionControler extends ThreadControl {
 	}
 
 	public void normalizarVelocidadPacman() {
-		Logica.getLogic(null, null, null).actualizarSleepProtagonista(sleepGeneralProtagonista);
+		ProtagonistaTimer.getProtagonistaTimer().actualizarSleepProtagonista(sleepGeneralProtagonista);
 	}
 	
 	public void activarSuperVelocidadDePacman(int velocidad, int sleepV ) {
 		miTimer = PotionVelocidadTimer.getPotionVelocidadTimer(this,sleepV); 
 		if(!miTimer.isAlive()) {
 			miTimer.start();
-			Logica.getLogic(null, null, null).actualizarSleepProtagonista(velocidad);
+			ProtagonistaTimer.getProtagonistaTimer().actualizarSleepProtagonista(velocidad);
 		}else {
 			miTimer.adherirTiempoAdicional(sleepV);
 		}

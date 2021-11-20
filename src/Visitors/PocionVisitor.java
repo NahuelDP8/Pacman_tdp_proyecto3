@@ -1,6 +1,7 @@
 package Visitors;
 
 import Entities.Enemigo;
+import Entities.Entidad;
 import Entities.Fruta;
 import Entities.Pared;
 import Entities.Pocion;

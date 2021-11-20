@@ -6,7 +6,7 @@ import Timer.ProtagonistaTimer;
 import java.util.ArrayList;
 import Entities.Enemigo;
 import Entities.Protagonista;
-;
+
 public class MovimientosControler extends ThreadControl {
 	private EnemigosTimer tEnemigos; 
 	private ProtagonistaTimer tProtagonista; 
@@ -21,7 +21,7 @@ public class MovimientosControler extends ThreadControl {
 		MOVER_ENEMIGOS = Logica.getLogic(null, null, null).getConstanteMOVER_ENEMIGOS();
 		MOVER_PROTAGONISTA = Logica.getLogic(null, null, null).getConstanteMOVER_PROTAGONISTA();
 		tEnemigos =  new EnemigosTimer(this, MOVER_ENEMIGOS);
-		tProtagonista = new ProtagonistaTimer(this, MOVER_PROTAGONISTA);
+		tProtagonista = ProtagonistaTimer.getProtagonistaTimer(this, MOVER_PROTAGONISTA);
 		this.sleepPro = sleepPro;
 		this.sleepEnem = sleepEn; 
 		movEnemigoC = new MovimientoEnemigosControler(lisEnem);

@@ -2,21 +2,23 @@ package Mapas;
 
 import javax.swing.ImageIcon;
 
-import Controladores.PowerPelletControler;
-import Controladores.SpeedPotionControler;
+import Controladores.MovimientosControler;
+import Controladores.PowerPelletsControler;
 import Entities.Enemigo;
 import Entities.Entidad;
 import Entities.PairTupla;
 import Entities.Protagonista;
-import Entities.EntidadGrafica; 
+import Entities.EntidadGrafica;
+import Entities.Mejora;
 import Factories.FactoryEnemigo;
+import Factories.FactoryMapaGrilla;
 import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
 import Nivel.Nivel;
 import Timer.PotionVelocidadTimer;
-import Timer.PowerPelletsTimer;
-
+import Timer.PowerPelletsTimer; 
+import Controladores.SpeedPotionControler;
 import java.awt.Shape;
 import java.util.ArrayList;
 
@@ -26,6 +28,7 @@ abstract public class MapaGrilla {
 	protected FactoryProtagonista fabricaProt;
 	protected FactoryEnemigo fabricaEnem;
 	protected FactoryMejora fabricaMejora;
+	protected FactoryMapaGrilla fabrica;
 	protected Protagonista miProtagonista;
 	protected PairTupla posInicialProtagonista;
 	protected ArrayList<Enemigo> misEnemigos;
@@ -36,8 +39,9 @@ abstract public class MapaGrilla {
 	protected final int MOVER_ARRIBA = 2;
 	protected final int MOVER_IZQUIERDA = 3;
 	protected final int MOVER_DERECHA = 4;
-	protected PowerPelletControler controladorPowerPellets; 
+	protected PowerPelletsControler controladorPowerPellets; 
 	protected SpeedPotionControler controladorPrincipalSpeed; 
+	protected MovimientosControler controladorDeMovimientos; 
 	protected int cantPuntos;
 	protected PowerPelletsTimer ppTimer; 
 	protected PotionVelocidadTimer pvTimer; 
@@ -46,6 +50,7 @@ abstract public class MapaGrilla {
 	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica) {
 		//Asignamos imagen de fondo del mapa
 		miFondo = fondo;
+		miLogica.actualizarFondo(fondo);
 		//Asignamos las fabricas correspondientes 
 		fabricaProt = fp;
 		fabricaEnem = fe;
@@ -54,8 +59,9 @@ abstract public class MapaGrilla {
 		altura = al;
 		this.miLogica = miLogica;
 		misEnemigos= new ArrayList<Enemigo>();
-		controladorPowerPellets = new PowerPelletControler(); 
+		controladorPowerPellets = new PowerPelletsControler(); 
 		controladorPrincipalSpeed = new SpeedPotionControler(miNivel.sleepProtagonista()); 
+		controladorDeMovimientos = new MovimientosControler(miNivel.sleepProtagonista(), miNivel.sleepFantasmas(), miProtagonista, misEnemigos ); 
 	}
 	
 	public void setNivel(Nivel n) {
@@ -296,12 +302,29 @@ abstract public class MapaGrilla {
 	public void restarPunto() {
 		cantPuntos--;
 		if(cantPuntos == 0) {
+			for(Enemigo e: misEnemigos)
+				sacarEntidad(e);
+			sacarEntidad(miProtagonista);
 			miLogica.nivelSiguiente(miNivel);
-			reiniciar();
 		}	
 	}
 
-	protected abstract void reiniciar();
+	protected void agregarPowerPellets() {
+		Mejora m;
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,20),22,22,this);
+		actualizarEntidad(m);
+		cantPuntos++;
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(anchoMapa-50,20),22,22,this);
+		actualizarEntidad(m);
+		cantPuntos++;
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,altoMapa-50),22,22,this);
+		actualizarEntidad(m);
+		cantPuntos++;
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(anchoMapa-50,altoMapa-50),22,22,this);
+		actualizarEntidad(m);
+		cantPuntos++;
+	}
+	
 
 	public void gameOver() {
 		//el juego se acaba por el protagonista ha perdido todas sus vidas. 
@@ -324,9 +347,15 @@ abstract public class MapaGrilla {
 	public void comunicarControlPrincipalSpeed(int velocidad) {
 		controladorPrincipalSpeed.activarSuperVelocidadDePacman(velocidad, miNivel.sleepSuperSpeedPocion());
 	}
-		
+	
 	public void comunicarControlPowerPellet() {
 		controladorPowerPellets.activarPowerPellet(miNivel.sleepPowerPellets(), misEnemigos); 
+	}
+
+	public abstract MapaGrilla mapaSiguiente();
+
+	public void setFabrica(FactoryMapaGrilla fab) {
+		fabrica = fab;
 	}
 
 }

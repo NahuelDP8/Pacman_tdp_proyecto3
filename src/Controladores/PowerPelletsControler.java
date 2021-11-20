@@ -4,11 +4,11 @@ import Timer.PowerPelletsTimer;
 import java.util.ArrayList;
 import Entities.Enemigo;
 
-public class PowerPelletControler extends ThreadControl{
+public class PowerPelletsControler extends ThreadControl{
 	private PowerPelletsTimer miTimer;
 	private ArrayList<Enemigo> misEnemigos; 
 	
- 	public PowerPelletControler() {
+ 	public PowerPelletsControler() {
 		super(); 
 	}
 

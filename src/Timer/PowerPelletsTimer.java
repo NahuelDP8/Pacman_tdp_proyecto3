@@ -1,21 +1,21 @@
 package Timer;
 
 import java.util.ArrayList;
-import Controladores.PowerPelletControler;
+import Controladores.PowerPelletsControler;
 
 
 public class PowerPelletsTimer extends Thread  {
 	private static PowerPelletsTimer hiloPP;
 	private static int sleepDePP; //PP=Power Pellets
-	private static PowerPelletControler miControlador;
+	private static PowerPelletsControler miControlador;
 	private ArrayList<Integer> tiempoAdicional; //Se utilizará en caso de que el protagonista tome otro powerPellet si es que este timer ya esté activado
 	
-	private PowerPelletsTimer(PowerPelletControler miCon) {
+	private PowerPelletsTimer(PowerPelletsControler miCon) {
 		miControlador = miCon; 
 		tiempoAdicional = new ArrayList<Integer>(); 
 	}
 
-	public static PowerPelletsTimer getPowerPelletsTimer(PowerPelletControler miC, int sleepPP) {
+	public static PowerPelletsTimer getPowerPelletsTimer(PowerPelletsControler miC, int sleepPP) {
 		if(hiloPP == null) 
 			hiloPP = new PowerPelletsTimer(miC);
 		sleepDePP = sleepPP; 
