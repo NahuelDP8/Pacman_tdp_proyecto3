@@ -25,12 +25,11 @@ public class Logica {
 		miGUI = g;
 		miFabrica = f;
 		miNivel = n;
-		miMapa = miFabrica.crearMapa1(this);
+		miMapa = miFabrica.crearMapa1(this,n);
 		miMapa.setFabrica(miFabrica);
 		miMapa.setNivel(n);
 		n.setMapa(miMapa);
 		miReloj = new Timer(this);
-		setearSleeps();
 	}
 	
 	public void actualizarFondo(ImageIcon img) {
@@ -43,9 +42,7 @@ public class Logica {
 			logic = new Logica(g,f,n);
 		return logic;
 	}
-	
 
-	
 	public void gameOver(){
 		
 	}
@@ -112,19 +109,10 @@ public class Logica {
 
 	public void nivelSiguiente(Nivel n) {
 		miGUI.cargando(true);
-		miMapa = miMapa.mapaSiguiente();
-		n.setMapa(miMapa);
-		miNivel = n;
-		miMapa.setNivel(n);
-		setearSleeps();
+		miNivel = n.nivelSiguiente();
+		miMapa = miMapa.mapaSiguiente(miNivel);
+		miNivel.setMapa(miMapa);
 		miGUI.cargando(false);
-	}
-	
-	private void setearSleeps() {
-		//actualizarSleepProtagonista(miNivel.sleepProtagonista());
-	//	actualizarSleepFantasmas(miNivel.sleepFantasmas());
-		//this.setEsperaFruta(miNivel.sleepFruta());
-		//this.setEsperaPocion(miNivel.sleepPocion());
 	}
 
 	public int getCteFantasma() {

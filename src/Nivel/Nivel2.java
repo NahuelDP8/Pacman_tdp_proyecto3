@@ -38,5 +38,8 @@ public class Nivel2 extends Nivel {
 		// TODO Auto-generated method stub
 		return 2;
 	}
+	public Nivel nivelSiguiente() {
+		return new Nivel3();
+	}
 
 }

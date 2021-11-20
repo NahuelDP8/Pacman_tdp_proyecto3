@@ -9,7 +9,7 @@ public class Nivel1 extends Nivel{
 		return 1;
 	}
 	public int sleepProtagonista() {
-		return 30;
+		return 15;
 	}
 	
 	public int sleepFantasmas() {
@@ -26,6 +26,9 @@ public class Nivel1 extends Nivel{
 
 	public int sleepPowerPellets() {
 		return 10000;
+	}
+	public Nivel nivelSiguiente() {
+		return new Nivel2();
 	}
 
 }

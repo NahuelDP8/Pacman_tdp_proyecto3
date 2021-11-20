@@ -32,6 +32,7 @@ abstract public class Protagonista extends Personaje{
 	public void realizarMovimiento() {
 		if(movimientoActual == MOVER_ABAJO) {
 			posicion.setY(posicion.getY()+ velocidad);
+			System.out.println("BASURA");
 		}else if(movimientoActual == MOVER_ARRIBA) {
 			posicion.setY(posicion.getY()- velocidad);
 		}else if(movimientoActual == MOVER_IZQUIERDA) {
@@ -43,7 +44,6 @@ abstract public class Protagonista extends Personaje{
 		actualizarFoto();
 		miGrilla.actualizarEntidad(this);
 		miRectangulo.setBounds(posicion.getX(), posicion.getY(), ancho, altura);
-
 	}
 
 	public void moverAbajo() {

@@ -18,6 +18,8 @@ import ranking.TopPlayers;
 
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
@@ -275,7 +277,13 @@ public class GUI_MAPA{
 		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/music.png")).getImage().getScaledInstance(JBMusic.getWidth(),JBMusic.getHeight(), Image.SCALE_DEFAULT);
 		FotoEscalada = new ImageIcon(EscalarFoto);
 		JBMusic.setIcon(FotoEscalada);
+		JBMusic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent d) {
+				audio.alternarSilencio();
+			}
+		});
 		panel.add(JBMusic);
+		
 		
 		JLabel JLPlayerPuntaje = new JLabel("Tu Puntaje:");
 		JLPlayerPuntaje.setBounds(716, 130, 130, 40);

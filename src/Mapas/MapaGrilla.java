@@ -41,13 +41,13 @@ abstract public class MapaGrilla {
 	protected final int MOVER_DERECHA = 4;
 	protected PowerPelletsControler controladorPowerPellets; 
 	protected SpeedPotionControler controladorPrincipalSpeed; 
-	protected MovimientosControler controladorDeMovimientos; 
+	public MovimientosControler controladorDeMovimientos; 
 	protected int cantPuntos;
 	protected PowerPelletsTimer ppTimer; 
 	protected PotionVelocidadTimer pvTimer; 
 	protected String[] paredes;
 	
-	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica) {
+	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica,Nivel lvl) {
 		//Asignamos imagen de fondo del mapa
 		miFondo = fondo;
 		miLogica.actualizarFondo(fondo);
@@ -60,8 +60,8 @@ abstract public class MapaGrilla {
 		this.miLogica = miLogica;
 		misEnemigos= new ArrayList<Enemigo>();
 		controladorPowerPellets = new PowerPelletsControler(); 
+		miNivel = lvl;
 		controladorPrincipalSpeed = new SpeedPotionControler(miNivel.sleepProtagonista()); 
-		controladorDeMovimientos = new MovimientosControler(miNivel.sleepProtagonista(), miNivel.sleepFantasmas(), miProtagonista, misEnemigos ); 
 	}
 	
 	public void setNivel(Nivel n) {
@@ -352,7 +352,7 @@ abstract public class MapaGrilla {
 		controladorPowerPellets.activarPowerPellet(miNivel.sleepPowerPellets(), misEnemigos); 
 	}
 
-	public abstract MapaGrilla mapaSiguiente();
+	public abstract MapaGrilla mapaSiguiente(Nivel lvl);
 
 	public void setFabrica(FactoryMapaGrilla fab) {
 		fabrica = fab;

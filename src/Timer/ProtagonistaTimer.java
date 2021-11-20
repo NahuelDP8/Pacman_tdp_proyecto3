@@ -10,7 +10,6 @@ public class ProtagonistaTimer extends Thread {
 	
 	private ProtagonistaTimer (MovimientosControler miC, int cnsPro) {
 		miControlador = miC; 
-		hiloPro.start();
 		sleepProtagonista = miControlador.getSleepGeneralProtagonista(); 
 		cnsProtagonista = cnsPro; 
 	} 
@@ -18,6 +17,7 @@ public class ProtagonistaTimer extends Thread {
 	public static ProtagonistaTimer getProtagonistaTimer(MovimientosControler miC, int cnsPro) {
 		if (hiloPro == null) {
 			hiloPro = new ProtagonistaTimer(miC, cnsPro); 
+			hiloPro.start();
 		}
 		return hiloPro; 
 	}
@@ -27,11 +27,13 @@ public class ProtagonistaTimer extends Thread {
 	}
 	
 	public void run() {
-		try {
-			Thread.sleep(this.sleepProtagonista);
-			miControlador.realizarMovimiento(cnsProtagonista);
-		} catch(InterruptedException e) {
-			Thread.currentThread().interrupt();
+		while (Thread.currentThread() == this) {
+			try {
+				sleep(this.sleepProtagonista);
+				miControlador.realizarMovimiento(cnsProtagonista);
+			} catch(InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
 		}
 	}
 

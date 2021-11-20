@@ -34,4 +34,7 @@ public class Nivel3 extends Nivel{
 	public int getNivel() {
 		return 3;
 	}
+	public Nivel nivelSiguiente() {
+		return null;
+	}
 }
