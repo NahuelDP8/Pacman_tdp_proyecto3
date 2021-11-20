@@ -112,6 +112,7 @@ public class Logica {
 		miNivel = n.nivelSiguiente();
 		miMapa = miMapa.mapaSiguiente(miNivel);
 		miNivel.setMapa(miMapa);
+		miGUI.setJLNivel(miNivel);
 		miGUI.cargando(false);
 	}
 

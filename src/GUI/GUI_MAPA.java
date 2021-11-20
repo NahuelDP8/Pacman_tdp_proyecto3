@@ -18,6 +18,7 @@ import ranking.TopPlayers;
 
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -29,6 +30,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class GUI_MAPA{
 
@@ -44,8 +47,10 @@ public class GUI_MAPA{
 	private boolean izquierda, derecha, abajo, arriba;
 	private JLabel JLVIDAS1, JLVIDAS2,JLVIDAS3;
 	private AudioPlayer audio;
-	private final JLabel lblNewLabel = new JLabel("New label");
-	private JButton JBMusic;
+	private Image EscalarFoto; 
+	private ImageIcon FotoEscalada;
+	private JPanel JPPausa;
+	private JLabel JLMusic;
 	/**
 	 * Create the application.
 	 */
@@ -53,7 +58,6 @@ public class GUI_MAPA{
 		initialize();
 		JLNombre.setText("Nombre: "+ nom);
 		JLNivel.setText("Nivel: "+ nivel.getNivel());
-		frame.getContentPane().add(lblNewLabel);
 		topPlayers=TP;
 		audio=audioaux;
 		log = log.getLogic(this, f, nivel);
@@ -141,6 +145,7 @@ public class GUI_MAPA{
 	}
 
 	class EventoDeTeclado implements KeyListener{
+		
 		public void keyTyped(KeyEvent e) {
 			}
 	
@@ -160,11 +165,14 @@ public class GUI_MAPA{
 								if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 									//captarAbajoNormalizarPausa();
 									abajo = true;
+								}else {
+									if(e.getKeyCode() == KeyEvent.VK_P) {
+										audio.alternarSilencio();
 								}
 							}
-				}
-			}
-
+							}
+			}	
+		}
 			public void keyReleased(KeyEvent e) {
 				if(jugando) {
 					if(e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -217,6 +225,8 @@ public class GUI_MAPA{
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
+		
+		
 		JLabel JLVIDAS = new JLabel("vidas");
 		JLVIDAS.setFont(new Font("Engravers MT", Font.BOLD, 40));
 		JLVIDAS.setHorizontalAlignment(SwingConstants.CENTER);
@@ -232,8 +242,8 @@ public class GUI_MAPA{
 		JLVIDAS1 = new JLabel("");
 		JLVIDAS1.setBounds(20, 0, 87, 88);
 		panel_1.add(JLVIDAS1);
-		Image EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")).getImage().getScaledInstance(JLVIDAS1.getWidth(),JLVIDAS1.getHeight(), Image.SCALE_DEFAULT);
-		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
+		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")).getImage().getScaledInstance(JLVIDAS1.getWidth(),JLVIDAS1.getHeight(), Image.SCALE_DEFAULT);
+		FotoEscalada = new ImageIcon(EscalarFoto);
 		JLVIDAS1.setIcon(FotoEscalada);
 		JLVIDAS1.setVisible(true);
 		
@@ -272,17 +282,13 @@ public class GUI_MAPA{
 		JLNombre.setBounds(1036, 27, 372, 40);
 		panel.add(JLNombre);
 		
-		JBMusic = new JButton("");
-		JBMusic.setBounds(753, 56, 42, 31);
-		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/music.png")).getImage().getScaledInstance(JBMusic.getWidth(),JBMusic.getHeight(), Image.SCALE_DEFAULT);
+		JLMusic = new JLabel("Letra \"P\": ALTERNA MUTE M\u00DASICA");
+		JLMusic.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+		JLMusic.setBounds(522, 68, 355, 29);
+		panel.add(JLMusic);
 		FotoEscalada = new ImageIcon(EscalarFoto);
-		JBMusic.setIcon(FotoEscalada);
-		JBMusic.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent d) {
-				audio.alternarSilencio();
-			}
-		});
-		panel.add(JBMusic);
+		
+		
 		
 		
 		JLabel JLPlayerPuntaje = new JLabel("Tu Puntaje:");
@@ -350,6 +356,9 @@ public class GUI_MAPA{
 	}
 
 	public void win() {
+	}
+	public void setJLNivel(Nivel n) {
+		JLNivel.setText("Nivel: "+ n.getNivel());
 	}
 	public void cargando(boolean visibilidad) {
 		frame.getContentPane().setComponentZOrder(panelCargando, 0);
