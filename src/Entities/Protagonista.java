@@ -1,7 +1,5 @@
 package Entities;
 
-import java.awt.Image;
-
 import javax.swing.ImageIcon;
 import Visitors.ProtagonistaVisitor;
 import Visitors.Visitor;
@@ -115,6 +113,10 @@ abstract public class Protagonista extends Personaje{
 	}
 	public void setComiendo(boolean comer) {
 		comiendo  = comer;
+	}
+
+	public void iniciarProcesoMovimiento() {
+		miGrilla.verificacionesPreMovimientoProtagonista();
 	}
 	
 }

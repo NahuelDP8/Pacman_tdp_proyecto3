@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import Controladores.MovimientosControler;
 import Entities.Enemigo;
 import Entities.Entidad;
 import Entities.Mejora;
@@ -14,6 +15,7 @@ import Entities.Portal;
 import Factories.FactoryEnemigo;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
+import Nivel.Nivel;
 
 public class Mapa3 extends MapaGrilla {
 	protected int ancho;
@@ -21,8 +23,8 @@ public class Mapa3 extends MapaGrilla {
 	protected Mejora fruta;
 	protected Mejora pocion;
 	
-	public Mapa3(ImageIcon fondo, FactoryProtagonista fp, FactoryEnemigo fe, int ancho, int altura, Logica miLogica) {
-		super(fondo, fp, fe, ancho, altura, miLogica);
+	public Mapa3(ImageIcon fondo, FactoryProtagonista fp, FactoryEnemigo fe, int ancho, int altura, Logica miLogica,Nivel lvl) {
+		super(fondo, fp, fe, ancho, altura, miLogica,lvl);
 		anchoMapa = 680;
 		altoMapa = 680;
 		construccionZonasGrilla(8,8);
@@ -45,6 +47,9 @@ public class Mapa3 extends MapaGrilla {
 		pocion = fabricaMejora.crearPocion(new PairTupla(230,196), 20, 20,this);
 		agregarFruta(); 
 		agregarPocion(); 
+		
+		controladorDeMovimientos = new MovimientosControler(miNivel.sleepProtagonista(), miNivel.sleepFantasmas(), miProtagonista, misEnemigos,miLogica.getConstanteMOVER_ENEMIGOS(),miLogica.getConstanteMOVER_PROTAGONISTA() ); 
+		
 	}
 	
 	protected void reiniciar() {
@@ -169,10 +174,9 @@ public class Mapa3 extends MapaGrilla {
 		sacarEntidad(fruta);
 	}
 	@Override
-	public MapaGrilla mapaSiguiente() {
-		
+	public MapaGrilla mapaSiguiente(Nivel lvl) {
 		win();
-		return this;
+		return null;
 	}
 
 	private void win() {

@@ -22,7 +22,7 @@ public class Nivel3 extends Nivel{
 	}
 
 	@Override
-	public int sleepPocion() {
+	public int sleepSuperSpeedPocion() {
 		// TODO Auto-generated method stub
 		return 2000;
 	}
@@ -33,5 +33,8 @@ public class Nivel3 extends Nivel{
 	@Override
 	public int getNivel() {
 		return 3;
+	}
+	public Nivel nivelSiguiente() {
+		return null;
 	}
 }

@@ -21,6 +21,7 @@ abstract public class Nivel {
 	abstract public int sleepProtagonista();
 	abstract public int sleepFantasmas();
 	abstract public int sleepFruta(); 
-	abstract public int sleepPocion();
+	abstract public int sleepSuperSpeedPocion();
 	abstract public int sleepPowerPellets();
+	abstract public Nivel nivelSiguiente();
 }
