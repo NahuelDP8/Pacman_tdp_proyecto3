@@ -2,7 +2,8 @@ package Mapas;
 
 import javax.swing.ImageIcon;
 
-import Controladores.PPControler;
+import Controladores.MovimientosControler;
+import Controladores.PowerPelletsControler;
 import Entities.Enemigo;
 import Entities.Entidad;
 import Entities.PairTupla;
@@ -16,8 +17,8 @@ import Factories.FactoryProtagonista;
 import Logic.Logica;
 import Nivel.Nivel;
 import Timer.PotionVelocidadTimer;
-import Timer.PowerPelletsTimer;
-
+import Timer.PowerPelletsTimer; 
+import Controladores.SpeedPotionControler;
 import java.awt.Shape;
 import java.util.ArrayList;
 
@@ -38,7 +39,9 @@ abstract public class MapaGrilla {
 	protected final int MOVER_ARRIBA = 2;
 	protected final int MOVER_IZQUIERDA = 3;
 	protected final int MOVER_DERECHA = 4;
-	protected PPControler controladorPowerPellets; 
+	protected PowerPelletsControler controladorPowerPellets; 
+	protected SpeedPotionControler controladorPrincipalSpeed; 
+	protected MovimientosControler controladorDeMovimientos; 
 	protected int cantPuntos;
 	protected PowerPelletsTimer ppTimer; 
 	protected PotionVelocidadTimer pvTimer; 
@@ -56,7 +59,9 @@ abstract public class MapaGrilla {
 		altura = al;
 		this.miLogica = miLogica;
 		misEnemigos= new ArrayList<Enemigo>();
-		controladorPowerPellets = new PPControler(); 
+		controladorPowerPellets = new PowerPelletsControler(); 
+		controladorPrincipalSpeed = new SpeedPotionControler(miNivel.sleepProtagonista()); 
+		controladorDeMovimientos = new MovimientosControler(miNivel.sleepProtagonista(), miNivel.sleepFantasmas(), miProtagonista, misEnemigos ); 
 	}
 	
 	public void setNivel(Nivel n) {
@@ -130,23 +135,8 @@ abstract public class MapaGrilla {
 			miLogica.actualizarEntidad(e.getEntidad(),e.getX(),e.getY(),false);
 		
 	}
-
-	public synchronized void realizarMovimiento(int constante) {
-		if (constante == miLogica.getCteFantasma()) {
-			moverTodosLosFantasmas();
-		}else if(constante == miLogica.getCteProtagonista()){
-			realizarMovimientoProtagonista();
-		}
-	}
-	
-	public void moverTodosLosFantasmas() {
-		for(Enemigo enemigo : misEnemigos) {
-			actualizarEntidad(enemigo);
-			enemigo.moverme(); 
-		}
-	}
-	
-	public void realizarMovimientoProtagonista() {
+		
+	public void verificacionesPreMovimientoProtagonista() {
 		miLogica.captar();
 		boolean huboColisiones = verificarColisiones(miProtagonista);
 		if(!huboColisiones) miProtagonista.realizarMovimiento();		
@@ -354,24 +344,9 @@ abstract public class MapaGrilla {
 		miProtagonista.setPos(new PairTupla(posInicialProtagonista.getX(),posInicialProtagonista.getY()));
 	}
 
-	public void normalizarVelocidadPacman() {
-		miLogica.actualizarSleepProtagonista(miNivel.sleepProtagonista());
+	public void comunicarControlPrincipalSpeed(int velocidad) {
+		controladorPrincipalSpeed.activarSuperVelocidadDePacman(velocidad, miNivel.sleepSuperSpeedPocion());
 	}
-
-	public void activarSuperVelocidadDePacman(int velocidad) {
-		pvTimer = PotionVelocidadTimer.getPotionVelocidadTimer(this); 
-		if(!pvTimer.isAlive()) {
-			pvTimer.start();
-			miLogica.actualizarSleepProtagonista(velocidad);
-		}else {
-			pvTimer.adherirTiempoAdicional(miNivel.sleepPocion());
-		}
-	}
-
-	public int getSleepPocionVelocidad() {
-		return miNivel.sleepPocion();	
-	}
-
 	
 	public void comunicarControlPowerPellet() {
 		controladorPowerPellets.activarPowerPellet(miNivel.sleepPowerPellets(), misEnemigos); 

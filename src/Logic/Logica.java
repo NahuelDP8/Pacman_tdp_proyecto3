@@ -19,7 +19,7 @@ public class Logica {
 	protected Timer miReloj;
 	protected Nivel miNivel;
 	protected final int MOVER_PROTAGONISTA = 1;
-	protected final int MOVER_FANTASMA= 0;
+	protected final int MOVER_ENEMIGO= 0;
 	
 	private Logica(GUI_MAPA g, FactoryMapaGrilla f, Nivel n) {
 		miGUI = g;
@@ -49,21 +49,6 @@ public class Logica {
 	public void gameOver(){
 		
 	}
-	
-	public void actualizarSleepProtagonista(int i) {
-		miReloj.setSleepProtagonista(i);
-	}
-	
-	public void actualizarSleepFantasmas(int i) {
-		miReloj.setSLeepFantasmas(i);
-	}
-	public void setEsperaFruta(int i) {
-		miReloj.setTiempoEsperaDeFruta(i);
-	}
-	
-	public void setEsperaPocion(int i) {
-		miReloj.setTiempoEsperaDePocion(i);
-	}
 
 	public void actualizarReloj() {
 		//Llamamos a la Gui para que el reloj se actualice. 
@@ -82,15 +67,9 @@ public class Logica {
 	public void moverProtagonistaIzquierda() {
 		miMapa.moverProtagonistaIzquierda();
 	}
-	public void realizarMovimiento(int constante) {
-		miMapa.realizarMovimiento(constante);
-	}
+	
 	public void captar() {
 		miGUI.captar();
-	}
-
-	public void activarFrutas() {
-		miReloj.activarFruta();
 	}
 
 	public void mostrarFrutas() {
@@ -107,23 +86,12 @@ public class Logica {
 	public void eliminarFruta() {
 		miMapa.quitarFruta(); 
 	}
-	
-	public void activarPocion() {
-		miReloj.activarPocion();
-		
-	}
+
 
 	public void actualizarEntidad(EntidadGrafica entidad, int x, int y,boolean frente) {
 		miGUI.actualizarEntidad(entidad,x,y,frente);
 	}
 
-	public void desactivarPociones() {
-		miReloj.desactivarPocion();
-	}
-
-	public void desactivarFrutas() {
-		miReloj.desactivarFruta(); 
-	}
 
 	public void quitarDeLaGui(EntidadGrafica entidad) {
 		miGUI.quitarEntidad(entidad);
@@ -153,30 +121,30 @@ public class Logica {
 	}
 	
 	private void setearSleeps() {
-		actualizarSleepProtagonista(miNivel.sleepProtagonista());
-		actualizarSleepFantasmas(miNivel.sleepFantasmas());
-		this.setEsperaFruta(miNivel.sleepFruta());
-		this.setEsperaPocion(miNivel.sleepPocion());
+		//actualizarSleepProtagonista(miNivel.sleepProtagonista());
+	//	actualizarSleepFantasmas(miNivel.sleepFantasmas());
+		//this.setEsperaFruta(miNivel.sleepFruta());
+		//this.setEsperaPocion(miNivel.sleepPocion());
 	}
 
 	public int getCteFantasma() {
 		// TODO Auto-generated method stub
-		return MOVER_FANTASMA;
+		return MOVER_ENEMIGO;
 	}
 	public int getCteProtagonista() {
 		// TODO Auto-generated method stub
 		return MOVER_PROTAGONISTA;
 	}
 
-
-
-	public void añadirFondo() {
-		
-	}
-
 	public void pintar() {
 		miGUI.pintar();
 		
+	}
+	public int getConstanteMOVER_PROTAGONISTA() {
+		return MOVER_PROTAGONISTA; 
+	}
+	public int getConstanteMOVER_ENEMIGOS() {
+		return MOVER_ENEMIGO; 
 	}
 
 	public void win() {
