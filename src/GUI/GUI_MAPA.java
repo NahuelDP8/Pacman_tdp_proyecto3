@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 import Entities.EntidadGrafica;
 import Factories.FactoryMapaGrilla;
 import Logic.Logica;
+import Music.AudioPlayer;
 import Nivel.Nivel;
 import ranking.Player;
 import ranking.TopPlayers;
@@ -25,6 +26,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import javax.swing.JButton;
 
 public class GUI_MAPA{
 
@@ -39,16 +41,19 @@ public class GUI_MAPA{
 	private JPanel panelCargando;
 	private boolean izquierda, derecha, abajo, arriba;
 	private JLabel JLVIDAS1, JLVIDAS2,JLVIDAS3;
+	private AudioPlayer audio;
 	private final JLabel lblNewLabel = new JLabel("New label");
+	private JButton JBMusic;
 	/**
 	 * Create the application.
 	 */
-	public GUI_MAPA(FactoryMapaGrilla f, Nivel nivel,String nom, TopPlayers TP) {
+	public GUI_MAPA(FactoryMapaGrilla f, Nivel nivel,String nom, TopPlayers TP,AudioPlayer audioaux) {
 		initialize();
 		JLNombre.setText("Nombre: "+ nom);
 		JLNivel.setText("Nivel: "+ nivel.getNivel());
 		frame.getContentPane().add(lblNewLabel);
 		topPlayers=TP;
+		audio=audioaux;
 		log = log.getLogic(this, f, nivel);
 	}
 	
@@ -255,7 +260,7 @@ public class GUI_MAPA{
 		//JLABEL
 		JLTiempo = new JLabel("00:00");
 		JLTiempo.setHorizontalAlignment(SwingConstants.CENTER);
-		JLTiempo.setBounds(544, 0, 213, 75);
+		JLTiempo.setBounds(531, 0, 213, 75);
 		panel.add(JLTiempo);
 		JLTiempo.setForeground(Color.RED);
 		JLTiempo.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 48));
@@ -264,6 +269,13 @@ public class GUI_MAPA{
 		JLNombre.setFont(new Font("Rockwell", Font.BOLD, 20));
 		JLNombre.setBounds(1036, 27, 372, 40);
 		panel.add(JLNombre);
+		
+		JBMusic = new JButton("");
+		JBMusic.setBounds(753, 56, 42, 31);
+		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/music.png")).getImage().getScaledInstance(JBMusic.getWidth(),JBMusic.getHeight(), Image.SCALE_DEFAULT);
+		FotoEscalada = new ImageIcon(EscalarFoto);
+		JBMusic.setIcon(FotoEscalada);
+		panel.add(JBMusic);
 		
 		JLabel JLPlayerPuntaje = new JLabel("Tu Puntaje:");
 		JLPlayerPuntaje.setBounds(716, 130, 130, 40);

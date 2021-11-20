@@ -27,6 +27,7 @@ import Factories.FactoryMapaGrilla;
 import Factories.FactoryMapaGrillaGoku;
 import Factories.FactoryMapaGrillaNaruto;
 import Factories.FactoryNiveles;
+import Music.AudioPlayer;
 import Nivel.Nivel;
 import ranking.TopPlayers;
 
@@ -43,6 +44,11 @@ public class GUIMenu extends JFrame {
 	private String nombre;
 	private JTextField JTFmiNombre;
 	private TopPlayers topPlayers; 
+	private AudioPlayer audio;
+	private JButton JBMusic;
+	private JButton JBNivel3;
+	private JButton JBNivel2;
+	private JButton JBNivel1;
 	/**
 	 * Launch the application.
 	 */
@@ -173,6 +179,8 @@ public class GUIMenu extends JFrame {
 					public void run() {
 						try {
 							F_Mapa_Grilla=new FactoryMapaGrillaNaruto();
+							File MusicFile = new File(GUIMenu.configuration.getProperty("NarutoMusic"));
+							audio=new AudioPlayer(MusicFile);
 							PSeleccionProta.setVisible(false);
 							PSeleccionNivel.setVisible(true);
 						} catch (Exception e) {
@@ -241,14 +249,27 @@ public class GUIMenu extends JFrame {
 		JTFmiNombre.setBounds(347, 473, 377, 53);
 		PSeleccionProta.add(JTFmiNombre);
 		JTFmiNombre.setColumns(10);
+	
 		
-		JButton JBNivel1 = new JButton("NIVEL 1");
+		JBMusic = new JButton("M\u00FAsica");
+		JBMusic.setBounds(628, 0, 119, 46);
+		JBMusic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent d) {
+				audio.alternarSilencio();
+			}
+		});
+		
+		PSeleccionNivel.add(JBMusic);
+		JBMusic.setForeground(Color.BLACK);
+		JBMusic.setFont(new Font("Impact", Font.PLAIN, 28));
+		
+		JBNivel1 = new JButton("NIVEL 1");
 		JBNivel1.setBackground(Color.WHITE);
 		JBNivel1.setFont(new Font("Playbill", Font.BOLD, 80));
 		JBNivel1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				F_Nivel=new FactoryNiveles().crearNivel1();
-				GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp);
+				GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp,audio);
 				GUIWindow.getFrame().setVisible(true);
 				dispose();
 			}
@@ -256,65 +277,39 @@ public class GUIMenu extends JFrame {
 		JBNivel1.setBounds(0, 151, 236, 277);
 		PSeleccionNivel.add(JBNivel1);
 		
-		JButton JBNivel2 = new JButton("NIVEL 2");
+		JBNivel2 = new JButton("NIVEL 2");
 		JBNivel2.setFont(new Font("Playbill", Font.BOLD, 80));
 		JBNivel2.setBounds(238, 151, 236, 277);
 		PSeleccionNivel.add(JBNivel2);
 		JBNivel2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//
-				//
-				//
-				//TIENE QUE IR EL INVOKE LATER????? PORQUE??? Nahuel
-				//
-				//
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
+				System.out.println("LA PUTA MADRE");
 							F_Nivel=new FactoryNiveles().crearNivel2();
-							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp);
+							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp,audio);
 							GUIWindow.getFrame().setVisible(true);
 							dispose();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});
 			}
 		});
-		
-		JButton JBNivel3 = new JButton("NIVEL 3");
+		JBNivel3 = new JButton("NIVEL 3");
 		JBNivel3.setFont(new Font("Playbill", Font.BOLD, 80));
 		JBNivel3.setBounds(472, 151, 236, 277);
 		PSeleccionNivel.add(JBNivel3);
 		JBNivel3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//
-				//
-				//
-				//TIENE QUE IR EL INVOKE LATER????? PORQUE??? Nahuel
-				//
-				//
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
 							F_Nivel=new FactoryNiveles().crearNivel3();
-							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp);
+							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp,audio);
 							GUIWindow.getFrame().setVisible(true);
 							ContentPanel.setLayout(null);
 							dispose();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});
 			}
 		});
-		JLabel lblNewLabel = new JLabel("Elije el nivel que quieres jugar");
-		lblNewLabel.setFont(new Font("Rockwell", Font.BOLD, 40));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(45, 23, 630, 95);
-		PSeleccionNivel.add(lblNewLabel);
+		JLabel JLTextELijeProta = new JLabel("Elije el nivel que quieres jugar");
+		JLTextELijeProta.setFont(new Font("Rockwell", Font.BOLD, 40));
+		JLTextELijeProta.setHorizontalAlignment(SwingConstants.CENTER);
+		JLTextELijeProta.setBounds(10, 35, 644, 73);
+		PSeleccionNivel.add(JLTextELijeProta);
+		
+		
 		
 		//Creacion de la tabla highscores
 		JLabel lblHighscore = new JLabel("HIGHSCORES");

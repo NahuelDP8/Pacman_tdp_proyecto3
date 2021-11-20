@@ -16,7 +16,6 @@ public class AudioPlayer{
 	
 	
     public AudioPlayer( File audioFile ) {
-    	MSecondPosition=0;
     	loadConfiguration();
         try{
         	 if(audioFile.exists()) {
@@ -52,13 +51,14 @@ public class AudioPlayer{
     	}
     }
     private void stopMusic() {
-    	MSecondPosition=clip.getMicrosecondPosition();
     	clip.stop();
+    	MSecondPosition=clip.getMicrosecondPosition();
     }
     
     private void playMusic() {
+        clip.loop(clip.LOOP_CONTINUOUSLY);
     	clip.setMicrosecondPosition(MSecondPosition);
-    	clip.loop(clip.LOOP_CONTINUOUSLY);
+    	
     	
     }
     
