@@ -123,15 +123,15 @@ public class Mapa3 extends MapaGrilla {
 		
 		 Enemigo azul = fabricaEnem.crearAzul(new PairTupla(600,14),30,30,this,rojo);
 		 this.misEnemigos.add(azul);
-		 aÃ±adirEntidad(azul.getEntidad());
+		 añadirEntidad(azul.getEntidad());
 		 Enemigo naranja = fabricaEnem.crearNaranja(new PairTupla(16,638),30,30,this);
 		 this.misEnemigos.add(naranja);
-		 aÃ±adirEntidad(naranja.getEntidad());
+		 añadirEntidad(naranja.getEntidad());
 		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(600,638),30,30,this);
 		 this.misEnemigos.add(rosa);
-		 aÃ±adirEntidad(rosa.getEntidad());
+		 añadirEntidad(rosa.getEntidad());
 		 this.misEnemigos.add(rojo);
-		 aÃ±adirEntidad(rojo.getEntidad());
+		 añadirEntidad(rojo.getEntidad());
 	}
 	public void agregarPortales() {
 		//Hay que posicionarlos bien 
