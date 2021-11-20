@@ -114,5 +114,9 @@ abstract public class Protagonista extends Personaje{
 	public void setComiendo(boolean comer) {
 		comiendo  = comer;
 	}
+
+	public void iniciarProcesoMovimiento() {
+		miGrilla.verificacionesPreMovimientoProtagonista();
+	}
 	
 }

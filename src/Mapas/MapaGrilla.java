@@ -129,23 +129,8 @@ abstract public class MapaGrilla {
 			miLogica.actualizarEntidad(e.getEntidad(),e.getX(),e.getY(),false);
 		
 	}
-
-	public synchronized void realizarMovimiento(int constante) {
-		if (constante == miLogica.getCteFantasma()) {
-			moverTodosLosFantasmas();
-		}else if(constante == miLogica.getCteProtagonista()){
-			realizarMovimientoProtagonista();
-		}
-	}
-	
-	public void moverTodosLosFantasmas() {
-		for(Enemigo enemigo : misEnemigos) {
-			actualizarEntidad(enemigo);
-			enemigo.moverme(); 
-		}
-	}
-	
-	public void realizarMovimientoProtagonista() {
+		
+	public void verificacionesPreMovimientoProtagonista() {
 		miLogica.captar();
 		boolean huboColisiones = verificarColisiones(miProtagonista);
 		if(!huboColisiones) miProtagonista.realizarMovimiento();		

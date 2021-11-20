@@ -4,11 +4,9 @@ import Logic.Logica;
 
 public class Timer implements Runnable {
 	private int minutos, segundos;
-	private Thread hiloTiempo, hiloMoverPersonaje, hiloFruta, hiloPocion,hiloMusica,hiloMoverFantasmasMuertos,hiloMoverFantasmas;
+	private Thread hiloTiempo,hiloMusica;
 	private Logica miLogica;
-	private int SleepDeProtagonista, SleepDeFantasmas, tiempoEsperaFruta, tiempoEsperaPocion; 
-	private boolean frutaActivada = false;
-	private boolean pocionActivada = false; 
+	
 	public Timer(Logica logic) {
 		miLogica = logic;
 		minutos = 0;
@@ -17,23 +15,9 @@ public class Timer implements Runnable {
 		hiloTiempo = new Thread(this);
 		hiloTiempo.start();
 		
-		//Hilo que notifica que se debe mover.
-		hiloMoverPersonaje = new Thread(this);
-		hiloMoverPersonaje.start();
-		//Hilo que se encarga del manejo de las frutas
-		hiloFruta = new Thread(this);
-		hiloFruta.start();
-		hiloPocion = new Thread(this);
-		hiloPocion.start();
 		//Hilo que se encarga del manejo de la musica
 		hiloMusica = new Thread(this);
 		hiloMusica.start();
-		//
-		hiloMoverFantasmasMuertos = new Thread(this);
-		hiloMoverFantasmasMuertos.start();
-		
-		hiloMoverFantasmas = new Thread(this);
-		hiloMoverFantasmas.start();
 	}
 	
 	@Override
@@ -41,46 +25,6 @@ public class Timer implements Runnable {
 		Thread ct = Thread.currentThread();
 		
 		//Actualiza el reloj
-		while (ct == hiloMoverPersonaje) {
-			try {
-				Thread.sleep(this.SleepDeProtagonista);
-				miLogica.realizarMovimiento(miLogica.getCteProtagonista());
-			} catch(InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-		}
-		
-		
-		
-
-		
-		while (ct == hiloFruta) {
-			try {
-				Thread.sleep(this.tiempoEsperaFruta);
-				
-			} catch(InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-		}
-		
-		/**
-		while (ct == hiloPocion) {
-			try {
-				Thread.sleep(this.tiempoEsperaPocion);
-				if(!pocionActivada) {
-					miLogica.mostrarPociones(); 
-					pocionActivada = true;
-				}
-				else {
-					pocionActivada = false;
-					miLogica.eliminarPocion();
-				}
-			} catch(InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-		}
-		**/
-		
 		while (ct == hiloTiempo) {
 			try {
 				//MANEJO DE TIEMPO
@@ -95,40 +39,7 @@ public class Timer implements Runnable {
 				}catch(InterruptedException e) {
 					Thread.currentThread().interrupt();
 			}
-		}
-		
-		
-		while (ct == hiloMoverFantasmas) {
-			try {
-				Thread.sleep(this.SleepDeFantasmas);
-				miLogica.realizarMovimiento(miLogica.getCteFantasma());
-			} catch(InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-		}
-
-		
-		
-		/*
-		while (ct == hiloMusica) {
-
-			try {
-				//Completar
-			} catch(InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-/
-		}
-		while (ct == hiloMoverFantasmasMuertos) {
-
-			try {
-				//Completar
-			} catch(InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-
-		}
-		*/
+		}	
 	}
 	
 	public int getMinutos() {
@@ -140,33 +51,5 @@ public class Timer implements Runnable {
 	
 	public void gameOver() {
 		hiloTiempo.interrupt();
-		hiloMoverPersonaje.interrupt();
-	}
-	
-	public void setSleepProtagonista(int i) {
-		this.SleepDeProtagonista = i;
-	}
-	public void setSLeepFantasmas(int i) {
-		this.SleepDeFantasmas = i;
-	}
-	public void setTiempoEsperaDeFruta(int i) {
-		this.tiempoEsperaFruta = i;
-	}
-	public void setTiempoEsperaDePocion(int i) {
-		this.tiempoEsperaPocion = i;
-	}
-	
-	public void activarPocion() {
-		hiloPocion.start();
-	}
-	public void desactivarPocion() {
-		pocionActivada = false;
-	}
-	public void activarFruta() {
-		
-	}
-	public void desactivarFruta() {
-		frutaActivada = false;
-	}
-
+	}	
 }
