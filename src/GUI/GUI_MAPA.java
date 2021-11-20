@@ -39,7 +39,6 @@ public class GUI_MAPA{
 	private JPanel panelCargando;
 	private boolean izquierda, derecha, abajo, arriba;
 	private JLabel JLVIDAS1, JLVIDAS2,JLVIDAS3;
-	private final JLabel lblNewLabel = new JLabel("New label");
 	/**
 	 * Create the application.
 	 */
@@ -47,7 +46,6 @@ public class GUI_MAPA{
 		initialize();
 		JLNombre.setText("Nombre: "+ nom);
 		JLNivel.setText("Nivel: "+ nivel.getNivel());
-		frame.getContentPane().add(lblNewLabel);
 		topPlayers=TP;
 		log = log.getLogic(this, f, nivel);
 	}

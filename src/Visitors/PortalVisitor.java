@@ -1,5 +1,6 @@
 package Visitors;
 
+import Entities.BombasPocion;
 import Entities.Enemigo;
 import Entities.Fruta;
 import Entities.Pared;
@@ -69,6 +70,11 @@ public class PortalVisitor implements Visitor{
 
 	@Override
 	public void visitZonaEnemigo(ZonaEnemigo z) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void visitBombaPocion(BombasPocion p) {
 		// TODO Auto-generated method stub
 		
 	}

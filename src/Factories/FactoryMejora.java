@@ -28,6 +28,10 @@ public class FactoryMejora{
 		Mejora pocion = new Pocion( p ,  ancho,  altura,imagenPocion,grilla);
 		return pocion;
 	}
+	public Mejora crearBomba(PairTupla p , int ancho, int altura,MapaGrilla grilla) {
+		Mejora pocion = new Pocion( p ,  ancho,  altura,imagenPocion,grilla);
+		return pocion;
+	}
 	public Mejora crearPuntoGrande(PairTupla p , int ancho, int altura,MapaGrilla grilla) {
 		Mejora puntoGrande = new PuntoGrande( p , ancho,  altura,imagenPuntoGrande,grilla);
 		return puntoGrande;

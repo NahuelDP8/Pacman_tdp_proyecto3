@@ -1,5 +1,6 @@
 package Visitors;
 
+import Entities.BombasPocion;
 import Entities.Enemigo;
 import Entities.Entidad;
 import Entities.Fruta;
@@ -56,6 +57,12 @@ public class ParedVisitor implements Visitor {
 
 	@Override
 	public void visitZonaEnemigo(ZonaEnemigo z) {
+		
+	}
+
+	@Override
+	public void visitBombaPocion(BombasPocion p) {
+		// TODO Auto-generated method stub
 		
 	}
 

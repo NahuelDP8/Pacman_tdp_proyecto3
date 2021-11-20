@@ -24,7 +24,6 @@ abstract public class Protagonista extends Personaje{
 		comiendo = false;
 	}
 	
-	
 	public int protagonistaVelocidadPixel() {
 		return velocidad;
 	}
