@@ -22,10 +22,10 @@ public class MovimientosControler extends ThreadControl {
 		MOVER_PROTAGONISTA = movP;
 		this.sleepPro = sleepPro;
 		this.sleepEnem = sleepEn; 
-		tEnemigos =  new EnemigosTimer(this, MOVER_ENEMIGOS);
-		tProtagonista = ProtagonistaTimer.getProtagonistaTimer(this, MOVER_PROTAGONISTA);
 		movEnemigoC = new MovimientoEnemigosControler(lisEnem);
 		movProtagonistaC = new MovimientoProtagonistaControler(miP); 
+		tEnemigos =  new EnemigosTimer(this, MOVER_ENEMIGOS);
+		tProtagonista = ProtagonistaTimer.getProtagonistaTimer(this, MOVER_PROTAGONISTA);
 	}
 	
 	public int getSleepGeneralEnemigos() {

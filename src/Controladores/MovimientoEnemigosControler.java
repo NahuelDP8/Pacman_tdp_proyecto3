@@ -13,7 +13,6 @@ public class MovimientoEnemigosControler extends ThreadControl{
 	public void moverTodosLosFantasmas() {
 		for(Enemigo enemigo : misEnemigos) {
 			enemigo.moverme(); 
-			System.out.print("AAA");
 		}
 	}
 }

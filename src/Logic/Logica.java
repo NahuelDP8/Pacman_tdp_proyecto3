@@ -25,7 +25,7 @@ public class Logica {
 		miGUI = g;
 		miFabrica = f;
 		miNivel = n;
-		miMapa = miFabrica.crearMapa2(this,n);
+		miMapa = miFabrica.crearMapa1(this,n);
 		miMapa.setFabrica(miFabrica);
 		miMapa.setNivel(n);
 		n.setMapa(miMapa);

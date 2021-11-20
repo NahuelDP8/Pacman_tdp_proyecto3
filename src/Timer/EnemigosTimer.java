@@ -22,7 +22,6 @@ public class EnemigosTimer extends Thread{
 			try {
 				Thread.sleep(this.sleepEnemigos);
 				miControlador.realizarMovimiento(cnsEnemigo);
-				System.out.println(this.sleepEnemigos);
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
