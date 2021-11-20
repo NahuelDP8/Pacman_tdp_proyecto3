@@ -37,4 +37,10 @@ public class Muerto implements EstadoEnemigo{
 	public void actualizarFoto() {
 	}
 
+	@Override
+	public void explotar() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

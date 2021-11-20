@@ -55,5 +55,10 @@ public class Persiguiendo implements EstadoEnemigo{
 		miEnemigo.actualizarFoto();
 		
 	}
+
+	@Override
+	public void explotar() {
+		miEnemigo.changeState(new Muerto(miEnemigo));
+	}
 	
 }

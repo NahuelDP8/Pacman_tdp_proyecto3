@@ -11,6 +11,7 @@ abstract public class Protagonista extends Personaje{
 	protected int puntaje;
 	protected boolean colisiono;
 	protected boolean comiendo;
+	protected boolean bomba;
 	
 	public Protagonista(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
 		super(p, anc, alt,img, grilla);
@@ -31,6 +32,7 @@ abstract public class Protagonista extends Personaje{
 	public void realizarMovimiento() {
 		if(movimientoActual == MOVER_ABAJO) {
 			posicion.setY(posicion.getY()+ velocidad);
+			System.out.println("BASURA");
 		}else if(movimientoActual == MOVER_ARRIBA) {
 			posicion.setY(posicion.getY()- velocidad);
 		}else if(movimientoActual == MOVER_IZQUIERDA) {
@@ -115,6 +117,12 @@ abstract public class Protagonista extends Personaje{
 
 	public void iniciarProcesoMovimiento() {
 		miGrilla.verificacionesPreMovimientoProtagonista();
+	}
+	public boolean getBomba() {
+		return bomba;
+	}
+	public void setBomba(boolean b) {
+		bomba = b;
 	}
 	
 }

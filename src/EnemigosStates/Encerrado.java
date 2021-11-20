@@ -38,5 +38,10 @@ public class Encerrado implements EstadoEnemigo{
 	@Override
 	public void actualizarFoto() {
 	}
+	@Override
+	public void explotar() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

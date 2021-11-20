@@ -178,6 +178,10 @@ public abstract class Enemigo extends Personaje{
 	public void interactuarConProtagonista() {
 		miEstado.interactuarConProtagonista(); 
 	}
+	
+	public void explotar() {
+		miEstado.explotar();
+	}
 
 	public void notificarMuerteProtagonista() {
 		miGrilla.protagonistaPierdeVida(); 

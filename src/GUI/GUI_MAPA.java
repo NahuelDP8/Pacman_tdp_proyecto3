@@ -4,6 +4,7 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import javax.swing.SwingConstants;
@@ -11,12 +12,15 @@ import javax.swing.SwingConstants;
 import Entities.EntidadGrafica;
 import Factories.FactoryMapaGrilla;
 import Logic.Logica;
+import Music.AudioPlayer;
 import Nivel.Nivel;
 import ranking.Player;
 import ranking.TopPlayers;
 
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
@@ -39,15 +43,18 @@ public class GUI_MAPA{
 	private JPanel panelCargando;
 	private boolean izquierda, derecha, abajo, arriba;
 	private JLabel JLVIDAS1, JLVIDAS2,JLVIDAS3;
+	private AudioPlayer audio;
+	private JButton JBMusic;
 	/**
 	 * Create the application.
 	 */
-	public GUI_MAPA(FactoryMapaGrilla f, Nivel nivel,String nom, TopPlayers TP) {
+	public GUI_MAPA(FactoryMapaGrilla f, Nivel nivel,String nom, TopPlayers TP,AudioPlayer audioaux) {
 		initialize();
 		JLNombre.setText("Nombre: "+ nom);
 		JLNivel.setText("Nivel: "+ nivel.getNivel());
 		topPlayers=TP;
 		log = log.getLogic(this, f, nivel);
+		audio = audioaux;
 	}
 	
 	public JFrame getFrame() {
@@ -111,6 +118,9 @@ public class GUI_MAPA{
 	public void captarMovimientoDer() {
 		log.moverProtagonistaDerecha();
 	}
+	public void ponerBomba() {
+		log.ponerBomba();
+	}
 	
 	public void añadirFondo(ImageIcon imageIcon) {
 		JLFondoMapa.setBounds(0, 95, imageIcon.getIconWidth(), imageIcon.getIconHeight());
@@ -151,7 +161,11 @@ public class GUI_MAPA{
 								if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 									//captarAbajoNormalizarPausa();
 									abajo = true;
-								}
+								}else {
+									if(e.getKeyCode() == KeyEvent.VK_SPACE) 
+										//captarAbajoNormalizarPausa();
+										ponerBomba();
+									}
 							}
 				}
 			}
@@ -287,6 +301,19 @@ public class GUI_MAPA{
 		panelCargando.setBounds(0,95,800,800);
 		frame.getContentPane().add(panelCargando);
 		panelCargando.setVisible(false);
+		
+		JBMusic = new JButton("");
+        JBMusic.setBounds(753, 56, 42, 31);
+        frame.getContentPane().add(JBMusic);
+        JBMusic.setSelected(false);
+        EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/music.png")).getImage().getScaledInstance(JBMusic.getWidth(),JBMusic.getHeight(), Image.SCALE_DEFAULT);
+        FotoEscalada = new ImageIcon(EscalarFoto);
+        JBMusic.setIcon(FotoEscalada);
+        JBMusic.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent d) {
+               audio.alternarSilencio();
+            }
+        });
 	}
 	
 	private void crearTablaHighScore(int width) {

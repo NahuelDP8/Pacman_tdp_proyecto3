@@ -46,4 +46,10 @@ public class Escapando implements EstadoEnemigo{
 	public void actualizarFoto() {
 	}
 
+	@Override
+	public void explotar() {
+		miEnemigo.changeState(new Muerto(miEnemigo));
+		
+	}
+
 }

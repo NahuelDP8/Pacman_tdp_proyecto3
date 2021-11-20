@@ -2,6 +2,7 @@ package Mapas;
 
 import javax.swing.ImageIcon;
 
+import Controladores.BombasControler;
 import Controladores.MovimientosControler;
 import Controladores.PowerPelletsControler;
 import Entities.Enemigo;
@@ -9,6 +10,7 @@ import Entities.Entidad;
 import Entities.PairTupla;
 import Entities.Protagonista;
 import Entities.EntidadGrafica;
+import Entities.Explosion;
 import Entities.Mejora;
 import Factories.FactoryEnemigo;
 import Factories.FactoryMapaGrilla;
@@ -16,6 +18,7 @@ import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
 import Nivel.Nivel;
+import Timer.BombaTimer;
 import Timer.PotionVelocidadTimer;
 import Timer.PowerPelletsTimer; 
 import Controladores.SpeedPotionControler;
@@ -45,6 +48,7 @@ abstract public class MapaGrilla {
 	protected int cantPuntos;
 	protected PowerPelletsTimer ppTimer; 
 	protected PotionVelocidadTimer pvTimer; 
+	protected BombaTimer timerBomba;
 	protected String[] paredes;
 	
 	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica,Nivel lvl) {
@@ -356,6 +360,20 @@ abstract public class MapaGrilla {
 
 	public void setFabrica(FactoryMapaGrilla fab) {
 		fabrica = fab;
+	}
+
+	public void comunicarActivacionBomba() {
+		miProtagonista.setBomba(true);
+	}
+
+	public void ponerBomba() {
+		if(miProtagonista.getBomba()) {
+			miProtagonista.setBomba(false);
+			Explosion explosion = new Explosion(new PairTupla(miProtagonista.getX(),miProtagonista.getY()),30,30,miFondo, this);
+			BombasControler controladorExplosion = new BombasControler(explosion); 
+			timerBomba = new BombaTimer(controladorExplosion);
+			añadirEntidad(explosion.getEntidad());
+		}
 	}
 
 }

@@ -139,4 +139,9 @@ public class Logica {
 		//miGUI.win();
 	}
 
+	public void ponerBomba() {
+		miMapa.ponerBomba();
+		
+	}
+
 }

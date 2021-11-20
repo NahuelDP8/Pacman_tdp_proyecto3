@@ -45,7 +45,7 @@ public class Mapa1 extends MapaGrilla {
 		agregarProtagonista();
 
 		fruta = fabricaMejora.crearFruta(new PairTupla(260,191), 20, 20,this);
-		pocion = fabricaMejora.crearPocion(new PairTupla(230,196), 20, 20,this);
+		pocion = fabricaMejora.crearBomba(new PairTupla(230,196), 20, 20,this);
 		agregarFruta(); 
 		agregarPocion(); 
 
