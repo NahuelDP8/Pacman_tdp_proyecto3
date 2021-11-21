@@ -2,15 +2,12 @@ package Entities;
 
 import javax.swing.ImageIcon;
 import Mapas.MapaGrilla;
-import Visitors.BombaVisitor;
 import Visitors.Visitor;
 
-public class BombasPocion extends Mejora{
+public class BombasPocion extends Pocion{
 	public boolean explosion;
-	private final static int velocidad = 15; 
 	public BombasPocion(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
-		super(p, anc, alt,img, grilla);
-		v = new BombaVisitor(this); 
+		super(p, anc, alt,img, grilla); 
 		explosion = false;
 	}
 

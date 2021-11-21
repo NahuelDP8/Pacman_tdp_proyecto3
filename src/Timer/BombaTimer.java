@@ -13,8 +13,8 @@ public class BombaTimer extends Thread{
 	
 	public BombaTimer (BombasControler miC) {
 		miControlador = miC; 
-		sleepBombas = 300; 
-		sleepExplosion = 100; 
+		sleepBombas = 3000; 
+		sleepExplosion = 1000; 
 		this.start();
 	} 
 	

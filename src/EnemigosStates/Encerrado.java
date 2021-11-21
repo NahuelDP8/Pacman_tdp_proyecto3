@@ -1,24 +1,27 @@
 package EnemigosStates;
 
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 
 import Entities.Enemigo;
 
 public class Encerrado implements EstadoEnemigo{
 	protected Enemigo miEnemigo;
-	
+	private ImageIcon miImagen;
 	public Encerrado(Enemigo e) {
 		miEnemigo = e; 
+		miImagen= miEnemigo.getImagen();
 		//deberiamos cambiar la imagen del enemigo en particular
 	}
+	@Override
 	public void realizarMovimiento() {
-		// TODO Auto-generated method stub
-		
+		miEnemigo.irAPosicion(miEnemigo.getPosSalida(),new Persiguiendo(miEnemigo)); 
 	}
 
 	public ImageIcon getImagen() {
 		// TODO Auto-generated method stub
-		return null;
+		return miImagen;
 	}
 
 	@Override
@@ -42,6 +45,13 @@ public class Encerrado implements EstadoEnemigo{
 	public void explotar() {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public void colisionarPuertaEnemigo() {
+	}
+	@Override
+	public ArrayList<Integer> movimientosAEstudiar(){
+		return miEnemigo.todosLosMovimientos();
 	}
 
 }

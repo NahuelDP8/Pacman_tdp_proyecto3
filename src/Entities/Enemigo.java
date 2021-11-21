@@ -5,6 +5,8 @@ import Visitors.EnemigoVisitor;
 import Visitors.Visitor;
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.Random;
+
 import javax.swing.ImageIcon;
 import Mapas.MapaGrilla;
 
@@ -15,14 +17,18 @@ public abstract class Enemigo extends Personaje{
 	protected boolean movDerecha;
 	protected boolean movAbajo;
 	protected boolean movArriba;
+	protected PairTupla posResurreccion;
+	protected PairTupla posSalida;
 	
-	public Enemigo(PairTupla p, int anc, int alt, ImageIcon img, MapaGrilla grilla) {
+	public Enemigo(PairTupla p, int anc, int alt, ImageIcon img, MapaGrilla grilla,PairTupla posR,PairTupla posS) {
 		super(p, anc, alt,img, grilla );
-		miEstado = new Persiguiendo(this); 
+		miEstado = new Encerrado(this); 
 		huboColisionConPared = false;
 		velocidad = 4; 
 		v = new EnemigoVisitor(this);
 		movimientoActual = 4;
+		posResurreccion = posR;
+		posSalida = posS;
 	}
 	
 	public void accept(Visitor v) {
@@ -105,7 +111,7 @@ public abstract class Enemigo extends Personaje{
 		return distancia; 
 	}
 	
-	private ArrayList<Integer> movimientosAEstudiar(){
+	public ArrayList<Integer> movimientosAEstudiar(){
 		ArrayList<Integer> toReturn  = new ArrayList<Integer>();
 		this.validarMovimientos();
 		toReturn.add(MOVER_ABAJO);
@@ -187,57 +193,84 @@ public abstract class Enemigo extends Personaje{
 		miGrilla.protagonistaPierdeVida(); 
 	}
 
-	public void retornarZonaEnemigo() {
+	public void irAPosicion(PairTupla posicionDestino,EstadoEnemigo siguienteEstado) {
 		int movFinal = movimientoActual;
 		double disMenor = Double.MAX_VALUE;
 		double disAux = 0;
 		int posX = posicion.getX();
 		int posY = posicion.getY(); 
-		PairTupla posicionCelda = new PairTupla(229,186);
-		ArrayList<Integer> movimientos = this.movimientosAEstudiar();
+		ArrayList<Integer> movimientos = miEstado.movimientosAEstudiar();
 		
 		miGrilla.realizarMovimientoFantasma(this, movimientos);
 		
-		if(posX == posicionCelda.getX() && posY == posicionCelda.getY())
-			changeState(new Persiguiendo(this));
-		else {
+		if(posX == posicionDestino.getX() && posY == posicionDestino.getY()) {
+			//Cambiamos al estado que corresponda:
+			changeState(siguienteEstado);
+			//En el cambio de estado, seteamos un move random, para "distaciar" a los fantasmas.
+			Random r = new Random();
+			movimientoActual = r.nextInt(2) + 3;
+		}else {
 			
 			for(int i =0; i<=movimientos.size()-1; i++) {	
 				int movAux = movimientos.get(i); 
 				if(movAux == MOVER_DERECHA && movDerecha) {
-					disAux = distanciaEntrePuntos(new PairTupla(posX+ velocidad, posY),posicionCelda);
+					disAux = distanciaEntrePuntos(new PairTupla(posX+ velocidad, posY),posicionDestino);
 					if(disAux<=disMenor) {
 						disMenor= disAux; 
 						movFinal = movAux;
 					}
 				}else if(movAux == MOVER_IZQUIERDA && movIzquierda) {
-					disAux = distanciaEntrePuntos(new PairTupla(posX-velocidad, posY),posicionCelda);
+					disAux = distanciaEntrePuntos(new PairTupla(posX-velocidad, posY),posicionDestino);
 					if(disAux<=disMenor) {
 						disMenor= disAux; 
 						movFinal = movAux;
 					}
 				}else if(movAux== MOVER_ARRIBA && movArriba) {
-					disAux = distanciaEntrePuntos(new PairTupla(posX, posY-velocidad),posicionCelda);
+					disAux = distanciaEntrePuntos(new PairTupla(posX, posY-velocidad),posicionDestino);
 					if(disAux<=disMenor) {
 						disMenor= disAux; 
 						movFinal = movAux;
 					}
 				}else if(movAux == MOVER_ABAJO && movAbajo) {
-					disAux = distanciaEntrePuntos(new PairTupla(posX, posY+velocidad),posicionCelda);
+					disAux = distanciaEntrePuntos(new PairTupla(posX, posY+velocidad),posicionDestino);
 					if(disAux<=disMenor) {
 						disMenor= disAux; 
 						movFinal = movAux;
 					}
 				}
 			}
-		}
+		
 		this.validarMovimientos();
 		//Ahora lo que hacemos es movernos
 		this.realizarMovimiento(movFinal);
 		movimientoActual = movFinal; 
+		}
 	}
+	
 
 	public void setMovimientoActual(int mov) {
 		movimientoActual = mov;
+	}
+
+	public void colisionarPuertaEnemigo() {
+		miEstado.colisionarPuertaEnemigo();
+		
+	}
+
+	public PairTupla getPosSalida() {
+		return posSalida;
+	}
+	public PairTupla getPosResurreccion() {
+		return posResurreccion;
+	}
+
+	public ArrayList<Integer> todosLosMovimientos() {
+		ArrayList<Integer> toReturn  = new ArrayList<Integer>();
+		validarMovimientos();
+		toReturn.add(MOVER_ABAJO);
+		toReturn.add(MOVER_ARRIBA);
+		toReturn.add(MOVER_IZQUIERDA);
+		toReturn.add(MOVER_DERECHA);
+		return toReturn;
 	}
 }

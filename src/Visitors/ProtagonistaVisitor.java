@@ -6,9 +6,9 @@ import Entities.Fruta;
 import Entities.Pared;
 import Entities.Pocion;
 import Entities.Protagonista;
+import Entities.PuertaEnemigo;
 import Entities.Punto;
 import Entities.PuntoGrande;
-import Entities.ZonaEnemigo;
 
 public class ProtagonistaVisitor implements Visitor {
 
@@ -52,14 +52,15 @@ public class ProtagonistaVisitor implements Visitor {
 
 	}
 
+
 	@Override
-	public void visitZonaEnemigo(ZonaEnemigo z) {
+	public void visitBombaPocion(BombasPocion p) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void visitBombaPocion(BombasPocion p) {
+	public void visitPuertaEnemigo(PuertaEnemigo p) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,5 +1,7 @@
 package EnemigosStates;
 
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import Entities.Enemigo;
 import Factories.FactoryMapaGrillaNaruto;
@@ -14,7 +16,7 @@ public class Muerto implements EstadoEnemigo{
 
 	@Override
 	public void realizarMovimiento() {
-		miEnemigo.retornarZonaEnemigo(); 
+		miEnemigo.irAPosicion(miEnemigo.getPosResurreccion(),new Encerrado(miEnemigo)); 
 	}
 
 	@Override
@@ -42,5 +44,12 @@ public class Muerto implements EstadoEnemigo{
 		// TODO Auto-generated method stub
 		
 	}
-
+	@Override
+	public void colisionarPuertaEnemigo() {
+	}
+	@Override
+	public ArrayList<Integer> movimientosAEstudiar() {
+		// TODO Auto-generated method stub
+		return miEnemigo.movimientosAEstudiar();
+	}
 }

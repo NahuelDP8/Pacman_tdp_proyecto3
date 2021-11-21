@@ -2,14 +2,13 @@ package Visitors;
 
 import Entities.BombasPocion;
 import Entities.Enemigo;
-import Entities.Entidad;
 import Entities.Fruta;
 import Entities.Pared;
 import Entities.Pocion;
 import Entities.Protagonista;
+import Entities.PuertaEnemigo;
 import Entities.Punto;
 import Entities.PuntoGrande;
-import Entities.ZonaEnemigo;
 
 public class PocionVisitor implements Visitor {
 	private Pocion miPocion;
@@ -57,12 +56,12 @@ public class PocionVisitor implements Visitor {
 
 	}
 	@Override
-	public void visitZonaEnemigo(ZonaEnemigo z) {
+	public void visitBombaPocion(BombasPocion p) {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
-	public void visitBombaPocion(BombasPocion p) {
+	public void visitPuertaEnemigo(PuertaEnemigo p) {
 		// TODO Auto-generated method stub
 		
 	}

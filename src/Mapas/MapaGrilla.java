@@ -34,6 +34,8 @@ abstract public class MapaGrilla {
 	protected FactoryMapaGrilla fabrica;
 	protected Protagonista miProtagonista;
 	protected PairTupla posInicialProtagonista;
+	protected PairTupla posResurreccion;
+	protected PairTupla posSalida;
 	protected ArrayList<Enemigo> misEnemigos;
 	protected Zona [][] zonas;
 	protected int ancho, altura, anchoMapa, altoMapa;
@@ -46,9 +48,6 @@ abstract public class MapaGrilla {
 	protected SpeedPotionControler controladorPrincipalSpeed; 
 	public MovimientosControler controladorDeMovimientos; 
 	protected int cantPuntos;
-	protected PowerPelletsTimer ppTimer; 
-	protected PotionVelocidadTimer pvTimer; 
-	protected BombaTimer timerBomba;
 	protected String[] paredes;
 	
 	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica,Nivel lvl) {
@@ -66,6 +65,7 @@ abstract public class MapaGrilla {
 		controladorPowerPellets = new PowerPelletsControler(); 
 		miNivel = lvl;
 		controladorPrincipalSpeed = new SpeedPotionControler(miNivel.sleepProtagonista()); 
+		
 	}
 	
 	public void setNivel(Nivel n) {
@@ -74,7 +74,7 @@ abstract public class MapaGrilla {
 	
 	protected void agregarProtagonista() {
 		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(posInicialProtagonista.getX(),posInicialProtagonista.getY()),30,30,this);
-		miProtagonista.setGrilla(this);
+	System.out.print("CREACIONNNNNN"+miProtagonista.getX()+" "+ miProtagonista.getY());
 	}
 	
 	public int getSleepPowerPellets() {
@@ -309,6 +309,7 @@ abstract public class MapaGrilla {
 			for(Enemigo e: misEnemigos)
 				sacarEntidad(e);
 			sacarEntidad(miProtagonista);
+			controladorDeMovimientos.parar();
 			miLogica.nivelSiguiente(miNivel);
 		}	
 	}
@@ -356,24 +357,31 @@ abstract public class MapaGrilla {
 		controladorPowerPellets.activarPowerPellet(miNivel.sleepPowerPellets(), misEnemigos); 
 	}
 
-	public abstract MapaGrilla mapaSiguiente(Nivel lvl);
-
 	public void setFabrica(FactoryMapaGrilla fab) {
 		fabrica = fab;
 	}
 
 	public void comunicarActivacionBomba() {
-		miProtagonista.setBomba(true);
+		miProtagonista.agregarBomba();
+		miLogica.activarBomba();
 	}
 
 	public void ponerBomba() {
-		if(miProtagonista.getBomba()) {
-			miProtagonista.setBomba(false);
-			Explosion explosion = new Explosion(new PairTupla(miProtagonista.getX(),miProtagonista.getY()),30,30,miFondo, this);
+		if(miProtagonista.getBombas()>0) {
+			miProtagonista.usarBomba();
+			Explosion explosion = fabricaMejora.crearExplosion(new PairTupla(miProtagonista.getX(),miProtagonista.getY()),30,30, this);
+			actualizarEntidad(explosion);
 			BombasControler controladorExplosion = new BombasControler(explosion); 
-			timerBomba = new BombaTimer(controladorExplosion);
-			añadirEntidad(explosion.getEntidad());
+			miLogica.desactivarBomba();
 		}
+	}
+
+	public void setController(MovimientosControler c) {
+		controladorDeMovimientos = c;
+	}
+	public void setProtagonista(Protagonista p) {
+		miProtagonista = p;
+		miProtagonista.setPos(posInicialProtagonista);
 	}
 
 }

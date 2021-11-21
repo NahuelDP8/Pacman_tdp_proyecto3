@@ -8,34 +8,9 @@ import Mapas.MapaGrilla;
 
 public class EnemigoRosa extends Enemigo{
 
-	public EnemigoRosa(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
-		super(p, anc, alt,img, grilla);
+	public EnemigoRosa(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla,PairTupla posR,PairTupla posS) {
+		super(p, anc, alt,img, grilla,posR, posS);
 		// TODO Auto-generated constructor stub
-	}
-
-	private ArrayList<Integer> movimientosAEstudiar(){
-		ArrayList<Integer> toReturn  = new ArrayList<Integer>();
-		this.validarMovimientos();
-		toReturn.add(MOVER_ABAJO);
-		toReturn.add(MOVER_ARRIBA);
-		toReturn.add(MOVER_IZQUIERDA);
-		toReturn.add(MOVER_DERECHA);
-		int movActual = this.getMovimientoActual(); 
-		if(movActual == MOVER_DERECHA) { 
-			toReturn.remove(MOVER_IZQUIERDA-1);
-			this.invalidarMovimiento(MOVER_IZQUIERDA);
-		}else if (movActual == MOVER_IZQUIERDA) {			
-			toReturn.remove(MOVER_DERECHA-1);
-			this.invalidarMovimiento(MOVER_DERECHA);
-		}else if (movActual == MOVER_ARRIBA) {
-			toReturn.remove(MOVER_ABAJO-1);
-			this.invalidarMovimiento(MOVER_ABAJO);
-		}else if (movActual == MOVER_ABAJO) {
-			toReturn.remove(MOVER_ARRIBA-1);
-			this.invalidarMovimiento(MOVER_ARRIBA);
-		}	
-		
-		return toReturn; 
 	}
 	
 	public void perseguirProtagonista() {

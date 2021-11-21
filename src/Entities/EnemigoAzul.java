@@ -9,37 +9,13 @@ import Mapas.MapaGrilla;
 public class EnemigoAzul extends Enemigo{
  private boolean bMov;
  private Enemigo E_Rojo;
-	public EnemigoAzul(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla,Enemigo rojo) {
-		super(p, anc, alt,img, grilla);
+	public EnemigoAzul(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla,Enemigo rojo,PairTupla posR,PairTupla posS) {
+		super(p, anc, alt,img, grilla,posR, posS);
 		velocidad=4;
 		E_Rojo=rojo;
 		bMov=true;
 	}
 
-	private ArrayList<Integer> movimientosAEstudiar(){
-		ArrayList<Integer> toReturn  = new ArrayList<Integer>();
-		this.validarMovimientos();
-		toReturn.add(MOVER_ABAJO);
-		toReturn.add(MOVER_ARRIBA);
-		toReturn.add(MOVER_IZQUIERDA);
-		toReturn.add(MOVER_DERECHA);
-		int movActual = this.getMovimientoActual(); 
-		if(movActual == MOVER_DERECHA) { 
-			toReturn.remove(MOVER_IZQUIERDA-1);
-			this.invalidarMovimiento(MOVER_IZQUIERDA);
-		}else if (movActual == MOVER_IZQUIERDA) {			
-			toReturn.remove(MOVER_DERECHA-1);
-			this.invalidarMovimiento(MOVER_DERECHA);
-		}else if (movActual == MOVER_ARRIBA) {
-			toReturn.remove(MOVER_ABAJO-1);
-			this.invalidarMovimiento(MOVER_ABAJO);
-		}else if (movActual == MOVER_ABAJO) {
-			toReturn.remove(MOVER_ARRIBA-1);
-			this.invalidarMovimiento(MOVER_ARRIBA);
-		}	
-		
-		return toReturn; 
-	}
 	
 	private boolean cambiarBooleanoMov() {
 		bMov=(bMov==false);

@@ -10,8 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import Entities.EntidadGrafica;
+import Factories.FactoryMapa;
 import Factories.FactoryMapaGrilla;
 import Logic.Logica;
+import Mapas.MapaGrilla;
 import Music.AudioPlayer;
 import Nivel.Nivel;
 import ranking.Player;
@@ -43,6 +45,7 @@ public class GUI_MAPA{
 	private JLabel JLFondoMapa;
 	private JLabel JLNombre;
 	private JLabel JLNivel;
+	private JLabel lbBomba;
 	private JPanel panelCargando;
 	private boolean izquierda, derecha, abajo, arriba;
 	private JLabel JLVIDAS1, JLVIDAS2,JLVIDAS3;
@@ -55,12 +58,12 @@ public class GUI_MAPA{
 	/**
 	 * Create the application.
 	 */
-	public GUI_MAPA(FactoryMapaGrilla f, Nivel nivel,String nom, TopPlayers TP,AudioPlayer audioaux) {
+	public GUI_MAPA(FactoryMapaGrilla f, Nivel nivel,FactoryMapa map,String nom, TopPlayers TP,AudioPlayer audioaux) {
 		initialize();
 		JLNombre.setText("Nombre: "+ nom);
 		JLNivel.setText("Nivel: "+ nivel.getNivel());
 		topPlayers=TP;
-		log = log.getLogic(this, f, nivel);
+		log = Logica.getLogic(this, f, nivel,map);
 		audio = audioaux;
 	}
 	
@@ -246,6 +249,11 @@ public class GUI_MAPA{
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 	
+		lbBomba = new JLabel("PRESIONE SPACE PARA PONER BOMBA");
+		lbBomba.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
+		lbBomba.setBounds(522, 100, 500, 29);
+		frame.getContentPane().add(lbBomba);
+		lbBomba.setVisible(false);
 		
 		JLVIDAS1 = new JLabel("");
 		JLVIDAS1.setBounds(20, 0, 87, 88);
@@ -314,24 +322,11 @@ public class GUI_MAPA{
 		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/cargando.gif")).getImage().getScaledInstance(800,800, Image.SCALE_DEFAULT);
 		FotoEscalada = new ImageIcon(EscalarFoto);
 		panelCargando.add(
-			    new JLabel("",FotoEscalada, SwingConstants.CENTER));
+			    new JLabel("",new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/fondo.png")), SwingConstants.CENTER));
 		
 		panelCargando.setBounds(0,95,800,800);
 		frame.getContentPane().add(panelCargando);
 		panelCargando.setVisible(false);
-		
-		JBMusic = new JButton("");
-        JBMusic.setBounds(753, 56, 42, 31);
-        frame.getContentPane().add(JBMusic);
-        JBMusic.setSelected(false);
-        EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/music.png")).getImage().getScaledInstance(JBMusic.getWidth(),JBMusic.getHeight(), Image.SCALE_DEFAULT);
-        FotoEscalada = new ImageIcon(EscalarFoto);
-        JBMusic.setIcon(FotoEscalada);
-        JBMusic.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent d) {
-               audio.alternarSilencio();
-            }
-        });
 	}
 	
 	private void crearTablaHighScore(int width) {
@@ -374,11 +369,20 @@ public class GUI_MAPA{
 
 	public void win() {
 	}
-	public void setJLNivel(Nivel n) {
-		JLNivel.setText("Nivel: "+ n.getNivel());
+	public void setJLNivel(int n) {
+		JLNivel.setText("Nivel: "+ n);
 	}
 	public void cargando(boolean visibilidad) {
 		frame.getContentPane().setComponentZOrder(panelCargando, 0);
 		panelCargando.setVisible(visibilidad);
+	}
+
+	public void activarBomba() {
+		lbBomba.setVisible(true);
+		
+	}
+	public void desactivarBomba() {
+		lbBomba.setVisible(false);
+		
 	}
 }

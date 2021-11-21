@@ -1,5 +1,6 @@
 package Nivel;
 
+import Logic.Logica;
 import Mapas.MapaGrilla;
 
 abstract public class Nivel {
@@ -24,4 +25,5 @@ abstract public class Nivel {
 	abstract public int sleepSuperSpeedPocion();
 	abstract public int sleepPowerPellets();
 	abstract public Nivel nivelSiguiente();
+
 }

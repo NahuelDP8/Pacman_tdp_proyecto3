@@ -11,7 +11,7 @@ abstract public class Protagonista extends Personaje{
 	protected int puntaje;
 	protected boolean colisiono;
 	protected boolean comiendo;
-	protected boolean bomba;
+	protected int bomba;
 	
 	public Protagonista(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
 		super(p, anc, alt,img, grilla);
@@ -23,6 +23,7 @@ abstract public class Protagonista extends Personaje{
 		v = new ProtagonistaVisitor();
 		colisiono = false;
 		comiendo = false;
+		bomba = 0;
 	}
 	
 	public int protagonistaVelocidadPixel() {
@@ -43,6 +44,7 @@ abstract public class Protagonista extends Personaje{
 		actualizarFoto();
 		miGrilla.actualizarEntidad(this);
 		miRectangulo.setBounds(posicion.getX(), posicion.getY(), ancho, altura);
+		System.out.print("MOVE"+getX()+" "+ getY());
 	}
 
 	public void moverAbajo() {
@@ -117,11 +119,14 @@ abstract public class Protagonista extends Personaje{
 	public void iniciarProcesoMovimiento() {
 		miGrilla.verificacionesPreMovimientoProtagonista();
 	}
-	public boolean getBomba() {
+	public int getBombas() {
 		return bomba;
 	}
-	public void setBomba(boolean b) {
-		bomba = b;
+	public void agregarBomba() {
+		bomba++;
+	}
+	public void usarBomba() {
+		bomba--;
 	}
 	
 }

@@ -12,6 +12,7 @@ import Entities.Mejora;
 import Entities.PairTupla;
 import Entities.Pared;
 import Entities.Portal;
+import Entities.PuertaEnemigo;
 import Factories.FactoryEnemigo;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
@@ -28,21 +29,24 @@ public class Mapa3 extends MapaGrilla {
 		anchoMapa = 680;
 		altoMapa = 680;
 		construccionZonasGrilla(8,8);
-		posInicialProtagonista = new PairTupla(300, 14);
 		paredes = new String[]{"47 45 10 290","90 45 31 314","154 45 32 249 ", "186 45 150 12", "369 45 159 12","496 45 32 249","561 45 32 314","626 45 10 290", //Primera fila
 				"219 88 244 11","186 132 277 11","219 176 277 10","219 219 244 11",//Arriba del centro
-				"186 263 150 30","369 263 159 30","219 263 31 200", "455 263 31 200","283 326 139 75", "219 434 117 29","369 434 117 29",//Centro del mapa
+				"186 263 150 30","369 263 159 30","219 263 31 200", "455 263 31 200","283 326 12 75","410 326 12 75","283 326 56 12","283 371 139 30","372 326 50 12", "219 434 117 29","369 434 117 29",//Centro del mapa
 				"47 368 10 20","47 392 32 243","112 392 10 243","90 326 96 33","155 326 31 309",//Esquina inferior izquierda
 				"219 463 10 172", "262 496 181 12","262 541 214 10","262 584 181 10","229 627 108 10","370 627 106 10", "476 463 10 172",//Abajo del centro
 				"626 368 10 20","583 392 53 243","519 326 31 309", "519 326 74 33",//Esquina inferior derecha
 				"0 0 14 335","0 368 14 312","0 0 336 14", "369 0 311 14", "0 668 335 14","369 668 335 12","669 0 11 335","669 368 11 312"};//Bordes
 		construccionParedesLimitaciones();
-		
+		posInicialProtagonista = new PairTupla(300, 14);
+		posResurreccion = new PairTupla(340,338);
+		posSalida = new PairTupla(340,294);
 		agregarMejoras();
 		agregarFantasmas();
 		agregarPortales();
 		agregarProtagonista();
-
+		//Agregamos la puerta de la zona de los enemigos
+		PuertaEnemigo puerta = new PuertaEnemigo(new PairTupla(339,326), 33, 12,this);
+		actualizarEntidad(puerta);
 		fruta = fabricaMejora.crearFruta(new PairTupla(260,191), 20, 20,this);
 		pocion = fabricaMejora.crearPocion(new PairTupla(230,196), 20, 20,this);
 		agregarFruta(); 
@@ -124,15 +128,15 @@ public class Mapa3 extends MapaGrilla {
 		}
 	}
 	protected void agregarFantasmas() {
-		Enemigo rojo = fabricaEnem.crearRojo(new PairTupla(636,498),30,30,this);
+		Enemigo rojo = fabricaEnem.crearRojo(new PairTupla(posResurreccion.getX(),posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
 		
-		 Enemigo azul = fabricaEnem.crearAzul(new PairTupla(600,14),30,30,this,rojo);
+		 Enemigo azul = fabricaEnem.crearAzul(new PairTupla(posResurreccion.getX()+12,posResurreccion.getY()),30,30,this,rojo,posResurreccion,posSalida);
 		 this.misEnemigos.add(azul);
 		 añadirEntidad(azul.getEntidad());
-		 Enemigo naranja = fabricaEnem.crearNaranja(new PairTupla(16,638),30,30,this);
+		 Enemigo naranja = fabricaEnem.crearNaranja(new PairTupla(posResurreccion.getX()+36,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
 		 this.misEnemigos.add(naranja);
 		 añadirEntidad(naranja.getEntidad());
-		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(600,638),30,30,this);
+		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(posResurreccion.getX()-24,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
 		 this.misEnemigos.add(rosa);
 		 añadirEntidad(rosa.getEntidad());
 		 this.misEnemigos.add(rojo);
@@ -172,11 +176,6 @@ public class Mapa3 extends MapaGrilla {
 	@Override
 	public void quitarFruta() {
 		sacarEntidad(fruta);
-	}
-	@Override
-	public MapaGrilla mapaSiguiente(Nivel lvl) {
-		win();
-		return null;
 	}
 
 	private void win() {

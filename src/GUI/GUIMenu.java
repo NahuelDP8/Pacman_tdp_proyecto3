@@ -23,6 +23,10 @@ import java.util.Properties;
 import java.awt.event.ActionEvent;
 import javax.swing.border.SoftBevelBorder;
 
+import Factories.FactoryMapa;
+import Factories.FactoryMapa1;
+import Factories.FactoryMapa2;
+import Factories.FactoryMapa3;
 import Factories.FactoryMapaGrilla;
 import Factories.FactoryMapaGrillaGoku;
 import Factories.FactoryMapaGrillaNaruto;
@@ -40,6 +44,7 @@ public class GUIMenu extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel ContentPanel;
 	private FactoryMapaGrilla F_Mapa_Grilla;
+	private FactoryMapa F_Mapa;
 	private Nivel F_Nivel;
 	private String nombre;
 	private JTextField JTFmiNombre;
@@ -269,7 +274,8 @@ public class GUIMenu extends JFrame {
 		JBNivel1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				F_Nivel=new FactoryNiveles().crearNivel1();
-				GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp,audio);
+				F_Mapa = new FactoryMapa1();
+				GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,F_Mapa, nombre,tp,audio);
 				GUIWindow.getFrame().setVisible(true);
 				dispose();
 			}
@@ -285,7 +291,8 @@ public class GUIMenu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("LA PUTA MADRE");
 							F_Nivel=new FactoryNiveles().crearNivel2();
-							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp,audio);
+							F_Mapa = new FactoryMapa2();
+							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,F_Mapa, nombre,tp,audio);
 							GUIWindow.getFrame().setVisible(true);
 							dispose();
 			}
@@ -297,7 +304,8 @@ public class GUIMenu extends JFrame {
 		JBNivel3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 							F_Nivel=new FactoryNiveles().crearNivel3();
-							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,nombre,tp,audio);
+							F_Mapa = new FactoryMapa3();
+							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,F_Mapa,nombre,tp,audio);
 							GUIWindow.getFrame().setVisible(true);
 							ContentPanel.setLayout(null);
 							dispose();

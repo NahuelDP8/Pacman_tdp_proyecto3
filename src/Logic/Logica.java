@@ -9,6 +9,7 @@ import Timer.Timer;
 import javax.swing.ImageIcon;
 
 import Entities.EntidadGrafica;
+import Factories.FactoryMapa;
 import Factories.FactoryMapaGrilla;
 
 public class Logica {
@@ -21,11 +22,11 @@ public class Logica {
 	protected final int MOVER_PROTAGONISTA = 1;
 	protected final int MOVER_ENEMIGO= 0;
 	
-	private Logica(GUI_MAPA g, FactoryMapaGrilla f, Nivel n) {
+	private Logica(GUI_MAPA g, FactoryMapaGrilla f, Nivel n,FactoryMapa map) {
 		miGUI = g;
 		miFabrica = f;
 		miNivel = n;
-		miMapa = miFabrica.crearMapa1(this,n);
+		miMapa = f.crearMapa(this, n, map);
 		miMapa.setFabrica(miFabrica);
 		miMapa.setNivel(n);
 		n.setMapa(miMapa);
@@ -37,9 +38,9 @@ public class Logica {
 		
 	}
 
-	public static Logica getLogic(GUI_MAPA g, FactoryMapaGrilla f, Nivel n) {
+	public static Logica getLogic(GUI_MAPA g, FactoryMapaGrilla f, Nivel n,FactoryMapa map) {
 		if(logic == null) 
-			logic = new Logica(g,f,n);
+			logic = new Logica(g,f,n,map);
 		return logic;
 	}
 
@@ -110,9 +111,9 @@ public class Logica {
 	public void nivelSiguiente(Nivel n) {
 		miGUI.cargando(true);
 		miNivel = n.nivelSiguiente();
-		miMapa = miMapa.mapaSiguiente(miNivel);
+		//miMapa = miMapa.mapaSiguiente(miNivel);
 		miNivel.setMapa(miMapa);
-		miGUI.setJLNivel(miNivel);
+		miGUI.setJLNivel(miNivel.getNivel());
 		miGUI.cargando(false);
 	}
 
@@ -142,6 +143,15 @@ public class Logica {
 
 	public void ponerBomba() {
 		miMapa.ponerBomba();
+		
+	}
+
+	public void activarBomba() {
+		miGUI.activarBomba();
+		
+	}
+	public void desactivarBomba() {
+		miGUI.desactivarBomba();
 		
 	}
 

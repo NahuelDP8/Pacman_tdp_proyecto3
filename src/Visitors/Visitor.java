@@ -8,7 +8,7 @@ import Entities.Fruta;
 import Entities.Pared;
 import Entities.Pocion;
 import Entities.Protagonista;
-import Entities.ZonaEnemigo;
+import Entities.PuertaEnemigo;
 
 public interface Visitor {
 	public void visitPunto(Punto p);
@@ -18,6 +18,6 @@ public interface Visitor {
 	public void visitPared(Pared p);
 	public void visitFruta(Fruta f);
 	public void visitPocion(Pocion p);
+	public void visitPuertaEnemigo(PuertaEnemigo p);
 	public void visitBombaPocion(BombasPocion p);
-	public void visitZonaEnemigo(ZonaEnemigo z);
 }

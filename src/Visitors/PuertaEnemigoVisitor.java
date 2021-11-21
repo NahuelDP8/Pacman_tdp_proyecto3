@@ -2,38 +2,39 @@ package Visitors;
 
 import Entities.BombasPocion;
 import Entities.Enemigo;
+import Entities.Entidad;
 import Entities.Fruta;
 import Entities.Pared;
 import Entities.Pocion;
 import Entities.Protagonista;
+import Entities.PuertaEnemigo;
 import Entities.Punto;
 import Entities.PuntoGrande;
-import Entities.ZonaEnemigo;
 
-public class ZonaFantasmaVisitor implements Visitor{
-
+public class PuertaEnemigoVisitor implements Visitor {
+	private Entidad miEntidad;
+	
+	public PuertaEnemigoVisitor(Entidad ent) {
+		miEntidad = ent;
+	}
+	
 	@Override
 	public void visitPunto(Punto p) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitPuntoGrande(PuntoGrande p) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitEnemigo(Enemigo e) {
-		// TODO Auto-generated method stub
-		
+		e.colisionarPuertaEnemigo();
 	}
 
 	@Override
 	public void visitProtagonista(Protagonista p) {
-		// TODO Auto-generated method stub
-		
+		p.restablecerMovimiento();
 	}
 
 	@Override
@@ -53,17 +54,17 @@ public class ZonaFantasmaVisitor implements Visitor{
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void visitZonaEnemigo(ZonaEnemigo z) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	public void visitBombaPocion(BombasPocion p) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void visitPuertaEnemigo(PuertaEnemigo p) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

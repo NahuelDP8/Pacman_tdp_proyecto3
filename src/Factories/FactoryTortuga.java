@@ -15,22 +15,22 @@ public class FactoryTortuga extends FactoryEnemigo{
 	private ImageIcon imgRosa=new ImageIcon(FactoryNinjaMalvado.class.getResource("/Imagenes/kaguyaRun.gif"));
 	private ImageIcon imgAzul=new ImageIcon(FactoryNinjaMalvado.class.getResource("/Imagenes/kisameRun.gif"));
 	private ImageIcon imgNaranja=new ImageIcon(FactoryNinjaMalvado.class.getResource("/Imagenes/danzoRun.gif"));
-	public Enemigo crearRojo(PairTupla p , int ancho, int altura,MapaGrilla grilla) {
-		Enemigo rojo = new TortugaBlinky(p, ancho, altura,imgRoja,grilla);
+	public Enemigo crearRojo(PairTupla p , int ancho, int altura,MapaGrilla grilla,PairTupla posR,PairTupla posS) {
+		Enemigo rojo = new TortugaBlinky(p, ancho, altura,imgRoja,grilla,posR,posS);
 		return rojo;
 	}
 
-	public Enemigo crearAzul(PairTupla p , int ancho, int altura,MapaGrilla grilla,Enemigo rojo) {
-		Enemigo azul = new TortugaInky( p ,  ancho,  altura,imgAzul,grilla,rojo);
+	public Enemigo crearAzul(PairTupla p , int ancho, int altura,MapaGrilla grilla,Enemigo rojo,PairTupla posR,PairTupla posS) {
+		Enemigo azul = new TortugaInky( p ,  ancho,  altura,imgAzul,grilla,rojo,posR,posS);
 		return azul;
 	}
 
-	public Enemigo crearNaranja(PairTupla p , int ancho, int altura,MapaGrilla grilla) {
-		Enemigo naranja = new TortugaClyde( p ,  ancho,  altura,imgNaranja,grilla);
+	public Enemigo crearNaranja(PairTupla p , int ancho, int altura,MapaGrilla grilla,PairTupla posR,PairTupla posS) {
+		Enemigo naranja = new TortugaClyde( p ,  ancho,  altura,imgNaranja,grilla,posR,posS);
 		return naranja;
 	}
-	public Enemigo crearRosa(PairTupla p, int ancho, int altura,MapaGrilla grilla) {
-		Enemigo rosa = new TortugaPinky( p ,  ancho,  altura,imgRosa,grilla);
+	public Enemigo crearRosa(PairTupla p, int ancho, int altura,MapaGrilla grilla,PairTupla posR,PairTupla posS) {
+		Enemigo rosa = new TortugaPinky( p ,  ancho,  altura,imgRosa,grilla,posR,posS);
 		return rosa;
 	}
 }

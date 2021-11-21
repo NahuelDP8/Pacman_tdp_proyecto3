@@ -1,5 +1,7 @@
 package Entities;
 
+import java.awt.Image;
+
 import javax.swing.ImageIcon;
 
 import Mapas.MapaGrilla;
@@ -33,6 +35,13 @@ public class Explosion extends Entidad{
 		ancho += 40;
 		altura += 40;
 		miRectangulo.setBounds(posicion.getX(), posicion.getY(), ancho, altura);
+		
+		Image EscalarFoto = getImagen().getImage().getScaledInstance(ancho,altura, Image.SCALE_DEFAULT);
+		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);;
+		miEntidad.setIcon(FotoEscalada);
+		miEntidad.setBounds(posicion.getX(), posicion.getY(), ancho, altura);
+		
+		miGrilla.actualizarEntidad(this);
 	}
 
 	public void pararExplosion() {

@@ -7,9 +7,9 @@ import Entities.Pared;
 import Entities.Pocion;
 import Entities.Portal;
 import Entities.Protagonista;
+import Entities.PuertaEnemigo;
 import Entities.Punto;
 import Entities.PuntoGrande;
-import Entities.ZonaEnemigo;
 
 public class PortalVisitor implements Visitor{
 	protected Portal miPortal;
@@ -69,12 +69,12 @@ public class PortalVisitor implements Visitor{
 	}
 
 	@Override
-	public void visitZonaEnemigo(ZonaEnemigo z) {
+	public void visitBombaPocion(BombasPocion p) {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
-	public void visitBombaPocion(BombasPocion p) {
+	public void visitPuertaEnemigo(PuertaEnemigo p) {
 		// TODO Auto-generated method stub
 		
 	}

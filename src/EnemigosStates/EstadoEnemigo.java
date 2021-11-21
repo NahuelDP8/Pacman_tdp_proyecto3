@@ -1,5 +1,7 @@
 package EnemigosStates;
 
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 public interface EstadoEnemigo {
 	
@@ -10,4 +12,6 @@ public interface EstadoEnemigo {
 	public void deboPerseguir(); 
 	public void actualizarFoto();
 	public void explotar();
+	public void colisionarPuertaEnemigo();
+	public ArrayList<Integer> movimientosAEstudiar();
 }

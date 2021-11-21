@@ -1,5 +1,7 @@
 package EnemigosStates;
 
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import Entities.Enemigo;
 
@@ -59,6 +61,16 @@ public class Persiguiendo implements EstadoEnemigo{
 	@Override
 	public void explotar() {
 		miEnemigo.changeState(new Muerto(miEnemigo));
+	}
+	@Override
+	public void colisionarPuertaEnemigo() {
+		miEnemigo.colisionPared();
+	}
+
+	@Override
+	public ArrayList<Integer> movimientosAEstudiar() {
+		// TODO Auto-generated method stub
+		return miEnemigo.movimientosAEstudiar();
 	}
 	
 }
