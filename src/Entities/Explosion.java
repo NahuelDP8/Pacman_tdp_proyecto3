@@ -31,10 +31,10 @@ public class Explosion extends Entidad{
 
 	public void crearExplosion() {
 		explotando = true;
-		posicion.setX(posicion.getX()-20);
-		posicion.setY(posicion.getY()-20);
-		ancho += 40;
-		altura += 40;
+		posicion.setX(posicion.getX()-50);
+		posicion.setY(posicion.getY()-50);
+		ancho += 100;
+		altura += 100;
 		miRectangulo.setBounds(posicion.getX(), posicion.getY(), ancho, altura);
 		
 		Image EscalarFoto = imagenExplosion.getImage().getScaledInstance(ancho,altura, Image.SCALE_DEFAULT);

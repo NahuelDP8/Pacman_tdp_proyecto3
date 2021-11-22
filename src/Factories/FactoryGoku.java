@@ -8,7 +8,7 @@ import Entities.PairTupla;
 import Entities.Protagonista;
 
 public class FactoryGoku extends FactoryProtagonista{
-	private ImageIcon miImagen=new ImageIcon(FactoryMapaGrillaGoku.class.getResource("/Imagenes/goku.png"));
+	private ImageIcon miImagen=new ImageIcon(FactoryMapaGrillaGoku.class.getResource("/Imagenes/goku.gif"));
 
 	public Protagonista crearProtagonista(PairTupla p , int ancho, int altura,MapaGrilla grilla) {
 		Protagonista goku = new Goku( p ,  ancho,  altura,miImagen,grilla);
