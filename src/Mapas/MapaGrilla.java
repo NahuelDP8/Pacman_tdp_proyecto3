@@ -299,9 +299,13 @@ abstract public class MapaGrilla {
 	public void restarPunto() {
 		cantPuntos--;
 		if(cantPuntos == 0) {
-			for(Enemigo e: misEnemigos)
-				sacarEntidad(e);
-			sacarEntidad(miProtagonista);
+			for(Zona[] zz: zonas) {
+				for(Zona z: zz) {
+					for(Entidad e: z.obtenerEntidades()) {
+						miLogica.quitarDeLaGui(e.getEntidad());
+					}
+				}
+			}
 			controladorDeMovimientos.parar();
 			miLogica.nivelSiguiente(miNivel);
 		}	
@@ -309,7 +313,7 @@ abstract public class MapaGrilla {
 
 	protected void agregarPowerPellets() {
 		Mejora m;
-		/*
+		
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,20),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
@@ -319,7 +323,7 @@ abstract public class MapaGrilla {
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,altoMapa-50),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
-		*/
+		
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(anchoMapa-50,altoMapa-50),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;

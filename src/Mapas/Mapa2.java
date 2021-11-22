@@ -119,15 +119,15 @@ public class Mapa2 extends MapaGrilla {
 		}
 	}
 	protected void agregarFantasmas() {
-		Enemigo rojo = fabricaEnem.crearRojo(new PairTupla(posResurreccion.getX()+36,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
+		Enemigo rojo = fabricaEnem.crearRojo(new PairTupla(posResurreccion.getX()-24,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
 		
-		 Enemigo azul = fabricaEnem.crearAzul(new PairTupla(posResurreccion.getX()+24,posResurreccion.getY()),30,30,this,rojo,posResurreccion,posSalida);
+		 Enemigo azul = fabricaEnem.crearAzul(new PairTupla(posResurreccion.getX()-4,posResurreccion.getY()),30,30,this,rojo,posResurreccion,posSalida);
 		 this.misEnemigos.add(azul);
 		 addEntidad(azul.getEntidad());
-		 Enemigo naranja = fabricaEnem.crearNaranja(new PairTupla(posResurreccion.getX()-24,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
+		 Enemigo naranja = fabricaEnem.crearNaranja(new PairTupla(posResurreccion.getX()+16,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
 		 this.misEnemigos.add(naranja);
 		 addEntidad(naranja.getEntidad());
-		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(posResurreccion.getX(),posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
+		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(posResurreccion.getX()+36,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
 		 this.misEnemigos.add(rosa);
 		 addEntidad(rosa.getEntidad());
 		 this.misEnemigos.add(rojo);
@@ -149,10 +149,10 @@ public class Mapa2 extends MapaGrilla {
 		Portal portalDerecha  = new Portal(new PairTupla(487,165),1,30,null,this);
 		Portal portalIzquierda2 = new Portal(new PairTupla(0,340),1,30,null,this);
 		Portal portalDerecha2  = new Portal(new PairTupla(487,340),1,30,null,this);
-		portalIzquierda.setMiDestino(portalDerecha.getX()-30,0);
-		portalDerecha.setMiDestino(portalIzquierda.getX()+4,0);
-		portalIzquierda2.setMiDestino(portalDerecha2.getX()-30,0);
-		portalDerecha2.setMiDestino(portalIzquierda2.getX()+4,0);
+		portalIzquierda.setMiDestino(portalDerecha.getX()-33,0);
+		portalDerecha.setMiDestino(portalIzquierda.getX()+6,0);
+		portalIzquierda2.setMiDestino(portalDerecha2.getX()-33,0);
+		portalDerecha2.setMiDestino(portalIzquierda2.getX()+6,0);
 		
 		actualizarEntidad(portalIzquierda);
 		actualizarEntidad(portalDerecha);

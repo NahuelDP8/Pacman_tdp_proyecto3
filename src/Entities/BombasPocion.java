@@ -19,6 +19,7 @@ public class BombasPocion extends Pocion{
 	public void afectar() {
 		miGrilla.comunicarActivacionBomba();
 		this.sacarEntidad(this);
+		
 	}
 
 }

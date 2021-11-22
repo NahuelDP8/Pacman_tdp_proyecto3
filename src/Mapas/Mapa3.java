@@ -75,7 +75,7 @@ public class Mapa3 extends MapaGrilla {
 		int x,y;
 		cantPuntos = 0;
 		agregarPowerPellets();
-		for(int i = 1; i<28;i++) {
+		/*for(int i = 1; i<28;i++) {
 			for (int j = 0; j<28;j++) {
 				x = 9+i*24;
 				y = 22+j*24;
@@ -84,7 +84,7 @@ public class Mapa3 extends MapaGrilla {
 					ubicarPunto(m);
 				}
 			}
-		}
+		}*/
 	}
 	public void encerrarFantasmas() {
 		PairTupla pos = new PairTupla(posResurreccion.getX()-24,posResurreccion.getY());
@@ -162,9 +162,9 @@ public class Mapa3 extends MapaGrilla {
 		Portal portalDerecha  = new Portal(new PairTupla(679,335),1,30,null,this);
 		Portal portalArriba = new Portal(new PairTupla(336,0),30,1,null,this);
 		Portal portalAbajo  = new Portal(new PairTupla(336,679),30,1,null,this);
-		portalIzquierda.setMiDestino(portalDerecha.getX()-30,0);
+		portalIzquierda.setMiDestino(portalDerecha.getX()-31,0);
 		portalDerecha.setMiDestino(portalIzquierda.getX()+4,0);
-		portalArriba.setMiDestino(0,portalAbajo.getY()-30);
+		portalArriba.setMiDestino(0,portalAbajo.getY()-33);
 		portalAbajo.setMiDestino(0,portalArriba.getY()+14);
 		
 		actualizarEntidad(portalIzquierda);
@@ -198,7 +198,7 @@ public class Mapa3 extends MapaGrilla {
 	}
 	@Override
 	public FactoryMapa mapaSiguiente() {
-		// TODO Auto-generated method stub
-		return new FactoryMapa1();
+		win();
+		return null;
 	}
 }

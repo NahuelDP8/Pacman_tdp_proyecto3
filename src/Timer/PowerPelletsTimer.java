@@ -4,8 +4,8 @@ import Controladores.PowerPelletsControler;
 
 
 public class PowerPelletsTimer extends Thread  {
-	private static int sleepDePP; //PP=Power Pellets
-	private static PowerPelletsControler miControlador;
+	private int sleepDePP; //PP=Power Pellets
+	private PowerPelletsControler miControlador;
 
 	public PowerPelletsTimer(PowerPelletsControler miCon, int sleepPP) {
 		miControlador = miCon;  

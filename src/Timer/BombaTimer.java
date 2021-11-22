@@ -1,6 +1,5 @@
 package Timer;
 
-
 import Controladores.BombasControler;
 
 public class BombaTimer extends Thread{

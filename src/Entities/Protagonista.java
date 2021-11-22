@@ -13,7 +13,7 @@ abstract public class Protagonista extends Personaje{
 	protected boolean comiendo;
 	protected int bomba;
 	
-	private Protagonista(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
+	public Protagonista(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
 		super(p, anc, alt,img, grilla);
 		vidas = 3;
 		movimientoActual= 0;
@@ -25,6 +25,31 @@ abstract public class Protagonista extends Personaje{
 		comiendo = false;
 		bomba = 0;
 	}
+	
+	/*private Protagonista(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
+	super(p, anc, alt,img, grilla);
+	vidas = 3;
+	movimientoActual= 0;
+	movimientoPrevio = 0;
+	puntaje = 0;
+	velocidad = 4;
+	v = new ProtagonistaVisitor();
+	colisiono = false;
+	comiendo = false;
+	bomba = 0;
+	}
+	
+	public static Protagonista getProtagonista(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
+		if(miProtagonista == null) {
+			miProtagonista = new Protagonista(p, anc, alt, img, grilla); 
+		}
+		return miProtagonista; 
+	}
+	
+	public Protagonista getProtagonista() {
+		return miProtagonista; 
+	}
+	*/
 	
 	public int protagonistaVelocidadPixel() {
 		return velocidad;
@@ -44,7 +69,6 @@ abstract public class Protagonista extends Personaje{
 		actualizarFoto();
 		miGrilla.actualizarEntidad(this);
 		miRectangulo.setBounds(posicion.getX(), posicion.getY(), ancho, altura);
-		System.out.print("MOVE"+getX()+" "+ getY());
 	}
 
 	public void moverAbajo() {

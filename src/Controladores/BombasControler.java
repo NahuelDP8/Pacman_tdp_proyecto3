@@ -1,7 +1,5 @@
 package Controladores;
 
-import java.util.ArrayList;
-
 import Entities.Explosion;
 import Timer.BombaTimer;
 

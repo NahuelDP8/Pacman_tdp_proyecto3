@@ -10,7 +10,6 @@ public class Goku extends Protagonista{
 	private ImageIcon imgDerecha=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/goku.png"));
 	private ImageIcon imgIzquierda=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/goku.png"));
 	public Goku(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
-		
 		super(p, anc, alt,img, grilla);
 		Image imagen = imgDerecha.getImage().getScaledInstance(ancho,altura, Image.SCALE_DEFAULT);
 		imagenDerecha = new ImageIcon(imagen);
