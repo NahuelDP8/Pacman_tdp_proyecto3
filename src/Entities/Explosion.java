@@ -6,13 +6,14 @@ import javax.swing.ImageIcon;
 
 import Mapas.MapaGrilla;
 import Visitors.ExplosionVisitor;
-import Visitors.PortalVisitor;
 import Visitors.Visitor;
 
 public class Explosion extends Entidad{
 	private boolean explotando;
-	public Explosion(PairTupla p, int anc, int alt, ImageIcon img, MapaGrilla grilla) {
+	private ImageIcon imagenExplosion;
+	public Explosion(PairTupla p, int anc, int alt, ImageIcon img,ImageIcon img2, MapaGrilla grilla) {
 		super(p, anc, alt, img, grilla);
+		imagenExplosion = img2;
 		v = new ExplosionVisitor(this); 
 		explotando = false;
 	}
@@ -36,8 +37,8 @@ public class Explosion extends Entidad{
 		altura += 40;
 		miRectangulo.setBounds(posicion.getX(), posicion.getY(), ancho, altura);
 		
-		Image EscalarFoto = getImagen().getImage().getScaledInstance(ancho,altura, Image.SCALE_DEFAULT);
-		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);;
+		Image EscalarFoto = imagenExplosion.getImage().getScaledInstance(ancho,altura, Image.SCALE_DEFAULT);
+		ImageIcon FotoEscalada = new ImageIcon(EscalarFoto);
 		miEntidad.setIcon(FotoEscalada);
 		miEntidad.setBounds(posicion.getX(), posicion.getY(), ancho, altura);
 		

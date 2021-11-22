@@ -4,6 +4,7 @@ import EnemigosStates.*;
 import Visitors.EnemigoVisitor;
 import Visitors.Visitor;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -272,5 +273,10 @@ public abstract class Enemigo extends Personaje{
 		toReturn.add(MOVER_IZQUIERDA);
 		toReturn.add(MOVER_DERECHA);
 		return toReturn;
+	}
+
+	public void encerrar() {
+		miEstado = new Encerrado(this); 
+		miRectangulo = new Rectangle(posicion.getX(), posicion.getY(), ancho, altura); 
 	}
 }

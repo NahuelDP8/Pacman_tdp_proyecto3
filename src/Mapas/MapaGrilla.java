@@ -13,6 +13,7 @@ import Entities.EntidadGrafica;
 import Entities.Explosion;
 import Entities.Mejora;
 import Factories.FactoryEnemigo;
+import Factories.FactoryMapa;
 import Factories.FactoryMapaGrilla;
 import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
@@ -294,8 +295,8 @@ abstract public class MapaGrilla {
 		return miProtagonista.getAncho();
 	}
 
-	public void añadirEntidad(EntidadGrafica miEntidad) {
-		miLogica.añadirEntidad(miEntidad);	
+	public void addEntidad(EntidadGrafica miEntidad) {
+		miLogica.addEntidad(miEntidad);	
 	
 	}
 
@@ -328,11 +329,11 @@ abstract public class MapaGrilla {
 	
 
 	public void gameOver() {
-		//el juego se acaba por el protagonista ha perdido todas sus vidas. 
-		//o ha ganado. 
+		miLogica.gameOver();
 	}
 
 	public void protagonistaPierdeVida() {
+		encerrarFantasmas();
 		setearProtagonistaAPosicionInicial();
 		miProtagonista.quitarVida();
 		miLogica.quitarVida();
@@ -341,8 +342,11 @@ abstract public class MapaGrilla {
 	}
 
 
+	public abstract void encerrarFantasmas();
+
 	private  void setearProtagonistaAPosicionInicial() {
 		miProtagonista.setPos(new PairTupla(posInicialProtagonista.getX(),posInicialProtagonista.getY()));
+		miProtagonista.setMovimiento(0);
 	}
 
 	public void comunicarControlPrincipalSpeed(int velocidad) {
@@ -382,5 +386,7 @@ abstract public class MapaGrilla {
 		miProtagonista = p;
 		miProtagonista.setPos(posInicialProtagonista);
 	}
+
+	public abstract FactoryMapa mapaSiguiente();
 
 }

@@ -14,6 +14,8 @@ import Entities.Pared;
 import Entities.Portal;
 import Entities.PuertaEnemigo;
 import Factories.FactoryEnemigo;
+import Factories.FactoryMapa;
+import Factories.FactoryMapa2;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
 import Nivel.Nivel;
@@ -81,17 +83,26 @@ public class Mapa1 extends MapaGrilla {
 		
 		 Enemigo azul = fabricaEnem.crearAzul(new PairTupla(posResurreccion.getX()+24,posResurreccion.getY()),30,30,this,rojo,posResurreccion,posSalida);
 		 this.misEnemigos.add(azul);
-		 añadirEntidad(azul.getEntidad());
+		 addEntidad(azul.getEntidad());
 		 Enemigo naranja = fabricaEnem.crearNaranja(new PairTupla(posResurreccion.getX()+48,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
 		 this.misEnemigos.add(naranja);
-		 añadirEntidad(naranja.getEntidad());
+		 addEntidad(naranja.getEntidad());
 		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(posResurreccion.getX()+96,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
 		 this.misEnemigos.add(rosa);
-		 añadirEntidad(rosa.getEntidad());
+		 addEntidad(rosa.getEntidad());
 		 this.misEnemigos.add(rojo);
-		 añadirEntidad(rojo.getEntidad());
+		 addEntidad(rojo.getEntidad());
 	}
-
+	public void encerrarFantasmas() {
+		PairTupla pos = new PairTupla(posResurreccion.getX(),posResurreccion.getY());
+		for(Enemigo e:misEnemigos) {
+			e.encerrar();
+			e.setPos(new PairTupla(pos.getX(),pos.getY()));
+			pos.setX(pos.getX() + 24);
+		
+			actualizarEntidad(e);
+		}
+	}
 	private void ubicarPunto(Mejora m) {
 		Rectangle2D rect = m.getRectangulo().getBounds2D();
 		ArrayList<Zona> misZonas = new ArrayList<Zona>();
@@ -163,5 +174,11 @@ public class Mapa1 extends MapaGrilla {
 	@Override
 	public void quitarFruta() {
 		sacarEntidad(fruta);
+	}
+
+	@Override
+	public FactoryMapa mapaSiguiente() {
+		// TODO Auto-generated method stub
+		return new FactoryMapa2();
 	}
 }

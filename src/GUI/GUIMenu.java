@@ -103,7 +103,11 @@ public class GUIMenu extends JFrame {
 			e.printStackTrace();
 		}
 	}
-
+	
+	//FALTA ACOMODAR EL FILE
+	private void IniciarMusica(File f) {
+		audio=new AudioPlayer(f);
+	}
 	/**
 	 * Create the frame.
 	 */
@@ -156,6 +160,8 @@ public class GUIMenu extends JFrame {
 					public void run() {
 						try {
 							F_Mapa_Grilla=new FactoryMapaGrillaGoku();
+							File MusicFile = new File(GUIMenu.configuration.getProperty("GokuMusic"));
+							IniciarMusica(MusicFile);
 							PSeleccionProta.setVisible(false);
 							PSeleccionNivel.setVisible(true);
 						} catch (Exception e) {
@@ -185,7 +191,7 @@ public class GUIMenu extends JFrame {
 						try {
 							F_Mapa_Grilla=new FactoryMapaGrillaNaruto();
 							File MusicFile = new File(GUIMenu.configuration.getProperty("NarutoMusic"));
-							audio=new AudioPlayer(MusicFile);
+							IniciarMusica(MusicFile);
 							PSeleccionProta.setVisible(false);
 							PSeleccionNivel.setVisible(true);
 						} catch (Exception e) {
@@ -289,7 +295,6 @@ public class GUIMenu extends JFrame {
 		PSeleccionNivel.add(JBNivel2);
 		JBNivel2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("LA PUTA MADRE");
 							F_Nivel=new FactoryNiveles().crearNivel2();
 							F_Mapa = new FactoryMapa2();
 							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,F_Mapa, nombre,tp,audio);
