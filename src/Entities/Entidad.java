@@ -60,7 +60,7 @@ abstract public class Entidad {
 		miEntidad.setVisible(true);
 		miEntidad.setForeground(new Color(0, 128, 0));
 		miEntidad.setBackground(Color.WHITE);
-		miGrilla.añadirEntidad(miEntidad);
+		miGrilla.addEntidad(miEntidad);
 	}
 
 	public int getX() {

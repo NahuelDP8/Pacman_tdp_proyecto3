@@ -75,7 +75,7 @@ public class GUI_MAPA{
 		entidad.setVisible(false);
 	}
 	
-	public void añadirEntidadGrafica(EntidadGrafica entidad) {
+	public void addEntidadGrafica(EntidadGrafica entidad) {
 		frame.getContentPane().add(entidad);
 		frame.getContentPane().setComponentZOrder(entidad, 1);
 		
@@ -176,12 +176,12 @@ public class GUI_MAPA{
 									if(e.getKeyCode() == KeyEvent.VK_SPACE) 
 										//captarAbajoNormalizarPausa();
 										ponerBomba();
-									
-								else if(e.getKeyCode() == KeyEvent.VK_P) {
-										audio.alternarSilencio();
+									else{	if(e.getKeyCode() == KeyEvent.VK_P) {
+												audio.alternarSilencio();
+									}
 								}
 							}
-							}
+						}
 			}	
 		}
 			public void keyReleased(KeyEvent e) {
