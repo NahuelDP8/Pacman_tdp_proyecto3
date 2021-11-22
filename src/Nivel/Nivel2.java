@@ -42,4 +42,9 @@ public class Nivel2 extends Nivel {
 		return new Nivel3();
 	}
 
+	@Override
+	public int cantidadBombas() {
+		return 2;
+	}
+
 }
