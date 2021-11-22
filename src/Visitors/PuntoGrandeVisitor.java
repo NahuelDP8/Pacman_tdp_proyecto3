@@ -2,6 +2,7 @@ package Visitors;
 
 import Entities.BombasPocion;
 import Entities.Enemigo;
+import Entities.Explosion;
 import Entities.Fruta;
 import Entities.Pared;
 import Entities.Pocion;
@@ -70,6 +71,11 @@ public class PuntoGrandeVisitor implements Visitor {
 	}
 	@Override
 	public void visitPuertaEnemigo(PuertaEnemigo p) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void visitExplosion(Explosion p) {
 		// TODO Auto-generated method stub
 		
 	}

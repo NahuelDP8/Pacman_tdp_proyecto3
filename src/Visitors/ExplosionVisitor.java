@@ -65,4 +65,9 @@ public class ExplosionVisitor implements Visitor {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void visitExplosion(Explosion p) {
+		// TODO Auto-generated method stub
+		
+	}
 }
