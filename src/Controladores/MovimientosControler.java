@@ -1,6 +1,5 @@
 package Controladores;
 
-import Logic.Logica;
 import Timer.EnemigosTimer;
 import Timer.ProtagonistaTimer;
 import java.util.ArrayList;

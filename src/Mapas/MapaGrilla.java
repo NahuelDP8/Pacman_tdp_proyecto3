@@ -41,9 +41,8 @@ abstract public class MapaGrilla {
 	protected final int MOVER_ABAJO = 1;	
 	protected final int MOVER_ARRIBA = 2;
 	protected final int MOVER_IZQUIERDA = 3;
-	protected final int MOVER_DERECHA = 4;
-	protected PowerPelletsControler controladorPowerPellets; 
-	public MovimientosControler controladorDeMovimientos; 
+	protected final int MOVER_DERECHA = 4; 
+	protected MovimientosControler controladorDeMovimientos; 
 	protected int cantPuntos;
 	protected String[] paredes;
 	
@@ -58,11 +57,8 @@ abstract public class MapaGrilla {
 		ancho = an;
 		altura = al;
 		this.miLogica = miLogica;
-		misEnemigos= new ArrayList<Enemigo>();
-		controladorPowerPellets = new PowerPelletsControler(); 
-		miNivel = lvl;
-		 
-		
+		misEnemigos= new ArrayList<Enemigo>(); 
+		miNivel = lvl;	
 	}
 	
 	public void setNivel(Nivel n) {
@@ -354,7 +350,7 @@ abstract public class MapaGrilla {
 	}
 	
 	public void comunicarControlPowerPellet() {
-		controladorPowerPellets.activarPowerPellet(miNivel.sleepPowerPellets(), misEnemigos); 
+		PowerPelletsControler controladorPowerPellet = new PowerPelletsControler(miNivel.sleepPowerPellets(), misEnemigos); 
 	}
 
 	public void setFabrica(FactoryMapaGrilla fab) {
