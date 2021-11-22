@@ -16,9 +16,11 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Properties;
 import java.awt.event.ActionEvent;
 import javax.swing.border.SoftBevelBorder;
@@ -33,12 +35,15 @@ import Factories.FactoryMapaGrillaNaruto;
 import Factories.FactoryNiveles;
 import Music.AudioPlayer;
 import Nivel.Nivel;
+import ranking.Player;
 import ranking.TopPlayers;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.JTextField;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class GUIMenu extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -66,13 +71,42 @@ public class GUIMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
+				TopPlayers  topPlayerss;
+				try {
+					File tempFile = new File(GUIMenu.configuration.getProperty("HighscoreFile"));
+					if((tempFile.exists()) && (tempFile.length() != 0)) {
+						FileInputStream fileInputStream= new FileInputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
+						ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
+						topPlayerss = (TopPlayers) objectInputStream.readObject();
+						objectInputStream.close();
+					}	else {
+							topPlayerss = new TopPlayers();
+						}
+					GUIMenu frame = new GUIMenu(topPlayerss);
+					frame.setVisible(true);
+					frame.addWindowListener(new WindowAdapter() {
+						@Override
+						public void windowClosing(WindowEvent e) {
+							frame.actualizarArchivo();
+						}
+					});
+					
+				}
+				catch(FileNotFoundException e) {
+					e.printStackTrace();
+				}
+				catch (IOException  e) {
+					e.printStackTrace();
+				}
+				catch (ClassNotFoundException  e) {
+					e.printStackTrace();
+				}
 				
-				GUIMenu frame = new GUIMenu();
-				frame.setVisible(true);
+				
 			}
 		});
 	}
-
+	
 	private static void loadConfiguration() {
 		try {
 			InputStream input = new FileInputStream("./configuration.properties");
@@ -83,36 +117,36 @@ public class GUIMenu extends JFrame {
 		}
 	}
 	
-	//FALTA ACOMODAR EL FILE
+	//Inicia la musica en el GUIMENU segun el protagonista elegido
 	private void IniciarMusica(File f) {
 		audio=new AudioPlayer(f);
 	}
+	
+	private void actualizarArchivo() {
+		FileOutputStream fileOutputStream;
+		try {
+			fileOutputStream = new FileOutputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+			objectOutputStream.writeObject(this.topPlayers);
+			objectOutputStream.flush();
+			objectOutputStream.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		 catch (IOException e) {// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * Create the frame.
 	 */
-	public GUIMenu() {
-		try {
-			File tempFile = new File(GUIMenu.configuration.getProperty("HighscoreFile"));
-			if((tempFile.exists()) && (tempFile.length() != 0)) {
-				FileInputStream fileInputStream= new FileInputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
-				ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
-				topPlayers = (TopPlayers) objectInputStream.readObject();
-				objectInputStream.close();
-			}else {
-				topPlayers = new TopPlayers();
-			}
-			
-		}
-		catch(FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		catch (IOException  e) {
-			e.printStackTrace();
-		}
-		catch (ClassNotFoundException  e) {
-			e.printStackTrace();
-		}
-		setTitle("PacMan");
+	public GUIMenu(TopPlayers tp) {
+		topPlayers=tp;
+		initialized();
+	}
+		private void initialized() {
+		setTitle("PacChoose");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400,60,781,652);
 		ContentPanel = new JPanel();
@@ -341,11 +375,14 @@ public class GUIMenu extends JFrame {
 		JLHighScoreList.setBounds(0, 150, 747, 500);
 		JLHighScoreList.setForeground(Color.WHITE);
 		PHighscore.add(JLHighScoreList);
-		if(topPlayers.size()!=0) 
-			JLHighScoreList.setText(topPlayers.getPlayer(0).toString());
-		for(int i =0; i<topPlayers.size();i++) 
-			JLHighScoreList.setText("<html>"+JLHighScoreList.getText()+"<p>"+topPlayers.getPlayer(i).toString().substring(7)+"<html>");
-		
+		//if(topPlayers.size()!=0) 
+			//JLHighScoreList.setText(topPlayers.getPlayer(0).toString());
+		System.out.println(topPlayers.isEmpty());
+		if(!topPlayers.isEmpty()) {
+			for(int i=0; i<topPlayers.size();i++) {
+				JLHighScoreList.setText("<html>"+JLHighScoreList.getText()+topPlayers.getPlayer(i).toString()+"<p>"+"<html>");
+			}
+		}
 		JButton JBVolver = new JButton("VOLVER AL MENU");
 		JBVolver.setFont(new Font("Playbill", Font.BOLD, 50));
 		JBVolver.setBounds(400, 15, 300, 60);
@@ -359,3 +396,8 @@ public class GUIMenu extends JFrame {
 		
 	}
 }
+
+
+	
+
+

@@ -323,13 +323,14 @@ abstract public class MapaGrilla {
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(anchoMapa-50,20),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,altoMapa-50),22,22,this);
+		/*m = fabricaMejora.crearPuntoGrande(new PairTupla(25,altoMapa-50),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
 		
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(anchoMapa-50,altoMapa-50),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
+		*/
 	}
 	
 	public void sacarTodo() {

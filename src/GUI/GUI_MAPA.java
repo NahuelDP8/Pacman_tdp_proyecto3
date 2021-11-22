@@ -58,7 +58,8 @@ public class GUI_MAPA{
 	private JPanel PGanaste;
 	private JPanel panel;
 	private JPanel panel_1;
-	private JButton JBVolverAMenu;
+	private JButton JBVolverAMenuG;
+	private JButton JBVolverAMenuP;
 	private JLabel JLPerdiste;
 	private JLabel JLGanaste;
 	private JLabel JLMusic;
@@ -225,8 +226,7 @@ public class GUI_MAPA{
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				gameOver();
-				gameClose();
+				actualizarArchivo();
 			}
 		});
 		frame.addKeyListener(tecla);
@@ -274,13 +274,13 @@ public class GUI_MAPA{
 		PPerdiste.setBackground(new Color(0, 0, 0));
 		PPerdiste.setLayout(null);
 		
-		JBVolverAMenu = new JButton("Volver al menu");
-		JBVolverAMenu.addActionListener(new ActionListener() {
+		JBVolverAMenuP = new JButton("Volver al menu");
+		JBVolverAMenuP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							GUIMenu Nframe = new GUIMenu();
+							GUIMenu Nframe = new GUIMenu(topPlayers);
 							Nframe.setVisible(true);
 							frame.dispose();
 						} catch (Exception e) {
@@ -290,10 +290,30 @@ public class GUI_MAPA{
 				});
 			}
 		});
-		JBVolverAMenu.setBounds(525, 450, 300, 50);
-		JBVolverAMenu.setEnabled(false);
-		PPerdiste.add(JBVolverAMenu);
-		PGanaste.add(JBVolverAMenu);
+		JBVolverAMenuP.setBounds(525, 450, 300, 50);
+		JBVolverAMenuP.setEnabled(false);
+		
+		PPerdiste.add(JBVolverAMenuP);
+		
+		JBVolverAMenuG = new JButton("Volver al menu");
+		JBVolverAMenuG.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							GUIMenu Nframe = new GUIMenu(topPlayers);
+							Nframe.setVisible(true);
+							frame.dispose();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+		JBVolverAMenuG.setBounds(525, 450, 300, 50);
+		JBVolverAMenuG.setEnabled(false);
+		PGanaste.add(JBVolverAMenuG);
 		
 		JLPerdiste = new JLabel("JUEGO TERMINADO");
 		JLPerdiste.setBounds(400, 200, 600, 112);
@@ -401,15 +421,18 @@ public class GUI_MAPA{
 			JLHighScoreList.setText(topPlayers.getPlayer(0).toString());
 		}
 		for(int i =1; i<topPlayers.size();i++) {
-			JLHighScoreList.setText("<html>"+JLHighScoreList.getText()+"<p>"+topPlayers.getPlayer(i).toString().substring(7)+"<html>");
+			JLHighScoreList.setText("<html>"+JLHighScoreList.getText()+"<p>"+topPlayers.getPlayer(i).toString()+"<html>");
 		}
 		
 	}
 	
 	// SE NECESITA VER COMO COPIAR UN STRING DESDE CIERTO CARACTER PARA BORRAR ("NOMBRE")
-	private void gameClose() {
+	private void actualizarArchivo() {
 		FileOutputStream fileOutputStream;
 		try {
+			int puntosDPlayer=0;
+			puntosDPlayer = Integer.parseInt(JLPuntaje.getText());
+			topPlayers.addPlayer(new Player(JLNombre.getText().substring(7),puntosDPlayer));
 			fileOutputStream = new FileOutputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 			objectOutputStream.writeObject(this.topPlayers);
@@ -422,6 +445,20 @@ public class GUI_MAPA{
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public void gameOver() {
+		audio.stopMusic();
+		log.destruirSingleton();
+		PPerdiste.setVisible(true);
+		panel.setVisible(false);
+		panel_1.setVisible(false);
+		JBVolverAMenuP.setEnabled(true);
+		frame.getContentPane().setComponentZOrder(panelCargando, 0);
+		jugando = false;
+	}
+	
+	
 
 	public void win() {
 		audio.stopMusic();
@@ -429,13 +466,15 @@ public class GUI_MAPA{
 		PGanaste.setVisible(true);
 		panel.setVisible(false);
 		panel_1.setVisible(false);
-		JBVolverAMenu.setEnabled(true);
+		JBVolverAMenuG.setEnabled(true);
 		frame.getContentPane().setComponentZOrder(panelCargando, 0);
 		jugando = false;
 		int puntosDPlayer=0;
 		puntosDPlayer = Integer.parseInt(JLPuntaje.getText());
 		topPlayers.addPlayer(new Player(JLNombre.getText(),puntosDPlayer));
 	}
+	
+	
 	public void setJLNivel(int n) {
 		JLNivel.setText("Nivel: "+ n);
 	}
@@ -451,17 +490,5 @@ public class GUI_MAPA{
 	public void desactivarBomba() {
 		lbBomba.setVisible(false);
 	}
-	public void gameOver() {
-		audio.stopMusic();
-		log.destruirSingleton();
-		PPerdiste.setVisible(true);
-		panel.setVisible(false);
-		panel_1.setVisible(false);
-		JBVolverAMenu.setEnabled(true);
-		frame.getContentPane().setComponentZOrder(panelCargando, 0);
-		jugando = false;
-		int puntosDPlayer=0;
-		puntosDPlayer = Integer.parseInt(JLPuntaje.getText());
-		topPlayers.addPlayer(new Player(JLNombre.getText(),puntosDPlayer));
-	}
+	
 }
