@@ -13,7 +13,7 @@ abstract public class Protagonista extends Personaje{
 	protected boolean comiendo;
 	protected int bomba;
 	
-	public Protagonista(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
+	private Protagonista(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
 		super(p, anc, alt,img, grilla);
 		vidas = 3;
 		movimientoActual= 0;

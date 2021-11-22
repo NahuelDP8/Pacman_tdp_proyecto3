@@ -10,6 +10,7 @@ public class PowerPelletsTimer extends Thread  {
 	public PowerPelletsTimer(PowerPelletsControler miCon, int sleepPP) {
 		miControlador = miCon;  
 		sleepDePP = sleepPP;  
+		this.start();
 	}
 
 	public void run() {
