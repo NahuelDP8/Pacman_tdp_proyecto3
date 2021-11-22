@@ -45,7 +45,7 @@ public class Logica {
 	}
 
 	public void gameOver(){
-		
+		//Completar
 	}
 
 	public void actualizarReloj() {
@@ -111,7 +111,8 @@ public class Logica {
 	public void nivelSiguiente(Nivel n) {
 		miGUI.cargando(true);
 		miNivel = n.nivelSiguiente();
-		//miMapa = miMapa.mapaSiguiente(miNivel);
+		//SACAR
+		miMapa = miFabrica.crearMapa(this, n, miMapa.mapaSiguiente());
 		miNivel.setMapa(miMapa);
 		miGUI.setJLNivel(miNivel.getNivel());
 		miGUI.cargando(false);

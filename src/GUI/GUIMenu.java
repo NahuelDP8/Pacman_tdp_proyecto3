@@ -289,7 +289,6 @@ public class GUIMenu extends JFrame {
 		PSeleccionNivel.add(JBNivel2);
 		JBNivel2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("LA PUTA MADRE");
 							F_Nivel=new FactoryNiveles().crearNivel2();
 							F_Mapa = new FactoryMapa2();
 							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,F_Mapa, nombre,tp,audio);

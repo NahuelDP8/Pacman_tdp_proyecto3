@@ -14,6 +14,9 @@ import Entities.Pared;
 import Entities.Portal;
 import Entities.PuertaEnemigo;
 import Factories.FactoryEnemigo;
+import Factories.FactoryMapa;
+import Factories.FactoryMapa1;
+import Factories.FactoryMapa2;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
 import Nivel.Nivel;
@@ -48,7 +51,7 @@ public class Mapa3 extends MapaGrilla {
 		PuertaEnemigo puerta = new PuertaEnemigo(new PairTupla(339,326), 33, 12,this);
 		actualizarEntidad(puerta);
 		fruta = fabricaMejora.crearFruta(new PairTupla(260,191), 20, 20,this);
-		pocion = fabricaMejora.crearPocion(new PairTupla(230,196), 20, 20,this);
+		pocion = fabricaMejora.crearBomba(new PairTupla(230,196), 20, 20,this);
 		agregarFruta(); 
 		agregarPocion(); 
 		
@@ -81,6 +84,16 @@ public class Mapa3 extends MapaGrilla {
 					ubicarPunto(m);
 				}
 			}
+		}
+	}
+	public void encerrarFantasmas() {
+		PairTupla pos = new PairTupla(posResurreccion.getX()-24,posResurreccion.getY());
+		for(Enemigo e:misEnemigos) {
+			e.encerrar();
+			e.setPos(new PairTupla(pos.getX(),pos.getY()));
+			pos.setX(pos.getX() + 20);
+		
+			actualizarEntidad(e);
 		}
 	}
 
@@ -127,6 +140,7 @@ public class Mapa3 extends MapaGrilla {
 			actualizarEntidad(p);
 		}
 	}
+	
 	protected void agregarFantasmas() {
 		Enemigo rojo = fabricaEnem.crearRojo(new PairTupla(posResurreccion.getX(),posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
 		
@@ -181,5 +195,10 @@ public class Mapa3 extends MapaGrilla {
 	private void win() {
 		miLogica.win();
 		
+	}
+	@Override
+	public FactoryMapa mapaSiguiente() {
+		// TODO Auto-generated method stub
+		return new FactoryMapa1();
 	}
 }

@@ -14,6 +14,9 @@ import Entities.Pared;
 import Entities.Portal;
 import Entities.PuertaEnemigo;
 import Factories.FactoryEnemigo;
+import Factories.FactoryMapa;
+import Factories.FactoryMapa2;
+import Factories.FactoryMapa3;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
 import Nivel.Nivel;
@@ -48,8 +51,8 @@ public class Mapa2 extends MapaGrilla {
 		//Agregamos la puerta de la zona de los enemigos
 		PuertaEnemigo puerta = new PuertaEnemigo(new PairTupla(228,198), 33, 12,this);
 		actualizarEntidad(puerta);
-		fruta = fabricaMejora.crearFruta(new PairTupla(260,191), 20, 20,this);
-		pocion = fabricaMejora.crearBomba(new PairTupla(230,196), 20, 20,this);
+		fruta = fabricaMejora.crearFruta(new PairTupla(280,166), 20, 20,this);
+		pocion = fabricaMejora.crearBomba(new PairTupla(230,166), 20, 20,this);
 		agregarFruta(); 
 		agregarPocion(); 
 		controladorDeMovimientos = new MovimientosControler(miNivel.sleepProtagonista(), miNivel.sleepFantasmas(), miProtagonista, misEnemigos,miLogica.getConstanteMOVER_ENEMIGOS(),miLogica.getConstanteMOVER_PROTAGONISTA() ); 
@@ -71,7 +74,7 @@ public class Mapa2 extends MapaGrilla {
 			}
 		}
 	}
-
+	
 	private void ubicarPunto(Mejora m) {
 		Rectangle2D rect = m.getRectangulo().getBounds2D();
 		ArrayList<Zona> misZonas = new ArrayList<Zona>();
@@ -130,6 +133,16 @@ public class Mapa2 extends MapaGrilla {
 		 this.misEnemigos.add(rojo);
 		 añadirEntidad(rojo.getEntidad());
 	}
+	public void encerrarFantasmas() {
+		PairTupla pos = new PairTupla(posResurreccion.getX()-24,posResurreccion.getY());
+		for(Enemigo e:misEnemigos) {
+			e.encerrar();
+			e.setPos(new PairTupla(pos.getX(),pos.getY()));
+			pos.setX(pos.getX() + 20);
+		
+			actualizarEntidad(e);
+		}
+	}
 	public void agregarPortales() {
 		//Hay que posicionarlos bien 
 		Portal portalIzquierda = new Portal(new PairTupla(0,165),1,30,null,this);
@@ -165,5 +178,8 @@ public class Mapa2 extends MapaGrilla {
 	public void quitarFruta() {
 		sacarEntidad(fruta);
 	}
-	
+	@Override
+	public FactoryMapa mapaSiguiente() {
+		return new FactoryMapa3();
+	}
 }

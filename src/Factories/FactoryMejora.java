@@ -16,6 +16,7 @@ import Entities.PuntoGrande;
 public class FactoryMejora{
 	private ImageIcon imagenPunto=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/punto.png"));
 	private ImageIcon imagenBomba=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/explosivo.png"));
+	private ImageIcon imagenExplosion=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/bomba.gif"));
 	private ImageIcon imagenFruta=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/fruta.png"));
 	private ImageIcon imagenPocion=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/pocion.png"));
 	private ImageIcon imagenPuntoGrande=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/powerPellets.png"));
@@ -41,7 +42,7 @@ public class FactoryMejora{
 		return puntoGrande;
 	}
 	public Explosion crearExplosion(PairTupla p , int ancho, int altura,MapaGrilla grilla) {
-		Explosion explosion= new Explosion( p , ancho,  altura,imagenBomba,grilla);
+		Explosion explosion= new Explosion( p , ancho,  altura,imagenBomba,imagenExplosion,grilla);
 		return explosion;
 	}
 	

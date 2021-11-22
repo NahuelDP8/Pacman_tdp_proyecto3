@@ -7,7 +7,7 @@ public class Nivel2 extends Nivel {
 	@Override
 	public int sleepProtagonista() {
 		// TODO Auto-generated method stub
-		return 35;
+		return 25;
 	}
 
 	@Override
