@@ -14,8 +14,9 @@ public class PotionVelocidadTimer extends Thread {
 	
 	public void run() {
 		try {
-			PowerPelletsTimer.sleep(sleepDePotionVel);
+			PotionVelocidadTimer.sleep(sleepDePotionVel);
 			realizarActividad(); 
+			PotionVelocidadTimer.interrupted();
 		} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
 		}		
@@ -29,6 +30,6 @@ public class PotionVelocidadTimer extends Thread {
 		miControlador.normalizarVelocidadPacman(); 
 	}
 
-
+	
 }
 

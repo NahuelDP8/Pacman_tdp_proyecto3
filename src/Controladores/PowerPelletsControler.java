@@ -27,4 +27,12 @@ public class PowerPelletsControler extends ThreadControl{
 		}
 		
 	}
+	
+	public void parar() {
+		if(miTimer!=null) {
+			if(miTimer.isAlive()) {
+				miTimer.interrupt();
+			}	
+		}
+	}
 }
