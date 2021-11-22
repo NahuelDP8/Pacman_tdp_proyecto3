@@ -27,6 +27,7 @@ public class MovimientosControler extends ThreadControl {
 		movProtagonistaC = new MovimientoProtagonistaControler(miP); 
 		tEnemigos =  new EnemigosTimer(this, MOVER_ENEMIGOS);
 		tProtagonista = ProtagonistaTimer.getProtagonistaTimer(this, MOVER_PROTAGONISTA);
+		tProtagonista.setController(this);
 	}
 	
 	public int getSleepGeneralEnemigos() {
@@ -47,7 +48,6 @@ public class MovimientosControler extends ThreadControl {
 
 	public void parar() {
 		tEnemigos.interrupt();
-		tProtagonista.interrupt();
 	}
 	
 }

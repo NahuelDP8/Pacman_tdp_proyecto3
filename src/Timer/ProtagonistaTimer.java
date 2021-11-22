@@ -41,4 +41,9 @@ public class ProtagonistaTimer extends Thread {
 		sleepProtagonista =sleepGeneralProtagonista; 
 		
 	}
+
+	public void setController(MovimientosControler c) {
+		miControlador = c;
+		
+	}
 }

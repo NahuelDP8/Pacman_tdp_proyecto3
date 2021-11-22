@@ -48,7 +48,6 @@ public class Explosion extends Entidad{
 	public void pararExplosion() {
 		explotando = false;
 		sacarEntidad(this);
-		
 	}
 
 	public boolean getExplotando() {

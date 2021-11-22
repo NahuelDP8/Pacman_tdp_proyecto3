@@ -35,7 +35,6 @@ public class Logica {
 	
 	public void actualizarFondo(ImageIcon img) {
 		miGUI.añadirFondo(img); 
-		
 	}
 
 	public static Logica getLogic(GUI_MAPA g, FactoryMapaGrilla f, Nivel n,FactoryMapa map) {
@@ -45,7 +44,8 @@ public class Logica {
 	}
 
 	public void gameOver(){
-		//Completar
+		miGUI.gameOver();
+		miReloj.gameOver();
 	}
 
 	public void actualizarReloj() {
@@ -146,7 +146,9 @@ public class Logica {
 		miMapa.ponerBomba();
 		
 	}
-
+	public void destruirSingleton() {
+		logic = null;
+	}
 	public void activarBomba() {
 		miGUI.activarBomba();
 		

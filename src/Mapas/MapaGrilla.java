@@ -75,7 +75,6 @@ abstract public class MapaGrilla {
 	
 	protected void agregarProtagonista() {
 		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(posInicialProtagonista.getX(),posInicialProtagonista.getY()),30,30,this);
-	System.out.print("CREACIONNNNNN"+miProtagonista.getX()+" "+ miProtagonista.getY());
 	}
 	
 	public int getSleepPowerPellets() {
@@ -333,6 +332,15 @@ abstract public class MapaGrilla {
 	
 
 	public void gameOver() {
+		for(Zona[] zz: zonas) {
+			for(Zona z: zz) {
+				for(Entidad e: z.obtenerEntidades()) {
+					miLogica.quitarDeLaGui(e.getEntidad());
+				}
+			}
+		}
+		sacarEntidad(miProtagonista);
+		controladorDeMovimientos.parar();
 		miLogica.gameOver();
 	}
 

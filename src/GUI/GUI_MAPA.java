@@ -1,6 +1,8 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -8,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
 
 import Entities.EntidadGrafica;
 import Factories.FactoryMapa;
@@ -21,7 +24,6 @@ import ranking.TopPlayers;
 
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -32,8 +34,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class GUI_MAPA{
 
@@ -50,11 +50,14 @@ public class GUI_MAPA{
 	private boolean izquierda, derecha, abajo, arriba;
 	private JLabel JLVIDAS1, JLVIDAS2,JLVIDAS3;
 	private AudioPlayer audio;
-	private JButton JBMusic;
 	private Image EscalarFoto; 
 	private ImageIcon FotoEscalada;
-	private JPanel JPPausa;
+	private JPanel PPerdiste;
+	private JPanel panel;
+	private JPanel panel_1;
+	private JLabel JLPerdiste;
 	private JLabel JLMusic;
+	private boolean jugando;
 	/**
 	 * Create the application.
 	 */
@@ -156,8 +159,6 @@ public class GUI_MAPA{
 		public void keyTyped(KeyEvent e) {
 			}
 	
-	boolean jugando=true; //REVISAR SACAR
-	//se capta cuando se presionan las teclas izq,der,arriba
 			public void keyPressed(KeyEvent e) {
 				if(jugando) {
 					if(e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -213,7 +214,7 @@ public class GUI_MAPA{
 		arriba = false;
 		izquierda = false;
 		derecha = false;
-		
+		jugando = true;
 		EventoDeTeclado tecla=new EventoDeTeclado();
 		frame = new JFrame();
 		frame.addWindowListener(new WindowAdapter() {
@@ -231,12 +232,10 @@ public class GUI_MAPA{
 		
 		JLFondoMapa = new JLabel("");
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBounds(0, 0, 1476, 97);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
-		
-		
 		
 		JLabel JLVIDAS = new JLabel("vidas");
 		JLVIDAS.setFont(new Font("Engravers MT", Font.BOLD, 40));
@@ -244,7 +243,44 @@ public class GUI_MAPA{
 		JLVIDAS.setBounds(0, 9, 213, 62);
 		panel.add(JLVIDAS);
 		
-		JPanel panel_1 = new JPanel();
+		PPerdiste = new JPanel();
+		PPerdiste.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		PPerdiste.setForeground(Color.WHITE);
+		PPerdiste.setBounds(6, 6, 1500, 890);
+		frame.getContentPane().add(PPerdiste);
+		PPerdiste.setBackground(new Color(0, 0, 0));
+		PPerdiste.setLayout(null);
+		
+		JButton btnNewButton = new JButton("Volver al menu");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							GUIMenu Nframe = new GUIMenu(topPlayers);
+							Nframe.setVisible(true);
+							frame.dispose();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+		btnNewButton.setBounds(525, 450, 300, 50);
+		PPerdiste.add(btnNewButton);
+		
+		JLPerdiste = new JLabel("JUEGO TERMINADO");
+		JLPerdiste.setBounds(400, 200, 600, 112);
+		PPerdiste.add(JLPerdiste);
+		JLPerdiste.setForeground(Color.WHITE);
+		JLPerdiste.setBackground(new Color(255, 255, 255));
+		JLPerdiste.setToolTipText("");
+		JLPerdiste.setHorizontalAlignment(SwingConstants.CENTER);
+		JLPerdiste.setFont(new Font("Yu Gothic Light", Font.PLAIN, 50));
+		PPerdiste.setVisible(false);
+		
+		panel_1 = new JPanel();
 		panel_1.setBounds(213, 0, 308, 87);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -322,7 +358,7 @@ public class GUI_MAPA{
 		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/cargando.gif")).getImage().getScaledInstance(800,800, Image.SCALE_DEFAULT);
 		FotoEscalada = new ImageIcon(EscalarFoto);
 		panelCargando.add(
-			    new JLabel("",new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/fondo.png")), SwingConstants.CENTER));
+			    new JLabel("",new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/cargando.gif")), SwingConstants.CENTER));
 		
 		panelCargando.setBounds(0,95,800,800);
 		frame.getContentPane().add(panelCargando);
@@ -346,11 +382,6 @@ public class GUI_MAPA{
 	}
 	
 	// SE NECESITA VER COMO COPIAR UN STRING DESDE CIERTO CARACTER PARA BORRAR ("NOMBRE")
-	public void gameOver() {
-		int puntosDPlayer=0;
-		puntosDPlayer = Integer.parseInt(JLPuntaje.getText());
-		topPlayers.addPlayer(new Player(JLNombre.getText(),puntosDPlayer));
-	}
 	private void gameClose() {
 		FileOutputStream fileOutputStream;
 		try {
@@ -383,6 +414,16 @@ public class GUI_MAPA{
 	}
 	public void desactivarBomba() {
 		lbBomba.setVisible(false);
-		
+	}
+	public void gameOver() {
+		log.destruirSingleton();
+		PPerdiste.setVisible(true);
+		panel.setVisible(false);
+		panel_1.setVisible(false);
+		frame.getContentPane().setComponentZOrder(panelCargando, 0);
+		jugando = false;
+		int puntosDPlayer=0;
+		puntosDPlayer = Integer.parseInt(JLPuntaje.getText());
+		topPlayers.addPlayer(new Player(JLNombre.getText(),puntosDPlayer));
 	}
 }

@@ -24,6 +24,5 @@ public class BombasControler extends ThreadControl{
 
 	public void parar() {
 		miExplosion.pararExplosion();
-		
 	}
 }
