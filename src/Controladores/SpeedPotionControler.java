@@ -18,5 +18,11 @@ public class SpeedPotionControler extends ThreadControl {
 		ProtagonistaTimer.getProtagonistaTimer().actualizarSleepProtagonista(sleepGeneralProtagonista);
 	}
 	
-	
+	public void parar() {
+		if(miTimer!=null) {
+			if(miTimer.isAlive()) {
+				miTimer.interrupt();
+			}	
+		}
+	}
 }

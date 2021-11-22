@@ -16,6 +16,7 @@ public class PowerPelletsTimer extends Thread  {
 		try {
 			PowerPelletsTimer.sleep(sleepDePP);
 			realizarActividad(); 
+			this.interrupt();
 		} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
 		}		
