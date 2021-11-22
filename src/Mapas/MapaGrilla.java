@@ -283,16 +283,17 @@ abstract public class MapaGrilla {
 	public PairTupla getPosicionActualProtagonista() {
 		return new PairTupla(miProtagonista.getX(),miProtagonista.getY());
 	}
+
 	public int getMovimientoProtagonista() {
 		return miProtagonista.getMovimientoActual();
 	}
+	
 	public int getAnchoProtagonista() {
 		return miProtagonista.getAncho();
 	}
 
 	public void addEntidad(EntidadGrafica miEntidad) {
 		miLogica.addEntidad(miEntidad);	
-	
 	}
 
 	public void restarPunto() {

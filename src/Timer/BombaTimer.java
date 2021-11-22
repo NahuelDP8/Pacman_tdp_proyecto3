@@ -2,14 +2,11 @@ package Timer;
 
 
 import Controladores.BombasControler;
-import Controladores.MovimientosControler;
-
 
 public class BombaTimer extends Thread{
 	private BombasControler miControlador; 
 	private int sleepBombas;
 	private int sleepExplosion;
-	private int cnsEnemigo; 
 	
 	public BombaTimer (BombasControler miC) {
 		miControlador = miC; 
@@ -24,6 +21,7 @@ public class BombaTimer extends Thread{
 				miControlador.explotar();
 				Thread.sleep(this.sleepExplosion);
 				miControlador.parar();
+				this.interrupt();
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
