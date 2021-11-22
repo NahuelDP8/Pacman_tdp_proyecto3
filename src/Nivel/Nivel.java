@@ -1,13 +1,8 @@
 package Nivel;
 
-import Logic.Logica;
 import Mapas.MapaGrilla;
 
 abstract public class Nivel {
-	/* protected ArrayList<Fruta> misFrutas;
-	 * protected ArrayList<Pociones> misPociones;
-	 */
-	
 	//Atributos de clase
 	protected MapaGrilla miMapa;
 	
@@ -25,5 +20,7 @@ abstract public class Nivel {
 	abstract public int sleepSuperSpeedPocion();
 	abstract public int sleepPowerPellets();
 	abstract public Nivel nivelSiguiente();
+	abstract public int cantidadBombas(); 
+	
 
 }

@@ -18,10 +18,7 @@ import Factories.FactoryMapaGrilla;
 import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
-import Nivel.Nivel;
-import Timer.BombaTimer;
-import Timer.PotionVelocidadTimer;
-import Timer.PowerPelletsTimer; 
+import Nivel.Nivel; 
 import Controladores.SpeedPotionControler;
 import java.awt.Shape;
 import java.util.ArrayList;
@@ -44,10 +41,8 @@ abstract public class MapaGrilla {
 	protected final int MOVER_ABAJO = 1;	
 	protected final int MOVER_ARRIBA = 2;
 	protected final int MOVER_IZQUIERDA = 3;
-	protected final int MOVER_DERECHA = 4;
-	protected PowerPelletsControler controladorPowerPellets; 
-	protected SpeedPotionControler controladorPrincipalSpeed; 
-	public MovimientosControler controladorDeMovimientos; 
+	protected final int MOVER_DERECHA = 4; 
+	protected MovimientosControler controladorDeMovimientos; 
 	protected int cantPuntos;
 	protected String[] paredes;
 	
@@ -62,11 +57,8 @@ abstract public class MapaGrilla {
 		ancho = an;
 		altura = al;
 		this.miLogica = miLogica;
-		misEnemigos= new ArrayList<Enemigo>();
-		controladorPowerPellets = new PowerPelletsControler(); 
-		miNivel = lvl;
-		controladorPrincipalSpeed = new SpeedPotionControler(miNivel.sleepProtagonista()); 
-		
+		misEnemigos= new ArrayList<Enemigo>(); 
+		miNivel = lvl;	
 	}
 	
 	public void setNivel(Nivel n) {
@@ -362,11 +354,11 @@ abstract public class MapaGrilla {
 	}
 
 	public void comunicarControlPrincipalSpeed(int velocidad) {
-		controladorPrincipalSpeed.activarSuperVelocidadDePacman(velocidad, miNivel.sleepSuperSpeedPocion());
+		SpeedPotionControler controladorPrincipalSpeed = new SpeedPotionControler(miNivel.sleepProtagonista(), miNivel.sleepSuperSpeedPocion(), velocidad);
 	}
 	
 	public void comunicarControlPowerPellet() {
-		controladorPowerPellets.activarPowerPellet(miNivel.sleepPowerPellets(), misEnemigos); 
+		PowerPelletsControler controladorPowerPellet = new PowerPelletsControler(miNivel.sleepPowerPellets(), misEnemigos); 
 	}
 
 	public void setFabrica(FactoryMapaGrilla fab) {
@@ -375,6 +367,7 @@ abstract public class MapaGrilla {
 
 	public void comunicarActivacionBomba() {
 		miProtagonista.agregarBomba();
+		miProtagonista.setCantidadBombas(miNivel.cantidadBombas()); 
 		miLogica.activarBomba();
 	}
 
@@ -384,6 +377,7 @@ abstract public class MapaGrilla {
 			Explosion explosion = fabricaMejora.crearExplosion(new PairTupla(miProtagonista.getX(),miProtagonista.getY()),30,30, this);
 			actualizarEntidad(explosion);
 			BombasControler controladorExplosion = new BombasControler(explosion); 
+		}else {
 			miLogica.desactivarBomba();
 		}
 	}
@@ -391,6 +385,7 @@ abstract public class MapaGrilla {
 	public void setController(MovimientosControler c) {
 		controladorDeMovimientos = c;
 	}
+	
 	public void setProtagonista(Protagonista p) {
 		miProtagonista = p;
 		miProtagonista.setPos(posInicialProtagonista);

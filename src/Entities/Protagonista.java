@@ -129,8 +129,12 @@ abstract public class Protagonista extends Personaje{
 		bomba--;
 	}
 
+	public void setCantidadBombas(int b) {
+		bomba = b; 
+	}
 	public void setMovimiento(int i) {
 		movimientoActual = i;
+
 	}
 	
 }
