@@ -6,3 +6,8 @@ bin
 Highscore.tdp
 .Highscore.tdp
 /Highscore.tdp
+/Highscore.txt
+.Highscore.txt
+Highscore.txt
+Highscore.tdp
+*.tdp
