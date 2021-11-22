@@ -99,8 +99,8 @@ public class Logica {
 		miGUI.actualizarPuntos(puntos);
 		
 	}
-	public void añadirEntidad(EntidadGrafica miEntidad) {
-		miGUI.añadirEntidadGrafica(miEntidad);
+	public void addEntidad(EntidadGrafica miEntidad) {
+		miGUI.addEntidadGrafica(miEntidad);
 		
 	}
 	

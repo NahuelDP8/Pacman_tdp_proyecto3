@@ -123,15 +123,15 @@ public class Mapa2 extends MapaGrilla {
 		
 		 Enemigo azul = fabricaEnem.crearAzul(new PairTupla(posResurreccion.getX()+24,posResurreccion.getY()),30,30,this,rojo,posResurreccion,posSalida);
 		 this.misEnemigos.add(azul);
-		 añadirEntidad(azul.getEntidad());
+		 addEntidad(azul.getEntidad());
 		 Enemigo naranja = fabricaEnem.crearNaranja(new PairTupla(posResurreccion.getX()-24,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
 		 this.misEnemigos.add(naranja);
-		 añadirEntidad(naranja.getEntidad());
+		 addEntidad(naranja.getEntidad());
 		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(posResurreccion.getX(),posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
 		 this.misEnemigos.add(rosa);
-		 añadirEntidad(rosa.getEntidad());
+		 addEntidad(rosa.getEntidad());
 		 this.misEnemigos.add(rojo);
-		 añadirEntidad(rojo.getEntidad());
+		 addEntidad(rojo.getEntidad());
 	}
 	public void encerrarFantasmas() {
 		PairTupla pos = new PairTupla(posResurreccion.getX()-24,posResurreccion.getY());

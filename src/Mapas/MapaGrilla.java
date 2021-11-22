@@ -299,8 +299,8 @@ abstract public class MapaGrilla {
 		return miProtagonista.getAncho();
 	}
 
-	public void añadirEntidad(EntidadGrafica miEntidad) {
-		miLogica.añadirEntidad(miEntidad);	
+	public void addEntidad(EntidadGrafica miEntidad) {
+		miLogica.addEntidad(miEntidad);	
 	
 	}
 
