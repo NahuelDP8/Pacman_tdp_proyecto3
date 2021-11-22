@@ -71,25 +71,19 @@ public class GUIMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
-				TopPlayers  topPlayerss;
+				TopPlayers  TPS;
 				try {
 					File tempFile = new File(GUIMenu.configuration.getProperty("HighscoreFile"));
 					if((tempFile.exists()) && (tempFile.length() != 0)) {
 						FileInputStream fileInputStream= new FileInputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
 						ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
-						topPlayerss = (TopPlayers) objectInputStream.readObject();
+						TPS = (TopPlayers) objectInputStream.readObject();
 						objectInputStream.close();
 					}	else {
-							topPlayerss = new TopPlayers();
+							TPS = new TopPlayers();
 						}
-					GUIMenu frame = new GUIMenu(topPlayerss);
+					GUIMenu frame = new GUIMenu(TPS);
 					frame.setVisible(true);
-					frame.addWindowListener(new WindowAdapter() {
-						@Override
-						public void windowClosing(WindowEvent e) {
-							frame.actualizarArchivo();
-						}
-					});
 					
 				}
 				catch(FileNotFoundException e) {
@@ -143,10 +137,19 @@ public class GUIMenu extends JFrame {
 	 */
 	public GUIMenu(TopPlayers tp) {
 		topPlayers=tp;
+		
 		initialized();
+		
 	}
 		private void initialized() {
 		setTitle("PacChoose");
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				actualizarArchivo();
+				System.out.println("window closing top size"+topPlayers.size());
+			}
+		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400,60,781,652);
 		ContentPanel = new JPanel();
@@ -270,6 +273,7 @@ public class GUIMenu extends JFrame {
 				JBNaruto.setEnabled(true);
 				btnVerHighscores.setEnabled(false);
 				JBAceptar.setEnabled(false);
+				JTFmiNombre.setEnabled(false);
 			}
 		});
 		
@@ -306,7 +310,6 @@ public class GUIMenu extends JFrame {
 		PSeleccionNivel.add(JBMusic);
 		JBMusic.setForeground(Color.BLACK);
 		JBMusic.setFont(new Font("Impact", Font.PLAIN, 28));
-		
 		JBNivel1 = new JButton("NIVEL 1");
 		JBNivel1.setBackground(Color.WHITE);
 		JBNivel1.setFont(new Font("Playbill", Font.BOLD, 80));
@@ -351,41 +354,38 @@ public class GUIMenu extends JFrame {
 		});
 		JLabel JLTextELijeProta = new JLabel("Elije el nivel que quieres jugar");
 		JLTextELijeProta.setFont(new Font("Rockwell", Font.BOLD, 40));
-		JLTextELijeProta.setHorizontalAlignment(SwingConstants.CENTER);
+		JLTextELijeProta.setHorizontalAlignment(SwingConstants.LEFT);
 		JLTextELijeProta.setBounds(10, 35, 644, 73);
 		PSeleccionNivel.add(JLTextELijeProta);
 		
 		
 		
+		
 		//Creacion de la tabla highscores
-		JLabel lblHighscore = new JLabel("HIGHSCORES");
-		lblHighscore.setFont(new Font("SimSun", Font.BOLD, 40));
-		lblHighscore.setForeground(Color.WHITE);
-		lblHighscore.setBounds(50, 10, 647, 50);
-		PHighscore.add(lblHighscore);
-		JLabel lblmejores = new JLabel("Mejores puntuaciones:");
-		lblmejores.setFont(new Font("SimSun", Font.BOLD, 30));
-		lblmejores.setForeground(Color.WHITE);
-		lblmejores.setBounds(20, 75, 647, 50);
-		PHighscore.add(lblmejores);
-		JLabel JLHighScoreList = new JLabel();
-		JLHighScoreList.setVerticalAlignment(SwingConstants.TOP);
-		JLHighScoreList.setHorizontalAlignment(SwingConstants.LEFT);
+		JLabel JLHighscoreText = new JLabel("<html>"+"HIGHSCORES"+"<p>"+"Mejores puntuaciones:"+"<html>");
+		JLHighscoreText.setFont(new Font("SimSun", Font.BOLD, 40));
+		JLHighscoreText.setForeground(Color.WHITE);
+		JLHighscoreText.setBounds(21, 10, 445, 120);
+		PHighscore.add(JLHighscoreText);
+
+
+		
+		JLabel JLHighScoreList = new JLabel("");
 		JLHighScoreList.setFont(new Font("SimSun", Font.BOLD, 28));
-		JLHighScoreList.setBounds(0, 150, 747, 500);
+		JLHighScoreList.setBounds(10, 140, 690, 570);
 		JLHighScoreList.setForeground(Color.WHITE);
 		PHighscore.add(JLHighScoreList);
-		//if(topPlayers.size()!=0) 
-			//JLHighScoreList.setText(topPlayers.getPlayer(0).toString());
-		System.out.println(topPlayers.isEmpty());
 		if(!topPlayers.isEmpty()) {
 			for(int i=0; i<topPlayers.size();i++) {
-				JLHighScoreList.setText("<html>"+JLHighScoreList.getText()+topPlayers.getPlayer(i).toString()+"<p>"+"<html>");
+				JLHighScoreList.setText(JLHighScoreList.getText()+(i+1)+"-"+topPlayers.getPlayer(i).toString()+"<br>");
 			}
+			JLHighScoreList.setText("<html>"+JLHighScoreList.getText()+"</html>");
 		}
+		JLHighScoreList.setHorizontalAlignment(SwingConstants.LEFT);
+		JLHighScoreList.setVerticalAlignment(SwingConstants.TOP);
 		JButton JBVolver = new JButton("VOLVER AL MENU");
 		JBVolver.setFont(new Font("Playbill", Font.BOLD, 50));
-		JBVolver.setBounds(400, 15, 300, 60);
+		JBVolver.setBounds(438, 10, 299, 59);
 		PHighscore.add(JBVolver);
 		JBVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

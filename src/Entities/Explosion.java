@@ -20,7 +20,7 @@ public class Explosion extends Entidad{
 
 	@Override
 	public void accept(Visitor v) {
-		v.visitBombaPocion(this);
+		v.visitExplosion(this);
 	}
 
 	@Override

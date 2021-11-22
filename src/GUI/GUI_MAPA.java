@@ -47,7 +47,7 @@ public class GUI_MAPA{
 	private JLabel JLFondoMapa;
 	private JLabel JLNombre;
 	private JLabel JLNivel;
-	private JLabel lbBomba;
+	private JLabel JLBomba;
 	private JPanel panelCargando;
 	private boolean izquierda, derecha, abajo, arriba;
 	private JLabel JLVIDAS1, JLVIDAS2,JLVIDAS3;
@@ -64,6 +64,7 @@ public class GUI_MAPA{
 	private JLabel JLGanaste;
 	private JLabel JLMusic;
 	private boolean jugando;
+	private boolean topPlayersActualizado;
 	/**
 	 * Create the application.
 	 */
@@ -74,6 +75,7 @@ public class GUI_MAPA{
 		topPlayers=TP;
 		log = Logica.getLogic(this, f, nivel,map);
 		audio = audioaux;
+		topPlayersActualizado=false;
 	}
 	
 	public JFrame getFrame() {
@@ -110,6 +112,13 @@ public class GUI_MAPA{
 			JLVIDAS1.setVisible(false);
 		}
 	}
+	
+	public void reinicioDVidas() {
+		JLVIDAS3.setVisible(true);
+		JLVIDAS2.setVisible(true);
+		JLVIDAS1.setVisible(true);
+	}
+	
 
 	public void actualizarReloj(int min, int seg) {
 		String minutos= ""+min;
@@ -330,11 +339,11 @@ public class GUI_MAPA{
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 	
-		lbBomba = new JLabel("PRESIONE SPACE PARA PONER BOMBA");
-		lbBomba.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
-		lbBomba.setBounds(522, 100, 500, 29);
-		frame.getContentPane().add(lbBomba);
-		lbBomba.setVisible(false);
+		JLBomba = new JLabel("PRESIONE SPACE PARA PONER BOMBA");
+		JLBomba.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
+		JLBomba.setBounds(522, 100, 500, 29);
+		frame.getContentPane().add(JLBomba);
+		JLBomba.setVisible(false);
 		
 		JLVIDAS1 = new JLabel("");
 		JLVIDAS1.setBounds(20, 0, 87, 88);
@@ -402,8 +411,7 @@ public class GUI_MAPA{
 		panelCargando = new JPanel();
 		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/cargando.gif")).getImage().getScaledInstance(800,800, Image.SCALE_DEFAULT);
 		FotoEscalada = new ImageIcon(EscalarFoto);
-		panelCargando.add(
-			    new JLabel("",new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/cargando.gif")), SwingConstants.CENTER));
+		panelCargando.add( new JLabel("",new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/cargando.gif")), SwingConstants.CENTER));
 		
 		panelCargando.setBounds(0,95,800,800);
 		frame.getContentPane().add(panelCargando);
@@ -411,28 +419,31 @@ public class GUI_MAPA{
 	}
 	
 	private void crearTablaHighScore(int width) {
-		JLabel JLHighScoreList = new JLabel();
-		JLHighScoreList.setVerticalAlignment(SwingConstants.TOP);
-		JLHighScoreList.setHorizontalAlignment(SwingConstants.LEFT);
+		JLabel JLHighScoreList = new JLabel("");
 		JLHighScoreList.setFont(new Font("SimSun", Font.BOLD, 18));
-		JLHighScoreList.setBounds(716, 218, 482, 472);
+		JLHighScoreList.setBounds(700, 250, 700, 472);
 		frame.getContentPane().add(JLHighScoreList);
-		if(topPlayers.size()!=0) {
-			JLHighScoreList.setText(topPlayers.getPlayer(0).toString());
+		System.out.println("cant "+topPlayers.size());
+		if(!topPlayers.isEmpty()) {
+			for(int i=0; i<topPlayers.size();i++) {
+				JLHighScoreList.setText(JLHighScoreList.getText()+(i+1)+"-"+topPlayers.getPlayer(i).toString()+"<br>");
+			}
+			JLHighScoreList.setText("<html>"+JLHighScoreList.getText()+"</html>");
 		}
-		for(int i =1; i<topPlayers.size();i++) {
-			JLHighScoreList.setText("<html>"+JLHighScoreList.getText()+"<p>"+topPlayers.getPlayer(i).toString()+"<html>");
-		}
-		
+		JLHighScoreList.setHorizontalAlignment(SwingConstants.LEFT);
+		JLHighScoreList.setVerticalAlignment(SwingConstants.TOP);
 	}
 	
 	// SE NECESITA VER COMO COPIAR UN STRING DESDE CIERTO CARACTER PARA BORRAR ("NOMBRE")
 	private void actualizarArchivo() {
 		FileOutputStream fileOutputStream;
 		try {
-			int puntosDPlayer=0;
-			puntosDPlayer = Integer.parseInt(JLPuntaje.getText());
-			topPlayers.addPlayer(new Player(JLNombre.getText().substring(7),puntosDPlayer));
+			if(!topPlayersActualizado) {
+				int puntosDPlayer=0;
+				puntosDPlayer = Integer.parseInt(JLPuntaje.getText());
+				topPlayers.addPlayer(new Player(JLNombre.getText().substring(7),puntosDPlayer));
+				topPlayersActualizado=true;
+			}
 			fileOutputStream = new FileOutputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 			objectOutputStream.writeObject(this.topPlayers);
@@ -456,6 +467,13 @@ public class GUI_MAPA{
 		JBVolverAMenuP.setEnabled(true);
 		frame.getContentPane().setComponentZOrder(panelCargando, 0);
 		jugando = false;
+		if(!topPlayersActualizado) {
+			int puntosDPlayer=0;
+			puntosDPlayer = Integer.parseInt(JLPuntaje.getText());
+			topPlayers.addPlayer(new Player(JLNombre.getText().substring(7),puntosDPlayer));
+			topPlayersActualizado=true;
+		}
+
 	}
 	
 	
@@ -469,9 +487,13 @@ public class GUI_MAPA{
 		JBVolverAMenuG.setEnabled(true);
 		frame.getContentPane().setComponentZOrder(panelCargando, 0);
 		jugando = false;
-		int puntosDPlayer=0;
-		puntosDPlayer = Integer.parseInt(JLPuntaje.getText());
-		topPlayers.addPlayer(new Player(JLNombre.getText(),puntosDPlayer));
+		if(!topPlayersActualizado) {
+			int puntosDPlayer=0;
+			puntosDPlayer = Integer.parseInt(JLPuntaje.getText());
+			topPlayers.addPlayer(new Player(JLNombre.getText().substring(7),puntosDPlayer));
+			topPlayersActualizado=true;
+		}
+		actualizarArchivo();
 	}
 	
 	
@@ -484,11 +506,11 @@ public class GUI_MAPA{
 	}
 
 	public void activarBomba() {
-		lbBomba.setVisible(true);
+		JLBomba.setVisible(true);
 		
 	}
 	public void desactivarBomba() {
-		lbBomba.setVisible(false);
+		JLBomba.setVisible(false);
 	}
 	
 }

@@ -20,6 +20,6 @@ public interface Visitor {
 	public void visitFruta(Fruta f);
 	public void visitPocion(Pocion p);
 	public void visitPuertaEnemigo(PuertaEnemigo p);
-	public void visitBombaPocion(BombasPocion p);
+	public void visitBombaPocion(BombasPocion bombasPocion);
 	public void visitExplosion(Explosion p);
 }
