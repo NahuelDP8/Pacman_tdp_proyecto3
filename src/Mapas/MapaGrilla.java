@@ -308,6 +308,7 @@ abstract public class MapaGrilla {
 
 	protected void agregarPowerPellets() {
 		Mejora m;
+		/*
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,20),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
@@ -317,6 +318,7 @@ abstract public class MapaGrilla {
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,altoMapa-50),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
+		*/
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(anchoMapa-50,altoMapa-50),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
