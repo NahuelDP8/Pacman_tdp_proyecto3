@@ -182,4 +182,8 @@ public class Mapa2 extends MapaGrilla {
 	public FactoryMapa mapaSiguiente() {
 		return new FactoryMapa3();
 	}
+	@Override
+	protected void nivelSiguiente(Nivel lvl) {
+		miLogica.nivelSiguiente(lvl);
+	}
 }

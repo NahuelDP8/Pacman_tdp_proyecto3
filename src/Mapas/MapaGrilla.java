@@ -308,9 +308,11 @@ abstract public class MapaGrilla {
 			}
 			controladorDeMovimientos.parar();
 			controladorPowerPellets.parar();
-			miLogica.nivelSiguiente(miNivel);
+			nivelSiguiente(miNivel);
 		}	
 	}
+
+	protected abstract void nivelSiguiente(Nivel miNivel2);
 
 	protected void agregarPowerPellets() {
 		Mejora m;
@@ -330,8 +332,10 @@ abstract public class MapaGrilla {
 		cantPuntos++;
 	}
 	
-
-	public void gameOver() {
+	public void sacarTodo() {
+		sacarEntidad(miProtagonista);
+		for(Enemigo e: misEnemigos)
+			miLogica.quitarDeLaGui(e.getEntidad());
 		for(Zona[] zz: zonas) {
 			for(Zona z: zz) {
 				for(Entidad e: z.obtenerEntidades()) {
@@ -339,7 +343,9 @@ abstract public class MapaGrilla {
 				}
 			}
 		}
-		sacarEntidad(miProtagonista);
+	}
+	public void gameOver() {
+		sacarTodo();
 		controladorDeMovimientos.parar();
 		miLogica.gameOver();
 	}

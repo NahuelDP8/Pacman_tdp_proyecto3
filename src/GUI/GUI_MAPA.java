@@ -29,9 +29,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class GUI_MAPA{
@@ -277,7 +280,7 @@ public class GUI_MAPA{
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							GUIMenu Nframe = new GUIMenu(topPlayers);
+							GUIMenu Nframe = new GUIMenu();
 							Nframe.setVisible(true);
 							frame.dispose();
 						} catch (Exception e) {
@@ -421,7 +424,17 @@ public class GUI_MAPA{
 	}
 
 	public void win() {
-		
+		audio.stopMusic();
+		log.destruirSingleton();
+		PGanaste.setVisible(true);
+		panel.setVisible(false);
+		panel_1.setVisible(false);
+		JBVolverAMenu.setEnabled(true);
+		frame.getContentPane().setComponentZOrder(panelCargando, 0);
+		jugando = false;
+		int puntosDPlayer=0;
+		puntosDPlayer = Integer.parseInt(JLPuntaje.getText());
+		topPlayers.addPlayer(new Player(JLNombre.getText(),puntosDPlayer));
 	}
 	public void setJLNivel(int n) {
 		JLNivel.setText("Nivel: "+ n);
@@ -439,6 +452,7 @@ public class GUI_MAPA{
 		lbBomba.setVisible(false);
 	}
 	public void gameOver() {
+		audio.stopMusic();
 		log.destruirSingleton();
 		PPerdiste.setVisible(true);
 		panel.setVisible(false);
