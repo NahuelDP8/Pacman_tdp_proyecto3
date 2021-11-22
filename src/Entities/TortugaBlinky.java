@@ -9,8 +9,8 @@ import Mapas.MapaGrilla;
 
 public class TortugaBlinky extends EnemigoRojo{
 
-	private ImageIcon imgDerecha=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/madaraRun.gif"));
-	private ImageIcon imgIzquierda=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/madaraRunIzquierda.gif"));
+	private ImageIcon imgDerecha=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/zombie.gif"));
+	private ImageIcon imgIzquierda=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/zombieIzquierda.gif"));
 	public TortugaBlinky(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla,PairTupla posR,PairTupla posS) {
 		super(p, anc, alt,img, grilla,posR, posS);
 		Image imagen = imgDerecha.getImage().getScaledInstance(ancho,altura, Image.SCALE_DEFAULT);

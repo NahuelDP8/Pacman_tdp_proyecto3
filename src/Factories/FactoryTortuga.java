@@ -11,10 +11,10 @@ import Entities.TortugaInky;
 import Entities.TortugaPinky;
 
 public class FactoryTortuga extends FactoryEnemigo{
-	private ImageIcon imgRoja=new ImageIcon(FactoryNinjaMalvado.class.getResource("/Imagenes/madaraRun.gif"));
-	private ImageIcon imgRosa=new ImageIcon(FactoryNinjaMalvado.class.getResource("/Imagenes/kaguyaRun.gif"));
-	private ImageIcon imgAzul=new ImageIcon(FactoryNinjaMalvado.class.getResource("/Imagenes/kisameRun.gif"));
-	private ImageIcon imgNaranja=new ImageIcon(FactoryNinjaMalvado.class.getResource("/Imagenes/danzoRun.gif"));
+	private ImageIcon imgRoja=new ImageIcon(FactoryNinjaMalvado.class.getResource("/Imagenes/zombie.gif"));
+	private ImageIcon imgRosa=new ImageIcon(FactoryNinjaMalvado.class.getResource("/Imagenes/zombie2.gif"));
+	private ImageIcon imgAzul=new ImageIcon(FactoryNinjaMalvado.class.getResource("/Imagenes/zombie3.gif"));
+	private ImageIcon imgNaranja=new ImageIcon(FactoryNinjaMalvado.class.getResource("/Imagenes/zombie4.gif"));
 	public Enemigo crearRojo(PairTupla p , int ancho, int altura,MapaGrilla grilla,PairTupla posR,PairTupla posS) {
 		Enemigo rojo = new TortugaBlinky(p, ancho, altura,imgRoja,grilla,posR,posS);
 		return rojo;
