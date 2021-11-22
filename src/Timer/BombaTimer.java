@@ -1,15 +1,11 @@
 package Timer;
 
-
 import Controladores.BombasControler;
-import Controladores.MovimientosControler;
-
 
 public class BombaTimer extends Thread{
 	private BombasControler miControlador; 
 	private int sleepBombas;
 	private int sleepExplosion;
-	private int cnsEnemigo; 
 	
 	public BombaTimer (BombasControler miC) {
 		miControlador = miC; 

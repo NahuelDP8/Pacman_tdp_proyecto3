@@ -112,7 +112,8 @@ public class Logica {
 		miGUI.cargando(true);
 		miNivel = n.nivelSiguiente();
 		//SACAR
-		miMapa = miFabrica.crearMapa(this, n, miMapa.mapaSiguiente());
+		if(miMapa.mapaSiguiente() != null)
+			miMapa = miFabrica.crearMapa(this, n, miMapa.mapaSiguiente());
 		miNivel.setMapa(miMapa);
 		miGUI.setJLNivel(miNivel.getNivel());
 		miGUI.cargando(false);
@@ -139,7 +140,7 @@ public class Logica {
 	}
 
 	public void win() {
-		//miGUI.win();
+		miGUI.win();
 	}
 
 	public void ponerBomba() {

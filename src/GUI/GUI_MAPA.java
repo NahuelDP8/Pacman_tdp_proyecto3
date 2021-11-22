@@ -16,7 +16,6 @@ import Entities.EntidadGrafica;
 import Factories.FactoryMapa;
 import Factories.FactoryMapaGrilla;
 import Logic.Logica;
-import Mapas.MapaGrilla;
 import Music.AudioPlayer;
 import Nivel.Nivel;
 import ranking.Player;
@@ -53,9 +52,12 @@ public class GUI_MAPA{
 	private Image EscalarFoto; 
 	private ImageIcon FotoEscalada;
 	private JPanel PPerdiste;
+	private JPanel PGanaste;
 	private JPanel panel;
 	private JPanel panel_1;
+	private JButton JBVolverAMenu;
 	private JLabel JLPerdiste;
+	private JLabel JLGanaste;
 	private JLabel JLMusic;
 	private boolean jugando;
 	/**
@@ -243,6 +245,24 @@ public class GUI_MAPA{
 		JLVIDAS.setBounds(0, 9, 213, 62);
 		panel.add(JLVIDAS);
 		
+		PGanaste = new JPanel();
+		PGanaste.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		PGanaste.setForeground(Color.WHITE);
+		PGanaste.setBounds(6, 6, 1500, 890);
+		frame.getContentPane().add(PGanaste);
+		PGanaste.setBackground(new Color(0, 0, 0));
+		PGanaste.setLayout(null);
+		
+		JLGanaste = new JLabel("HAS GANADO");
+		JLGanaste.setBounds(400, 200, 600, 112);
+		PGanaste.add(JLGanaste);
+		JLGanaste.setForeground(Color.WHITE);
+		JLGanaste.setBackground(Color.GREEN);
+		JLGanaste.setToolTipText("");
+		JLGanaste.setHorizontalAlignment(SwingConstants.CENTER);
+		JLGanaste.setFont(new Font("Yu Gothic Light", Font.PLAIN, 50));
+		PGanaste.setVisible(false);
+		
 		PPerdiste = new JPanel();
 		PPerdiste.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		PPerdiste.setForeground(Color.WHITE);
@@ -251,8 +271,8 @@ public class GUI_MAPA{
 		PPerdiste.setBackground(new Color(0, 0, 0));
 		PPerdiste.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Volver al menu");
-		btnNewButton.addActionListener(new ActionListener() {
+		JBVolverAMenu = new JButton("Volver al menu");
+		JBVolverAMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
@@ -267,8 +287,10 @@ public class GUI_MAPA{
 				});
 			}
 		});
-		btnNewButton.setBounds(525, 450, 300, 50);
-		PPerdiste.add(btnNewButton);
+		JBVolverAMenu.setBounds(525, 450, 300, 50);
+		JBVolverAMenu.setEnabled(false);
+		PPerdiste.add(JBVolverAMenu);
+		PGanaste.add(JBVolverAMenu);
 		
 		JLPerdiste = new JLabel("JUEGO TERMINADO");
 		JLPerdiste.setBounds(400, 200, 600, 112);
@@ -399,6 +421,7 @@ public class GUI_MAPA{
 	}
 
 	public void win() {
+		
 	}
 	public void setJLNivel(int n) {
 		JLNivel.setText("Nivel: "+ n);
@@ -420,6 +443,7 @@ public class GUI_MAPA{
 		PPerdiste.setVisible(true);
 		panel.setVisible(false);
 		panel_1.setVisible(false);
+		JBVolverAMenu.setEnabled(true);
 		frame.getContentPane().setComponentZOrder(panelCargando, 0);
 		jugando = false;
 		int puntosDPlayer=0;
