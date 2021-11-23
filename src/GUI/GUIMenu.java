@@ -157,7 +157,7 @@ public class GUIMenu extends JFrame {
 		ContentPanel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		setContentPane(ContentPanel);
 		ImageIcon imagen;
-		Image EscalarFoto; 
+		Image EscalarFoto;
 		ImageIcon FotoEscalada;
 		ContentPanel.setLayout(null);
 		

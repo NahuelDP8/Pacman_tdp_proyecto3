@@ -9,8 +9,8 @@ import Mapas.MapaGrilla;
 
 public class NinjaInky extends EnemigoAzul{
 
-	private ImageIcon imgDerecha=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/kisameRun.gif"));
-	private ImageIcon imgIzquierda=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/kisameRunIzquierda.gif"));
+	private ImageIcon imgDerecha=new ImageIcon(NinjaInky.class.getResource("/Imagenes/kisameRun.gif"));
+	private ImageIcon imgIzquierda=new ImageIcon(NinjaInky.class.getResource("/Imagenes/kisameRunIzquierda.gif"));
 	public NinjaInky(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla,Enemigo rojo,PairTupla posR,PairTupla posS) {
 		super(p, anc, alt,img, grilla,rojo,posR, posS);
 		Image imagen = imgDerecha.getImage().getScaledInstance(ancho,altura, Image.SCALE_DEFAULT);

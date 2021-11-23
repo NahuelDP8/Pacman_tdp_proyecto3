@@ -7,11 +7,12 @@ import javax.swing.ImageIcon;
 import Factories.FactoryMapaGrillaNaruto;
 import Mapas.MapaGrilla;
 
-public class TortugaPinky extends EnemigoRosa{
+public class ZombiePinky extends EnemigoRosa{
 
 	private ImageIcon imgDerecha=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/zombie4.gif"));
 	private ImageIcon imgIzquierda=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/zombie4Izquierda.gif"));
-	public TortugaPinky(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla,PairTupla posR,PairTupla posS) {
+	private ImageIcon imgAzul=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/zombieAzul.png"));
+	public ZombiePinky(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla,PairTupla posR,PairTupla posS) {
 		super(p, anc, alt,img, grilla,posR, posS);
 		Image imagen = imgDerecha.getImage().getScaledInstance(ancho,altura, Image.SCALE_DEFAULT);
 		imagenDerecha = new ImageIcon(imagen);
