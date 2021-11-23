@@ -8,9 +8,11 @@ import Factories.FactoryMapaGrillaNaruto;
 
 public class Muerto implements EstadoEnemigo{
 	protected Enemigo miEnemigo; 
-	private ImageIcon miImagen=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/muerte.png"));
+	private ImageIcon miImagen;
+	
 	public Muerto(Enemigo e) {
 		miEnemigo = e; 
+		miImagen=miEnemigo.getImagenMuerte();
 		//Deberiamos actualizar la imagen del enemigo particular
 	}
 

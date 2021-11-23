@@ -11,6 +11,7 @@ import Entities.Portal;
 import Entities.PuertaEnemigo;
 import Factories.FactoryEnemigo;
 import Factories.FactoryMapa;
+import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
 import Nivel.Nivel;
@@ -21,8 +22,8 @@ public class Mapa3 extends MapaGrilla {
 	protected Mejora fruta;
 	protected Mejora pocion;
 	
-	public Mapa3(ImageIcon fondo, FactoryProtagonista fp, FactoryEnemigo fe, int ancho, int altura, Logica miLogica,Nivel lvl) {
-		super(fondo, fp, fe, ancho, altura, miLogica,lvl);
+	public Mapa3(ImageIcon fondo, FactoryProtagonista fp, FactoryEnemigo fe, int ancho, int altura, Logica miLogica,Nivel lvl,FactoryMejora fM) {
+		super(fondo, fp, fe, ancho, altura, miLogica,lvl,fM);
 		anchoMapa = 680;
 		altoMapa = 680;
 		construccionZonasGrilla(8,8);

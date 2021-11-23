@@ -23,6 +23,7 @@ public abstract class Enemigo extends Personaje{
 	protected PairTupla posResurreccion;
 	protected PairTupla posSalida;
 	protected ImageIcon imgAzul;
+	protected ImageIcon imgMuerte;
 	
 	public Enemigo(PairTupla p, int anc, int alt, ImageIcon img, MapaGrilla grilla,PairTupla posR,PairTupla posS) {
 		super(p, anc, alt,img, grilla );
@@ -110,6 +111,9 @@ public abstract class Enemigo extends Personaje{
 	
 	public ImageIcon getImagenEscapando() {
 		return imgAzul;
+	}
+	public ImageIcon getImagenMuerte() {
+		return imgMuerte;
 	}
 	
 	protected double distanciaEntrePuntos(PairTupla A, PairTupla B) {

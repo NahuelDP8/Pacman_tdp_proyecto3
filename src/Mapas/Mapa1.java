@@ -13,6 +13,7 @@ import Entities.PuertaEnemigo;
 import Factories.FactoryEnemigo;
 import Factories.FactoryMapa;
 import Factories.FactoryMapa2;
+import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
 import Nivel.Nivel;
@@ -23,8 +24,8 @@ public class Mapa1 extends MapaGrilla {
 	protected Mejora fruta;
 	protected Mejora pocion;
 	
-	public Mapa1(ImageIcon fondo, FactoryProtagonista fp, FactoryEnemigo fe, int ancho, int altura, Logica miLogica,Nivel lvl) {
-		super(fondo, fp, fe, ancho, altura, miLogica,lvl);
+	public Mapa1(ImageIcon fondo, FactoryProtagonista fp, FactoryEnemigo fe, int ancho, int altura, Logica miLogica,Nivel lvl,FactoryMejora fM) {
+		super(fondo, fp, fe, ancho, altura, miLogica,lvl,fM);
 		anchoMapa = 500;
 		altoMapa = 540;
 		construccionZonasGrilla(5,6);
@@ -70,7 +71,7 @@ public class Mapa1 extends MapaGrilla {
 		Mejora m;
 		int x,y;
 		cantPuntos = 0;
-		agregarPowerPellets();
+		agregarPowerPellets();/*
 		for(int i = 1; i<21;i++) {
 			for (int j = 0; j<22;j++) {
 				x = 9+i*24;
@@ -80,7 +81,7 @@ public class Mapa1 extends MapaGrilla {
 					ubicarPunto(m);
 				}
 			}
-		}
+		}*/
 	}
 	protected void agregarFantasmas() {
 		

@@ -46,14 +46,14 @@ abstract public class MapaGrilla {
 	protected int cantPuntos;
 	protected String[] paredes;
 	
-	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica,Nivel lvl) {
+	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica,Nivel lvl, FactoryMejora fM) {
 		//Asignamos imagen de fondo del mapa
 		miFondo = fondo;
 		miLogica.actualizarFondo(fondo);
 		//Asignamos las fabricas correspondientes 
 		fabricaProt = fp;
 		fabricaEnem = fe;
-		fabricaMejora = new FactoryMejora();
+		fabricaMejora = fM;
 		ancho = an;
 		altura = al;
 		this.miLogica = miLogica;

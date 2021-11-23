@@ -62,10 +62,12 @@ public class GUI_MAPA{
 	private JLabel JLMusic;
 	private boolean jugando;
 	private boolean topPlayersActualizado;
+	private ImageIcon cargando;
 	/**
 	 * Create the application.
 	 */
 	public GUI_MAPA(FactoryMapaGrilla f, Nivel nivel,FactoryMapa map,String nom, TopPlayers TP,AudioPlayer audioaux) {
+		cargando=f.getImagenCargando();
 		initialize();
 		JLNombre.setText("Nombre: "+ nom);
 		JLNivel.setText("Nivel: "+ nivel.getNivel());
@@ -73,6 +75,7 @@ public class GUI_MAPA{
 		log = Logica.getLogic(this, f, nivel,map);
 		audio = audioaux;
 		topPlayersActualizado=false;
+		
 	}
 	
 	public JFrame getFrame() {
@@ -405,12 +408,17 @@ public class GUI_MAPA{
 		JLHIGHSCORE.setFont(new Font("Rockwell", Font.BOLD, 20));
 		//Gif de carga
 		panelCargando = new JPanel();
-		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/cargando.gif")).getImage().getScaledInstance(800,800, Image.SCALE_DEFAULT);
-		FotoEscalada = new ImageIcon(EscalarFoto);
-		panelCargando.add( new JLabel("",new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/cargando.gif")), SwingConstants.CENTER));
 		
-		panelCargando.setBounds(0,95,800,800);
+		panelCargando.setBounds(0,95,947,750);
 		frame.getContentPane().add(panelCargando);
+		panelCargando.setLayout(null);
+		
+		JLabel JLCargando = new JLabel("");
+		JLCargando.setBounds(0, 0, 800, 700);
+		EscalarFoto = cargando.getImage().getScaledInstance(JLCargando.getWidth(),JLCargando.getHeight(), Image.SCALE_DEFAULT);
+		FotoEscalada = new ImageIcon(EscalarFoto);
+		JLCargando.setIcon(FotoEscalada);
+		panelCargando.add(JLCargando);
 		panelCargando.setVisible(false);
 	}
 	
@@ -506,5 +514,4 @@ public class GUI_MAPA{
 	public void desactivarBomba() {
 		JLBomba.setVisible(false);
 	}
-	
 }

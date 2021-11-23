@@ -6,5 +6,5 @@ import Logic.Logica;
 
 abstract public class FactoryMapa{
 
-	abstract public MapaGrilla crearMapa(FactoryProtagonista fabricaProt,FactoryEnemigo fabricaEnem,Logica logica,Nivel lvl);
+	abstract public MapaGrilla crearMapa(FactoryProtagonista fabricaProt,FactoryEnemigo fabricaEnem,Logica logica,Nivel lvl,FactoryMejora fM);
 }
