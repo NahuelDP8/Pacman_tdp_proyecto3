@@ -21,5 +21,4 @@ public class BombasPocion extends Pocion{
 		this.sacarEntidad(this);
 		
 	}
-
 }

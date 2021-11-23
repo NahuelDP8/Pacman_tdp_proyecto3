@@ -1,6 +1,8 @@
 package Entities;
 
 import javax.swing.ImageIcon;
+
+import Logic.Logica;
 import Mapas.MapaGrilla;
 
 abstract public class Personaje extends Entidad{
@@ -8,19 +10,16 @@ abstract public class Personaje extends Entidad{
 	protected int velocidad;
 	protected int cargaPortal; 
 	protected int movimientoActual; 
-	protected final int MOVER_ABAJO = 1;	
-	protected final int MOVER_ARRIBA = 2;
-	protected final int MOVER_IZQUIERDA = 3;
-	protected final int MOVER_DERECHA = 4;
 	protected ImageIcon imagenIzquierda;
 	protected ImageIcon imagenDerecha;
 	protected ImageIcon imagenAbajo;
 	protected ImageIcon imagenArriba;
+	
 	public ImageIcon getImage() {
 		ImageIcon img = null;
-		if(movimientoActual == MOVER_IZQUIERDA || movimientoActual == 0)
+		if(movimientoActual == Logica.getLogica().getCnsMOVER_IZQUIERDA() || movimientoActual == 0)
 			img = imagenIzquierda;
-		else if(movimientoActual == MOVER_DERECHA)
+		else if(movimientoActual == Logica.getLogica().getCnsMOVER_DERECHA())
 			img = imagenDerecha;
 		else 
 			img = miImagen;
@@ -28,16 +27,16 @@ abstract public class Personaje extends Entidad{
 	}
 	
 	public int getIzquierda() {
-		return MOVER_IZQUIERDA;
+		return Logica.getLogica().getCnsMOVER_IZQUIERDA();
 	}
 	public int getDerecha() {
-		return MOVER_DERECHA;
+		return Logica.getLogica().getCnsMOVER_DERECHA();
 	}
 	public int getAbajo() {
-		return MOVER_ABAJO;
+		return Logica.getLogica().getCnsMOVER_ABAJO();
 	}
 	public int getArriba() {
-		return MOVER_ARRIBA;
+		return Logica.getLogica().getCnsMOVER_ARRIBA(); 
 	}
 	public int getVelocidad() {
 		return velocidad;

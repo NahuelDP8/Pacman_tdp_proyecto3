@@ -2,6 +2,7 @@ package Entities;
 
 import EnemigosStates.*;
 import Factories.FactoryMapaGrillaNaruto;
+import Logic.Logica;
 import Visitors.EnemigoVisitor;
 import Visitors.Visitor;
 import java.awt.Image;
@@ -58,13 +59,13 @@ public abstract class Enemigo extends Personaje{
 	}
 	
 	public void realizarMovimiento(int mov) {
-		if(mov == MOVER_ABAJO) {
+		if(mov == Logica.getLogica().getCnsMOVER_ABAJO()) {
 			posicion.setY(posicion.getY()+ velocidad);
-		}else if(mov == MOVER_ARRIBA) {
+		}else if(mov == Logica.getLogica().getCnsMOVER_ARRIBA()) {
 			posicion.setY(posicion.getY()- velocidad);
-		}else if(mov == MOVER_IZQUIERDA) {
+		}else if(mov == Logica.getLogica().getCnsMOVER_IZQUIERDA()) {
 			posicion.setX(posicion.getX()- velocidad);
-		}else if(mov == MOVER_DERECHA) {
+		}else if(mov == Logica.getLogica().getCnsMOVER_DERECHA()) {
 			posicion.setX(posicion.getX()+ velocidad);
 		} 
 		miRectangulo.setBounds(posicion.getX(), posicion.getY(), ancho, altura);
@@ -73,13 +74,13 @@ public abstract class Enemigo extends Personaje{
 	}
 	
 	public void invalidarMovimiento(int movimiento) {
-		if(movimiento == MOVER_ABAJO)
+		if(movimiento == Logica.getLogica().getCnsMOVER_ABAJO())
 			movAbajo = false; 
-		else if(movimiento == MOVER_ARRIBA)
+		else if(movimiento == Logica.getLogica().getCnsMOVER_ARRIBA())
 			movArriba = false; 
-		else if (movimiento == MOVER_IZQUIERDA)
+		else if (movimiento == Logica.getLogica().getCnsMOVER_IZQUIERDA())
 			movIzquierda = false;
-		else if (movimiento == MOVER_DERECHA)
+		else if (movimiento == Logica.getLogica().getCnsMOVER_DERECHA())
 			movDerecha = false; 
 	}
 	
@@ -121,23 +122,26 @@ public abstract class Enemigo extends Personaje{
 	public ArrayList<Integer> movimientosAEstudiar(){
 		ArrayList<Integer> toReturn  = new ArrayList<Integer>();
 		this.validarMovimientos();
-		toReturn.add(MOVER_ABAJO);
-		toReturn.add(MOVER_ARRIBA);
-		toReturn.add(MOVER_IZQUIERDA);
-		toReturn.add(MOVER_DERECHA);
+		
+		toReturn.add(Logica.getLogica().getCnsMOVER_ABAJO());
+		toReturn.add(Logica.getLogica().getCnsMOVER_ARRIBA());
+		toReturn.add(Logica.getLogica().getCnsMOVER_IZQUIERDA());
+		toReturn.add(Logica.getLogica().getCnsMOVER_DERECHA());
+		
 		int movActual = this.getMovimientoActual(); 
-		if(movActual == MOVER_DERECHA) { 
-			toReturn.remove(MOVER_IZQUIERDA-1);
-			this.invalidarMovimiento(MOVER_IZQUIERDA);
-		}else if (movActual == MOVER_IZQUIERDA) {			
-			toReturn.remove(MOVER_DERECHA-1);
-			this.invalidarMovimiento(MOVER_DERECHA);
-		}else if (movActual == MOVER_ARRIBA) {
-			toReturn.remove(MOVER_ABAJO-1);
-			this.invalidarMovimiento(MOVER_ABAJO);
-		}else if (movActual == MOVER_ABAJO) {
-			toReturn.remove(MOVER_ARRIBA-1);
-			this.invalidarMovimiento(MOVER_ARRIBA);
+		
+		if(movActual == Logica.getLogica().getCnsMOVER_DERECHA()) { 
+			toReturn.remove(Logica.getLogica().getCnsMOVER_IZQUIERDA()-1);
+			this.invalidarMovimiento(Logica.getLogica().getCnsMOVER_IZQUIERDA());
+		}else if (movActual == Logica.getLogica().getCnsMOVER_IZQUIERDA()) {			
+			toReturn.remove(Logica.getLogica().getCnsMOVER_DERECHA()-1);
+			this.invalidarMovimiento(Logica.getLogica().getCnsMOVER_DERECHA());
+		}else if (movActual == Logica.getLogica().getCnsMOVER_ARRIBA()) {
+			toReturn.remove(Logica.getLogica().getCnsMOVER_ABAJO()-1);
+			this.invalidarMovimiento(Logica.getLogica().getCnsMOVER_ABAJO());
+		}else if (movActual == Logica.getLogica().getCnsMOVER_ABAJO()) {
+			toReturn.remove(Logica.getLogica().getCnsMOVER_ARRIBA()-1);
+			this.invalidarMovimiento(Logica.getLogica().getCnsMOVER_ARRIBA());
 		}	
 		
 		return toReturn; 
@@ -156,25 +160,25 @@ public abstract class Enemigo extends Personaje{
 		
 		for(int i =0; i<=movimientos.size()-1; i++) {	
 			int movAux = movimientos.get(i); 
-			if(movAux == MOVER_DERECHA && movDerecha) {
+			if(movAux == Logica.getLogica().getCnsMOVER_DERECHA() && movDerecha) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX+ velocidad, posY),posicionProtagonista);
 				if(disAux>=disMayor) {
 					disMayor= disAux; 
 					movFinal = movAux;
 				}
-			}else if(movAux == MOVER_IZQUIERDA && movIzquierda) {
+			}else if(movAux == Logica.getLogica().getCnsMOVER_IZQUIERDA() && movIzquierda) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX-velocidad, posY),posicionProtagonista);
 				if(disAux>=disMayor) {
 					disMayor= disAux; 
 					movFinal = movAux;
 				}
-			}else if(movAux== MOVER_ARRIBA && movArriba) {
+			}else if(movAux== Logica.getLogica().getCnsMOVER_ARRIBA() && movArriba) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX, posY-velocidad),posicionProtagonista);
 				if(disAux>=disMayor) {
 					disMayor= disAux; 
 					movFinal = movAux;
 				}
-			}else if(movAux == MOVER_ABAJO && movAbajo) {
+			}else if(movAux == Logica.getLogica().getCnsMOVER_ABAJO() && movAbajo) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX, posY+velocidad),posicionProtagonista);
 				if(disAux>=disMayor) {
 					disMayor= disAux; 
@@ -220,25 +224,25 @@ public abstract class Enemigo extends Personaje{
 			
 			for(int i =0; i<=movimientos.size()-1; i++) {	
 				int movAux = movimientos.get(i); 
-				if(movAux == MOVER_DERECHA && movDerecha) {
+				if(movAux == Logica.getLogica().getCnsMOVER_DERECHA() && movDerecha) {
 					disAux = distanciaEntrePuntos(new PairTupla(posX+ velocidad, posY),posicionDestino);
 					if(disAux<=disMenor) {
 						disMenor= disAux; 
 						movFinal = movAux;
 					}
-				}else if(movAux == MOVER_IZQUIERDA && movIzquierda) {
+				}else if(movAux == Logica.getLogica().getCnsMOVER_IZQUIERDA() && movIzquierda) {
 					disAux = distanciaEntrePuntos(new PairTupla(posX-velocidad, posY),posicionDestino);
 					if(disAux<=disMenor) {
 						disMenor= disAux; 
 						movFinal = movAux;
 					}
-				}else if(movAux== MOVER_ARRIBA && movArriba) {
+				}else if(movAux== Logica.getLogica().getCnsMOVER_ARRIBA() && movArriba) {
 					disAux = distanciaEntrePuntos(new PairTupla(posX, posY-velocidad),posicionDestino);
 					if(disAux<=disMenor) {
 						disMenor= disAux; 
 						movFinal = movAux;
 					}
-				}else if(movAux == MOVER_ABAJO && movAbajo) {
+				}else if(movAux == Logica.getLogica().getCnsMOVER_ABAJO() && movAbajo) {
 					disAux = distanciaEntrePuntos(new PairTupla(posX, posY+velocidad),posicionDestino);
 					if(disAux<=disMenor) {
 						disMenor= disAux; 
@@ -274,10 +278,10 @@ public abstract class Enemigo extends Personaje{
 	public ArrayList<Integer> todosLosMovimientos() {
 		ArrayList<Integer> toReturn  = new ArrayList<Integer>();
 		validarMovimientos();
-		toReturn.add(MOVER_ABAJO);
-		toReturn.add(MOVER_ARRIBA);
-		toReturn.add(MOVER_IZQUIERDA);
-		toReturn.add(MOVER_DERECHA);
+		toReturn.add(Logica.getLogica().getCnsMOVER_ABAJO());
+		toReturn.add(Logica.getLogica().getCnsMOVER_ARRIBA());
+		toReturn.add(Logica.getLogica().getCnsMOVER_IZQUIERDA());
+		toReturn.add(Logica.getLogica().getCnsMOVER_DERECHA());
 		return toReturn;
 	}
 

@@ -3,7 +3,6 @@ package Factories;
 import javax.swing.ImageIcon;
 
 import Entities.Enemigo;
-import Entities.EnemigoRojo;
 import Mapas.MapaGrilla;
 import Entities.NinjaBlinky;
 import Entities.NinjaClyde;

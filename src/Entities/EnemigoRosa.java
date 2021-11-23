@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import Logic.Logica;
 import Mapas.MapaGrilla;
 
 public class EnemigoRosa extends Enemigo{
@@ -30,25 +31,25 @@ public class EnemigoRosa extends Enemigo{
 		
 		for(int i =0; i<=movimientos.size()-1; i++) {	
 			int movAux = movimientos.get(i); 
-			if(movAux == MOVER_DERECHA && movDerecha) {
+			if(movAux == Logica.getLogica().getCnsMOVER_DERECHA() && movDerecha) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX+ velocidad, posY),posicionAEstudiar);
 				if(disAux<=disMenor) {
 					disMenor= disAux; 
 					movFinal = movAux;
 				}
-			}else if(movAux == MOVER_IZQUIERDA && movIzquierda) {
+			}else if(movAux == Logica.getLogica().getCnsMOVER_IZQUIERDA() && movIzquierda) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX-velocidad, posY),posicionAEstudiar);
 				if(disAux<=disMenor) {
 					disMenor= disAux; 
 					movFinal = movAux;
 				}
-			}else if(movAux== MOVER_ARRIBA && movArriba) {
+			}else if(movAux== Logica.getLogica().getCnsMOVER_ARRIBA() && movArriba) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX, posY-velocidad),posicionAEstudiar);
 				if(disAux<=disMenor) {
 					disMenor= disAux; 
 					movFinal = movAux;
 				}
-			}else if(movAux == MOVER_ABAJO && movAbajo) {
+			}else if(movAux == Logica.getLogica().getCnsMOVER_ABAJO() && movAbajo) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX, posY+velocidad),posicionAEstudiar);
 				if(disAux<=disMenor) {
 					disMenor= disAux; 
@@ -72,16 +73,16 @@ public class EnemigoRosa extends Enemigo{
 		
 		
 		
-		if(movimiento == MOVER_IZQUIERDA) {
+		if(movimiento == Logica.getLogica().getCnsMOVER_IZQUIERDA()) {
 			pos.setX(x-ancho*2);
-		}else if(movimiento == MOVER_DERECHA){
+		}else if(movimiento == Logica.getLogica().getCnsMOVER_DERECHA()){
 			pos.setX(x+ancho*2);
-		}else if(movimiento == MOVER_ARRIBA){
+		}else if(movimiento == Logica.getLogica().getCnsMOVER_ARRIBA()){
 			//Arriba es la unica excepción, si Protagonista esta yendo hacia arriba,
 			//Pinky  persigue una posición hacia arriba y a la izquierda. 
 			pos.setY(y+ancho*2);
 			pos.setX(x-ancho);
-		}else if(movimiento == MOVER_ABAJO){
+		}else if(movimiento == Logica.getLogica().getCnsMOVER_ABAJO()){
 			pos.setY(y+ancho*2);
 		}
 		

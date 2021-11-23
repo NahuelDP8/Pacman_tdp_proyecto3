@@ -6,7 +6,7 @@ import Visitors.ParedVisitor;
 import Visitors.Visitor;
 import Mapas.MapaGrilla;
 
-public class Pared extends Entidad{
+public class Pared extends Estructura{
 	public Pared(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
 		super(p, anc, alt,img, grilla);
 		v = new ParedVisitor(this);  
@@ -21,10 +21,4 @@ public class Pared extends Entidad{
 	public void accept(Visitor v) {
 		v.visitPared(this);
 	}
-
-	@Override
-	public int getMovimientoActual() {
-		return 0;
-	}
-
 }

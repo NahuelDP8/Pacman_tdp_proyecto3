@@ -6,7 +6,7 @@ import Mapas.MapaGrilla;
 import Visitors.PortalVisitor;
 import Visitors.Visitor;
 
-public class Portal extends Entidad{
+public class Portal extends Estructura{
 	protected PairTupla miDestino;
 	protected int carga = 5; 
 	

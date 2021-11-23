@@ -1,7 +1,7 @@
 package Controladores;
 
-public class ThreadControl {
+abstract public class ThreadControl {
 	
-	public ThreadControl () {
-	}
+	public ThreadControl () {}
+	
 }

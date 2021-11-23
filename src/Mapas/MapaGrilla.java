@@ -39,12 +39,10 @@ abstract public class MapaGrilla {
 	protected Zona [][] zonas;
 	protected int ancho, altura, anchoMapa, altoMapa;
 	protected Nivel miNivel;
-	protected final int MOVER_ABAJO = 1;	
-	protected final int MOVER_ARRIBA = 2;
-	protected final int MOVER_IZQUIERDA = 3;
-	protected final int MOVER_DERECHA = 4; 
-	protected MovimientosControler controladorDeMovimientos;
+	protected MovimientosControler controladorDeMovimientos; 
 	protected PowerPelletsControler controladorPowerPellets;
+	protected SpeedPotionControler controladorPocionVelocidad; 
+	protected BombasControler controladorBombas; 
 	protected int cantPuntos;
 	protected String[] paredes;
 	
@@ -67,14 +65,6 @@ abstract public class MapaGrilla {
 		miNivel = n;
 	}
 	
-	protected void agregarProtagonista() {
-		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(posInicialProtagonista.getX(),posInicialProtagonista.getY()),30,30,this);
-	}
-	
-	public int getSleepPowerPellets() {
-		return miNivel.sleepPowerPellets(); 
-	}
-	
 	protected void construccionZonasGrilla(int ancho, int alto) {
 		//Inicializamos el tamaño de nuestra matriz de zonas
 		zonas =  new Zona[alto][ancho];
@@ -90,10 +80,12 @@ abstract public class MapaGrilla {
 			i++;
 		}
 	}
-	
-	abstract protected void construccionParedesLimitaciones();
 
-	abstract protected void agregarMejoras();
+	protected void agregarProtagonista() {
+		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(posInicialProtagonista.getX(),posInicialProtagonista.getY()),30,30,this);
+	}
+	
+	
 	
 	public ImageIcon getImage() {
 		return miFondo;
@@ -166,14 +158,14 @@ abstract public class MapaGrilla {
 		largo = e.getAltura();
 
 		if(movimiento != 0) {
-			int vel = miProtagonista.getVelocidad();
-			if (movimiento == MOVER_ABAJO)
+			int vel = e.getVelocidad();
+			if (movimiento == Logica.getLogica().getCnsMOVER_ABAJO())
 				y += vel;
-			else if(movimiento == MOVER_ARRIBA)
+			else if(movimiento == Logica.getLogica().getCnsMOVER_ARRIBA())
 				y-=vel;
-			else if(movimiento == MOVER_IZQUIERDA)
+			else if(movimiento == Logica.getLogica().getCnsMOVER_IZQUIERDA())
 				x-=vel;
-			else if(movimiento == MOVER_DERECHA)
+			else if(movimiento == Logica.getLogica().getCnsMOVER_DERECHA())
 				x +=vel;
 		}
 		for(int i =0; i<zonas.length; i++) {
@@ -197,14 +189,14 @@ abstract public class MapaGrilla {
 		al = e.getAltura();
 		
 		if(movimiento != 0) {
-			int vel = 4;
-			if (movimiento == MOVER_ABAJO)
+			int vel = e.getVelocidad();
+			if (movimiento == Logica.getLogica().getCnsMOVER_ABAJO())
 				y += vel;
-			else if(movimiento == MOVER_ARRIBA)
+			else if(movimiento == Logica.getLogica().getCnsMOVER_ARRIBA())
 				y-=vel;
-			else if(movimiento == MOVER_IZQUIERDA)
+			else if(movimiento == Logica.getLogica().getCnsMOVER_IZQUIERDA())
 				x-=vel;
-			else if(movimiento == MOVER_DERECHA)
+			else if(movimiento == Logica.getLogica().getCnsMOVER_DERECHA())
 				x +=vel;
 		}
 		ArrayList<Entidad> toReturn = new ArrayList<Entidad>();
@@ -285,16 +277,17 @@ abstract public class MapaGrilla {
 	public PairTupla getPosicionActualProtagonista() {
 		return new PairTupla(miProtagonista.getX(),miProtagonista.getY());
 	}
+
 	public int getMovimientoProtagonista() {
 		return miProtagonista.getMovimientoActual();
 	}
+	
 	public int getAnchoProtagonista() {
 		return miProtagonista.getAncho();
 	}
 
 	public void addEntidad(EntidadGrafica miEntidad) {
 		miLogica.addEntidad(miEntidad);	
-	
 	}
 
 	public void restarPunto() {
@@ -308,12 +301,19 @@ abstract public class MapaGrilla {
 				}
 			}
 			controladorDeMovimientos.parar();
-			controladorPowerPellets.parar();
+			if(controladorPowerPellets != null)
+				controladorPowerPellets.parar();
+			if(controladorPocionVelocidad != null)
+				controladorPocionVelocidad.parar();
+			if(controladorBombas != null)
+				controladorBombas.parar();
+			
+			miLogica.nivelSiguiente(miNivel);
 			nivelSiguiente(miNivel);
 		}	
 	}
 
-	protected abstract void nivelSiguiente(Nivel miNivel2);
+	protected abstract void nivelSiguiente(Nivel miNivel);
 
 	protected void agregarPowerPellets() {
 		Mejora m;
@@ -324,14 +324,14 @@ abstract public class MapaGrilla {
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(anchoMapa-50,20),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
-		/*m = fabricaMejora.crearPuntoGrande(new PairTupla(25,altoMapa-50),22,22,this);
+		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,altoMapa-50),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
 		
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(anchoMapa-50,altoMapa-50),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
-		*/
+		
 	}
 	protected void ubicarPunto(Mejora m) {
 		Rectangle2D rect = m.getRectangulo().getBounds2D();
@@ -380,6 +380,12 @@ abstract public class MapaGrilla {
 	public void gameOver() {
 		sacarTodo();
 		controladorDeMovimientos.parar();
+		if(controladorPowerPellets != null)
+			controladorPowerPellets.parar();
+		if(controladorPocionVelocidad != null)
+			controladorPocionVelocidad.parar();
+		if(controladorBombas != null)
+			controladorBombas.parar();
 		miLogica.gameOver();
 	}
 
@@ -405,7 +411,7 @@ abstract public class MapaGrilla {
 	}
 	
 	public void comunicarControlPowerPellet() {
-		controladorPowerPellets = new PowerPelletsControler(miNivel.sleepPowerPellets(), misEnemigos); 
+		PowerPelletsControler controladorPowerPellet = new PowerPelletsControler(miNivel.sleepPowerPellets(), misEnemigos); 
 	}
 
 	public void setFabrica(FactoryMapaGrilla fab) {
@@ -423,7 +429,7 @@ abstract public class MapaGrilla {
 			miProtagonista.usarBomba();
 			Explosion explosion = fabricaMejora.crearExplosion(new PairTupla(miProtagonista.getX(),miProtagonista.getY()),30,30, this);
 			actualizarEntidad(explosion);
-			BombasControler controladorExplosion = new BombasControler(explosion); 
+			controladorBombas = new BombasControler(explosion); 
 		}else {
 			miLogica.desactivarBomba();
 		}
@@ -439,5 +445,6 @@ abstract public class MapaGrilla {
 	}
 
 	public abstract FactoryMapa mapaSiguiente();
-
+	abstract protected void construccionParedesLimitaciones();
+	abstract protected void agregarMejoras();
 }
