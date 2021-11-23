@@ -427,7 +427,6 @@ public class GUI_MAPA{
 		JLHighScoreList.setFont(new Font("SimSun", Font.BOLD, 18));
 		JLHighScoreList.setBounds(700, 250, 700, 472);
 		frame.getContentPane().add(JLHighScoreList);
-		System.out.println("cant "+topPlayers.size());
 		if(!topPlayers.isEmpty()) {
 			for(int i=0; i<topPlayers.size();i++) {
 				JLHighScoreList.setText(JLHighScoreList.getText()+(i+1)+"-"+topPlayers.getPlayer(i).toString()+"<br>");

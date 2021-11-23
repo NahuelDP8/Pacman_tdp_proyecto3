@@ -71,7 +71,6 @@ abstract public class Protagonista extends Personaje{
 		actualizarFoto();
 		miGrilla.actualizarEntidad(this);
 		miRectangulo.setBounds(posicion.getX(), posicion.getY(), ancho, altura);
-		System.out.println(getX()+" "+getY());
 	}
 
 	public void moverAbajo() {
