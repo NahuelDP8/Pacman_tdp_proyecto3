@@ -9,6 +9,7 @@ import Entities.Mejora;
 import Entities.PairTupla;
 import Entities.Pared;
 import Entities.Portal;
+import Entities.Protagonista;
 import Entities.PuertaEnemigo;
 import Factories.FactoryEnemigo;
 import Factories.FactoryMapa;
@@ -158,6 +159,7 @@ public class Mapa1 extends MapaGrilla {
 	}
 	@Override
 	protected void nivelSiguiente(Nivel lvl) {
+		sacarTodo();
 		miLogica.nivelSiguiente(lvl);
 	}
 }

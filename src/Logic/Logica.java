@@ -9,6 +9,8 @@ import Timer.Timer;
 import javax.swing.ImageIcon;
 
 import Entities.EntidadGrafica;
+import Entities.PairTupla;
+import Entities.Protagonista;
 import Factories.FactoryMapa;
 import Factories.FactoryMapaGrilla;
 
@@ -114,7 +116,7 @@ public class Logica {
 		miGUI.quitarVida();
 	}
 
-	public void nivelSiguiente(Nivel n) {
+	public void nivelSiguiente(Nivel n) {System.out.print("PUTA");
 		miGUI.cargando(true);
 		miNivel = n.nivelSiguiente();
 		miMapa = miFabrica.crearMapa(this, n, miMapa.mapaSiguiente());

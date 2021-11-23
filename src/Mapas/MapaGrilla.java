@@ -50,7 +50,7 @@ abstract public class MapaGrilla {
 		//Asignamos imagen de fondo del mapa
 		miFondo = fondo;
 		miLogica.actualizarFondo(fondo);
-		//Asignamos las fabricas correspondientes 
+		//Asignamos las fabricas correspondientes
 		fabricaProt = fp;
 		fabricaEnem = fe;
 		fabricaMejora = new FactoryMejora();
@@ -84,9 +84,6 @@ abstract public class MapaGrilla {
 	protected void agregarProtagonista() {
 		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(posInicialProtagonista.getX(),posInicialProtagonista.getY()),30,30,this);
 	}
-	
-	
-	
 	public ImageIcon getImage() {
 		return miFondo;
 	}
@@ -308,7 +305,6 @@ abstract public class MapaGrilla {
 			if(controladorBombas != null)
 				controladorBombas.parar();
 			
-			miLogica.nivelSiguiente(miNivel);
 			nivelSiguiente(miNivel);
 		}	
 	}
