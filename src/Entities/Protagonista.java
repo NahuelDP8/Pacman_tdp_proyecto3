@@ -1,6 +1,8 @@
 package Entities;
 
 import javax.swing.ImageIcon;
+
+import Logic.Logica;
 import Visitors.ProtagonistaVisitor;
 import Visitors.Visitor;
 import Mapas.MapaGrilla; 
@@ -56,13 +58,13 @@ abstract public class Protagonista extends Personaje{
 	}
 	
 	public void realizarMovimiento() {
-		if(movimientoActual == MOVER_ABAJO) {
+		if(movimientoActual == Logica.getLogica().getCnsMOVER_ABAJO()) {
 			posicion.setY(posicion.getY()+ velocidad);
-		}else if(movimientoActual == MOVER_ARRIBA) {
+		}else if(movimientoActual == Logica.getLogica().getCnsMOVER_ARRIBA()) {
 			posicion.setY(posicion.getY()- velocidad);
-		}else if(movimientoActual == MOVER_IZQUIERDA) {
+		}else if(movimientoActual == Logica.getLogica().getCnsMOVER_IZQUIERDA()) {
 			posicion.setX(posicion.getX()- velocidad);
-		}else if(movimientoActual == MOVER_DERECHA) {
+		}else if(movimientoActual == Logica.getLogica().getCnsMOVER_DERECHA()) {
 			posicion.setX(posicion.getX()+ velocidad);
 		}
 		movimientoPrevio = movimientoActual;
@@ -73,25 +75,25 @@ abstract public class Protagonista extends Personaje{
 
 	public void moverAbajo() {
 		movimientoPrevio = movimientoActual;
-		movimientoActual = MOVER_ABAJO;
+		movimientoActual = Logica.getLogica().getCnsMOVER_ABAJO();
 		miGrilla.verificarMovimientoPosible();
 		colisiono = false;
 	}
 	public void moverArriba() {
 		movimientoPrevio = movimientoActual;
-		movimientoActual = MOVER_ARRIBA;
+		movimientoActual = Logica.getLogica().getCnsMOVER_ARRIBA();
 		miGrilla.verificarMovimientoPosible();
 		colisiono = false;
 	}
 	public void moverIzquierda() {
 		movimientoPrevio = movimientoActual;
-		movimientoActual = MOVER_IZQUIERDA;
+		movimientoActual = Logica.getLogica().getCnsMOVER_IZQUIERDA();
 		miGrilla.verificarMovimientoPosible();
 		colisiono = false;
 	}
 	public void moverDerecha() {
 		movimientoPrevio = movimientoActual;
-		movimientoActual = MOVER_DERECHA;
+		movimientoActual = Logica.getLogica().getCnsMOVER_DERECHA();
 		miGrilla.verificarMovimientoPosible();
 		colisiono = false;
 	}

@@ -84,9 +84,6 @@ abstract public class Entidad {
 		return v;
 	}
 	
-	abstract public void accept(Visitor v);
-
-	abstract public int getMovimientoActual(); 
 
 	public EntidadGrafica getEntidad() {
 		return miEntidad;
@@ -101,6 +98,8 @@ abstract public class Entidad {
 	public void interactuarConProtagonista() {
 		
 	}
-
+	
+	abstract public void accept(Visitor v);
+	abstract public int getMovimientoActual(); 
 	abstract public int getVelocidad(); 
 }

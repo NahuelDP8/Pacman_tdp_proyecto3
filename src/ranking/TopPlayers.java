@@ -36,6 +36,10 @@ public class TopPlayers implements Serializable{
 	public int size() {
 		return cant;
 	}
+	
+	public boolean isEmpty() {
+		return cant==0;
+	}
 	public Player getPlayer(int i) {
 		return rankingL.get(i);
 	}

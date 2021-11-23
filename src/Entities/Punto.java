@@ -23,11 +23,4 @@ public class Punto extends Mejora{
 		miGrilla.restarPunto();
 		miGrilla.sacarEntidad(ent);	
 	}
-
-	@Override
-	public int getVelocidad() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
 }

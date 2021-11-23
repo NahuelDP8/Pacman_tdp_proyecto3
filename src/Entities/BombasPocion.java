@@ -21,11 +21,4 @@ public class BombasPocion extends Pocion{
 		this.sacarEntidad(this);
 		
 	}
-
-	@Override
-	public int getVelocidad() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }

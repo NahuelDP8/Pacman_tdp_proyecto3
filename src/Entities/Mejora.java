@@ -14,5 +14,8 @@ abstract public class Mejora extends Entidad{
 	public int getMovimientoActual() {
 		return 0; 
 	}
-
+	
+	public int getVelocidad() {
+		return 0; 
+	}
 }

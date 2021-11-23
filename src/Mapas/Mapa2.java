@@ -30,6 +30,13 @@ public class Mapa2 extends MapaGrilla {
 		anchoMapa = 488;
 		altoMapa = 540;
 		construccionZonasGrilla(8,6);
+		/*Las paredes son representadas por un arreglos de strings, donde cada String tiene informacion de la pared que representa.
+		Una representación alternativa podría haber sido representar los objetos del mapa
+		en forma de "grilla" de caracteres, donde cada caracter representa el objeto que se dibujará en el mapa.
+		Sin embargo, esta representación es muy superior, ya que, si bien la otra puede considerarse como más intuitiva,
+		esta otorga la flexibilidad de crear paredes y objetos de las dimensiones y posiciones que desee
+		de forma muy sencilla.*/
+		/* Paredes: (x y ancho largo)*/
 		paredes = new String[]{"0 0 488 10","0 0 10 165", "0 198 10 142","0 373 10 167",//Bordes izquierda
 				"0 530 488 10","478 0 10 165", "478 198 10 142","478 373 10 167",//Bordes derecha
 				"43 43 54 19","43 95 54 19","43 95 19 70","130 43 19 71","130 95 72 19","182 0 19 62","95 147 54 18","182 147 125 18",//Esquina superior izquierda
@@ -72,37 +79,6 @@ public class Mapa2 extends MapaGrilla {
 					ubicarPunto(m);
 				}
 			}
-		}
-	}
-	
-	private void ubicarPunto(Mejora m) {
-		Rectangle2D rect = m.getRectangulo().getBounds2D();
-		ArrayList<Zona> misZonas = new ArrayList<Zona>();
-		boolean colision = false;
-		for (Zona[] zz: zonas) {
-			for(Zona z: zz) {
-				
-				if(z.getRectangulo().intersects(rect)) {// el punto esta en la zona
-					misZonas.add(z);
-					for(Entidad e: z.getEntidades()) {
-						if(e.getRectangulo().intersects(rect)){
-							colision = true;
-							break;
-						}
-					}
-				}
-			}
-		}
-		if(!colision) {
-			cantPuntos++;
-			for(Zona z:misZonas)
-				z.setEntidad(m);
-			miLogica.actualizarEntidad(m.getEntidad(),m.getX(),m.getY(),true);
-			
-		}else {
-			miLogica.quitarDeLaGui(m.getEntidad());
-			m.setEntidad(null);
-			m= null;
 		}
 	}
 	protected void construccionParedesLimitaciones() {

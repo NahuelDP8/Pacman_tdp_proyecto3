@@ -8,7 +8,7 @@ import Mapas.MapaGrilla;
 import Visitors.ExplosionVisitor;
 import Visitors.Visitor;
 
-public class Explosion extends Entidad{
+public class Explosion extends Mejora{
 	private boolean explotando;
 	private ImageIcon imagenExplosion;
 	public Explosion(PairTupla p, int anc, int alt, ImageIcon img,ImageIcon img2, MapaGrilla grilla) {
@@ -20,7 +20,7 @@ public class Explosion extends Entidad{
 
 	@Override
 	public void accept(Visitor v) {
-		
+		v.visitExplosion(this);
 	}
 
 	@Override
@@ -31,10 +31,10 @@ public class Explosion extends Entidad{
 
 	public void crearExplosion() {
 		explotando = true;
-		posicion.setX(posicion.getX()-20);
-		posicion.setY(posicion.getY()-20);
-		ancho += 40;
-		altura += 40;
+		posicion.setX(posicion.getX()-50);
+		posicion.setY(posicion.getY()-50);
+		ancho += 100;
+		altura += 100;
 		miRectangulo.setBounds(posicion.getX(), posicion.getY(), ancho, altura);
 		
 		Image EscalarFoto = imagenExplosion.getImage().getScaledInstance(ancho,altura, Image.SCALE_DEFAULT);
@@ -53,11 +53,5 @@ public class Explosion extends Entidad{
 	public boolean getExplotando() {
 		// TODO Auto-generated method stub
 		return explotando;
-	}
-
-	@Override
-	public int getVelocidad() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 }

@@ -21,6 +21,7 @@ import Logic.Logica;
 import Nivel.Nivel; 
 import Controladores.SpeedPotionControler;
 import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 abstract public class MapaGrilla {
@@ -157,7 +158,7 @@ abstract public class MapaGrilla {
 		largo = e.getAltura();
 
 		if(movimiento != 0) {
-			int vel = miProtagonista.getVelocidad();
+			int vel = e.getVelocidad();
 			if (movimiento == Logica.getLogica().getCnsMOVER_ABAJO())
 				y += vel;
 			else if(movimiento == Logica.getLogica().getCnsMOVER_ARRIBA())
@@ -323,13 +324,45 @@ abstract public class MapaGrilla {
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(anchoMapa-50,20),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,altoMapa-50),22,22,this);
+		/*m = fabricaMejora.crearPuntoGrande(new PairTupla(25,altoMapa-50),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
 		
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(anchoMapa-50,altoMapa-50),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
+		*/
+	}
+	protected void ubicarPunto(Mejora m) {
+		Rectangle2D rect = m.getRectangulo().getBounds2D();
+		ArrayList<Zona> misZonas = new ArrayList<Zona>();
+		boolean colision = false;
+		for (Zona[] zz: zonas) {
+			for(Zona z: zz) {
+				
+				if(z.getRectangulo().intersects(rect)) {// el punto esta en la zona
+					misZonas.add(z);
+					for(Entidad e: z.getEntidades()) {
+						if(e.getRectangulo().intersects(rect)){
+							colision = true;
+							break;
+						}
+					}
+				}
+			}
+		}
+		//Si ya hay una entidad (pared), se agregan puntos.
+		if(!colision) {
+			cantPuntos++;
+			for(Zona z:misZonas)
+				z.setEntidad(m);
+			miLogica.actualizarEntidad(m.getEntidad(),m.getX(),m.getY(),true);
+			
+		}else {
+			miLogica.quitarDeLaGui(m.getEntidad());
+			m.setEntidad(null);
+			m= null;
+		}
 	}
 	
 	public void sacarTodo() {

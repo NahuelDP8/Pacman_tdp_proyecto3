@@ -120,6 +120,7 @@ public class Logica {
 		miMapa = miFabrica.crearMapa(this, n, miMapa.mapaSiguiente());
 		miNivel.setMapa(miMapa);
 		miGUI.setJLNivel(miNivel.getNivel());
+		miGUI.reinicioDVidas();
 		miGUI.cargando(false);
 	}
 

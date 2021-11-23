@@ -4,6 +4,7 @@ import Entities.Punto;
 import Entities.PuntoGrande;
 import Entities.BombasPocion;
 import Entities.Enemigo;
+import Entities.Explosion;
 import Entities.Fruta;
 import Entities.Pared;
 import Entities.Pocion;
@@ -19,5 +20,6 @@ public interface Visitor {
 	public void visitFruta(Fruta f);
 	public void visitPocion(Pocion p);
 	public void visitPuertaEnemigo(PuertaEnemigo p);
-	public void visitBombaPocion(BombasPocion p);
+	public void visitBombaPocion(BombasPocion bombasPocion);
+	public void visitExplosion(Explosion p);
 }
