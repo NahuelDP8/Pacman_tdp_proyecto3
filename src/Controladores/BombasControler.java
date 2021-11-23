@@ -4,7 +4,7 @@ import Entities.Explosion;
 import Timer.BombaTimer;
 
 public class BombasControler extends ThreadControl{
-	private Explosion miExplosion ;
+	private Explosion miExplosion;
 	private  BombaTimer timerBomba;
 	
 	public BombasControler (Explosion b ) {
@@ -17,7 +17,15 @@ public class BombasControler extends ThreadControl{
 		
 	}
 
-	public void parar() {
+	public void pararExplosion() {
 		miExplosion.pararExplosion();
+	}
+	
+	public void parar() {
+		if(timerBomba!=null) {
+			if(timerBomba.isAlive()) {
+				timerBomba.interrupt();
+			}	
+		}
 	}
 }

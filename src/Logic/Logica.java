@@ -21,6 +21,10 @@ public class Logica {
 	protected Nivel miNivel;
 	protected final int MOVER_PROTAGONISTA = 1;
 	protected final int MOVER_ENEMIGO= 0;
+	protected final int MOVER_ABAJO = 1;	
+	protected final int MOVER_ARRIBA = 2;
+	protected final int MOVER_IZQUIERDA = 3;
+	protected final int MOVER_DERECHA = 4; 
 	
 	private Logica(GUI_MAPA g, FactoryMapaGrilla f, Nivel n,FactoryMapa map) {
 		miGUI = g;
@@ -38,7 +42,9 @@ public class Logica {
 			logic = new Logica(g,f,n,map);
 		return logic;
 	}
-	
+	public static Logica getLogica() {
+		return logic; 
+	}
 	public void actualizarFondo(ImageIcon img) {
 		miGUI.añadirFondo(img); 
 	}
@@ -111,9 +117,7 @@ public class Logica {
 	public void nivelSiguiente(Nivel n) {
 		miGUI.cargando(true);
 		miNivel = n.nivelSiguiente();
-		//SACAR
-		if(miMapa.mapaSiguiente() != null)
-			miMapa = miFabrica.crearMapa(this, n, miMapa.mapaSiguiente());
+		miMapa = miFabrica.crearMapa(this, n, miMapa.mapaSiguiente());
 		miNivel.setMapa(miMapa);
 		miGUI.setJLNivel(miNivel.getNivel());
 		miGUI.cargando(false);
@@ -156,7 +160,19 @@ public class Logica {
 	}
 	public void desactivarBomba() {
 		miGUI.desactivarBomba();
-		
+	}
+	
+	public int getCnsMOVER_ABAJO() {
+		return MOVER_ABAJO; 
+	}
+	public int getCnsMOVER_ARRIBA() {
+		return MOVER_ARRIBA; 
+	}
+	public int getCnsMOVER_IZQUIERDA() {
+		return MOVER_IZQUIERDA; 
+	}
+	public int getCnsMOVER_DERECHA() {
+		return MOVER_DERECHA; 
 	}
 
 }

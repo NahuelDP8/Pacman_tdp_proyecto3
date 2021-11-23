@@ -66,30 +66,9 @@ public class GUIMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
-				TopPlayers  topPlayers;
-				try {
-					File tempFile = new File(GUIMenu.configuration.getProperty("HighscoreFile"));
-					if((tempFile.exists()) && (tempFile.length() != 0)) {
-						FileInputStream fileInputStream= new FileInputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
-						ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
-						topPlayers = (TopPlayers) objectInputStream.readObject();
-						objectInputStream.close();
-					}	else {
-							topPlayers = new TopPlayers();
-						}
-					
-					GUIMenu frame = new GUIMenu(topPlayers);
-					frame.setVisible(true);
-				}
-				catch(FileNotFoundException e) {
-					e.printStackTrace();
-				}
-				catch (IOException  e) {
-					e.printStackTrace();
-				}
-				catch (ClassNotFoundException  e) {
-					e.printStackTrace();
-				}
+				
+				GUIMenu frame = new GUIMenu();
+				frame.setVisible(true);
 			}
 		});
 	}
@@ -111,8 +90,28 @@ public class GUIMenu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GUIMenu(TopPlayers tp) {
-		topPlayers = tp;
+	public GUIMenu() {
+		try {
+			File tempFile = new File(GUIMenu.configuration.getProperty("HighscoreFile"));
+			if((tempFile.exists()) && (tempFile.length() != 0)) {
+				FileInputStream fileInputStream= new FileInputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
+				ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
+				topPlayers = (TopPlayers) objectInputStream.readObject();
+				objectInputStream.close();
+			}else {
+				topPlayers = new TopPlayers();
+			}
+			
+		}
+		catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		catch (IOException  e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException  e) {
+			e.printStackTrace();
+		}
 		setTitle("PacMan");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400,60,781,652);
@@ -281,7 +280,7 @@ public class GUIMenu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				F_Nivel=new FactoryNiveles().crearNivel1();
 				F_Mapa = new FactoryMapa1();
-				GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,F_Mapa, nombre,tp,audio);
+				GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,F_Mapa, nombre,topPlayers,audio);
 				GUIWindow.getFrame().setVisible(true);
 				dispose();
 			}
@@ -297,7 +296,7 @@ public class GUIMenu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 							F_Nivel=new FactoryNiveles().crearNivel2();
 							F_Mapa = new FactoryMapa2();
-							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,F_Mapa, nombre,tp,audio);
+							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,F_Mapa, nombre,topPlayers,audio);
 							GUIWindow.getFrame().setVisible(true);
 							dispose();
 			}
@@ -310,7 +309,7 @@ public class GUIMenu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 							F_Nivel=new FactoryNiveles().crearNivel3();
 							F_Mapa = new FactoryMapa3();
-							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,F_Mapa,nombre,tp,audio);
+							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,F_Mapa,nombre,topPlayers,audio);
 							GUIWindow.getFrame().setVisible(true);
 							ContentPanel.setLayout(null);
 							dispose();
@@ -339,12 +338,12 @@ public class GUIMenu extends JFrame {
 		JLHighScoreList.setVerticalAlignment(SwingConstants.TOP);
 		JLHighScoreList.setHorizontalAlignment(SwingConstants.LEFT);
 		JLHighScoreList.setFont(new Font("SimSun", Font.BOLD, 28));
-		JLHighScoreList.setBounds(0, 150, 647, 500);
+		JLHighScoreList.setBounds(0, 150, 747, 500);
 		JLHighScoreList.setForeground(Color.WHITE);
 		PHighscore.add(JLHighScoreList);
 		if(topPlayers.size()!=0) 
 			JLHighScoreList.setText(topPlayers.getPlayer(0).toString());
-		for(int i =1; i<topPlayers.size();i++) 
+		for(int i =0; i<topPlayers.size();i++) 
 			JLHighScoreList.setText("<html>"+JLHighScoreList.getText()+"<p>"+topPlayers.getPlayer(i).toString().substring(7)+"<html>");
 		
 		JButton JBVolver = new JButton("VOLVER AL MENU");

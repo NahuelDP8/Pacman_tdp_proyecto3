@@ -181,4 +181,8 @@ public class Mapa1 extends MapaGrilla {
 		// TODO Auto-generated method stub
 		return new FactoryMapa2();
 	}
+	@Override
+	protected void nivelSiguiente(Nivel lvl) {
+		miLogica.nivelSiguiente(lvl);
+	}
 }

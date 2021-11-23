@@ -54,4 +54,10 @@ public class Explosion extends Entidad{
 		// TODO Auto-generated method stub
 		return explotando;
 	}
+
+	@Override
+	public int getVelocidad() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

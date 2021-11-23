@@ -40,4 +40,10 @@ public class Portal extends Entidad{
 	public int getPosicionYDestino() {
 		return miDestino.getY();
 	}
+
+	@Override
+	public int getVelocidad() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

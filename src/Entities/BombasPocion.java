@@ -22,4 +22,10 @@ public class BombasPocion extends Pocion{
 		
 	}
 
+	@Override
+	public int getVelocidad() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

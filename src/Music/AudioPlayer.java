@@ -40,7 +40,7 @@ public class AudioPlayer{
     	}
     }
     
-    private void stopMusic() {
+    public void stopMusic() {
     	clip.stop();
     	MSecondPosition=clip.getMicrosecondPosition();
     }

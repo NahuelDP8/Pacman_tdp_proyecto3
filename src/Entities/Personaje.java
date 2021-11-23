@@ -16,6 +16,7 @@ abstract public class Personaje extends Entidad{
 	protected ImageIcon imagenDerecha;
 	protected ImageIcon imagenAbajo;
 	protected ImageIcon imagenArriba;
+	
 	public ImageIcon getImage() {
 		ImageIcon img = null;
 		if(movimientoActual == MOVER_IZQUIERDA || movimientoActual == 0)

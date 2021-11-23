@@ -193,12 +193,17 @@ public class Mapa3 extends MapaGrilla {
 	}
 
 	private void win() {
+		sacarTodo();
 		miLogica.win();
 		
 	}
 	@Override
 	public FactoryMapa mapaSiguiente() {
-		win();
 		return null;
+	}
+
+	@Override
+	protected void nivelSiguiente(Nivel lvl) {
+		win();
 	}
 }

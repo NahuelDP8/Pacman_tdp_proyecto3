@@ -19,7 +19,7 @@ public class BombaTimer extends Thread{
 				Thread.sleep(this.sleepBombas);
 				miControlador.explotar();
 				Thread.sleep(this.sleepExplosion);
-				miControlador.parar();
+				miControlador.pararExplosion();
 				this.interrupt();
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();

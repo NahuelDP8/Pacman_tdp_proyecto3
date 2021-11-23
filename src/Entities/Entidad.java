@@ -101,4 +101,6 @@ abstract public class Entidad {
 	public void interactuarConProtagonista() {
 		
 	}
+
+	abstract public int getVelocidad(); 
 }

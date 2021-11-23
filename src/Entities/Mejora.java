@@ -15,6 +15,4 @@ abstract public class Mejora extends Entidad{
 		return 0; 
 	}
 
-	
-
 }

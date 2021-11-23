@@ -38,11 +38,10 @@ abstract public class MapaGrilla {
 	protected Zona [][] zonas;
 	protected int ancho, altura, anchoMapa, altoMapa;
 	protected Nivel miNivel;
-	protected final int MOVER_ABAJO = 1;	
-	protected final int MOVER_ARRIBA = 2;
-	protected final int MOVER_IZQUIERDA = 3;
-	protected final int MOVER_DERECHA = 4; 
 	protected MovimientosControler controladorDeMovimientos; 
+	protected PowerPelletsControler controladorPowerPellets;
+	protected SpeedPotionControler controladorPocionVelocidad; 
+	protected BombasControler controladorBombas; 
 	protected int cantPuntos;
 	protected String[] paredes;
 	
@@ -65,14 +64,6 @@ abstract public class MapaGrilla {
 		miNivel = n;
 	}
 	
-	protected void agregarProtagonista() {
-		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(posInicialProtagonista.getX(),posInicialProtagonista.getY()),30,30,this);
-	}
-	
-	public int getSleepPowerPellets() {
-		return miNivel.sleepPowerPellets(); 
-	}
-	
 	protected void construccionZonasGrilla(int ancho, int alto) {
 		//Inicializamos el tamaño de nuestra matriz de zonas
 		zonas =  new Zona[alto][ancho];
@@ -88,10 +79,12 @@ abstract public class MapaGrilla {
 			i++;
 		}
 	}
-	
-	abstract protected void construccionParedesLimitaciones();
 
-	abstract protected void agregarMejoras();
+	protected void agregarProtagonista() {
+		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(posInicialProtagonista.getX(),posInicialProtagonista.getY()),30,30,this);
+	}
+	
+	
 	
 	public ImageIcon getImage() {
 		return miFondo;
@@ -165,13 +158,13 @@ abstract public class MapaGrilla {
 
 		if(movimiento != 0) {
 			int vel = miProtagonista.getVelocidad();
-			if (movimiento == MOVER_ABAJO)
+			if (movimiento == Logica.getLogica().getCnsMOVER_ABAJO())
 				y += vel;
-			else if(movimiento == MOVER_ARRIBA)
+			else if(movimiento == Logica.getLogica().getCnsMOVER_ARRIBA())
 				y-=vel;
-			else if(movimiento == MOVER_IZQUIERDA)
+			else if(movimiento == Logica.getLogica().getCnsMOVER_IZQUIERDA())
 				x-=vel;
-			else if(movimiento == MOVER_DERECHA)
+			else if(movimiento == Logica.getLogica().getCnsMOVER_DERECHA())
 				x +=vel;
 		}
 		for(int i =0; i<zonas.length; i++) {
@@ -195,14 +188,14 @@ abstract public class MapaGrilla {
 		al = e.getAltura();
 		
 		if(movimiento != 0) {
-			int vel = 4;
-			if (movimiento == MOVER_ABAJO)
+			int vel = e.getVelocidad();
+			if (movimiento == Logica.getLogica().getCnsMOVER_ABAJO())
 				y += vel;
-			else if(movimiento == MOVER_ARRIBA)
+			else if(movimiento == Logica.getLogica().getCnsMOVER_ARRIBA())
 				y-=vel;
-			else if(movimiento == MOVER_IZQUIERDA)
+			else if(movimiento == Logica.getLogica().getCnsMOVER_IZQUIERDA())
 				x-=vel;
-			else if(movimiento == MOVER_DERECHA)
+			else if(movimiento == Logica.getLogica().getCnsMOVER_DERECHA())
 				x +=vel;
 		}
 		ArrayList<Entidad> toReturn = new ArrayList<Entidad>();
@@ -307,9 +300,19 @@ abstract public class MapaGrilla {
 				}
 			}
 			controladorDeMovimientos.parar();
+			if(controladorPowerPellets != null)
+				controladorPowerPellets.parar();
+			if(controladorPocionVelocidad != null)
+				controladorPocionVelocidad.parar();
+			if(controladorBombas != null)
+				controladorBombas.parar();
+			
 			miLogica.nivelSiguiente(miNivel);
+			nivelSiguiente(miNivel);
 		}	
 	}
+
+	protected abstract void nivelSiguiente(Nivel miNivel);
 
 	protected void agregarPowerPellets() {
 		Mejora m;
@@ -329,8 +332,10 @@ abstract public class MapaGrilla {
 		cantPuntos++;
 	}
 	
-
-	public void gameOver() {
+	public void sacarTodo() {
+		sacarEntidad(miProtagonista);
+		for(Enemigo e: misEnemigos)
+			miLogica.quitarDeLaGui(e.getEntidad());
 		for(Zona[] zz: zonas) {
 			for(Zona z: zz) {
 				for(Entidad e: z.obtenerEntidades()) {
@@ -338,8 +343,16 @@ abstract public class MapaGrilla {
 				}
 			}
 		}
-		sacarEntidad(miProtagonista);
+	}
+	public void gameOver() {
+		sacarTodo();
 		controladorDeMovimientos.parar();
+		if(controladorPowerPellets != null)
+			controladorPowerPellets.parar();
+		if(controladorPocionVelocidad != null)
+			controladorPocionVelocidad.parar();
+		if(controladorBombas != null)
+			controladorBombas.parar();
 		miLogica.gameOver();
 	}
 
@@ -383,7 +396,7 @@ abstract public class MapaGrilla {
 			miProtagonista.usarBomba();
 			Explosion explosion = fabricaMejora.crearExplosion(new PairTupla(miProtagonista.getX(),miProtagonista.getY()),30,30, this);
 			actualizarEntidad(explosion);
-			BombasControler controladorExplosion = new BombasControler(explosion); 
+			controladorBombas = new BombasControler(explosion); 
 		}else {
 			miLogica.desactivarBomba();
 		}
@@ -399,5 +412,6 @@ abstract public class MapaGrilla {
 	}
 
 	public abstract FactoryMapa mapaSiguiente();
-
+	abstract protected void construccionParedesLimitaciones();
+	abstract protected void agregarMejoras();
 }

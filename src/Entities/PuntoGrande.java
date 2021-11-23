@@ -33,4 +33,10 @@ public class PuntoGrande extends Mejora{
 	public int getPuntaje() {
 		return puntaje; 
 	}
+
+	@Override
+	public int getVelocidad() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
