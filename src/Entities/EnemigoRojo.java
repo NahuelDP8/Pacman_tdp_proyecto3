@@ -3,6 +3,8 @@ package Entities;
 
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+
+import Logic.Logica;
 import Mapas.MapaGrilla;
 
 public class EnemigoRojo extends Enemigo{
@@ -25,25 +27,25 @@ public class EnemigoRojo extends Enemigo{
 		
 		for(int i =0; i<=movimientos.size()-1; i++) {	
 			int movAux = movimientos.get(i); 
-			if(movAux == MOVER_DERECHA && movDerecha) {
+			if(movAux == Logica.getLogica().getCnsMOVER_DERECHA() && movDerecha) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX+ velocidad, posY),posicionProtagonista);
 				if(disAux<=disMenor) {
 					disMenor= disAux; 
 					movFinal = movAux;
 				}
-			}else if(movAux == MOVER_IZQUIERDA && movIzquierda) {
+			}else if(movAux == Logica.getLogica().getCnsMOVER_IZQUIERDA() && movIzquierda) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX-velocidad, posY),posicionProtagonista);
 				if(disAux<=disMenor) {
 					disMenor= disAux; 
 					movFinal = movAux;
 				}
-			}else if(movAux== MOVER_ARRIBA && movArriba) {
+			}else if(movAux== Logica.getLogica().getCnsMOVER_ARRIBA() && movArriba) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX, posY-velocidad),posicionProtagonista);
 				if(disAux<=disMenor) {
 					disMenor= disAux; 
 					movFinal = movAux;
 				}
-			}else if(movAux == MOVER_ABAJO && movAbajo) {
+			}else if(movAux == Logica.getLogica().getCnsMOVER_ABAJO() && movAbajo) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX, posY+velocidad),posicionProtagonista);
 				if(disAux<=disMenor) {
 					disMenor= disAux; 

@@ -27,4 +27,10 @@ public class PuertaEnemigo extends Entidad{
 		return 0;
 	}
 
+	@Override
+	public int getVelocidad() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

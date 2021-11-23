@@ -16,7 +16,7 @@ public class PotionVelocidadTimer extends Thread {
 		try {
 			PotionVelocidadTimer.sleep(sleepDePotionVel);
 			realizarActividad(); 
-			PotionVelocidadTimer.interrupted();
+			this.interrupt();
 		} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
 		}		

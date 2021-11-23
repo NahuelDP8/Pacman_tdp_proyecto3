@@ -8,7 +8,7 @@ import Mapas.MapaGrilla;
 import Visitors.ExplosionVisitor;
 import Visitors.Visitor;
 
-public class Explosion extends Entidad{
+public class Explosion extends Mejora{
 	private boolean explotando;
 	private ImageIcon imagenExplosion;
 	public Explosion(PairTupla p, int anc, int alt, ImageIcon img,ImageIcon img2, MapaGrilla grilla) {

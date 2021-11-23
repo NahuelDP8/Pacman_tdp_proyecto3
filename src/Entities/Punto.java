@@ -23,5 +23,4 @@ public class Punto extends Mejora{
 		miGrilla.restarPunto();
 		miGrilla.sacarEntidad(ent);	
 	}
-	
 }
