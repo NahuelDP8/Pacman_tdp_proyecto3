@@ -7,17 +7,17 @@ import javax.swing.ImageIcon;
 import Factories.FactoryMapaGrillaNaruto;
 import Mapas.MapaGrilla;
 
-public class NinjaClyde extends EnemigoNaranja{
-	private ImageIcon imgDerecha=new ImageIcon(NinjaClyde.class.getResource("/Imagenes/danzoRun.gif"));
-	private ImageIcon imgIzquierda=new ImageIcon(NinjaClyde.class.getResource("/Imagenes/danzoRunIzquierda.gif"));
-	private ImageIcon imgA=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/ninjaAzul.gif"));
-	private ImageIcon imgM=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/ninjaMuerte.gif"));
-	
+public class ZombieInky extends EnemigoAzul{
+
+	private ImageIcon imgDerecha=new ImageIcon(ZombieInky.class.getResource("/Imagenes/zombie3.gif"));
+	private ImageIcon imgIzquierda=new ImageIcon(ZombieInky.class.getResource("/Imagenes/zombie3Izquierda.gif"));
+	private ImageIcon imgA=new ImageIcon(ZombieInky.class.getResource("/Imagenes/zombieAzul.png"));
+	private ImageIcon imgM=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/zombieMuerte.gif"));
 	/*
 	 * Escalado de Imagenes dentro del constructor
 	 */
-	public NinjaClyde(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla,PairTupla posR,PairTupla posS) {
-		super(p, anc, alt,img, grilla,posR, posS);
+	public ZombieInky(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla,Enemigo rojo,PairTupla posR,PairTupla posS) {
+		super(p, anc, alt,img, grilla,rojo,posR, posS);
 		Image imagen = imgDerecha.getImage().getScaledInstance(ancho,altura, Image.SCALE_DEFAULT);
 		imagenDerecha = new ImageIcon(imagen);
 		imagen = imgIzquierda.getImage().getScaledInstance(ancho,altura, Image.SCALE_DEFAULT);

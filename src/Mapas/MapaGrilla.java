@@ -46,14 +46,14 @@ abstract public class MapaGrilla {
 	protected int cantPuntos;
 	protected String[] paredes;
 	
-	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica,Nivel lvl) {
+	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica,Nivel lvl, FactoryMejora fM) {
 		//Asignamos imagen de fondo del mapa
 		miFondo = fondo;
 		miLogica.actualizarFondo(fondo);
 		//Asignamos las fabricas correspondientes
 		fabricaProt = fp;
 		fabricaEnem = fe;
-		fabricaMejora = new FactoryMejora();
+		fabricaMejora = fM;
 		ancho = an;
 		altura = al;
 		this.miLogica = miLogica;
@@ -313,7 +313,7 @@ abstract public class MapaGrilla {
 
 	protected void agregarPowerPellets() {
 		Mejora m;
-		
+		/*
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,20),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
@@ -323,7 +323,7 @@ abstract public class MapaGrilla {
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,altoMapa-50),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
-		
+		*/
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(anchoMapa-50,altoMapa-50),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;

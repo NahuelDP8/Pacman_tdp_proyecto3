@@ -10,12 +10,13 @@ import Factories.FactoryMapaGrillaNaruto;
 public class Escapando implements EstadoEnemigo{
 	
 	protected Enemigo miEnemigo; 
-	private ImageIcon miImagen=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/debilAzul.gif"));
+	private ImageIcon miImagen;
 	
 	public Escapando(Enemigo enemigo) {
 		miEnemigo = enemigo; 
 		//Deberiamos actualizar a imagen del enemigo particular
 		miEnemigo.validarMovimientos();
+		miImagen=miEnemigo.getImagenEscapando();
 	}
 
 	@Override
@@ -41,7 +42,6 @@ public class Escapando implements EstadoEnemigo{
 	
 	public void deboPerseguir() {
 		miEnemigo.changeState(new Persiguiendo(miEnemigo));
-		System.out.println("Pasamos al estado persiguiendo");
 	}
 
 	@Override
