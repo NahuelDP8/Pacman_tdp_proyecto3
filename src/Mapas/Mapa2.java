@@ -1,8 +1,5 @@
 package Mapas;
 
-import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 
 import Controladores.MovimientosControler;
@@ -15,7 +12,6 @@ import Entities.Portal;
 import Entities.PuertaEnemigo;
 import Factories.FactoryEnemigo;
 import Factories.FactoryMapa;
-import Factories.FactoryMapa2;
 import Factories.FactoryMapa3;
 import Factories.FactoryProtagonista;
 import Logic.Logica;

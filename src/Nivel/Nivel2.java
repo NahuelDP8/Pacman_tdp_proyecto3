@@ -13,7 +13,7 @@ public class Nivel2 extends Nivel {
 	@Override
 	public int sleepFantasmas() {
 		// TODO Auto-generated method stub
-		return 33;
+		return 30;
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class Nivel2 extends Nivel {
 
 	@Override
 	public int sleepPowerPellets() {
-		return 10000;
+		return 8000;
 	}
 
 	@Override

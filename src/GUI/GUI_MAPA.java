@@ -29,12 +29,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class GUI_MAPA{
@@ -81,28 +78,27 @@ public class GUI_MAPA{
 	public JFrame getFrame() {
 		return frame;
 	}
-
+	//No permite ver entidades gráficas
 	public void quitarEntidad(EntidadGrafica entidad) {
 		entidad.setVisible(false);
 	}
-	
+	//Añade entidad grafica
 	public void addEntidadGrafica(EntidadGrafica entidad) {
 		frame.getContentPane().add(entidad);
 		frame.getContentPane().setComponentZOrder(entidad, 1);
 		
 	}
-	
+	//Actualiza entidad gráfica.
 	public void actualizarEntidad(EntidadGrafica entidad, int x, int y,boolean frente) {
 		entidad.setLocation(x, y+95);
-		if(frente)
+		if(frente) //Si hace falta, se ponen al frente
 			frame.getContentPane().setComponentZOrder(entidad, 1);
 	}
-	
+	//Aumenta puntos
 	public void actualizarPuntos(int p) {
 		JLPuntaje.setText(String.valueOf(p));
-		
 	}
-	
+	//Quita label de vidas
 	public void quitarVida() {
 		if(JLVIDAS3.isVisible()) {
 			JLVIDAS3.setVisible(false);
@@ -112,13 +108,11 @@ public class GUI_MAPA{
 			JLVIDAS1.setVisible(false);
 		}
 	}
-	
 	public void reinicioDVidas() {
 		JLVIDAS3.setVisible(true);
 		JLVIDAS2.setVisible(true);
 		JLVIDAS1.setVisible(true);
 	}
-	
 
 	public void actualizarReloj(int min, int seg) {
 		String minutos= ""+min;
@@ -256,7 +250,7 @@ public class GUI_MAPA{
 		JLVIDAS.setHorizontalAlignment(SwingConstants.CENTER);
 		JLVIDAS.setBounds(0, 9, 213, 62);
 		panel.add(JLVIDAS);
-		
+		//Panel de victoria
 		PGanaste = new JPanel();
 		PGanaste.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		PGanaste.setForeground(Color.WHITE);
@@ -274,7 +268,7 @@ public class GUI_MAPA{
 		JLGanaste.setHorizontalAlignment(SwingConstants.CENTER);
 		JLGanaste.setFont(new Font("Yu Gothic Light", Font.PLAIN, 50));
 		PGanaste.setVisible(false);
-		
+		//Panel derrota
 		PPerdiste = new JPanel();
 		PPerdiste.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		PPerdiste.setForeground(Color.WHITE);
@@ -338,13 +332,14 @@ public class GUI_MAPA{
 		panel_1.setBounds(213, 0, 308, 87);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
-	
+		//Indica que se pueden poner bombas
 		JLBomba = new JLabel("PRESIONE SPACE PARA PONER BOMBA");
 		JLBomba.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
 		JLBomba.setBounds(522, 100, 500, 29);
 		frame.getContentPane().add(JLBomba);
 		JLBomba.setVisible(false);
 		
+		//Labels vidas
 		JLVIDAS1 = new JLabel("");
 		JLVIDAS1.setBounds(20, 0, 87, 88);
 		panel_1.add(JLVIDAS1);
@@ -371,6 +366,7 @@ public class GUI_MAPA{
 		JLVIDAS3.setIcon(FotoEscalada);
 		JLVIDAS1.setVisible(true);
 		
+		//Label nivel
 		JLNivel = new JLabel();
 		JLNivel.setFont(new Font("Cooper Black", Font.PLAIN, 29));
 		JLNivel.setBounds(824, 22, 160, 45);
@@ -387,7 +383,7 @@ public class GUI_MAPA{
 		JLNombre.setFont(new Font("Rockwell", Font.BOLD, 20));
 		JLNombre.setBounds(1036, 27, 372, 40);
 		panel.add(JLNombre);
-		
+		//Label musica
 		JLMusic = new JLabel("Letra \"P\": ALTERNA MUTE M\u00DASICA");
 		JLMusic.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
 		JLMusic.setBounds(522, 68, 355, 29);
@@ -407,7 +403,7 @@ public class GUI_MAPA{
 		JLHIGHSCORE.setBounds(716, 182, 306, 48);
 		frame.getContentPane().add(JLHIGHSCORE);
 		JLHIGHSCORE.setFont(new Font("Rockwell", Font.BOLD, 20));
-		
+		//Gif de carga
 		panelCargando = new JPanel();
 		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/cargando.gif")).getImage().getScaledInstance(800,800, Image.SCALE_DEFAULT);
 		FotoEscalada = new ImageIcon(EscalarFoto);
@@ -434,7 +430,7 @@ public class GUI_MAPA{
 		JLHighScoreList.setVerticalAlignment(SwingConstants.TOP);
 	}
 	
-	// SE NECESITA VER COMO COPIAR UN STRING DESDE CIERTO CARACTER PARA BORRAR ("NOMBRE")
+	// actualiza highscores
 	private void actualizarArchivo() {
 		FileOutputStream fileOutputStream;
 		try {
@@ -457,7 +453,6 @@ public class GUI_MAPA{
 		}
 	}
 	
-	
 	public void gameOver() {
 		audio.stopMusic();
 		log.destruirSingleton();
@@ -476,8 +471,6 @@ public class GUI_MAPA{
 
 	}
 	
-	
-
 	public void win() {
 		audio.stopMusic();
 		log.destruirSingleton();
@@ -500,6 +493,7 @@ public class GUI_MAPA{
 	public void setJLNivel(int n) {
 		JLNivel.setText("Nivel: "+ n);
 	}
+	//Activa panel cargando
 	public void cargando(boolean visibilidad) {
 		frame.getContentPane().setComponentZOrder(panelCargando, 0);
 		panelCargando.setVisible(visibilidad);

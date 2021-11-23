@@ -1,7 +1,6 @@
 package Factories;
 
 import Entities.Enemigo;
-import Entities.EnemigoRojo;
 import Mapas.MapaGrilla;
 import Entities.PairTupla;
 

@@ -6,13 +6,13 @@ public class Nivel3 extends Nivel{
 	@Override
 	public int sleepProtagonista() {
 		// TODO Auto-generated method stub
-		return 40;
+		return 25;
 	}
 
 	@Override
 	public int sleepFantasmas() {
 		// TODO Auto-generated method stub
-		return 35;
+		return 25;
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class Nivel3 extends Nivel{
 	}
 	@Override
 	public int sleepPowerPellets() {
-		return 10000;
+		return 8000;
 	}
 	@Override
 	public int getNivel() {

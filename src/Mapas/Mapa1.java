@@ -1,8 +1,5 @@
 package Mapas;
 
-import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 
 import Controladores.MovimientosControler;

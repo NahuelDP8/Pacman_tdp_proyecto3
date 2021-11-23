@@ -1,8 +1,4 @@
 package Mapas;
-
-import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 
 import Controladores.MovimientosControler;
@@ -15,8 +11,6 @@ import Entities.Portal;
 import Entities.PuertaEnemigo;
 import Factories.FactoryEnemigo;
 import Factories.FactoryMapa;
-import Factories.FactoryMapa1;
-import Factories.FactoryMapa2;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
 import Nivel.Nivel;
@@ -82,7 +76,6 @@ public class Mapa3 extends MapaGrilla {
 		int x,y;
 		cantPuntos = 0;
 		agregarPowerPellets();
-		/*
 		for(int i = 1; i<28;i++) {
 			for (int j = 0; j<28;j++) {
 				x = 9+i*24;
@@ -92,7 +85,7 @@ public class Mapa3 extends MapaGrilla {
 					ubicarPunto(m);
 				}
 			}
-		}*/
+		}
 	}
 	public void encerrarFantasmas() {
 		PairTupla pos = new PairTupla(posResurreccion.getX()-24,posResurreccion.getY());
@@ -119,15 +112,15 @@ public class Mapa3 extends MapaGrilla {
 	}
 	
 	protected void agregarFantasmas() {
-		Enemigo rojo = fabricaEnem.crearRojo(new PairTupla(posResurreccion.getX(),posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
+		Enemigo rojo = fabricaEnem.crearRojo(new PairTupla(posResurreccion.getX(),posResurreccion.getY()),30,30,this,posResurreccion,new PairTupla(posSalida.getX()-40,posSalida.getY()));
 		
-		 Enemigo azul = fabricaEnem.crearAzul(new PairTupla(posResurreccion.getX()+12,posResurreccion.getY()),30,30,this,rojo,posResurreccion,posSalida);
+		 Enemigo azul = fabricaEnem.crearAzul(new PairTupla(posResurreccion.getX()+12,posResurreccion.getY()),30,30,this,rojo,posResurreccion,new PairTupla(posSalida.getX()-40,posSalida.getY()));
 		 this.misEnemigos.add(azul);
 		 addEntidad(azul.getEntidad());
-		 Enemigo naranja = fabricaEnem.crearNaranja(new PairTupla(posResurreccion.getX()+36,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
+		 Enemigo naranja = fabricaEnem.crearNaranja(new PairTupla(posResurreccion.getX()+36,posResurreccion.getY()),30,30,this,posResurreccion,new PairTupla(posSalida.getX()+120,posSalida.getY()));
 		 this.misEnemigos.add(naranja);
 		 addEntidad(naranja.getEntidad());
-		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(posResurreccion.getX()-24,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
+		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(posResurreccion.getX()-24,posResurreccion.getY()),30,30,this,posResurreccion,new PairTupla(posSalida.getX()+120,posSalida.getY()));
 		 this.misEnemigos.add(rosa);
 		 addEntidad(rosa.getEntidad());
 		 this.misEnemigos.add(rojo);

@@ -7,19 +7,11 @@ import javax.swing.ImageIcon;
 import Mapas.MapaGrilla;
 
 public class EnemigoAzul extends Enemigo{
- private boolean bMov;
  private Enemigo E_Rojo;
 	public EnemigoAzul(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla,Enemigo rojo,PairTupla posR,PairTupla posS) {
 		super(p, anc, alt,img, grilla,posR, posS);
 		velocidad=4;
 		E_Rojo=rojo;
-		bMov=true;
-	}
-
-	
-	private boolean cambiarBooleanoMov() {
-		bMov=(bMov==false);
-		return (bMov);
 	}
 	
 	public void perseguirProtagonista() {
