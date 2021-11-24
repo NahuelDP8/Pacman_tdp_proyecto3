@@ -1,8 +1,5 @@
 package Mapas;
 
-import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 
 import Controladores.MovimientosControler;
@@ -12,10 +9,12 @@ import Entities.Mejora;
 import Entities.PairTupla;
 import Entities.Pared;
 import Entities.Portal;
+import Entities.Protagonista;
 import Entities.PuertaEnemigo;
 import Factories.FactoryEnemigo;
 import Factories.FactoryMapa;
 import Factories.FactoryMapa2;
+import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
 import Nivel.Nivel;
@@ -26,8 +25,8 @@ public class Mapa1 extends MapaGrilla {
 	protected Mejora fruta;
 	protected Mejora pocion;
 	
-	public Mapa1(ImageIcon fondo, FactoryProtagonista fp, FactoryEnemigo fe, int ancho, int altura, Logica miLogica,Nivel lvl) {
-		super(fondo, fp, fe, ancho, altura, miLogica,lvl);
+	public Mapa1(ImageIcon fondo, FactoryProtagonista fp, FactoryEnemigo fe, int ancho, int altura, Logica miLogica,Nivel lvl,FactoryMejora fM) {
+		super(fondo, fp, fe, ancho, altura, miLogica,lvl,fM);
 		anchoMapa = 500;
 		altoMapa = 540;
 		construccionZonasGrilla(5,6);
@@ -74,6 +73,7 @@ public class Mapa1 extends MapaGrilla {
 		int x,y;
 		cantPuntos = 0;
 		agregarPowerPellets();
+		/*
 		for(int i = 1; i<21;i++) {
 			for (int j = 0; j<22;j++) {
 				x = 9+i*24;
@@ -83,7 +83,7 @@ public class Mapa1 extends MapaGrilla {
 					ubicarPunto(m);
 				}
 			}
-		}
+		}*/
 	}
 	protected void agregarFantasmas() {
 		
@@ -95,7 +95,7 @@ public class Mapa1 extends MapaGrilla {
 		 Enemigo naranja = fabricaEnem.crearNaranja(new PairTupla(posResurreccion.getX()+48,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
 		 this.misEnemigos.add(naranja);
 		 addEntidad(naranja.getEntidad());
-		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(posResurreccion.getX()+96,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
+		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(posResurreccion.getX()+72,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
 		 this.misEnemigos.add(rosa);
 		 addEntidad(rosa.getEntidad());
 		 this.misEnemigos.add(rojo);
@@ -161,6 +161,7 @@ public class Mapa1 extends MapaGrilla {
 	}
 	@Override
 	protected void nivelSiguiente(Nivel lvl) {
+		sacarTodo();
 		miLogica.nivelSiguiente(lvl);
 	}
 }

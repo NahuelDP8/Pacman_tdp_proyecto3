@@ -1,6 +1,7 @@
 package Timer;
 
 import Controladores.MovimientosControler;
+import Logic.Logica;
 
 public class ProtagonistaTimer extends Thread {
 	private MovimientosControler miControlador; 
@@ -35,6 +36,9 @@ public class ProtagonistaTimer extends Thread {
 				Thread.currentThread().interrupt();
 			}
 		}
+	}
+	public void destruirSingleton() {
+		hiloPro = null;
 	}
 
 	public void actualizarSleepProtagonista(int sleepGeneralProtagonista) {

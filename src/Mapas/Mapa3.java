@@ -1,8 +1,4 @@
 package Mapas;
-
-import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 
 import Controladores.MovimientosControler;
@@ -12,11 +8,11 @@ import Entities.Mejora;
 import Entities.PairTupla;
 import Entities.Pared;
 import Entities.Portal;
+import Entities.Protagonista;
 import Entities.PuertaEnemigo;
 import Factories.FactoryEnemigo;
 import Factories.FactoryMapa;
-import Factories.FactoryMapa1;
-import Factories.FactoryMapa2;
+import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
 import Nivel.Nivel;
@@ -27,8 +23,8 @@ public class Mapa3 extends MapaGrilla {
 	protected Mejora fruta;
 	protected Mejora pocion;
 	
-	public Mapa3(ImageIcon fondo, FactoryProtagonista fp, FactoryEnemigo fe, int ancho, int altura, Logica miLogica,Nivel lvl) {
-		super(fondo, fp, fe, ancho, altura, miLogica,lvl);
+	public Mapa3(ImageIcon fondo, FactoryProtagonista fp, FactoryEnemigo fe, int ancho, int altura, Logica miLogica,Nivel lvl,FactoryMejora fM) {
+		super(fondo, fp, fe, ancho, altura, miLogica,lvl,fM);
 		anchoMapa = 680;
 		altoMapa = 680;
 		construccionZonasGrilla(8,8);
@@ -82,7 +78,6 @@ public class Mapa3 extends MapaGrilla {
 		int x,y;
 		cantPuntos = 0;
 		agregarPowerPellets();
-		/*
 		for(int i = 1; i<28;i++) {
 			for (int j = 0; j<28;j++) {
 				x = 9+i*24;
@@ -92,7 +87,7 @@ public class Mapa3 extends MapaGrilla {
 					ubicarPunto(m);
 				}
 			}
-		}*/
+		}
 	}
 	public void encerrarFantasmas() {
 		PairTupla pos = new PairTupla(posResurreccion.getX()-24,posResurreccion.getY());

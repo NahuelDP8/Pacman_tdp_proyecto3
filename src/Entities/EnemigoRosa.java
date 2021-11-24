@@ -31,25 +31,25 @@ public class EnemigoRosa extends Enemigo{
 		
 		for(int i =0; i<=movimientos.size()-1; i++) {	
 			int movAux = movimientos.get(i); 
-			if(movAux == Logica.getLogica().getCnsMOVER_DERECHA() && movDerecha) {
+			if(movAux == miGrilla.getCnsMOVER_DERECHA() && movDerecha) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX+ velocidad, posY),posicionAEstudiar);
 				if(disAux<=disMenor) {
 					disMenor= disAux; 
 					movFinal = movAux;
 				}
-			}else if(movAux == Logica.getLogica().getCnsMOVER_IZQUIERDA() && movIzquierda) {
+			}else if(movAux == miGrilla.getCnsMOVER_IZQUIERDA() && movIzquierda) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX-velocidad, posY),posicionAEstudiar);
 				if(disAux<=disMenor) {
 					disMenor= disAux; 
 					movFinal = movAux;
 				}
-			}else if(movAux== Logica.getLogica().getCnsMOVER_ARRIBA() && movArriba) {
+			}else if(movAux== miGrilla.getCnsMOVER_ARRIBA() && movArriba) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX, posY-velocidad),posicionAEstudiar);
 				if(disAux<=disMenor) {
 					disMenor= disAux; 
 					movFinal = movAux;
 				}
-			}else if(movAux == Logica.getLogica().getCnsMOVER_ABAJO() && movAbajo) {
+			}else if(movAux == miGrilla.getCnsMOVER_ABAJO() && movAbajo) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX, posY+velocidad),posicionAEstudiar);
 				if(disAux<=disMenor) {
 					disMenor= disAux; 
@@ -71,18 +71,16 @@ public class EnemigoRosa extends Enemigo{
 		int x = pos.getX();
 		int y = pos.getY();
 		
-		
-		
-		if(movimiento == Logica.getLogica().getCnsMOVER_IZQUIERDA()) {
+		if(movimiento == miGrilla.getCnsMOVER_IZQUIERDA()) {
 			pos.setX(x-ancho*2);
-		}else if(movimiento == Logica.getLogica().getCnsMOVER_DERECHA()){
+		}else if(movimiento == miGrilla.getCnsMOVER_DERECHA()){
 			pos.setX(x+ancho*2);
-		}else if(movimiento == Logica.getLogica().getCnsMOVER_ARRIBA()){
+		}else if(movimiento == miGrilla.getCnsMOVER_ARRIBA()){
 			//Arriba es la unica excepción, si Protagonista esta yendo hacia arriba,
 			//Pinky  persigue una posición hacia arriba y a la izquierda. 
 			pos.setY(y+ancho*2);
 			pos.setX(x-ancho);
-		}else if(movimiento == Logica.getLogica().getCnsMOVER_ABAJO()){
+		}else if(movimiento == miGrilla.getCnsMOVER_ABAJO()){
 			pos.setY(y+ancho*2);
 		}
 		

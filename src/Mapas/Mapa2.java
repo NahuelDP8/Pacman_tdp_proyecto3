@@ -1,8 +1,5 @@
 package Mapas;
 
-import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 
 import Controladores.MovimientosControler;
@@ -15,8 +12,9 @@ import Entities.Portal;
 import Entities.PuertaEnemigo;
 import Factories.FactoryEnemigo;
 import Factories.FactoryMapa;
-import Factories.FactoryMapa2;
+
 import Factories.FactoryMapa3;
+import Factories.FactoryMejora;
 import Factories.FactoryProtagonista;
 import Logic.Logica;
 import Nivel.Nivel;
@@ -25,8 +23,8 @@ public class Mapa2 extends MapaGrilla {
 	protected Mejora fruta;
 	protected Mejora pocion;
 	
-	public Mapa2(ImageIcon fondo, FactoryProtagonista fp, FactoryEnemigo fe, int ancho, int altura, Logica miLogica,Nivel lvl) {
-		super(fondo, fp, fe, ancho, altura, miLogica,lvl);
+	public Mapa2(ImageIcon fondo, FactoryProtagonista fp, FactoryEnemigo fe, int ancho, int altura, Logica miLogica,Nivel lvl,FactoryMejora fM) {
+		super(fondo, fp, fe, ancho, altura, miLogica,lvl,fM);
 		anchoMapa = 488;
 		altoMapa = 540;
 		construccionZonasGrilla(8,6);
@@ -160,6 +158,7 @@ public class Mapa2 extends MapaGrilla {
 	}
 	@Override
 	protected void nivelSiguiente(Nivel lvl) {
+		sacarTodo();
 		miLogica.nivelSiguiente(lvl);
 	}
 }

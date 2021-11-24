@@ -17,7 +17,7 @@ public class MovimientosControler extends ThreadControl {
 	private MovimientoProtagonistaControler movProtagonistaC; 
 	
 	public MovimientosControler(int sleepPro, int sleepEn, Protagonista miP, ArrayList<Enemigo> lisEnem ,int movE,int movP) {
-		System.out.print("ANASHE");
+	
 		MOVER_ENEMIGOS = movE;
 		MOVER_PROTAGONISTA = movP;
 		this.sleepPro = sleepPro;

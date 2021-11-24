@@ -1,6 +1,7 @@
 package Entities;
 
 import EnemigosStates.*;
+import Factories.FactoryMapaGrillaNaruto;
 import Logic.Logica;
 import Visitors.EnemigoVisitor;
 import Visitors.Visitor;
@@ -21,6 +22,8 @@ public abstract class Enemigo extends Personaje{
 	protected boolean movArriba;
 	protected PairTupla posResurreccion;
 	protected PairTupla posSalida;
+	protected ImageIcon imgAzul;
+	protected ImageIcon imgMuerte;
 	
 	public Enemigo(PairTupla p, int anc, int alt, ImageIcon img, MapaGrilla grilla,PairTupla posR,PairTupla posS) {
 		super(p, anc, alt,img, grilla );
@@ -57,13 +60,13 @@ public abstract class Enemigo extends Personaje{
 	}
 	
 	public void realizarMovimiento(int mov) {
-		if(mov == Logica.getLogica().getCnsMOVER_ABAJO()) {
+		if(mov == miGrilla.getCnsMOVER_ABAJO()) {
 			posicion.setY(posicion.getY()+ velocidad);
-		}else if(mov == Logica.getLogica().getCnsMOVER_ARRIBA()) {
+		}else if(mov == miGrilla.getCnsMOVER_ARRIBA()) {
 			posicion.setY(posicion.getY()- velocidad);
-		}else if(mov == Logica.getLogica().getCnsMOVER_IZQUIERDA()) {
+		}else if(mov == miGrilla.getCnsMOVER_IZQUIERDA()) {
 			posicion.setX(posicion.getX()- velocidad);
-		}else if(mov == Logica.getLogica().getCnsMOVER_DERECHA()) {
+		}else if(mov == miGrilla.getCnsMOVER_DERECHA()) {
 			posicion.setX(posicion.getX()+ velocidad);
 		} 
 		miRectangulo.setBounds(posicion.getX(), posicion.getY(), ancho, altura);
@@ -72,13 +75,13 @@ public abstract class Enemigo extends Personaje{
 	}
 	
 	public void invalidarMovimiento(int movimiento) {
-		if(movimiento == Logica.getLogica().getCnsMOVER_ABAJO())
+		if(movimiento == miGrilla.getCnsMOVER_ABAJO())
 			movAbajo = false; 
-		else if(movimiento == Logica.getLogica().getCnsMOVER_ARRIBA())
+		else if(movimiento == miGrilla.getCnsMOVER_ARRIBA())
 			movArriba = false; 
-		else if (movimiento == Logica.getLogica().getCnsMOVER_IZQUIERDA())
+		else if (movimiento == miGrilla.getCnsMOVER_IZQUIERDA())
 			movIzquierda = false;
-		else if (movimiento == Logica.getLogica().getCnsMOVER_DERECHA())
+		else if (movimiento == miGrilla.getCnsMOVER_DERECHA())
 			movDerecha = false; 
 	}
 	
@@ -103,7 +106,15 @@ public abstract class Enemigo extends Personaje{
 		miEstado.deboPerseguir();
 	}
 	
-	public double distanciaEntrePuntos(PairTupla A, PairTupla B) {
+
+	public ImageIcon getImagenEscapando() {
+		return imgAzul;
+	}
+	public ImageIcon getImagenMuerte() {
+		return imgMuerte;
+	}
+	
+	protected double distanciaEntrePuntos(PairTupla A, PairTupla B) {
 		double x = Math.pow(B.getX()-A.getX(),2);
 		double y = Math.pow(B.getY()-A.getY(),2);
 		double distancia = Math.sqrt(x+y); 
@@ -114,25 +125,25 @@ public abstract class Enemigo extends Personaje{
 		ArrayList<Integer> toReturn  = new ArrayList<Integer>();
 		this.validarMovimientos();
 		
-		toReturn.add(Logica.getLogica().getCnsMOVER_ABAJO());
-		toReturn.add(Logica.getLogica().getCnsMOVER_ARRIBA());
-		toReturn.add(Logica.getLogica().getCnsMOVER_IZQUIERDA());
-		toReturn.add(Logica.getLogica().getCnsMOVER_DERECHA());
+		toReturn.add(miGrilla.getCnsMOVER_ABAJO());
+		toReturn.add(miGrilla.getCnsMOVER_ARRIBA());
+		toReturn.add(miGrilla.getCnsMOVER_IZQUIERDA());
+		toReturn.add(miGrilla.getCnsMOVER_DERECHA());
 		
 		int movActual = this.getMovimientoActual(); 
 		
-		if(movActual == Logica.getLogica().getCnsMOVER_DERECHA()) { 
-			toReturn.remove(Logica.getLogica().getCnsMOVER_IZQUIERDA()-1);
-			this.invalidarMovimiento(Logica.getLogica().getCnsMOVER_IZQUIERDA());
-		}else if (movActual == Logica.getLogica().getCnsMOVER_IZQUIERDA()) {			
-			toReturn.remove(Logica.getLogica().getCnsMOVER_DERECHA()-1);
-			this.invalidarMovimiento(Logica.getLogica().getCnsMOVER_DERECHA());
-		}else if (movActual == Logica.getLogica().getCnsMOVER_ARRIBA()) {
-			toReturn.remove(Logica.getLogica().getCnsMOVER_ABAJO()-1);
-			this.invalidarMovimiento(Logica.getLogica().getCnsMOVER_ABAJO());
-		}else if (movActual == Logica.getLogica().getCnsMOVER_ABAJO()) {
-			toReturn.remove(Logica.getLogica().getCnsMOVER_ARRIBA()-1);
-			this.invalidarMovimiento(Logica.getLogica().getCnsMOVER_ARRIBA());
+		if(movActual == miGrilla.getCnsMOVER_DERECHA()) { 
+			toReturn.remove(miGrilla.getCnsMOVER_IZQUIERDA()-1);
+			this.invalidarMovimiento(miGrilla.getCnsMOVER_IZQUIERDA());
+		}else if (movActual == miGrilla.getCnsMOVER_IZQUIERDA()) {			
+			toReturn.remove(miGrilla.getCnsMOVER_DERECHA()-1);
+			this.invalidarMovimiento(miGrilla.getCnsMOVER_DERECHA());
+		}else if (movActual == miGrilla.getCnsMOVER_ARRIBA()) {
+			toReturn.remove(miGrilla.getCnsMOVER_ABAJO()-1);
+			this.invalidarMovimiento(miGrilla.getCnsMOVER_ABAJO());
+		}else if (movActual == miGrilla.getCnsMOVER_ABAJO()) {
+			toReturn.remove(miGrilla.getCnsMOVER_ARRIBA()-1);
+			this.invalidarMovimiento(miGrilla.getCnsMOVER_ARRIBA());
 		}	
 		
 		return toReturn; 
@@ -151,25 +162,25 @@ public abstract class Enemigo extends Personaje{
 		
 		for(int i =0; i<=movimientos.size()-1; i++) {	
 			int movAux = movimientos.get(i); 
-			if(movAux == Logica.getLogica().getCnsMOVER_DERECHA() && movDerecha) {
+			if(movAux == miGrilla.getCnsMOVER_DERECHA() && movDerecha) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX+ velocidad, posY),posicionProtagonista);
 				if(disAux>=disMayor) {
 					disMayor= disAux; 
 					movFinal = movAux;
 				}
-			}else if(movAux == Logica.getLogica().getCnsMOVER_IZQUIERDA() && movIzquierda) {
+			}else if(movAux == miGrilla.getCnsMOVER_IZQUIERDA() && movIzquierda) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX-velocidad, posY),posicionProtagonista);
 				if(disAux>=disMayor) {
 					disMayor= disAux; 
 					movFinal = movAux;
 				}
-			}else if(movAux== Logica.getLogica().getCnsMOVER_ARRIBA() && movArriba) {
+			}else if(movAux== miGrilla.getCnsMOVER_ARRIBA() && movArriba) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX, posY-velocidad),posicionProtagonista);
 				if(disAux>=disMayor) {
 					disMayor= disAux; 
 					movFinal = movAux;
 				}
-			}else if(movAux == Logica.getLogica().getCnsMOVER_ABAJO() && movAbajo) {
+			}else if(movAux == miGrilla.getCnsMOVER_ABAJO() && movAbajo) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX, posY+velocidad),posicionProtagonista);
 				if(disAux>=disMayor) {
 					disMayor= disAux; 
@@ -215,25 +226,25 @@ public abstract class Enemigo extends Personaje{
 			
 			for(int i =0; i<=movimientos.size()-1; i++) {	
 				int movAux = movimientos.get(i); 
-				if(movAux == Logica.getLogica().getCnsMOVER_DERECHA() && movDerecha) {
+				if(movAux == miGrilla.getCnsMOVER_DERECHA() && movDerecha) {
 					disAux = distanciaEntrePuntos(new PairTupla(posX+ velocidad, posY),posicionDestino);
 					if(disAux<=disMenor) {
 						disMenor= disAux; 
 						movFinal = movAux;
 					}
-				}else if(movAux == Logica.getLogica().getCnsMOVER_IZQUIERDA() && movIzquierda) {
+				}else if(movAux == miGrilla.getCnsMOVER_IZQUIERDA() && movIzquierda) {
 					disAux = distanciaEntrePuntos(new PairTupla(posX-velocidad, posY),posicionDestino);
 					if(disAux<=disMenor) {
 						disMenor= disAux; 
 						movFinal = movAux;
 					}
-				}else if(movAux== Logica.getLogica().getCnsMOVER_ARRIBA() && movArriba) {
+				}else if(movAux== miGrilla.getCnsMOVER_ARRIBA() && movArriba) {
 					disAux = distanciaEntrePuntos(new PairTupla(posX, posY-velocidad),posicionDestino);
 					if(disAux<=disMenor) {
 						disMenor= disAux; 
 						movFinal = movAux;
 					}
-				}else if(movAux == Logica.getLogica().getCnsMOVER_ABAJO() && movAbajo) {
+				}else if(movAux == miGrilla.getCnsMOVER_ABAJO() && movAbajo) {
 					disAux = distanciaEntrePuntos(new PairTupla(posX, posY+velocidad),posicionDestino);
 					if(disAux<=disMenor) {
 						disMenor= disAux; 
@@ -269,10 +280,10 @@ public abstract class Enemigo extends Personaje{
 	public ArrayList<Integer> todosLosMovimientos() {
 		ArrayList<Integer> toReturn  = new ArrayList<Integer>();
 		validarMovimientos();
-		toReturn.add(Logica.getLogica().getCnsMOVER_ABAJO());
-		toReturn.add(Logica.getLogica().getCnsMOVER_ARRIBA());
-		toReturn.add(Logica.getLogica().getCnsMOVER_IZQUIERDA());
-		toReturn.add(Logica.getLogica().getCnsMOVER_DERECHA());
+		toReturn.add(miGrilla.getCnsMOVER_ABAJO());
+		toReturn.add(miGrilla.getCnsMOVER_ARRIBA());
+		toReturn.add(miGrilla.getCnsMOVER_IZQUIERDA());
+		toReturn.add(miGrilla.getCnsMOVER_DERECHA());
 		return toReturn;
 	}
 

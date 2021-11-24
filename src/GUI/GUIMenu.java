@@ -35,7 +35,6 @@ import Factories.FactoryMapaGrillaNaruto;
 import Factories.FactoryNiveles;
 import Music.AudioPlayer;
 import Nivel.Nivel;
-import ranking.Player;
 import ranking.TopPlayers;
 
 import javax.swing.border.BevelBorder;
@@ -73,7 +72,8 @@ public class GUIMenu extends JFrame {
 			public void run() {
 				TopPlayers  TPS;
 				try {
-					File tempFile = new File(GUIMenu.configuration.getProperty("HighscoreFile"));
+					File tempFile = new File(GUIMenu.configuration.getProperty("HighscoreFile")); // cargamos archivo con highscores
+					//Creo objeto de top players
 					if((tempFile.exists()) && (tempFile.length() != 0)) {
 						FileInputStream fileInputStream= new FileInputStream(GUIMenu.configuration.getProperty("HighscoreFile"));
 						ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
@@ -82,7 +82,7 @@ public class GUIMenu extends JFrame {
 					}	else {
 							TPS = new TopPlayers();
 						}
-					GUIMenu frame = new GUIMenu(TPS);
+					GUIMenu frame = new GUIMenu(TPS); // Inicia GUI Menu
 					frame.setVisible(true);
 					
 				}
@@ -157,22 +157,23 @@ public class GUIMenu extends JFrame {
 		ContentPanel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		setContentPane(ContentPanel);
 		ImageIcon imagen;
-		Image EscalarFoto; 
+		Image EscalarFoto;
 		ImageIcon FotoEscalada;
 		ContentPanel.setLayout(null);
 		
+		//Panel de elegir protagonista con el que se jugará
 		JPanel PSeleccionProta = new JPanel();
 		PSeleccionProta.setBounds(10, 8, 747, 597);
 		PSeleccionProta.setBackground(Color.BLACK);
 		ContentPanel.add(PSeleccionProta);
 		PSeleccionProta.setLayout(null);
-		
+		//Panel de seleccionar nivel a jugar
 		JPanel PSeleccionNivel = new JPanel();
 		PSeleccionNivel.setBounds(10, 8, 747, 597);
 		ContentPanel.add(PSeleccionNivel);
 		PSeleccionNivel.setLayout(null);
 		PSeleccionNivel.setVisible(false);
-		
+		//Panel que muestra los mejores puntajes.
 		JPanel PHighscore = new JPanel();
 		PHighscore.setBounds(10, 8, 747, 597);
 		PHighscore.setBackground(Color.BLACK);
@@ -180,11 +181,12 @@ public class GUIMenu extends JFrame {
 		PHighscore.setLayout(null);
 		PHighscore.setVisible(false);
 		
-		
+		//Boton jugar de cada protagonista
+		//Goku
 		JButton JBGoku = new JButton("JUGAR GOKU");
 		JBGoku.setBounds(54, 98, 255, 353);
 		PSeleccionProta.add(JBGoku);
-		imagen = new ImageIcon(GUIMenu.class.getResource("/Imagenes/goku2.png"));
+		imagen = new ImageIcon(GUIMenu.class.getResource("/Imagenes/goku.gif"));
 		EscalarFoto = imagen.getImage().getScaledInstance(JBGoku.getWidth(),JBGoku.getHeight(), Image.SCALE_DEFAULT);
 		FotoEscalada = new ImageIcon(EscalarFoto);
 		JBGoku.setIcon(FotoEscalada);
@@ -208,13 +210,13 @@ public class GUIMenu extends JFrame {
 			}
 		});
 		JBGoku.setEnabled(false);
-		
+		//Naruto
 		JButton JBNaruto = new JButton("JUGAR NARUTO");
 		JBNaruto.setBounds(435, 98, 255, 353);
 		PSeleccionProta.add(JBNaruto);
 		JBNaruto.setBackground(Color.BLACK);
 		JBNaruto.setFont(new Font("Source Sans Pro", Font.BOLD, 14));
-		imagen = new ImageIcon(GUIMenu.class.getResource("/Imagenes/narutoRun.gif"));
+		imagen = new ImageIcon(GUIMenu.class.getResource("/Imagenes/narutoRunIzquierda.gif"));
 		EscalarFoto = imagen.getImage().getScaledInstance(JBNaruto.getWidth(),JBNaruto.getHeight(), Image.SCALE_DEFAULT);
 		FotoEscalada = new ImageIcon(EscalarFoto);
 		JBNaruto.setIcon(FotoEscalada);
@@ -223,6 +225,7 @@ public class GUIMenu extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
+							
 							F_Mapa_Grilla=new FactoryMapaGrillaNaruto();
 							File MusicFile = new File(GUIMenu.configuration.getProperty("NarutoMusic"));
 							IniciarMusica(MusicFile);
@@ -236,15 +239,14 @@ public class GUIMenu extends JFrame {
 			}
 		});
 		JBNaruto.setEnabled(false);
-		
 		JLabel ModoDeJuego = new JLabel("MODO DE JUEGO");
 		ModoDeJuego.setBounds(75, 10, 522, 78);
 		PSeleccionProta.add(ModoDeJuego);
 		ModoDeJuego.setHorizontalAlignment(SwingConstants.CENTER);
 		ModoDeJuego.setForeground(Color.WHITE);
 		ModoDeJuego.setFont(new Font("Yu Gothic Light", Font.PLAIN, 45));
-		
-		JLabel JLIngresaN = new JLabel("<html>INGRESA TU NOMBRE: <p> Maximo de ? caracteres<html>");
+		//Ingresar nombre
+		JLabel JLIngresaN = new JLabel("<html>INGRESA TU NOMBRE:<html>");
 		JLIngresaN.setFont(new Font("Segoe Script", Font.BOLD, 25));
 		JLIngresaN.setHorizontalAlignment(SwingConstants.CENTER);
 		JLIngresaN.setForeground(Color.WHITE);
@@ -278,7 +280,7 @@ public class GUIMenu extends JFrame {
 		JBAceptar.setBounds(468, 542, 129, 44);
 		PSeleccionProta.add(JBAceptar);
 		
-		
+		//Nombre
 		JTFmiNombre = new JTextField();
 		JTFmiNombre.addKeyListener(new KeyAdapter() {
 			@Override
@@ -296,7 +298,7 @@ public class GUIMenu extends JFrame {
 		PSeleccionProta.add(JTFmiNombre);
 		JTFmiNombre.setColumns(10);
 	
-		
+		//Boton música
 		JBMusic = new JButton("M\u00FAsica");
 		JBMusic.setBounds(628, 0, 119, 46);
 		JBMusic.addActionListener(new ActionListener() {
@@ -308,6 +310,7 @@ public class GUIMenu extends JFrame {
 		PSeleccionNivel.add(JBMusic);
 		JBMusic.setForeground(Color.BLACK);
 		JBMusic.setFont(new Font("Impact", Font.PLAIN, 28));
+		//Niveles
 		JBNivel1 = new JButton("NIVEL 1");
 		JBNivel1.setBackground(Color.WHITE);
 		JBNivel1.setFont(new Font("Playbill", Font.BOLD, 80));

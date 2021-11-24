@@ -32,25 +32,25 @@ public class EnemigoNaranja extends Enemigo{
 		
 		for(int i =0; i<=movimientos.size()-1; i++) {	
 			int movAux = movimientos.get(i); 
-			if(movAux == Logica.getLogica().getCnsMOVER_DERECHA()&& movDerecha) {
+			if(movAux == miGrilla.getCnsMOVER_DERECHA()&& movDerecha) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX+ velocidad, posY),posicionAEstudiar);
 				if(disAux<=disMenor) {
 					disMenor= disAux; 
 					movFinal = movAux;
 				}
-			}else if(movAux == Logica.getLogica().getCnsMOVER_IZQUIERDA() && movIzquierda) {
+			}else if(movAux == miGrilla.getCnsMOVER_IZQUIERDA() && movIzquierda) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX-velocidad, posY),posicionAEstudiar);
 				if(disAux<=disMenor) {
 					disMenor= disAux; 
 					movFinal = movAux;
 				}
-			}else if(movAux== Logica.getLogica().getCnsMOVER_ARRIBA() && movArriba) {
+			}else if(movAux== miGrilla.getCnsMOVER_ARRIBA() && movArriba) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX, posY-velocidad),posicionAEstudiar);
 				if(disAux<=disMenor) {
 					disMenor= disAux; 
 					movFinal = movAux;
 				}
-			}else if(movAux == Logica.getLogica().getCnsMOVER_ABAJO() && movAbajo) {
+			}else if(movAux == miGrilla.getCnsMOVER_ABAJO() && movAbajo) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX, posY+velocidad),posicionAEstudiar);
 				if(disAux<=disMenor) {
 					disMenor= disAux; 
