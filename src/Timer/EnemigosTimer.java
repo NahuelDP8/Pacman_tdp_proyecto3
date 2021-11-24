@@ -9,11 +9,12 @@ public class EnemigosTimer extends Thread{
 	private MovimientosControler miControlador; 
 	private int sleepEnemigos;
 	private int cnsEnemigo; 
-	
+	private boolean enemigosEnEmergencia; 
 	public EnemigosTimer (MovimientosControler miC, int cnsEnem) {
 		miControlador = miC; 
 		sleepEnemigos = miControlador.getSleepGeneralEnemigos();  
-		this.cnsEnemigo = cnsEnem; 
+		this.cnsEnemigo = cnsEnem;
+		enemigosEnEmergencia =false; 
 		this.start();
 	} 
 	
@@ -21,11 +22,23 @@ public class EnemigosTimer extends Thread{
 		while (Thread.currentThread() == this) {
 	
 			try {
-				Thread.sleep(this.sleepEnemigos);
+				if(enemigosEnEmergencia) {
+					Thread.sleep((this.sleepEnemigos*80)/100);	
+				}else {
+					Thread.sleep(this.sleepEnemigos);
+				}
 				miControlador.realizarMovimiento(cnsEnemigo);
 			} catch(InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
 		}
+	}
+
+	public void desventajaEnemgios() {
+		enemigosEnEmergencia  = true; 
+	}
+	
+	public void normalizarEnemigos() {
+		enemigosEnEmergencia =false; 
 	}
 }

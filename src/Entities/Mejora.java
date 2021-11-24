@@ -18,4 +18,8 @@ abstract public class Mejora extends Entidad{
 	public int getVelocidad() {
 		return 0; 
 	}
+
+	public void setEntidad(EntidadGrafica object) {
+		miEntidad= null; 
+	}
 }

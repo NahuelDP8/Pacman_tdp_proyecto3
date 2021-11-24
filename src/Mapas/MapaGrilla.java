@@ -423,7 +423,9 @@ abstract public class MapaGrilla {
 	}
 	
 	public void comunicarControlPowerPellet() {
-		PowerPelletsControler controladorPowerPellet = new PowerPelletsControler(miNivel.sleepPowerPellets(), misEnemigos); 
+		controladorDeMovimientos.vajarVelocidadEnemigos();
+		PowerPelletsControler controladorPowerPellet = new PowerPelletsControler(miNivel.sleepPowerPellets(), misEnemigos);
+		controladorDeMovimientos.normalizarVelocidadEnemigos(); 
 	}
 
 	public void setFabrica(FactoryMapaGrilla fab) {

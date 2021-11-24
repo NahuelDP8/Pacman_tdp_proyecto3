@@ -49,8 +49,17 @@ public class MovimientosControler extends ThreadControl {
 		tEnemigos.interrupt();
 	}
 
+<<<<<<< HEAD
 	public void actualizarFoto() {
 		movProtagonistaC.actualizarFoto();
+=======
+	public void vajarVelocidadEnemigos() {
+		tEnemigos.desventajaEnemgios(); 
+	}
+
+	public void normalizarVelocidadEnemigos() {
+		tEnemigos.normalizarEnemigos();
+>>>>>>> 459574ab427fc7a8495f9c1bc285374563584e32
 		
 	}
 	

@@ -6,7 +6,7 @@ import Visitors.PuertaEnemigoVisitor;
 import Visitors.Visitor;
 import Mapas.MapaGrilla;
 
-public class PuertaEnemigo extends Entidad{
+public class PuertaEnemigo extends Estructura{
 	public PuertaEnemigo(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
 		super(p, anc, alt,img, grilla);
 		v = new PuertaEnemigoVisitor(this);  
@@ -24,12 +24,6 @@ public class PuertaEnemigo extends Entidad{
 
 	@Override
 	public int getMovimientoActual() {
-		return 0;
-	}
-
-	@Override
-	public int getVelocidad() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
