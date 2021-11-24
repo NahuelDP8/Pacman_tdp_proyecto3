@@ -39,21 +39,7 @@ abstract public class Personaje extends Entidad{
 	public int getVelocidad() {
 		return velocidad;
 	}
-<<<<<<< HEAD
-	public Personaje(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
-		super(p, anc, alt,img, grilla);
-		cargaPortal = 0;
-	}
-	
-	public int getEnergiaPortal() {
-		return cargaPortal; 
-	}
-	public int getMovimientoActual() {
-		return movimientoActual;
-	}
-=======
-	
->>>>>>> 459574ab427fc7a8495f9c1bc285374563584e32
+
 	public void actualizarFoto() {
 		miImagen = getImage();
 		miEntidad.setIcon(miImagen);
