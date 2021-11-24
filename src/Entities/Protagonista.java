@@ -2,7 +2,6 @@ package Entities;
 
 import javax.swing.ImageIcon;
 
-import Logic.Logica;
 import Visitors.ProtagonistaVisitor;
 import Visitors.Visitor;
 import Mapas.MapaGrilla; 
@@ -33,13 +32,13 @@ abstract public class Protagonista extends Personaje{
 	}
 	
 	public void realizarMovimiento() {
-		if(movimientoActual == Logica.getLogica().getCnsMOVER_ABAJO()) {
+		if(movimientoActual == miGrilla.getCnsMOVER_ABAJO()) {
 			posicion.setY(posicion.getY()+ velocidad);
-		}else if(movimientoActual == Logica.getLogica().getCnsMOVER_ARRIBA()) {
+		}else if(movimientoActual == miGrilla.getCnsMOVER_ARRIBA()) {
 			posicion.setY(posicion.getY()- velocidad);
-		}else if(movimientoActual == Logica.getLogica().getCnsMOVER_IZQUIERDA()) {
+		}else if(movimientoActual == miGrilla.getCnsMOVER_IZQUIERDA()) {
 			posicion.setX(posicion.getX()- velocidad);
-		}else if(movimientoActual == Logica.getLogica().getCnsMOVER_DERECHA()) {
+		}else if(movimientoActual == miGrilla.getCnsMOVER_DERECHA()) {
 			posicion.setX(posicion.getX()+ velocidad);
 		}
 		movimientoPrevio = movimientoActual;
@@ -50,25 +49,25 @@ abstract public class Protagonista extends Personaje{
 
 	public void moverAbajo() {
 		movimientoPrevio = movimientoActual;
-		movimientoActual = Logica.getLogica().getCnsMOVER_ABAJO();
+		movimientoActual = miGrilla.getCnsMOVER_ABAJO();
 		miGrilla.verificarMovimientoPosible();
 		colisiono = false;
 	}
 	public void moverArriba() {
 		movimientoPrevio = movimientoActual;
-		movimientoActual = Logica.getLogica().getCnsMOVER_ARRIBA();
+		movimientoActual = miGrilla.getCnsMOVER_ARRIBA();
 		miGrilla.verificarMovimientoPosible();
 		colisiono = false;
 	}
 	public void moverIzquierda() {
 		movimientoPrevio = movimientoActual;
-		movimientoActual = Logica.getLogica().getCnsMOVER_IZQUIERDA();
+		movimientoActual = miGrilla.getCnsMOVER_IZQUIERDA();
 		miGrilla.verificarMovimientoPosible();
 		colisiono = false;
 	}
 	public void moverDerecha() {
 		movimientoPrevio = movimientoActual;
-		movimientoActual = Logica.getLogica().getCnsMOVER_DERECHA();
+		movimientoActual = miGrilla.getCnsMOVER_DERECHA();
 		miGrilla.verificarMovimientoPosible();
 		colisiono = false;
 	}
@@ -123,8 +122,8 @@ abstract public class Protagonista extends Personaje{
 	public int getBombas() {
 		return bomba;
 	}
-	public void agregarBomba() {
-		bomba++;
+	public void agregarBomba(int b) {
+		bomba += b;
 	}
 	public void usarBomba() {
 		bomba--;

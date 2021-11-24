@@ -225,6 +225,7 @@ public class GUIMenu extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
+							
 							F_Mapa_Grilla=new FactoryMapaGrillaNaruto();
 							File MusicFile = new File(GUIMenu.configuration.getProperty("NarutoMusic"));
 							IniciarMusica(MusicFile);

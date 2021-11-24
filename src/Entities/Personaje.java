@@ -15,9 +15,9 @@ abstract public class Personaje extends Entidad{
 	
 	public ImageIcon getImage() {
 		ImageIcon img = null;
-		if(movimientoActual == Logica.getLogica().getCnsMOVER_IZQUIERDA() || movimientoActual == 0)
+		if(movimientoActual == miGrilla.getCnsMOVER_IZQUIERDA() || movimientoActual == 0)
 			img = imagenIzquierda;
-		else if(movimientoActual == Logica.getLogica().getCnsMOVER_DERECHA())
+		else if(movimientoActual == miGrilla.getCnsMOVER_DERECHA())
 			img = imagenDerecha;
 		else 
 			img = miImagen;
@@ -25,16 +25,16 @@ abstract public class Personaje extends Entidad{
 	}
 	
 	public int getIzquierda() {
-		return Logica.getLogica().getCnsMOVER_IZQUIERDA();
+		return miGrilla.getCnsMOVER_IZQUIERDA();
 	}
 	public int getDerecha() {
-		return Logica.getLogica().getCnsMOVER_DERECHA();
+		return miGrilla.getCnsMOVER_DERECHA();
 	}
 	public int getAbajo() {
-		return Logica.getLogica().getCnsMOVER_ABAJO();
+		return miGrilla.getCnsMOVER_ABAJO();
 	}
 	public int getArriba() {
-		return Logica.getLogica().getCnsMOVER_ARRIBA(); 
+		return miGrilla.getCnsMOVER_ARRIBA(); 
 	}
 	public int getVelocidad() {
 		return velocidad;

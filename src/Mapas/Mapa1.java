@@ -72,7 +72,8 @@ public class Mapa1 extends MapaGrilla {
 		Mejora m;
 		int x,y;
 		cantPuntos = 0;
-		agregarPowerPellets();/*
+		agregarPowerPellets();
+		/*
 		for(int i = 1; i<21;i++) {
 			for (int j = 0; j<22;j++) {
 				x = 9+i*24;
@@ -94,7 +95,7 @@ public class Mapa1 extends MapaGrilla {
 		 Enemigo naranja = fabricaEnem.crearNaranja(new PairTupla(posResurreccion.getX()+48,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
 		 this.misEnemigos.add(naranja);
 		 addEntidad(naranja.getEntidad());
-		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(posResurreccion.getX()+96,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
+		 Enemigo rosa = fabricaEnem.crearRosa(new PairTupla(posResurreccion.getX()+72,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
 		 this.misEnemigos.add(rosa);
 		 addEntidad(rosa.getEntidad());
 		 this.misEnemigos.add(rojo);
