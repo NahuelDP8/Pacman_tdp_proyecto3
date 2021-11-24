@@ -48,5 +48,14 @@ public class MovimientosControler extends ThreadControl {
 	public void parar() {
 		tEnemigos.interrupt();
 	}
+
+	public void vajarVelocidadEnemigos() {
+		tEnemigos.desventajaEnemgios(); 
+	}
+
+	public void normalizarVelocidadEnemigos() {
+		tEnemigos.normalizarEnemigos();
+		
+	}
 	
 }

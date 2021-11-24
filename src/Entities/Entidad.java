@@ -1,9 +1,7 @@
 package Entities;
 
 import java.awt.Shape;
-
 import javax.swing.ImageIcon;
-
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -45,11 +43,12 @@ abstract public class Entidad {
 	public void setImagen(ImageIcon miImagen) {
 		this.miImagen = miImagen;
 	}
+	
 	public ImageIcon getImagen() {
 		return miImagen;
 	}
 	
-	public void agregarEntidadGrafica() {
+	private void agregarEntidadGrafica() {
 		miEntidad = new EntidadGrafica();
 		miEntidad.setBounds(posicion.getX(), posicion.getY()+155, ancho, altura);
 		if(miImagen != null) {
@@ -66,6 +65,7 @@ abstract public class Entidad {
 	public int getX() {
 		return posicion.x;
 	}
+	
 	public int getY() {
 		return posicion.y;
 	}
@@ -73,32 +73,23 @@ abstract public class Entidad {
 	public PairTupla getPos() {
 		return posicion;
 	}
+	
 	public void setPos(PairTupla p) {
 		posicion = p;
-	}
-	public void setGrilla(MapaGrilla g) {
-		miGrilla = g;
 	}
 	
 	public Visitor getVisitor() {
 		return v;
 	}
 	
-
 	public EntidadGrafica getEntidad() {
 		return miEntidad;
 	}
+	
 	public void sacarEntidad(Entidad ent) {
 		miGrilla.sacarEntidad(ent);	
-	}
-	public void setEntidad(EntidadGrafica ent) {
-		miEntidad= ent;
-	} 	
+	}	
 
-	public void interactuarConProtagonista() {
-		
-	}
-	
 	abstract public void accept(Visitor v);
 	abstract public int getMovimientoActual(); 
 	abstract public int getVelocidad(); 

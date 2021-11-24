@@ -95,9 +95,6 @@ public abstract class Enemigo extends Personaje{
 		miEstado.realizarMovimiento();
 	}
 	
-	public int getMovimientoActual() {
-		return movimientoActual; 
-	} 
 	public void deboEscapar() {
 		miEstado.deboEscapar(); 
 	}
@@ -106,7 +103,7 @@ public abstract class Enemigo extends Personaje{
 		miEstado.deboPerseguir();
 	}
 	
-	protected double distanciaEntrePuntos(PairTupla A, PairTupla B) {
+	public double distanciaEntrePuntos(PairTupla A, PairTupla B) {
 		double x = Math.pow(B.getX()-A.getX(),2);
 		double y = Math.pow(B.getY()-A.getY(),2);
 		double distancia = Math.sqrt(x+y); 
@@ -141,7 +138,7 @@ public abstract class Enemigo extends Personaje{
 		return toReturn; 
 	}
 	
-	//Todos los enemigos a priori, tendrán el mismo mecanismo de escape, dependiendo de la posición de pacman 
+	//Todos los enemigos, tendrán el mismo mecanismo de escape, dependiendo de la posición de pacman 
 	public void realizarEscape() {
 		int movFinal = movimientoActual;
 		double disMayor = Double.MIN_VALUE;
