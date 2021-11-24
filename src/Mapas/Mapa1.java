@@ -75,7 +75,6 @@ public class Mapa1 extends MapaGrilla {
 		int x,y;
 		cantPuntos = 0;
 		agregarPowerPellets();
-		/*
 		for(int i = 1; i<21;i++) {
 			for (int j = 0; j<22;j++) {
 				x = 9+i*24;
@@ -85,7 +84,7 @@ public class Mapa1 extends MapaGrilla {
 					ubicarPunto(m);
 				}
 			}
-		}*/
+		}
 	}
 	protected void agregarFantasmas() {
 		
