@@ -13,6 +13,12 @@ abstract public class Protagonista extends Personaje{
 	protected boolean colisiono;
 	protected boolean comiendo;
 	protected int bomba;
+	protected ImageIcon imagenIzquierdaVelocidad;
+	protected ImageIcon imagenDerechaVelocidad;
+	protected ImageIcon imagenIzquierdaBomba;
+	protected ImageIcon imagenDerechaBomba;
+	protected ImageIcon imagenIzquierdaNormal;
+	protected ImageIcon imagenDerechaNormal;
 	
 	public Protagonista(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
 		super(p, anc, alt,img, grilla);
@@ -74,9 +80,6 @@ abstract public class Protagonista extends Personaje{
 	public void accept(Visitor v) {
 		v.visitProtagonista(this);
 	}
-	public int getMovimientoActual() {
-		return movimientoActual;
-	}
 	public int getMovimientoPrevio() {
 		return movimientoPrevio;
 	}
@@ -124,9 +127,12 @@ abstract public class Protagonista extends Personaje{
 	}
 	public void agregarBomba(int b) {
 		bomba += b;
+		fotoBomba();
 	}
 	public void usarBomba() {
 		bomba--;
+		if(bomba == 0)
+			fotoNormal();
 	}
 
 	public void setCantidadBombas(int b) {
@@ -134,7 +140,19 @@ abstract public class Protagonista extends Personaje{
 	}
 	public void setMovimiento(int i) {
 		movimientoActual = i;
+	}
 
+	public void fotoVelocidad() {
+		imagenIzquierda = imagenIzquierdaVelocidad;
+		imagenDerecha = imagenDerechaVelocidad;
+	}
+	public void fotoBomba() {
+		imagenIzquierda = imagenIzquierdaVelocidad;
+		imagenDerecha = imagenDerechaVelocidad;
+	}
+	public void fotoNormal() {
+		imagenIzquierda = imagenIzquierdaNormal;
+		imagenDerecha = imagenDerechaNormal;
 	}
 	
 }

@@ -13,5 +13,9 @@ public class MovimientoProtagonistaControler extends ThreadControl{
 	public void realizarMovimiento() {
 		miProtagonista.iniciarProcesoMovimiento(); 
 	}
+
+	public void actualizarFoto() {
+		miProtagonista.fotoNormal();
+	}
 	
 }

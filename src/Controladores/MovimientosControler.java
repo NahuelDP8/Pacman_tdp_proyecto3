@@ -48,5 +48,10 @@ public class MovimientosControler extends ThreadControl {
 	public void parar() {
 		tEnemigos.interrupt();
 	}
+
+	public void actualizarFoto() {
+		movProtagonistaC.actualizarFoto();
+		
+	}
 	
 }

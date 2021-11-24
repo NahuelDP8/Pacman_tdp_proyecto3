@@ -47,7 +47,9 @@ abstract public class Personaje extends Entidad{
 	public int getEnergiaPortal() {
 		return cargaPortal; 
 	}
-	
+	public int getMovimientoActual() {
+		return movimientoActual;
+	}
 	public void actualizarFoto() {
 		miImagen = getImage();
 		miEntidad.setIcon(miImagen);

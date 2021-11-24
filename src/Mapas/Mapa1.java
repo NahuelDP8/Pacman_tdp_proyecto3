@@ -9,7 +9,6 @@ import Entities.Mejora;
 import Entities.PairTupla;
 import Entities.Pared;
 import Entities.Portal;
-import Entities.Protagonista;
 import Entities.PuertaEnemigo;
 import Factories.FactoryEnemigo;
 import Factories.FactoryMapa;
@@ -24,6 +23,7 @@ public class Mapa1 extends MapaGrilla {
 	protected int altura;
 	protected Mejora fruta;
 	protected Mejora pocion;
+	protected Mejora bomba;
 	
 	public Mapa1(ImageIcon fondo, FactoryProtagonista fp, FactoryEnemigo fe, int ancho, int altura, Logica miLogica,Nivel lvl,FactoryMejora fM) {
 		super(fondo, fp, fe, ancho, altura, miLogica,lvl,fM);
@@ -48,7 +48,7 @@ public class Mapa1 extends MapaGrilla {
 				"0 0 500 12","0 528 500 12","0 0 16 237", "0 270 16 270", "483 0 18 237", "483 270 18 270"};//Bordes
 		construccionParedesLimitaciones();
 		
-		posInicialProtagonista = new PairTupla(189, 290);
+		posInicialProtagonista = new PairTupla(189, 86);
 		posResurreccion = new PairTupla(201,246);
 		posSalida = new PairTupla(221,186);
 		agregarMejoras();
@@ -59,10 +59,12 @@ public class Mapa1 extends MapaGrilla {
 		PuertaEnemigo puerta = new PuertaEnemigo(new PairTupla(219,218), 64, 12,this);
 		actualizarEntidad(puerta);
 
-		fruta = fabricaMejora.crearFruta(new PairTupla(260,191), 20, 20,this);
-		pocion = fabricaMejora.crearPocion(new PairTupla(230,196), 20, 20,this);
+		fruta = fabricaMejora.crearFruta(new PairTupla(300,300), 20, 20,this);
+		pocion = fabricaMejora.crearPocion(new PairTupla(200,300), 20, 20,this);
+		bomba = fabricaMejora.crearBomba(new PairTupla(250,300), 20, 20,this);
 		agregarFruta(); 
 		agregarPocion(); 
+		agregarBomba(); 
 
 		controladorDeMovimientos = new MovimientosControler(miNivel.sleepProtagonista(), miNivel.sleepFantasmas(), miProtagonista, misEnemigos,miLogica.getConstanteMOVER_ENEMIGOS(),miLogica.getConstanteMOVER_PROTAGONISTA() ); 
 		
@@ -142,6 +144,9 @@ public class Mapa1 extends MapaGrilla {
 	
 	public void agregarPocion() {
 		actualizarEntidad(pocion);	
+	}
+	public void agregarBomba() {
+		actualizarEntidad(bomba);	
 	}
 
 	@Override

@@ -16,6 +16,7 @@ public class SpeedPotionControler extends ThreadControl {
 
 	public void normalizarVelocidadPacman() {
 		ProtagonistaTimer.getProtagonistaTimer().actualizarSleepProtagonista(sleepGeneralProtagonista);
+		ProtagonistaTimer.getProtagonistaTimer().actualizarFoto();
 	}
 	
 	public void parar() {

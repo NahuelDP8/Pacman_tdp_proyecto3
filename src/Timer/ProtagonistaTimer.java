@@ -50,4 +50,9 @@ public class ProtagonistaTimer extends Thread {
 		miControlador = c;
 		
 	}
+
+	public void actualizarFoto() {
+		miControlador.actualizarFoto();
+		
+	}
 }

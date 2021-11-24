@@ -418,6 +418,7 @@ abstract public class MapaGrilla {
 	}
 
 	public void comunicarControlPrincipalSpeed(int velocidad) {
+		miProtagonista.fotoVelocidad();
 		SpeedPotionControler controladorPrincipalSpeed = new SpeedPotionControler(miNivel.sleepProtagonista(), miNivel.sleepSuperSpeedPocion(), velocidad);
 	}
 	
