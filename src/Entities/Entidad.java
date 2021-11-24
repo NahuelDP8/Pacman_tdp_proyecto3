@@ -89,7 +89,10 @@ abstract public class Entidad {
 	public void sacarEntidad(Entidad ent) {
 		miGrilla.sacarEntidad(ent);	
 	}	
-
+	
+	public void interactuarConProtagonista() {
+		
+	}
 	abstract public void accept(Visitor v);
 	abstract public int getMovimientoActual(); 
 	abstract public int getVelocidad(); 

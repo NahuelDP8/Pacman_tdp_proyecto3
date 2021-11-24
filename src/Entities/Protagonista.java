@@ -147,8 +147,8 @@ abstract public class Protagonista extends Personaje{
 		imagenDerecha = imagenDerechaVelocidad;
 	}
 	public void fotoBomba() {
-		imagenIzquierda = imagenIzquierdaVelocidad;
-		imagenDerecha = imagenDerechaVelocidad;
+		imagenIzquierda = imagenIzquierdaBomba;
+		imagenDerecha = imagenDerechaBomba;
 	}
 	public void fotoNormal() {
 		imagenIzquierda = imagenIzquierdaNormal;

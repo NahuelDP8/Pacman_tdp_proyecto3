@@ -51,6 +51,7 @@ public class MovimientosControler extends ThreadControl {
 
 	public void actualizarFoto() {
 		movProtagonistaC.actualizarFoto();
+	}
 		
 	public void vajarVelocidadEnemigos() {
 		tEnemigos.desventajaEnemgios(); 

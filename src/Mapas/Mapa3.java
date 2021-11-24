@@ -22,6 +22,7 @@ public class Mapa3 extends MapaGrilla {
 	protected int altura;
 	protected Mejora fruta;
 	protected Mejora pocion;
+	protected Mejora bomba;
 	
 	public Mapa3(ImageIcon fondo, FactoryProtagonista fp, FactoryEnemigo fe, int ancho, int altura, Logica miLogica,Nivel lvl,FactoryMejora fM) {
 		super(fondo, fp, fe, ancho, altura, miLogica,lvl,fM);
@@ -53,10 +54,12 @@ public class Mapa3 extends MapaGrilla {
 		//Agregamos la puerta de la zona de los enemigos
 		PuertaEnemigo puerta = new PuertaEnemigo(new PairTupla(339,326), 33, 12,this);
 		actualizarEntidad(puerta);
-		fruta = fabricaMejora.crearFruta(new PairTupla(260,191), 20, 20,this);
-		pocion = fabricaMejora.crearBomba(new PairTupla(230,196), 20, 20,this);
+		fruta = fabricaMejora.crearFruta(new PairTupla(390,400), 20, 20,this);
+		pocion = fabricaMejora.crearPocion(new PairTupla(320,400), 20, 20,this);
+		bomba = fabricaMejora.crearBomba(new PairTupla(250,400), 20, 20,this);
 		agregarFruta(); 
 		agregarPocion(); 
+		agregarBomba();
 		
 		controladorDeMovimientos = new MovimientosControler(miNivel.sleepProtagonista(), miNivel.sleepFantasmas(), miProtagonista, misEnemigos,miLogica.getConstanteMOVER_ENEMIGOS(),miLogica.getConstanteMOVER_PROTAGONISTA() ); 
 		
@@ -152,6 +155,9 @@ public class Mapa3 extends MapaGrilla {
 	
 	public void agregarPocion() {
 		actualizarEntidad(pocion);	
+	}
+	public void agregarBomba() {
+		actualizarEntidad(bomba);	
 	}
 
 	@Override

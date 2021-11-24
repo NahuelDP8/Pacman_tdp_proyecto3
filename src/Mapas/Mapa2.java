@@ -22,6 +22,7 @@ import Nivel.Nivel;
 public class Mapa2 extends MapaGrilla {
 	protected Mejora fruta;
 	protected Mejora pocion;
+	protected Mejora bomba;
 	
 	public Mapa2(ImageIcon fondo, FactoryProtagonista fp, FactoryEnemigo fe, int ancho, int altura, Logica miLogica,Nivel lvl,FactoryMejora fM) {
 		super(fondo, fp, fe, ancho, altura, miLogica,lvl,fM);
@@ -46,7 +47,7 @@ public class Mapa2 extends MapaGrilla {
 				"234 301 19 73","286 355 73 19","338 355 21 89","338 425 54 19", "234 407 19 37","286 407 19 90","338 477 107 19","426 425 19 72"//Esquina inferior derecha
 		};
 		construccionParedesLimitaciones();
-		posInicialProtagonista = new PairTupla(350, 10);
+		posInicialProtagonista = new PairTupla(322, 10);
 		posResurreccion = new PairTupla(230,222);
 		posSalida = new PairTupla(230,166);
 		agregarMejoras();
@@ -56,12 +57,17 @@ public class Mapa2 extends MapaGrilla {
 		//Agregamos la puerta de la zona de los enemigos
 		PuertaEnemigo puerta = new PuertaEnemigo(new PairTupla(228,198), 33, 12,this);
 		actualizarEntidad(puerta);
-		fruta = fabricaMejora.crearFruta(new PairTupla(280,166), 20, 20,this);
-		pocion = fabricaMejora.crearBomba(new PairTupla(230,166), 20, 20,this);
+		fruta = fabricaMejora.crearFruta(new PairTupla(280,270), 20, 20,this);
+		pocion = fabricaMejora.crearPocion(new PairTupla(200,270), 20, 20,this);
+		bomba = fabricaMejora.crearBomba(new PairTupla(240,270), 20, 20,this);
 		agregarFruta(); 
 		agregarPocion(); 
+		agregarBomba();
 		controladorDeMovimientos = new MovimientosControler(miNivel.sleepProtagonista(), miNivel.sleepFantasmas(), miProtagonista, misEnemigos,miLogica.getConstanteMOVER_ENEMIGOS(),miLogica.getConstanteMOVER_PROTAGONISTA() ); 
 		
+	}
+	private void agregarBomba() {
+		actualizarEntidad(bomba);
 	}
 	protected void agregarMejoras() {
 		Mejora m;
