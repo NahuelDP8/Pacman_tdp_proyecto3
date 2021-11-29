@@ -1,8 +1,10 @@
-package Entities;
+package EnemigosModoGoku;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import Mapas.MapaGrilla;
+import EnemigosGenerales.EnemigoRojo;
+import Entities.PairTupla; 
 
 public class ZombieBlinky extends EnemigoRojo{
 

@@ -1,6 +1,9 @@
-package Entities;
+package Improvements;
 
 import javax.swing.ImageIcon;
+import Entities.Entidad;
+import Entities.EntidadGrafica;
+import Entities.PairTupla;
 import Mapas.MapaGrilla; 
 
 abstract public class Mejora extends Entidad{

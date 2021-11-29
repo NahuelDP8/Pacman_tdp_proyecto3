@@ -2,16 +2,16 @@ package Factories;
 
 import javax.swing.ImageIcon;
 
-import Entities.BombasPocion;
-import Entities.Enemigo;
-import Entities.Explosion;
-import Entities.Fruta;
-import Entities.Mejora;
+import Improvements.BombasPocion;
+import EnemigosGenerales.Enemigo;
+import Improvements.Explosion;
+import Improvements.Fruta;
+import Improvements.Mejora;
 import Entities.PairTupla;
-import Entities.PocionVelocidad;
-import Entities.Protagonista;
-import Entities.Punto;
-import Entities.PuntoGrande;
+import Improvements.PocionVelocidad;
+import Protagonistas.Protagonista;
+import Improvements.Punto;
+import Improvements.PuntoGrande;
 import Logic.Logica;
 import Mapas.MapaGrilla;
 import Nivel.Nivel;

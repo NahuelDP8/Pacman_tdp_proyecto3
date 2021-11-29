@@ -1,9 +1,10 @@
-package Entities;
+package EnemigosGenerales;
 
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import Entities.PairTupla;
 import Mapas.MapaGrilla;
 
 public class EnemigoNaranja extends Enemigo{

@@ -1,7 +1,9 @@
-package Entities;
+package EnemigosModoGoku;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import EnemigosGenerales.EnemigoRosa;
+import Entities.PairTupla;
 import Mapas.MapaGrilla;
 
 public class ZombiePinky extends EnemigoRosa{

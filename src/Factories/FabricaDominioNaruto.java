@@ -1,15 +1,11 @@
 package Factories;
 
 import javax.swing.ImageIcon;
-
-import Entities.Enemigo;
-import Entities.Naruto;
-import Entities.NinjaBlinky;
-import Entities.NinjaClyde;
-import Entities.NinjaInky;
-import Entities.NinjaPinky;
+import EnemigosGenerales.Enemigo;
+import Protagonistas.Naruto;
+import EnemigosModoNaruto.*; 
 import Entities.PairTupla;
-import Entities.Protagonista;
+import Protagonistas.Protagonista;
 import Logic.Logica;
 import Mapas.Mapa1;
 import Mapas.Mapa2;

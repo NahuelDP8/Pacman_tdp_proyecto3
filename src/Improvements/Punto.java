@@ -1,10 +1,12 @@
-package Entities;
+package Improvements;
 
 import javax.swing.ImageIcon;
-
+import Entities.Entidad;
+import Entities.PairTupla;
 import Visitors.PuntoVisitor;
 import Visitors.Visitor;
 import Mapas.MapaGrilla; 
+
 public class Punto extends Mejora{
 
 	public Punto(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {

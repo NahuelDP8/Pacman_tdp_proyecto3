@@ -1,17 +1,17 @@
-package Entities;
+package EnemigosGenerales;
 
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import Entities.PairTupla;
 import Mapas.MapaGrilla;
 
-public class EnemigoAzul extends Enemigo{
- private Enemigo E_Rojo;
-	public EnemigoAzul(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla,Enemigo rojo,PairTupla posR,PairTupla posS) {
+public class EnemigoRosa extends Enemigo{
+
+	public EnemigoRosa(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla,PairTupla posR,PairTupla posS) {
 		super(p, anc, alt,img, grilla,posR, posS);
-		velocidad=4;
-		E_Rojo=rojo;
+		// TODO Auto-generated constructor stub
 	}
 	
 	public void perseguirProtagonista() {
@@ -21,18 +21,17 @@ public class EnemigoAzul extends Enemigo{
 		int posX = posicion.getX();
 		int posY = posicion.getY(); 
 		PairTupla posicionProtagonista = miGrilla.getPosicionActualProtagonista();
-		PairTupla posicionBlinky = E_Rojo.getPos();
 		int movimientoProtagonista = miGrilla.getMovimientoProtagonista();
 		int anchoProtagonista = miGrilla.getAnchoProtagonista();
-		//Inky persigue una posicion que depende de la posicion de Blinky y el protagonista.
-		PairTupla posicionAEstudiar = posicionAEstudiar(posicionProtagonista,movimientoProtagonista,anchoProtagonista,posicionBlinky);
+		//Pinky persigue una posicion adelante del protagonista.
+		PairTupla posicionAEstudiar = posicionAEstudiar(posicionProtagonista,movimientoProtagonista,anchoProtagonista);
 		
 		ArrayList<Integer> movimientos = this.movimientosAEstudiar();
 		miGrilla.realizarMovimientoFantasma(this, movimientos);
 		
 		for(int i =0; i<=movimientos.size()-1; i++) {	
 			int movAux = movimientos.get(i); 
-			if (movAux == miGrilla.getCnsMOVER_DERECHA() && movDerecha) {
+			if(movAux == miGrilla.getCnsMOVER_DERECHA() && movDerecha) {
 				disAux = distanciaEntrePuntos(new PairTupla(posX+ velocidad, posY),posicionAEstudiar);
 				if(disAux<=disMenor) {
 					disMenor= disAux; 
@@ -66,23 +65,26 @@ public class EnemigoAzul extends Enemigo{
 		//al finalizar siempre debemos setear nuevamente como válidas a todas las posiciones válidas
 	}
 
-	//Inky persigue una posición adelante que depende del protagonista y de Blinky.
-	//Gira 180 grados la distancia entre Blinky y el protagonista.
-	private PairTupla posicionAEstudiar(PairTupla pos, int movimiento, int ancho, PairTupla posicionBlinky) {
+	
+	//Pinky persigue una posición adelante del Protagonista (la posición dos veces su ancho delante del mismo), exceptuando cuando el protagonista va hacia arriba.
+	private PairTupla posicionAEstudiar(PairTupla pos, int movimiento, int ancho) {
 		int x = pos.getX();
 		int y = pos.getY();
 		
-		int xBlinky = posicionBlinky.getX();
-		int yBlinky = posicionBlinky.getY();
+		if(movimiento == miGrilla.getCnsMOVER_IZQUIERDA()) {
+			pos.setX(x-ancho*2);
+		}else if(movimiento == miGrilla.getCnsMOVER_DERECHA()){
+			pos.setX(x+ancho*2);
+		}else if(movimiento == miGrilla.getCnsMOVER_ARRIBA()){
+			//Arriba es la unica excepción, si Protagonista esta yendo hacia arriba,
+			//Pinky  persigue una posición hacia arriba y a la izquierda. 
+			pos.setY(y+ancho*2);
+			pos.setX(x-ancho);
+		}else if(movimiento == miGrilla.getCnsMOVER_ABAJO()){
+			pos.setY(y+ancho*2);
+		}
 		
-		int distanciaX = xBlinky - x;
-		int distanciaY = yBlinky - y;
-		
-		//De esta forma, se obtiene el punto tras girar 180 grados la distancia entre Blinky y protagonista.
-		int xFinal = x - distanciaX;
-		int yFinal = y - distanciaY;
-
-		return new PairTupla(xFinal,yFinal);
+		return pos;
 	}
 
 }

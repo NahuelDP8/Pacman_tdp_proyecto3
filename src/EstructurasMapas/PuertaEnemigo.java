@@ -1,7 +1,9 @@
 
-package Entities;
+package EstructurasMapas;
 
 import javax.swing.ImageIcon;
+
+import Entities.PairTupla;
 import Visitors.PuertaEnemigoVisitor;
 import Visitors.Visitor;
 import Mapas.MapaGrilla;

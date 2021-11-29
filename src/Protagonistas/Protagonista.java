@@ -1,7 +1,9 @@
-package Entities;
+package Protagonistas;
 
 import javax.swing.ImageIcon;
 
+import Entities.PairTupla;
+import Entities.Personaje;
 import Visitors.ProtagonistaVisitor;
 import Visitors.Visitor;
 import Mapas.MapaGrilla; 

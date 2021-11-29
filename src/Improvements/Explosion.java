@@ -1,9 +1,10 @@
-package Entities;
+package Improvements;
 
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+import Entities.PairTupla;
 import Mapas.MapaGrilla;
 import Visitors.ExplosionVisitor;
 import Visitors.Visitor;

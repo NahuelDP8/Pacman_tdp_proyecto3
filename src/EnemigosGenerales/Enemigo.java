@@ -1,6 +1,8 @@
-package Entities;
+package EnemigosGenerales;
 
 import EnemigosStates.*;
+import Entities.PairTupla;
+import Entities.Personaje;
 import Visitors.EnemigoVisitor;
 import Visitors.Visitor;
 import java.awt.Image;

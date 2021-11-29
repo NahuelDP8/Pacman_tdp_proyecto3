@@ -1,10 +1,11 @@
-package Entities;
+package Improvements;
 
 import javax.swing.ImageIcon;
-
+import Entities.PairTupla;
 import Visitors.FrutaVisitor;
 import Visitors.Visitor;
 import Mapas.MapaGrilla; 
+
 public class Fruta extends Mejora{
 
 	private final static int miPuntaje = 300; 

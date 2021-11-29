@@ -1,7 +1,7 @@
-package Entities;
+package Improvements;
 
 import javax.swing.ImageIcon;
-
+import Entities.PairTupla;
 import Visitors.Visitor;
 import Mapas.MapaGrilla;
 

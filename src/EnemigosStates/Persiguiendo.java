@@ -3,7 +3,7 @@ package EnemigosStates;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import Entities.Enemigo;
+import EnemigosGenerales.Enemigo;
 
 public class Persiguiendo implements EstadoEnemigo{
 	protected Enemigo miEnemigo; 

@@ -1,7 +1,9 @@
-package Entities;
+package Protagonistas;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
+
+import Entities.PairTupla;
 import Mapas.MapaGrilla; 
 public class Goku extends Protagonista{
 	private ImageIcon imgDerechaNormal=new ImageIcon(Naruto.class.getResource("/Imagenes/goku.gif"));

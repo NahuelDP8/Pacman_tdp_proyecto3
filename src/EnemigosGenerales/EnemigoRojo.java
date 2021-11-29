@@ -1,9 +1,9 @@
-package Entities;
-
+package EnemigosGenerales;
 
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
+import Entities.PairTupla;
 import Mapas.MapaGrilla;
 
 public class EnemigoRojo extends Enemigo{
@@ -11,7 +11,6 @@ public class EnemigoRojo extends Enemigo{
 	public EnemigoRojo(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla,PairTupla posR,PairTupla posS) {
 		super(p, anc, alt,img, grilla,posR, posS);
 	}
-	
 	
 	public void perseguirProtagonista() {
 		int movFinal = movimientoActual;

@@ -2,13 +2,11 @@ package Mapas;
 
 import javax.swing.ImageIcon;
 import Controladores.MovimientosControler;
-import Entities.Enemigo;
+import EnemigosGenerales.Enemigo;
 import Entities.Entidad;
-import Entities.Mejora;
+import Improvements.Mejora; 
 import Entities.PairTupla;
-import Entities.Pared;
-import Entities.Portal;
-import Entities.PuertaEnemigo;
+import EstructurasMapas.*; 
 import Factories.FabricaDominio;
 import Logic.Logica;
 import Nivel.Nivel;

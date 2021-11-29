@@ -1,7 +1,10 @@
-package Entities;
+package EnemigosModoNaruto;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
+
+import EnemigosGenerales.EnemigoRojo;
+import Entities.PairTupla;
 import Mapas.MapaGrilla;
 
 public class NinjaBlinky extends EnemigoRojo{
