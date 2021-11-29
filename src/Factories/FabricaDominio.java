@@ -17,9 +17,9 @@ import Mapas.MapaGrilla;
 import Nivel.Nivel;
 
 abstract public class FabricaDominio {
-	protected ImageIcon fondo1=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/fondo.png"));
-	protected ImageIcon fondo2=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/fondo2.png"));
-	protected ImageIcon fondo3=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/fondo3.png"));
+	protected ImageIcon fondo1=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Mapa/fondo.png"));
+	protected ImageIcon fondo2=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Mapa/fondo2.png"));
+	protected ImageIcon fondo3=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Mapa/fondo3.png"));
 	protected ImageIcon imagenPunto;
 	protected ImageIcon imagenBomba;
 	protected ImageIcon imagenExplosion;

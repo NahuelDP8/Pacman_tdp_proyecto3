@@ -6,10 +6,10 @@ import Mapas.MapaGrilla;
 
 public class NinjaPinky extends EnemigoRosa{
 
-	private ImageIcon imgDerecha=new ImageIcon(NinjaPinky.class.getResource("/Imagenes/kaguyaRun.gif"));
-	private ImageIcon imgIzquierda=new ImageIcon(NinjaPinky.class.getResource("/Imagenes/kaguyaRunIzquierda.gif"));
-	private ImageIcon imgA=new ImageIcon(NinjaPinky.class.getResource("/Imagenes/ninjaAzul.gif"));
-	private ImageIcon imgM=new ImageIcon(NinjaPinky.class.getResource("/Imagenes/ninjaMuerte.gif"));
+	private ImageIcon imgDerecha=new ImageIcon(NinjaPinky.class.getResource("/Imagenes/Naruto/Enemigos/kaguyaRun.gif"));
+	private ImageIcon imgIzquierda=new ImageIcon(NinjaPinky.class.getResource("/Imagenes/Naruto/Enemigos/kaguyaRunIzquierda.gif"));
+	private ImageIcon imgA=new ImageIcon(NinjaPinky.class.getResource("/Imagenes/Naruto/Enemigos/ninjaAzul.gif"));
+	private ImageIcon imgM=new ImageIcon(NinjaPinky.class.getResource("/Imagenes/Naruto/Enemigos/ninjaMuerte.gif"));
 	/*
 	 * Escalado de Imagenes dentro del constructor
 	 */

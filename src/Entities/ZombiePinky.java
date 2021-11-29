@@ -6,10 +6,10 @@ import Mapas.MapaGrilla;
 
 public class ZombiePinky extends EnemigoRosa{
 
-	private ImageIcon imgDerecha=new ImageIcon(ZombiePinky.class.getResource("/Imagenes/zombie4.gif"));
-	private ImageIcon imgIzquierda=new ImageIcon(ZombiePinky.class.getResource("/Imagenes/zombie4Izquierda.gif"));
-	private ImageIcon imgA=new ImageIcon(ZombiePinky.class.getResource("/Imagenes/zombieAzul.png"));
-	private ImageIcon imgM=new ImageIcon(ZombiePinky.class.getResource("/Imagenes/zombieMuerte.gif"));
+	private ImageIcon imgDerecha=new ImageIcon(ZombiePinky.class.getResource("/Imagenes/Goku/Enemigos/zombie4.gif"));
+	private ImageIcon imgIzquierda=new ImageIcon(ZombiePinky.class.getResource("/Imagenes/Goku/Enemigos/zombie4Izquierda.gif"));
+	private ImageIcon imgA=new ImageIcon(ZombiePinky.class.getResource("/Imagenes/Goku/Enemigos/zombieAzul.png"));
+	private ImageIcon imgM=new ImageIcon(ZombiePinky.class.getResource("/Imagenes/Goku/Enemigos/zombieMuerte.gif"));
 	/*
 	 * Escalado de Imagenes dentro del constructor
 	 */

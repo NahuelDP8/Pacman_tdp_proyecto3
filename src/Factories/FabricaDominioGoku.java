@@ -17,21 +17,21 @@ import Entities.Enemigo;
 import Entities.Goku;
 
 public class FabricaDominioGoku extends FabricaDominio{
-	private ImageIcon cargando=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/gokuCargando.gif"));
-	private ImageIcon imagenGoku=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/goku.gif"));
+	private ImageIcon cargando=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Protagonista/gokuCargando.gif"));
+	private ImageIcon imagenGoku=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Protagonista/goku.gif"));
 	
-	private ImageIcon imgRoja=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/zombie.gif"));
-	private ImageIcon imgRosa=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/zombie2.gif"));
-	private ImageIcon imgAzul=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/zombie3.gif"));
-	private ImageIcon imgNaranja=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/zombie4.gif"));
+	private ImageIcon imgRoja=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Enemigo/zombie.gif"));
+	private ImageIcon imgRosa=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Enemigo/zombie2.gif"));
+	private ImageIcon imgAzul=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Enemigo/zombie3.gif"));
+	private ImageIcon imgNaranja=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Enemigo/zombie4.gif"));
 	
 	public FabricaDominioGoku(){
-		imagenPunto=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/gokuPunto.png"));
-		imagenBomba=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/gokuExplosivo.png"));
-		imagenExplosion=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/gokuExplosion.gif"));
-		imagenFruta=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/gokuFruta.png"));
-		imagenPocion=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/gokuPocion.png"));
-		imagenPuntoGrande=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/gokuPowerPellets.png"));
+		imagenPunto=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Mejora/gokuPunto.png"));
+		imagenBomba=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Mejora/gokuExplosivo.png"));
+		imagenExplosion=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Mejora/gokuExplosion.gif"));
+		imagenFruta=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Mejora/gokuFruta.png"));
+		imagenPocion=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Mejora/gokuPocion.png"));
+		imagenPuntoGrande=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Mejora/gokuPowerPellets.png"));
 	}
 	@Override
 	public MapaGrilla crearMapa(Logica logica, Nivel lvl) {

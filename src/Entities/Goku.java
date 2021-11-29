@@ -4,12 +4,12 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import Mapas.MapaGrilla; 
 public class Goku extends Protagonista{
-	private ImageIcon imgDerechaNormal=new ImageIcon(Naruto.class.getResource("/Imagenes/goku.gif"));
-	private ImageIcon imgIzquierdaNormal=new ImageIcon(Naruto.class.getResource("/Imagenes/gokuIzquierda.gif"));
-	private ImageIcon imgDerechaBomba=new ImageIcon(Naruto.class.getResource("/Imagenes/gokuBomba.gif"));
-	private ImageIcon imgIzquierdaBomba=new ImageIcon(Naruto.class.getResource("/Imagenes/gokuBombaIzquierda.gif"));
-	private ImageIcon imgDerechaVelocidad=new ImageIcon(Naruto.class.getResource("/Imagenes/gokuVelocidad.gif"));
-	private ImageIcon imgIzquierdaVelocidad=new ImageIcon(Naruto.class.getResource("/Imagenes/gokuVelocidadIzquierda.gif"));
+	private ImageIcon imgDerechaNormal=new ImageIcon(Naruto.class.getResource("/Imagenes/Goku/Protagonista/goku.gif"));
+	private ImageIcon imgIzquierdaNormal=new ImageIcon(Naruto.class.getResource("/Imagenes/Goku/Protagonista/gokuIzquierda.gif"));
+	private ImageIcon imgDerechaBomba=new ImageIcon(Naruto.class.getResource("/Imagenes/Goku/Protagonista/gokuBomba.gif"));
+	private ImageIcon imgIzquierdaBomba=new ImageIcon(Naruto.class.getResource("/Imagenes/Goku/Protagonista/gokuBombaIzquierda.gif"));
+	private ImageIcon imgDerechaVelocidad=new ImageIcon(Naruto.class.getResource("/Imagenes/Goku/Protagonista/gokuVelocidad.gif"));
+	private ImageIcon imgIzquierdaVelocidad=new ImageIcon(Naruto.class.getResource("/Imagenes/Goku/Protagonista/gokuVelocidadIzquierda.gif"));
 	
 	public Goku(PairTupla p, int anc, int alt,ImageIcon img, MapaGrilla grilla) {
 		super(p, anc, alt,img, grilla);

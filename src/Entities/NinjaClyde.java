@@ -5,10 +5,10 @@ import javax.swing.ImageIcon;
 import Mapas.MapaGrilla;
 
 public class NinjaClyde extends EnemigoNaranja{
-	private ImageIcon imgDerecha=new ImageIcon(NinjaClyde.class.getResource("/Imagenes/danzoRun.gif"));
-	private ImageIcon imgIzquierda=new ImageIcon(NinjaClyde.class.getResource("/Imagenes/danzoRunIzquierda.gif"));
-	private ImageIcon imgA=new ImageIcon(NinjaClyde.class.getResource("/Imagenes/ninjaAzul.gif"));
-	private ImageIcon imgM=new ImageIcon(NinjaClyde.class.getResource("/Imagenes/ninjaMuerte.gif"));
+	private ImageIcon imgDerecha=new ImageIcon(NinjaClyde.class.getResource("/Imagenes/Naruto/Enemigos/danzoRun.gif"));
+	private ImageIcon imgIzquierda=new ImageIcon(NinjaClyde.class.getResource("/Imagenes/Naruto/Enemigos/danzoRunIzquierda.gif"));
+	private ImageIcon imgA=new ImageIcon(NinjaClyde.class.getResource("/Imagenes/Naruto/Enemigos/ninjaAzul.gif"));
+	private ImageIcon imgM=new ImageIcon(NinjaClyde.class.getResource("/Imagenes/Naruto/Enemigos/ninjaMuerte.gif"));
 	
 	/*
 	 * Escalado de Imagenes dentro del constructor
