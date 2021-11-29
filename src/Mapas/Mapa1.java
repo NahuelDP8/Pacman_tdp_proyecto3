@@ -82,25 +82,24 @@ public class Mapa1 extends MapaGrilla {
 	protected void agregarFantasmas() {
 		
 		 Enemigo rojo = fabrica.crearRojo(new PairTupla(posResurreccion.getX(),posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
-		
-		 Enemigo azul = fabrica.crearAzul(new PairTupla(posResurreccion.getX()+24,posResurreccion.getY()),30,30,this,rojo,posResurreccion,posSalida);
+		 addEntidad(rojo.getEntidad());
+		 this.misEnemigos.add(rojo);
+		 Enemigo azul = fabrica.crearAzul(new PairTupla(posResurreccion.getX()+20,posResurreccion.getY()),30,30,this,rojo,posResurreccion,posSalida);
 		 this.misEnemigos.add(azul);
 		 addEntidad(azul.getEntidad());
-		 Enemigo naranja = fabrica.crearNaranja(new PairTupla(posResurreccion.getX()+48,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
+		 Enemigo naranja = fabrica.crearNaranja(new PairTupla(posResurreccion.getX()+40,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
 		 this.misEnemigos.add(naranja);
 		 addEntidad(naranja.getEntidad());
-		 Enemigo rosa = fabrica.crearRosa(new PairTupla(posResurreccion.getX()+72,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
+		 Enemigo rosa = fabrica.crearRosa(new PairTupla(posResurreccion.getX()+60,posResurreccion.getY()),30,30,this,posResurreccion,posSalida);
 		 this.misEnemigos.add(rosa);
 		 addEntidad(rosa.getEntidad());
-		 this.misEnemigos.add(rojo);
-		 addEntidad(rojo.getEntidad());
 	}
 	public void encerrarFantasmas() {
 		PairTupla pos = new PairTupla(posResurreccion.getX(),posResurreccion.getY());
 		for(Enemigo e:misEnemigos) {
 			e.encerrar();
 			e.setPos(new PairTupla(pos.getX(),pos.getY()));
-			pos.setX(pos.getX() + 24);
+			pos.setX(pos.getX() + 20);
 		
 			actualizarEntidad(e);
 		}
