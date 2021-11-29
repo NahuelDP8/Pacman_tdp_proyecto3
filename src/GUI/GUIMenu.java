@@ -147,7 +147,6 @@ public class GUIMenu extends JFrame {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				actualizarArchivo();
-				System.out.println("window closing top size"+topPlayers.size());
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
