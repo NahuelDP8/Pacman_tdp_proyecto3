@@ -20,10 +20,10 @@ public class FabricaDominioGoku extends FabricaDominio{
 	private ImageIcon cargando=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Protagonista/gokuCargando.gif"));
 	private ImageIcon imagenGoku=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Protagonista/goku.gif"));
 	
-	private ImageIcon imgRoja=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Enemigo/zombie.gif"));
-	private ImageIcon imgRosa=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Enemigo/zombie2.gif"));
-	private ImageIcon imgAzul=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Enemigo/zombie3.gif"));
-	private ImageIcon imgNaranja=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Enemigo/zombie4.gif"));
+	private ImageIcon imgRoja=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Enemigos/zombie.gif"));
+	private ImageIcon imgRosa=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Enemigos/zombie2.gif"));
+	private ImageIcon imgAzul=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Enemigos/zombie3.gif"));
+	private ImageIcon imgNaranja=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Enemigos/zombie4.gif"));
 	
 	public FabricaDominioGoku(){
 		imagenPunto=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Mejora/gokuPunto.png"));
