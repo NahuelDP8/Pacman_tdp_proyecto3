@@ -97,6 +97,5 @@ public class GUI_Defeat extends JFrame{
 		FotoEscalada = new ImageIcon(EscalarFoto);
 		JLWinnerImage.setIcon(FotoEscalada);
 		PGanaste.add(JLWinnerImage);
-
 	}
 }
