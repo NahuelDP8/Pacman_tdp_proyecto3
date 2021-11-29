@@ -2,7 +2,6 @@ package Timer;
 
 
 import Controladores.MovimientosControler;
-import Logic.Logica;
 
 
 public class EnemigosTimer extends Thread{

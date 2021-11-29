@@ -4,7 +4,6 @@ package Entities;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
-import Logic.Logica;
 import Mapas.MapaGrilla;
 
 public class EnemigoRojo extends Enemigo{

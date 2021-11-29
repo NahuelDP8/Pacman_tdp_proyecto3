@@ -1,7 +1,6 @@
 package Timer;
 
 import Controladores.MovimientosControler;
-import Logic.Logica;
 
 public class ProtagonistaTimer extends Thread {
 	private MovimientosControler miControlador; 

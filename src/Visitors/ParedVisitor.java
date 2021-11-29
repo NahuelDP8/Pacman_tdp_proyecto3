@@ -13,10 +13,8 @@ import Entities.Punto;
 import Entities.PuntoGrande;
 
 public class ParedVisitor implements Visitor {
-	private Entidad miEntidad;
 	
 	public ParedVisitor(Entidad ent) {
-		miEntidad = ent;
 	}
 	
 	@Override

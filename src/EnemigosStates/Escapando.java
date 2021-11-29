@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import Entities.Enemigo;
-import Factories.FactoryMapaGrillaNaruto;
 
 public class Escapando implements EstadoEnemigo{
 	

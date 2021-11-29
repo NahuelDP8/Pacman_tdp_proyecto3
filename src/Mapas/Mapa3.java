@@ -8,7 +8,6 @@ import Entities.Mejora;
 import Entities.PairTupla;
 import Entities.Pared;
 import Entities.Portal;
-import Entities.Protagonista;
 import Entities.PuertaEnemigo;
 import Factories.FactoryEnemigo;
 import Factories.FactoryMapa;

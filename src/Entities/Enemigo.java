@@ -1,8 +1,6 @@
 package Entities;
 
 import EnemigosStates.*;
-import Factories.FactoryMapaGrillaNaruto;
-import Logic.Logica;
 import Visitors.EnemigoVisitor;
 import Visitors.Visitor;
 import java.awt.Image;

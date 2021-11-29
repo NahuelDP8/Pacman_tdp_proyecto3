@@ -8,7 +8,6 @@ import Entities.Fruta;
 import Mapas.MapaGrilla;
 import Entities.Mejora;
 import Entities.PairTupla;
-import Entities.Pocion;
 import Entities.PocionVelocidad;
 import Entities.Punto;
 import Entities.PuntoGrande;

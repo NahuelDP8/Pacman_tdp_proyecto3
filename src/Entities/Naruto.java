@@ -4,7 +4,6 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-import Factories.FactoryMapaGrillaNaruto;
 import Mapas.MapaGrilla;
 
 public class Naruto extends Protagonista{

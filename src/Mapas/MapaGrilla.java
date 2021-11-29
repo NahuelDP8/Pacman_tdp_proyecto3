@@ -42,6 +42,8 @@ abstract public class MapaGrilla {
 	protected MovimientosControler controladorDeMovimientos; 
 	protected PowerPelletsControler controladorPowerPellets;
 	protected SpeedPotionControler controladorPocionVelocidad; 
+	protected SpeedPotionControler controladorPrincipalSpeed;
+	protected PowerPelletsControler controladorPowerPellet;
 	protected BombasControler controladorBombas; 
 	protected int cantPuntos;
 	protected String[] paredes;
@@ -326,8 +328,6 @@ abstract public class MapaGrilla {
 		}	
 	}
 
-	protected abstract void nivelSiguiente(Nivel miNivel);
-
 	protected void agregarPowerPellets() {
 		Mejora m;
 		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,20),22,22,this);
@@ -419,12 +419,12 @@ abstract public class MapaGrilla {
 
 	public void comunicarControlPrincipalSpeed(int velocidad) {
 		miProtagonista.fotoVelocidad();
-		SpeedPotionControler controladorPrincipalSpeed = new SpeedPotionControler(miNivel.sleepProtagonista(), miNivel.sleepSuperSpeedPocion(), velocidad);
+		controladorPrincipalSpeed = new SpeedPotionControler(miNivel.sleepProtagonista(), miNivel.sleepSuperSpeedPocion(), velocidad);
 	}
 	
 	public void comunicarControlPowerPellet() {
 		controladorDeMovimientos.vajarVelocidadEnemigos();
-		PowerPelletsControler controladorPowerPellet = new PowerPelletsControler(miNivel.sleepPowerPellets(), misEnemigos);
+		controladorPowerPellet = new PowerPelletsControler(miNivel.sleepPowerPellets(), misEnemigos);
 		controladorDeMovimientos.normalizarVelocidadEnemigos(); 
 	}
 
@@ -461,4 +461,5 @@ abstract public class MapaGrilla {
 	public abstract FactoryMapa mapaSiguiente();
 	abstract protected void construccionParedesLimitaciones();
 	abstract protected void agregarMejoras();
+	protected abstract void nivelSiguiente(Nivel miNivel);
 }

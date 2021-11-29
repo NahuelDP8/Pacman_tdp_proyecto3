@@ -16,7 +16,7 @@ public class AudioPlayer{
         		 AudioInputStream audioIStream = AudioSystem.getAudioInputStream(audioFile);
         		 clip = AudioSystem.getClip();
         		 clip.open(audioIStream);
-        		 clip.loop(clip.LOOP_CONTINUOUSLY);
+        		 clip.loop(Clip.LOOP_CONTINUOUSLY);
         	 }else
         		 System.out.println("Esta Vacio");
         	
@@ -39,7 +39,7 @@ public class AudioPlayer{
     }
     
     private void playMusic() {
-        clip.loop(clip.LOOP_CONTINUOUSLY);
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
     	clip.setMicrosecondPosition(MSecondPosition);
     }
     

@@ -13,10 +13,8 @@ import Entities.Punto;
 import Entities.PuntoGrande;
 
 public class PuertaEnemigoVisitor implements Visitor {
-	private Entidad miEntidad;
 	
 	public PuertaEnemigoVisitor(Entidad ent) {
-		miEntidad = ent;
 	}
 	
 	@Override

@@ -46,7 +46,6 @@ public class Persiguiendo implements EstadoEnemigo{
 	public void interactuarConProtagonista() {
 		miEnemigo.notificarMuerteProtagonista(); 
 	}
-
 	
 	public void deboPerseguir() {
 		
