@@ -10,13 +10,17 @@ public class AudioPlayer{
 	Clip clip;
 	
 	
-    public AudioPlayer( File audioFile ) {
+    public AudioPlayer( File audioFile ,boolean loop) {
         try{
         	 if(audioFile.exists()) {
         		 AudioInputStream audioIStream = AudioSystem.getAudioInputStream(audioFile);
         		 clip = AudioSystem.getClip();
         		 clip.open(audioIStream);
-        		 clip.loop(Clip.LOOP_CONTINUOUSLY);
+        		 if(loop) {
+        			 clip.loop(Clip.LOOP_CONTINUOUSLY);
+        		 }else {
+        			 clip.start();
+        		 }
         	 }else
         		 System.out.println("Esta Vacio");
         	
@@ -29,7 +33,7 @@ public class AudioPlayer{
     	if(clip.isActive()){
     		stopMusic();
     	}else {
-    		playMusic();
+    		playMusicContinuously();
     	}
     }
     
@@ -38,7 +42,7 @@ public class AudioPlayer{
     	MSecondPosition=clip.getMicrosecondPosition();
     }
     
-    private void playMusic() {
+    public void playMusicContinuously() {
         clip.loop(Clip.LOOP_CONTINUOUSLY);
     	clip.setMicrosecondPosition(MSecondPosition);
     }
