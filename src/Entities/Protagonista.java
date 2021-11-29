@@ -38,6 +38,7 @@ abstract public class Protagonista extends Personaje{
 	}
 	
 	public void realizarMovimiento() {
+		
 		if(movimientoActual == miGrilla.getCnsMOVER_ABAJO()) {
 			posicion.setY(posicion.getY()+ velocidad);
 		}else if(movimientoActual == miGrilla.getCnsMOVER_ARRIBA()) {

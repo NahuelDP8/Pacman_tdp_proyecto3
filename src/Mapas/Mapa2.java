@@ -124,7 +124,6 @@ public class Mapa2 extends MapaGrilla {
 		}
 	}
 	public void agregarPortales() {
-		//Hay que posicionarlos bien 
 		Portal portalIzquierda = new Portal(new PairTupla(0,165),1,30,null,this);
 		Portal portalDerecha  = new Portal(new PairTupla(487,165),1,30,null,this);
 		Portal portalIzquierda2 = new Portal(new PairTupla(0,340),1,30,null,this);

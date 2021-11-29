@@ -173,16 +173,17 @@ abstract public class MapaGrilla {
 		ancho = e.getAncho();
 		largo = e.getAltura();
 
-		if(movimiento != 0) {
-			int vel = e.getVelocidad();
-			if (movimiento == MOVER_ABAJO)
+		int vel = e.getVelocidad();
+		switch(movimiento) {
+			case MOVER_ABAJO:
 				y += vel;
-			else if(movimiento == MOVER_ARRIBA)
-				y-=vel;
-			else if(movimiento == MOVER_IZQUIERDA)
-				x-=vel;
-			else if(movimiento == MOVER_DERECHA)
-				x +=vel;
+			case MOVER_ARRIBA:
+				y -= vel;
+			case MOVER_IZQUIERDA:
+				x -= vel;
+			case MOVER_DERECHA:
+				x += vel;
+			case 0:
 		}
 		for(int i =0; i<zonas.length; i++) {
 			for(int j = 0; j<zonas[0].length; j++) {
@@ -204,16 +205,17 @@ abstract public class MapaGrilla {
 		an = e.getAncho();
 		al = e.getAltura();
 		
-		if(movimiento != 0) {
-			int vel = e.getVelocidad();
-			if (movimiento == MOVER_ABAJO)
+		int vel = e.getVelocidad();
+		switch(movimiento) {
+			case MOVER_ABAJO:
 				y += vel;
-			else if(movimiento == MOVER_ARRIBA)
-				y-=vel;
-			else if(movimiento == MOVER_IZQUIERDA)
-				x-=vel;
-			else if(movimiento == MOVER_DERECHA)
-				x +=vel;
+			case MOVER_ARRIBA:
+				y -= vel;
+			case MOVER_IZQUIERDA:
+				x -= vel;
+			case MOVER_DERECHA:
+				x += vel;
+			case 0:
 		}
 		ArrayList<Entidad> toReturn = new ArrayList<Entidad>();
 		for(Zona aux : l) {

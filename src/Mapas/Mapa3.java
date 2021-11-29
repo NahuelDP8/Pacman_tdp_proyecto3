@@ -131,7 +131,6 @@ public class Mapa3 extends MapaGrilla {
 		 addEntidad(rojo.getEntidad());
 	}
 	public void agregarPortales() {
-		//Hay que posicionarlos bien 
 		Portal portalIzquierda = new Portal(new PairTupla(0,335),1,30,null,this);
 		Portal portalDerecha  = new Portal(new PairTupla(679,335),1,30,null,this);
 		Portal portalArriba = new Portal(new PairTupla(336,0),30,1,null,this);

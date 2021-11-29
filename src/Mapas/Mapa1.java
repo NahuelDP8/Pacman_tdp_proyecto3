@@ -128,7 +128,6 @@ public class Mapa1 extends MapaGrilla {
 	}
 
 	public void agregarPortales() {
-		//Hay que posicionarlos bien 
 		Portal portalIzquierda = new Portal(new PairTupla(0,237),1,30,null,this);
 		zonas [2][0].setEntidad(portalIzquierda);
 		Portal portalDerecha  = new Portal(new PairTupla(499,237),1,30,null,this);

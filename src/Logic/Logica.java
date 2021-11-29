@@ -120,15 +120,6 @@ public class Logica {
 		miGUI.cargando(false);
 	}
 
-	public int getCteFantasma() {
-		// TODO Auto-generated method stub
-		return MOVER_ENEMIGO;
-	}
-	public int getCteProtagonista() {
-		// TODO Auto-generated method stub
-		return MOVER_PROTAGONISTA;
-	}
-
 	public void pintar() {
 		miGUI.pintar();
 		
