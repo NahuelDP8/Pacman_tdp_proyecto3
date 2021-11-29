@@ -17,8 +17,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.TitledBorder;
-
-import Factories.FabricaDominio;
 import Music.AudioPlayer;
 import ranking.TopPlayers;
 
@@ -28,7 +26,6 @@ public class GUI_Victory extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel ContentPanel;
-	private FabricaDominio F_Dominio;
 	private JPanel PGanaste;
 	private JLabel JLGanaste;
 	private JButton JBVolverAMenuG;
@@ -43,7 +40,6 @@ public class GUI_Victory extends JFrame{
 		initialized();
 	}
 	private void initialized() {
-		ImageIcon imagen;
 		Image EscalarFoto;
 		ImageIcon FotoEscalada;
 		getContentPane().setLayout(null);
