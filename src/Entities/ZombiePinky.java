@@ -1,18 +1,15 @@
 package Entities;
 
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
-
-import Factories.FactoryMapaGrillaNaruto;
 import Mapas.MapaGrilla;
 
 public class ZombiePinky extends EnemigoRosa{
 
-	private ImageIcon imgDerecha=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/zombie4.gif"));
-	private ImageIcon imgIzquierda=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/zombie4Izquierda.gif"));
-	private ImageIcon imgA=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/zombieAzul.png"));
-	private ImageIcon imgM=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/zombieMuerte.gif"));
+	private ImageIcon imgDerecha=new ImageIcon(ZombiePinky.class.getResource("/Imagenes/zombie4.gif"));
+	private ImageIcon imgIzquierda=new ImageIcon(ZombiePinky.class.getResource("/Imagenes/zombie4Izquierda.gif"));
+	private ImageIcon imgA=new ImageIcon(ZombiePinky.class.getResource("/Imagenes/zombieAzul.png"));
+	private ImageIcon imgM=new ImageIcon(ZombiePinky.class.getResource("/Imagenes/zombieMuerte.gif"));
 	/*
 	 * Escalado de Imagenes dentro del constructor
 	 */

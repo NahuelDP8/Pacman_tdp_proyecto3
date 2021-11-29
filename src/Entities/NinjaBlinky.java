@@ -1,17 +1,14 @@
 package Entities;
 
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
-
-import Factories.FactoryMapaGrillaNaruto;
 import Mapas.MapaGrilla;
 
 public class NinjaBlinky extends EnemigoRojo{
 	private ImageIcon imgDerecha=new ImageIcon(NinjaBlinky.class.getResource("/Imagenes/madaraRun.gif"));
 	private ImageIcon imgIzquierda=new ImageIcon(NinjaBlinky.class.getResource("/Imagenes/madaraRunIzquierda.gif"));
-	private ImageIcon imgA=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/ninjaAzul.gif"));
-	private ImageIcon imgM=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/ninjaMuerte.gif"));
+	private ImageIcon imgA=new ImageIcon(NinjaBlinky.class.getResource("/Imagenes/ninjaAzul.gif"));
+	private ImageIcon imgM=new ImageIcon(NinjaBlinky.class.getResource("/Imagenes/ninjaMuerte.gif"));
 	
 	/*
 	 * Escalado de Imagenes

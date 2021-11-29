@@ -1,5 +1,9 @@
 package Nivel;
 
+import Factories.FabricaDominio;
+import Logic.Logica;
+import Mapas.MapaGrilla;
+
 public class Nivel3 extends Nivel{
 	public Nivel3() {
 	}
@@ -40,5 +44,9 @@ public class Nivel3 extends Nivel{
 	@Override
 	public int cantidadBombas() {
 		return 3;
+	}
+	@Override
+	public MapaGrilla mapa(FabricaDominio f,Logica log) {
+		return f.crearMapa3(log, this);
 	}
 }

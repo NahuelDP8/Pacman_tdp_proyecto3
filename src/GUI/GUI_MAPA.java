@@ -13,8 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 import Entities.EntidadGrafica;
-import Factories.FactoryMapa;
-import Factories.FactoryMapaGrilla;
+import Factories.FabricaDominio;
 import Logic.Logica;
 import Music.AudioPlayer;
 import Nivel.Nivel;
@@ -66,13 +65,13 @@ public class GUI_MAPA{
 	/**
 	 * Create the application.
 	 */
-	public GUI_MAPA(FactoryMapaGrilla f, Nivel nivel,FactoryMapa map,String nom, TopPlayers TP,AudioPlayer audioaux) {
+	public GUI_MAPA( Nivel nivel,FabricaDominio f,String nom, TopPlayers TP,AudioPlayer audioaux) {
 		cargando=f.getImagenCargando();
 		initialize();
 		JLNombre.setText("Nombre: "+ nom);
 		JLNivel.setText("Nivel: "+ nivel.getNivel());
 		topPlayers=TP;
-		log = Logica.getLogic(this, f, nivel,map);
+		log = Logica.getLogic(this, nivel,f);
 		audio = audioaux;
 		topPlayersActualizado=false;
 		

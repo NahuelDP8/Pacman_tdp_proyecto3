@@ -9,33 +9,32 @@ import Timer.Timer;
 import javax.swing.ImageIcon;
 
 import Entities.EntidadGrafica;
-import Factories.FactoryMapa;
-import Factories.FactoryMapaGrilla;
+import Factories.FabricaDominio;
 
 public class Logica {
 	private static Logica logic;
 	private GUI_MAPA miGUI;
 	private MapaGrilla miMapa;
-	protected FactoryMapaGrilla miFabrica;
+	protected FabricaDominio miFabrica;
 	protected Timer miReloj;
 	protected Nivel miNivel;
 	protected final int MOVER_PROTAGONISTA = 1;
 	protected final int MOVER_ENEMIGO= 0;
 	
-	private Logica(GUI_MAPA g, FactoryMapaGrilla f, Nivel n,FactoryMapa map) {
+	private Logica(GUI_MAPA g, Nivel n,FabricaDominio f) {
 		miGUI = g;
 		miFabrica = f;
 		miNivel = n;
-		miMapa = f.crearMapa(this, n, map);
+		miMapa = f.crearMapa(this, n);
 		miMapa.setFabrica(miFabrica);
 		miMapa.setNivel(n);
 		n.setMapa(miMapa);
 		miReloj = new Timer(this);
 	}
 	
-	public static Logica getLogic(GUI_MAPA g, FactoryMapaGrilla f, Nivel n,FactoryMapa map) {
+	public static Logica getLogic(GUI_MAPA g,Nivel n,FabricaDominio f) {
 		if(logic == null) 
-			logic = new Logica(g,f,n,map);
+			logic = new Logica(g,n,f);
 		return logic;
 	}
 	public static Logica getLogica() {
@@ -113,7 +112,7 @@ public class Logica {
 	public void nivelSiguiente(Nivel n) {
 		miGUI.cargando(true);
 		miNivel = n.nivelSiguiente();
-		miMapa = miFabrica.crearMapa(this, n, miMapa.mapaSiguiente());
+		miMapa = miFabrica.crearMapa(this, n);
 		miNivel.setMapa(miMapa);
 		miGUI.setJLNivel(miNivel.getNivel());
 		miGUI.reinicioDVidas();

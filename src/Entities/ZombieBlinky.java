@@ -1,10 +1,7 @@
 package Entities;
 
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
-
-import Factories.FactoryMapaGrillaNaruto;
 import Mapas.MapaGrilla;
 
 public class ZombieBlinky extends EnemigoRojo{
@@ -12,7 +9,7 @@ public class ZombieBlinky extends EnemigoRojo{
 	private ImageIcon imgDerecha=new ImageIcon(ZombieBlinky.class.getResource("/Imagenes/zombie.gif"));
 	private ImageIcon imgIzquierda=new ImageIcon(ZombieBlinky.class.getResource("/Imagenes/zombieIzquierda.gif"));
 	private ImageIcon imgA=new ImageIcon(ZombieBlinky.class.getResource("/Imagenes/zombieAzul.png"));
-	private ImageIcon imgM=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/zombieMuerte.gif"));
+	private ImageIcon imgM=new ImageIcon(ZombieBlinky.class.getResource("/Imagenes/zombieMuerte.gif"));
 	/*
 	 * Escalado de Imagenes dentro del constructor
 	 */

@@ -12,11 +12,7 @@ import Entities.Protagonista;
 import Entities.EntidadGrafica;
 import Entities.Explosion;
 import Entities.Mejora;
-import Factories.FactoryEnemigo;
-import Factories.FactoryMapa;
-import Factories.FactoryMapaGrilla;
-import Factories.FactoryMejora;
-import Factories.FactoryProtagonista;
+import Factories.FabricaDominio;
 import Logic.Logica;
 import Nivel.Nivel; 
 import Controladores.SpeedPotionControler;
@@ -27,10 +23,7 @@ import java.util.ArrayList;
 abstract public class MapaGrilla {
 	protected Logica miLogica;
 	protected ImageIcon miFondo;
-	protected FactoryProtagonista fabricaProt;
-	protected FactoryEnemigo fabricaEnem;
-	protected FactoryMejora fabricaMejora;
-	protected FactoryMapaGrilla fabrica;
+	protected FabricaDominio fabrica;
 	protected Protagonista miProtagonista;
 	protected PairTupla posInicialProtagonista;
 	protected PairTupla posResurreccion;
@@ -52,18 +45,15 @@ abstract public class MapaGrilla {
 	protected final int MOVER_IZQUIERDA = 3;
 	protected final int MOVER_DERECHA = 4; 
 	
-	public MapaGrilla(ImageIcon fondo,FactoryProtagonista fp, FactoryEnemigo fe, int an, int al, Logica miLogica,Nivel lvl, FactoryMejora fM) {
+	public MapaGrilla(ImageIcon fondo, int an, int al, Logica miLogica,Nivel lvl,FabricaDominio f) {
 		//Asignamos imagen de fondo del mapa
+		fabrica = f;
 		miFondo = fondo;
+		misEnemigos = new ArrayList<Enemigo>();
 		miLogica.actualizarFondo(fondo);
-		//Asignamos las fabricas correspondientes
-		fabricaProt = fp;
-		fabricaEnem = fe;
-		fabricaMejora = fM;
 		ancho = an;
 		altura = al;
 		this.miLogica = miLogica;
-		misEnemigos= new ArrayList<Enemigo>(); 
 		miNivel = lvl;	
 	}
 	
@@ -101,7 +91,7 @@ abstract public class MapaGrilla {
 	}
 
 	protected void agregarProtagonista() {
-		miProtagonista = fabricaProt.crearProtagonista(new PairTupla(posInicialProtagonista.getX(),posInicialProtagonista.getY()),30,30,this);
+		miProtagonista = fabrica.crearProtagonista(new PairTupla(posInicialProtagonista.getX(),posInicialProtagonista.getY()),30,30,this);
 	}
 	public ImageIcon getImage() {
 		return miFondo;
@@ -172,18 +162,16 @@ abstract public class MapaGrilla {
 		y = e.getY();
 		ancho = e.getAncho();
 		largo = e.getAltura();
-
 		int vel = e.getVelocidad();
 		switch(movimiento) {
 			case MOVER_ABAJO:
-				y += vel;
+				y += vel; break;
 			case MOVER_ARRIBA:
-				y -= vel;
+				y-=vel; break;
 			case MOVER_IZQUIERDA:
-				x -= vel;
+				x-=vel; break;
 			case MOVER_DERECHA:
-				x += vel;
-			case 0:
+				x +=vel; break;
 		}
 		for(int i =0; i<zonas.length; i++) {
 			for(int j = 0; j<zonas[0].length; j++) {
@@ -208,14 +196,13 @@ abstract public class MapaGrilla {
 		int vel = e.getVelocidad();
 		switch(movimiento) {
 			case MOVER_ABAJO:
-				y += vel;
+				y += vel; break;
 			case MOVER_ARRIBA:
-				y -= vel;
+				y-=vel; break;
 			case MOVER_IZQUIERDA:
-				x -= vel;
+				x-=vel; break;
 			case MOVER_DERECHA:
-				x += vel;
-			case 0:
+				x +=vel; break;
 		}
 		ArrayList<Entidad> toReturn = new ArrayList<Entidad>();
 		for(Zona aux : l) {
@@ -332,19 +319,18 @@ abstract public class MapaGrilla {
 
 	protected void agregarPowerPellets() {
 		Mejora m;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,20),22,22,this);
+		m = fabrica.crearPuntoGrande(new PairTupla(25,20),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(anchoMapa-50,20),22,22,this);
+		m = fabrica.crearPuntoGrande(new PairTupla(anchoMapa-50,20),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(25,altoMapa-50),22,22,this);
+		m = fabrica.crearPuntoGrande(new PairTupla(25,altoMapa-50),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
-		m = fabricaMejora.crearPuntoGrande(new PairTupla(anchoMapa-50,altoMapa-50),22,22,this);
+		m = fabrica.crearPuntoGrande(new PairTupla(anchoMapa-50,altoMapa-50),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
-		
 	}
 	protected void ubicarPunto(Mejora m) {
 		Rectangle2D rect = m.getRectangulo().getBounds2D();
@@ -430,8 +416,8 @@ abstract public class MapaGrilla {
 		controladorDeMovimientos.normalizarVelocidadEnemigos(); 
 	}
 
-	public void setFabrica(FactoryMapaGrilla fab) {
-		fabrica = fab;
+	public void setFabrica(FabricaDominio miFabrica) {
+		fabrica = miFabrica;
 	}
 
 	public void comunicarActivacionBomba() {
@@ -443,7 +429,7 @@ abstract public class MapaGrilla {
 	public void ponerBomba() {
 		if(miProtagonista.getBombas()>0) {
 			miProtagonista.usarBomba();
-			Explosion explosion = fabricaMejora.crearExplosion(new PairTupla(miProtagonista.getX(),miProtagonista.getY()),30,30, this);
+			Explosion explosion = fabrica.crearExplosion(new PairTupla(miProtagonista.getX(),miProtagonista.getY()),30,30, this);
 			actualizarEntidad(explosion);
 			controladorBombas = new BombasControler(explosion); 
 		}else {
@@ -460,7 +446,6 @@ abstract public class MapaGrilla {
 		miProtagonista.setPos(posInicialProtagonista);
 	}
 
-	public abstract FactoryMapa mapaSiguiente();
 	abstract protected void construccionParedesLimitaciones();
 	abstract protected void agregarMejoras();
 	protected abstract void nivelSiguiente(Nivel miNivel);

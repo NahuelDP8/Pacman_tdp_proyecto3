@@ -1,17 +1,14 @@
 package Entities;
 
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
-
-import Factories.FactoryMapaGrillaNaruto;
 import Mapas.MapaGrilla;
 
 public class NinjaClyde extends EnemigoNaranja{
 	private ImageIcon imgDerecha=new ImageIcon(NinjaClyde.class.getResource("/Imagenes/danzoRun.gif"));
 	private ImageIcon imgIzquierda=new ImageIcon(NinjaClyde.class.getResource("/Imagenes/danzoRunIzquierda.gif"));
-	private ImageIcon imgA=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/ninjaAzul.gif"));
-	private ImageIcon imgM=new ImageIcon(FactoryMapaGrillaNaruto.class.getResource("/Imagenes/ninjaMuerte.gif"));
+	private ImageIcon imgA=new ImageIcon(NinjaClyde.class.getResource("/Imagenes/ninjaAzul.gif"));
+	private ImageIcon imgM=new ImageIcon(NinjaClyde.class.getResource("/Imagenes/ninjaMuerte.gif"));
 	
 	/*
 	 * Escalado de Imagenes dentro del constructor

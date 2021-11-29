@@ -1,5 +1,7 @@
 package Nivel;
 
+import Factories.FabricaDominio;
+import Logic.Logica;
 import Mapas.MapaGrilla;
 
 abstract public class Nivel {
@@ -20,7 +22,10 @@ abstract public class Nivel {
 	abstract public int sleepSuperSpeedPocion();
 	abstract public int sleepPowerPellets();
 	abstract public Nivel nivelSiguiente();
-	abstract public int cantidadBombas(); 
+	abstract public int cantidadBombas();
+
+
+	public abstract MapaGrilla mapa(FabricaDominio f,Logica log); 
 	
 
 }

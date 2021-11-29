@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
+import java.awt.Desktop;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
@@ -21,17 +23,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Properties;
 import java.awt.event.ActionEvent;
 import javax.swing.border.SoftBevelBorder;
 
-import Factories.FactoryMapa;
-import Factories.FactoryMapa1;
-import Factories.FactoryMapa2;
-import Factories.FactoryMapa3;
-import Factories.FactoryMapaGrilla;
-import Factories.FactoryMapaGrillaGoku;
-import Factories.FactoryMapaGrillaNaruto;
+import Factories.FabricaDominio;
+import Factories.FabricaDominioGoku;
+import Factories.FabricaDominioNaruto;
 import Factories.FactoryNiveles;
 import Music.AudioPlayer;
 import Nivel.Nivel;
@@ -47,8 +47,7 @@ import java.awt.event.WindowEvent;
 public class GUIMenu extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel ContentPanel;
-	private FactoryMapaGrilla F_Mapa_Grilla;
-	private FactoryMapa F_Mapa;
+	private FabricaDominio F_Dominio;
 	private Nivel F_Nivel;
 	private String nombre;
 	private JTextField JTFmiNombre;
@@ -196,7 +195,7 @@ public class GUIMenu extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							F_Mapa_Grilla=new FactoryMapaGrillaGoku();
+							F_Dominio = new FabricaDominioGoku();
 							File MusicFile = new File(GUIMenu.configuration.getProperty("GokuMusic"));
 							IniciarMusica(MusicFile);
 							PSeleccionProta.setVisible(false);
@@ -224,8 +223,7 @@ public class GUIMenu extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							
-							F_Mapa_Grilla=new FactoryMapaGrillaNaruto();
+							F_Dominio = new FabricaDominioNaruto();
 							File MusicFile = new File(GUIMenu.configuration.getProperty("NarutoMusic"));
 							IniciarMusica(MusicFile);
 							PSeleccionProta.setVisible(false);
@@ -252,6 +250,22 @@ public class GUIMenu extends JFrame {
 		JLIngresaN.setBounds(0, 462, 337, 87);
 		PSeleccionProta.add(JLIngresaN);
 		
+		JButton btnNewButton_1 = new JButton("MANUAL");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				URL url = getClass().getResource("/Documentacion/manual.pdf");
+				try {
+					File file = new File(url.toURI());
+					Desktop.getDesktop().open(file);
+				} catch (IOException | URISyntaxException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnNewButton_1.setBounds(250, 550, 140, 31);
+		PSeleccionProta.add(btnNewButton_1);
+		
 		btnVerHighscores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PHighscore.setVisible(true);
@@ -259,12 +273,12 @@ public class GUIMenu extends JFrame {
 				PSeleccionNivel.setVisible(false);
 			}
 		});
-		btnVerHighscores.setBounds(111, 550, 143, 31);
+		btnVerHighscores.setBounds(75, 550, 143, 31);
 		PSeleccionProta.add(btnVerHighscores);
-		btnVerHighscores.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnVerHighscores.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		JButton JBAceptar = new JButton("JUGAR");
-		JBAceptar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JBAceptar.setFont(new Font("Tahoma", Font.BOLD, 16));
 		JBAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				nombre=JTFmiNombre.getText();
@@ -316,8 +330,7 @@ public class GUIMenu extends JFrame {
 		JBNivel1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				F_Nivel=new FactoryNiveles().crearNivel1();
-				F_Mapa = new FactoryMapa1();
-				GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,F_Mapa, nombre,topPlayers,audio);
+				GUI_MAPA GUIWindow = new GUI_MAPA(F_Nivel,F_Dominio, nombre,topPlayers,audio);
 				GUIWindow.getFrame().setVisible(true);
 				dispose();
 			}
@@ -331,9 +344,8 @@ public class GUIMenu extends JFrame {
 		PSeleccionNivel.add(JBNivel2);
 		JBNivel2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-							F_Nivel=new FactoryNiveles().crearNivel2();
-							F_Mapa = new FactoryMapa2();
-							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,F_Mapa, nombre,topPlayers,audio);
+							F_Nivel=new FactoryNiveles().crearNivel2();;
+							GUI_MAPA GUIWindow = new GUI_MAPA(F_Nivel,F_Dominio, nombre,topPlayers,audio);
 							GUIWindow.getFrame().setVisible(true);
 							dispose();
 			}
@@ -345,8 +357,7 @@ public class GUIMenu extends JFrame {
 		JBNivel3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 							F_Nivel=new FactoryNiveles().crearNivel3();
-							F_Mapa = new FactoryMapa3();
-							GUI_MAPA GUIWindow = new GUI_MAPA(F_Mapa_Grilla,F_Nivel,F_Mapa,nombre,topPlayers,audio);
+							GUI_MAPA GUIWindow = new GUI_MAPA(F_Nivel,F_Dominio,nombre,topPlayers,audio);
 							GUIWindow.getFrame().setVisible(true);
 							ContentPanel.setLayout(null);
 							dispose();
