@@ -1,17 +1,16 @@
 package Mapas;
 
 import javax.swing.ImageIcon;
-
 import Controladores.BombasControler;
 import Controladores.MovimientosControler;
 import Controladores.PowerPelletsControler;
-import Entities.Enemigo;
+import EnemigosGenerales.Enemigo;
 import Entities.Entidad;
 import Entities.PairTupla;
-import Entities.Protagonista;
+import Protagonistas.Protagonista;
 import Entities.EntidadGrafica;
-import Entities.Explosion;
-import Entities.Mejora;
+import Improvements.Explosion;
+import Improvements.Mejora;
 import Factories.FabricaDominio;
 import Logic.Logica;
 import Nivel.Nivel; 
@@ -318,7 +317,7 @@ abstract public class MapaGrilla {
 	}
 
 	protected void agregarPowerPellets() {
-		Mejora m;
+		Mejora m;/*
 		m = fabrica.crearPuntoGrande(new PairTupla(25,20),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;
@@ -327,7 +326,7 @@ abstract public class MapaGrilla {
 		cantPuntos++;
 		m = fabrica.crearPuntoGrande(new PairTupla(25,altoMapa-50),22,22,this);
 		actualizarEntidad(m);
-		cantPuntos++;
+		cantPuntos++;*/
 		m = fabrica.crearPuntoGrande(new PairTupla(anchoMapa-50,altoMapa-50),22,22,this);
 		actualizarEntidad(m);
 		cantPuntos++;

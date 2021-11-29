@@ -1,7 +1,7 @@
 package Controladores;
 
 import java.util.ArrayList;
-import Entities.Enemigo;
+import EnemigosGenerales.Enemigo;
 
 public class MovimientoEnemigosControler extends ThreadControl{
 	private ArrayList<Enemigo> misEnemigos ;

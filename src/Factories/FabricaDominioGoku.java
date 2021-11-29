@@ -2,19 +2,16 @@ package Factories;
 
 import javax.swing.ImageIcon;
 import Entities.PairTupla;
-import Entities.Protagonista;
-import Entities.ZombieBlinky;
-import Entities.ZombieClyde;
-import Entities.ZombieInky;
-import Entities.ZombiePinky;
+import Protagonistas.Protagonista;
+import EnemigosModoGoku.*;
 import Logic.Logica;
 import Mapas.Mapa1;
 import Mapas.Mapa2;
 import Mapas.Mapa3;
 import Mapas.MapaGrilla;
 import Nivel.Nivel;
-import Entities.Enemigo;
-import Entities.Goku;
+import EnemigosGenerales.Enemigo;
+import Protagonistas.Goku;
 
 public class FabricaDominioGoku extends FabricaDominio{
 	private ImageIcon cargando=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Goku/Protagonista/gokuCargando.gif"));

@@ -1,6 +1,6 @@
 package Controladores;
 
-import Entities.Protagonista;
+import Protagonistas.Protagonista;
 
 public class MovimientoProtagonistaControler extends ThreadControl{
 	private Protagonista miProtagonista; 

@@ -3,13 +3,11 @@ package Mapas;
 import javax.swing.ImageIcon;
 
 import Controladores.MovimientosControler;
-import Entities.Enemigo;
+import EnemigosGenerales.Enemigo;
 import Entities.Entidad;
-import Entities.Mejora;
+import Improvements.Mejora;
 import Entities.PairTupla;
-import Entities.Pared;
-import Entities.Portal;
-import Entities.PuertaEnemigo;
+import EstructurasMapas.*; 
 import Factories.FabricaDominio;
 import Logic.Logica;
 import Nivel.Nivel;
@@ -77,7 +75,7 @@ public class Mapa3 extends MapaGrilla {
 		Mejora m;
 		int x,y;
 		cantPuntos = 0;
-		agregarPowerPellets();
+		agregarPowerPellets();/*
 		for(int i = 1; i<28;i++) {
 			for (int j = 0; j<28;j++) {
 				x = 9+i*24;
@@ -87,7 +85,7 @@ public class Mapa3 extends MapaGrilla {
 					ubicarPunto(m);
 				}
 			}
-		}
+		}*/
 	}
 	public void encerrarFantasmas() {
 		PairTupla pos = new PairTupla(posResurreccion.getX()-24,posResurreccion.getY());

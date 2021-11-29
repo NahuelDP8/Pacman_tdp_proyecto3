@@ -57,6 +57,8 @@ public class GUIMenu extends JFrame {
 	private JButton JBNivel3;
 	private JButton JBNivel2;
 	private JButton JBNivel1;
+	private boolean musicLoop;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -67,7 +69,6 @@ public class GUIMenu extends JFrame {
 	public static void main(String[] args) {
 		loadConfiguration();
 		EventQueue.invokeLater(new Runnable() {
-
 			public void run() {
 				TopPlayers  TPS;
 				try {
@@ -112,7 +113,7 @@ public class GUIMenu extends JFrame {
 	
 	//Inicia la musica en el GUIMENU segun el protagonista elegido
 	private void IniciarMusica(File f) {
-		audio=new AudioPlayer(f);
+		audio=new AudioPlayer(f,musicLoop);
 	}
 	
 	private void actualizarArchivo() {
@@ -136,7 +137,7 @@ public class GUIMenu extends JFrame {
 	 */
 	public GUIMenu(TopPlayers tp) {
 		topPlayers=tp;
-		
+		musicLoop=true;
 		initialized();
 		
 	}

@@ -1,6 +1,6 @@
 package Controladores;
 
-import Entities.Explosion;
+import Improvements.Explosion;
 import Timer.BombaTimer;
 
 public class BombasControler extends ThreadControl{
