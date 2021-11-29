@@ -23,8 +23,8 @@ import ranking.TopPlayers;
 public class GUI_Defeat extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JPanel ContentPanel;
-	private JPanel PGanaste;
-	private JLabel JLGanaste;
+	private JPanel PPerdiste;
+	private JLabel JLPerdiste;
 	private JButton JBVolverAMenuD;
 	private TopPlayers topPlayers;
 	private AudioPlayer audio;
@@ -48,22 +48,32 @@ public class GUI_Defeat extends JFrame{
 		setContentPane(ContentPanel);
 		ContentPanel.setLayout(null);
 		//Panel de victoria
-		PGanaste = new JPanel();
-		PGanaste.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		PGanaste.setForeground(Color.WHITE);
-		PGanaste.setBounds(6, 6, 1500, 890);
-		ContentPanel.add(PGanaste);
-		PGanaste.setBackground(new Color(0, 0, 0));
-		PGanaste.setLayout(null);
+		PPerdiste = new JPanel();
+		PPerdiste.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		PPerdiste.setForeground(Color.WHITE);
+		PPerdiste.setBounds(6, 6, 1500, 890);
+		ContentPanel.add(PPerdiste);
+		PPerdiste.setBackground(new Color(0, 0, 0));
+		PPerdiste.setLayout(null);
 		
-		JLGanaste = new JLabel("HAS PERDIDO");
-		JLGanaste.setBounds(584, 99, 439, 121);
-		PGanaste.add(JLGanaste);
-		JLGanaste.setForeground(Color.WHITE);
-		JLGanaste.setBackground(Color.BLACK);
-		JLGanaste.setToolTipText("");
-		JLGanaste.setHorizontalAlignment(SwingConstants.CENTER);
-		JLGanaste.setFont(new Font("Times New Roman", Font.BOLD, 50));
+		JLPerdiste = new JLabel("HAS PERDIDO");
+		JLPerdiste.setBounds(584, 99, 439, 121);
+		PPerdiste.add(JLPerdiste);
+		JLPerdiste.setForeground(Color.WHITE);
+		JLPerdiste.setBackground(Color.BLACK);
+		JLPerdiste.setToolTipText("");
+		JLPerdiste.setHorizontalAlignment(SwingConstants.CENTER);
+		JLPerdiste.setFont(new Font("Times New Roman", Font.BOLD, 50));
+		
+		JLabel JLWinnerImage = new JLabel("");
+		JLWinnerImage.setBounds(80, 52, 439, 570);
+		System.out.println("etBounds(80, 52, 439, 570)");
+		EscalarFoto = new ImageIcon(GUI_Defeat.class.getResource("/Imagenes/defeat.png")).getImage().getScaledInstance(JLWinnerImage.getWidth(),JLWinnerImage.getHeight(), Image.SCALE_DEFAULT);
+		System.out.println(" = new ImageIcon(GUI_Victory");
+		FotoEscalada = new ImageIcon(EscalarFoto);
+		System.out.println("da = new ImageIcon(EscalarFo");
+		JLWinnerImage.setIcon(FotoEscalada);
+		PPerdiste.add(JLWinnerImage);
 		
 		JBVolverAMenuD = new JButton("Volver al menu");
 		JBVolverAMenuD.setBackground(Color.BLACK);
@@ -87,15 +97,10 @@ public class GUI_Defeat extends JFrame{
 			}
 		});
 		JBVolverAMenuD.setBounds(650, 377, 311, 70);
-		PGanaste.add(JBVolverAMenuD);
+		PPerdiste.add(JBVolverAMenuD);
 		
 		
 		
-		JLabel JLWinnerImage = new JLabel("");
-		JLWinnerImage.setBounds(80, 52, 439, 570);
-		EscalarFoto = new ImageIcon(GUI_Victory.class.getResource("/Imagenes/defeat.png")).getImage().getScaledInstance(JLWinnerImage.getWidth(),JLWinnerImage.getHeight(), Image.SCALE_DEFAULT);
-		FotoEscalada = new ImageIcon(EscalarFoto);
-		JLWinnerImage.setIcon(FotoEscalada);
-		PGanaste.add(JLWinnerImage);
+		
 	}
 }

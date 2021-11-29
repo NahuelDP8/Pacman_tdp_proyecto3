@@ -50,6 +50,7 @@ public class Timer implements Runnable {
 	}
 	
 	public void gameOver() {
-		hiloTiempo.interrupt();
+		if(hiloTiempo!=null && hiloTiempo.isAlive())
+			hiloTiempo.interrupt();
 	}
 }

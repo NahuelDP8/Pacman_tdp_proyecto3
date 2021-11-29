@@ -46,7 +46,8 @@ public class MovimientosControler extends ThreadControl {
 	}
 
 	public void parar() {
-		tEnemigos.interrupt();
+		if((tEnemigos !=null) && (tEnemigos.isAlive()))
+			tEnemigos.interrupt();
 	}
 
 	public void actualizarFoto() {

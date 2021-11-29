@@ -376,7 +376,6 @@ abstract public class MapaGrilla {
 		}
 	}
 	public void gameOver() {
-		sacarTodo();
 		controladorDeMovimientos.parar();
 		if(controladorPowerPellets != null)
 			controladorPowerPellets.parar();
@@ -384,6 +383,7 @@ abstract public class MapaGrilla {
 			controladorPocionVelocidad.parar();
 		if(controladorBombas != null)
 			controladorBombas.parar();
+		sacarTodo();
 		miLogica.gameOver();
 	}
 
