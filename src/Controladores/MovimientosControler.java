@@ -11,7 +11,7 @@ public class MovimientosControler extends ThreadControl {
 	private ProtagonistaTimer tProtagonista; 
 	private int sleepPro; 
 	private int sleepEnem; 
-	private int MOVER_ENEMIGOS; 
+	private int MOVER_ENEMIGOS;
 	private int MOVER_PROTAGONISTA;
 	private MovimientoEnemigosControler movEnemigoC;
 	private MovimientoProtagonistaControler movProtagonistaC; 

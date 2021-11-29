@@ -50,31 +50,36 @@ public class GUI_MAPA{
 	private AudioPlayer audio;
 	private Image EscalarFoto; 
 	private ImageIcon FotoEscalada;
-	private JPanel PPerdiste;
-	private JPanel PGanaste;
-	private JPanel panel;
-	private JPanel panel_1;
-	private JButton JBVolverAMenuG;
-	private JButton JBVolverAMenuP;
-	private JLabel JLPerdiste;
-	private JLabel JLGanaste;
+	private JPanel PanelInformacion;
+	private JPanel PanelVidas;
 	private JLabel JLMusic;
-	private boolean jugando;
 	private boolean topPlayersActualizado;
 	private ImageIcon cargando;
+	
 	/**
 	 * Create the application.
 	 */
+	
 	public GUI_MAPA( Nivel nivel,FabricaDominio f,String nom, TopPlayers TP,AudioPlayer audioaux) {
 		cargando=f.getImagenCargando();
 		initialize();
 		JLNombre.setText("Nombre: "+ nom);
 		JLNivel.setText("Nivel: "+ nivel.getNivel());
+		//Indica que se pueden poner bombas
+		JLBomba = new JLabel("PRESIONE SPACE PARA PONER BOMBA");
+		JLBomba.setBounds(536, 65, 372, 25);
+		PanelInformacion.add(JLBomba);
+		JLBomba.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+		//Label musica
+		JLMusic = new JLabel("Letra \"P\": ALTERNA MUTE M\u00DASICA");
+		JLMusic.setBounds(944, 65, 355, 29);
+		PanelInformacion.add(JLMusic);
+		JLMusic.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+		JLBomba.setVisible(false);
 		topPlayers=TP;
 		log = Logica.getLogic(this, nivel,f);
 		audio = audioaux;
 		topPlayersActualizado=false;
-		
 	}
 	
 	public JFrame getFrame() {
@@ -129,7 +134,6 @@ public class GUI_MAPA{
 		frame.paint(frame.getGraphics());
 	}
 	
-	
 	public void captarMovimientoAbajo() {
 		log.moverProtagonistaAbajo();
 	}
@@ -171,7 +175,6 @@ public class GUI_MAPA{
 			}
 	
 			public void keyPressed(KeyEvent e) {
-				if(jugando) {
 					if(e.getKeyCode() == KeyEvent.VK_LEFT) {
 						izquierda = true;
 					}else
@@ -194,10 +197,9 @@ public class GUI_MAPA{
 								}
 							}
 						}
-			}	
+				
 		}
 			public void keyReleased(KeyEvent e) {
-				if(jugando) {
 					if(e.getKeyCode() == KeyEvent.VK_LEFT) {
 						izquierda = false;
 					}else
@@ -212,7 +214,6 @@ public class GUI_MAPA{
 									abajo = false;
 								}
 							}
-				}
 			}
 		}
 	
@@ -225,7 +226,6 @@ public class GUI_MAPA{
 		arriba = false;
 		izquierda = false;
 		derecha = false;
-		jugando = true;
 		EventoDeTeclado tecla=new EventoDeTeclado();
 		frame = new JFrame();
 		frame.addWindowListener(new WindowAdapter() {
@@ -242,109 +242,28 @@ public class GUI_MAPA{
 		
 		JLFondoMapa = new JLabel("");
 		
-		panel = new JPanel();
-		panel.setBounds(0, 0, 1476, 97);
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
+		PanelInformacion = new JPanel();
+		PanelInformacion.setBounds(0, 0, 1476, 97);
+		frame.getContentPane().add(PanelInformacion);
+		PanelInformacion.setLayout(null);
 		
 		JLabel JLVIDAS = new JLabel("vidas");
 		JLVIDAS.setFont(new Font("Engravers MT", Font.BOLD, 40));
 		JLVIDAS.setHorizontalAlignment(SwingConstants.CENTER);
 		JLVIDAS.setBounds(0, 9, 213, 62);
-		panel.add(JLVIDAS);
-		//Panel de victoria
-		PGanaste = new JPanel();
-		PGanaste.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		PGanaste.setForeground(Color.WHITE);
-		PGanaste.setBounds(6, 6, 1500, 890);
-		frame.getContentPane().add(PGanaste);
-		PGanaste.setBackground(new Color(0, 0, 0));
-		PGanaste.setLayout(null);
+		PanelInformacion.add(JLVIDAS);
 		
-		JLGanaste = new JLabel("HAS GANADO");
-		JLGanaste.setBounds(400, 200, 600, 112);
-		PGanaste.add(JLGanaste);
-		JLGanaste.setForeground(Color.WHITE);
-		JLGanaste.setBackground(Color.GREEN);
-		JLGanaste.setToolTipText("");
-		JLGanaste.setHorizontalAlignment(SwingConstants.CENTER);
-		JLGanaste.setFont(new Font("Yu Gothic Light", Font.PLAIN, 50));
-		PGanaste.setVisible(false);
-		//Panel derrota
-		PPerdiste = new JPanel();
-		PPerdiste.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		PPerdiste.setForeground(Color.WHITE);
-		PPerdiste.setBounds(6, 6, 1500, 890);
-		frame.getContentPane().add(PPerdiste);
-		PPerdiste.setBackground(new Color(0, 0, 0));
-		PPerdiste.setLayout(null);
 		
-		JBVolverAMenuP = new JButton("Volver al menu");
-		JBVolverAMenuP.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							GUIMenu Nframe = new GUIMenu(topPlayers);
-							Nframe.setVisible(true);
-							frame.dispose();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});
-			}
-		});
-		JBVolverAMenuP.setBounds(525, 450, 300, 50);
-		JBVolverAMenuP.setEnabled(false);
-		
-		PPerdiste.add(JBVolverAMenuP);
-		
-		JBVolverAMenuG = new JButton("Volver al menu");
-		JBVolverAMenuG.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							GUIMenu Nframe = new GUIMenu(topPlayers);
-							Nframe.setVisible(true);
-							frame.dispose();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});
-			}
-		});
-		JBVolverAMenuG.setBounds(525, 450, 300, 50);
-		JBVolverAMenuG.setEnabled(false);
-		PGanaste.add(JBVolverAMenuG);
-		
-		JLPerdiste = new JLabel("JUEGO TERMINADO");
-		JLPerdiste.setBounds(400, 200, 600, 112);
-		PPerdiste.add(JLPerdiste);
-		JLPerdiste.setForeground(Color.WHITE);
-		JLPerdiste.setBackground(new Color(255, 255, 255));
-		JLPerdiste.setToolTipText("");
-		JLPerdiste.setHorizontalAlignment(SwingConstants.CENTER);
-		JLPerdiste.setFont(new Font("Yu Gothic Light", Font.PLAIN, 50));
-		PPerdiste.setVisible(false);
-		
-		panel_1 = new JPanel();
-		panel_1.setBounds(213, 0, 308, 87);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
-		//Indica que se pueden poner bombas
-		JLBomba = new JLabel("PRESIONE SPACE PARA PONER BOMBA");
-		JLBomba.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
-		JLBomba.setBounds(522, 100, 500, 29);
-		frame.getContentPane().add(JLBomba);
-		JLBomba.setVisible(false);
+	
+		PanelVidas = new JPanel();
+		PanelVidas.setBounds(213, 0, 308, 87);
+		PanelInformacion.add(PanelVidas);
+		PanelVidas.setLayout(null);
 		
 		//Labels vidas
 		JLVIDAS1 = new JLabel("");
 		JLVIDAS1.setBounds(20, 0, 87, 88);
-		panel_1.add(JLVIDAS1);
+		PanelVidas.add(JLVIDAS1);
 		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")).getImage().getScaledInstance(JLVIDAS1.getWidth(),JLVIDAS1.getHeight(), Image.SCALE_DEFAULT);
 		FotoEscalada = new ImageIcon(EscalarFoto);
 		JLVIDAS1.setIcon(FotoEscalada);
@@ -353,7 +272,7 @@ public class GUI_MAPA{
 		JLVIDAS2 = new JLabel("");
 		JLVIDAS2.setIcon(new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")));
 		JLVIDAS2.setBounds(120, 0, 87, 88);
-		panel_1.add(JLVIDAS2);
+		PanelVidas.add(JLVIDAS2);
 		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")).getImage().getScaledInstance(JLVIDAS2.getWidth(),JLVIDAS2.getHeight(), Image.SCALE_DEFAULT);
 		FotoEscalada = new ImageIcon(EscalarFoto);
 		JLVIDAS2.setIcon(FotoEscalada);
@@ -362,7 +281,7 @@ public class GUI_MAPA{
 		JLVIDAS3 = new JLabel("");
 		JLVIDAS3.setIcon(new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")));
 		JLVIDAS3.setBounds(220, 0, 87, 88);
-		panel_1.add(JLVIDAS3);
+		PanelVidas.add(JLVIDAS3);
 		EscalarFoto = new ImageIcon(GUI_MAPA.class.getResource("/Imagenes/VidasNaruto.png")).getImage().getScaledInstance(JLVIDAS3.getWidth(),JLVIDAS3.getHeight(), Image.SCALE_DEFAULT);
 		FotoEscalada = new ImageIcon(EscalarFoto);
 		JLVIDAS3.setIcon(FotoEscalada);
@@ -372,24 +291,19 @@ public class GUI_MAPA{
 		JLNivel = new JLabel();
 		JLNivel.setFont(new Font("Cooper Black", Font.PLAIN, 29));
 		JLNivel.setBounds(824, 22, 160, 45);
-		panel.add(JLNivel);
+		PanelInformacion.add(JLNivel);
 		//JLABEL
 		JLTiempo = new JLabel("00:00");
 		JLTiempo.setHorizontalAlignment(SwingConstants.CENTER);
 		JLTiempo.setBounds(544, 0, 213, 75);
-		panel.add(JLTiempo);
+		PanelInformacion.add(JLTiempo);
 		JLTiempo.setForeground(Color.RED);
 		JLTiempo.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 48));
 		
 		JLNombre = new JLabel();
 		JLNombre.setFont(new Font("Rockwell", Font.BOLD, 20));
 		JLNombre.setBounds(1036, 27, 372, 40);
-		panel.add(JLNombre);
-		//Label musica
-		JLMusic = new JLabel("Letra \"P\": ALTERNA MUTE M\u00DASICA");
-		JLMusic.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-		JLMusic.setBounds(522, 68, 355, 29);
-		panel.add(JLMusic);
+		PanelInformacion.add(JLNombre);
 		FotoEscalada = new ImageIcon(EscalarFoto);
 		JLabel JLPlayerPuntaje = new JLabel("Tu Puntaje:");
 		JLPlayerPuntaje.setBounds(716, 130, 130, 40);
@@ -462,30 +376,7 @@ public class GUI_MAPA{
 	public void gameOver() {
 		audio.stopMusic();
 		log.destruirSingleton();
-		PPerdiste.setVisible(true);
-		panel.setVisible(false);
-		panel_1.setVisible(false);
-		JBVolverAMenuP.setEnabled(true);
 		frame.getContentPane().setComponentZOrder(panelCargando, 0);
-		jugando = false;
-		if(!topPlayersActualizado) {
-			int puntosDPlayer=0;
-			puntosDPlayer = Integer.parseInt(JLPuntaje.getText());
-			topPlayers.addPlayer(new Player(JLNombre.getText().substring(7),puntosDPlayer));
-			topPlayersActualizado=true;
-		}
-
-	}
-	
-	public void win() {
-		audio.stopMusic();
-		log.destruirSingleton();
-		PGanaste.setVisible(true);
-		panel.setVisible(false);
-		panel_1.setVisible(false);
-		JBVolverAMenuG.setEnabled(true);
-		frame.getContentPane().setComponentZOrder(panelCargando, 0);
-		jugando = false;
 		if(!topPlayersActualizado) {
 			int puntosDPlayer=0;
 			puntosDPlayer = Integer.parseInt(JLPuntaje.getText());
@@ -493,6 +384,25 @@ public class GUI_MAPA{
 			topPlayersActualizado=true;
 		}
 		actualizarArchivo();
+		GUI_Defeat GUIWindow = new GUI_Defeat(topPlayers);
+		GUIWindow.setVisible(true);
+		frame.dispose();
+	}
+	
+	public void win() {
+		audio.stopMusic();
+		log.destruirSingleton();
+		frame.getContentPane().setComponentZOrder(panelCargando, 0);
+		if(!topPlayersActualizado) {
+			int puntosDPlayer=0;
+			puntosDPlayer = Integer.parseInt(JLPuntaje.getText());
+			topPlayers.addPlayer(new Player(JLNombre.getText().substring(7),puntosDPlayer));
+			topPlayersActualizado=true;
+		}
+		actualizarArchivo();
+		GUI_Victory GUIWindow = new GUI_Victory(topPlayers);
+		GUIWindow.setVisible(true);
+		frame.dispose();
 	}
 	
 	
