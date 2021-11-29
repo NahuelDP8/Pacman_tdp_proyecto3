@@ -9,6 +9,7 @@ Highscore.tdp
 /Highscore.txt
 .Highscore.txt
 Highscore.txt
-Highscore.tdp
+Highscore.*
+.Highscore.*
+/Highscore.*
 *.tdp
-Highscore.tdp

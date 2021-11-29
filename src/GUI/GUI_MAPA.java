@@ -378,8 +378,10 @@ public class GUI_MAPA{
 			topPlayers.addPlayer(new Player(JLNombre.getText().substring(7),puntosDPlayer));
 			topPlayersActualizado=true;
 		}
+		
 		actualizarArchivo();
 		GUI_Defeat GUIWindow = new GUI_Defeat(topPlayers);
+		
 		GUIWindow.setVisible(true);
 		frame.dispose();
 	}
