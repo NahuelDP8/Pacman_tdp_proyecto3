@@ -185,7 +185,7 @@ public class GUIMenu extends JFrame {
 		JButton JBGoku = new JButton("JUGAR GOKU");
 		JBGoku.setBounds(54, 98, 255, 353);
 		PSeleccionProta.add(JBGoku);
-		imagen = new ImageIcon(GUIMenu.class.getResource("/Imagenes/goku.gif"));
+		imagen = new ImageIcon(GUIMenu.class.getResource("/Imagenes/Goku/Protagonista/goku.gif"));
 		EscalarFoto = imagen.getImage().getScaledInstance(JBGoku.getWidth(),JBGoku.getHeight(), Image.SCALE_DEFAULT);
 		FotoEscalada = new ImageIcon(EscalarFoto);
 		JBGoku.setIcon(FotoEscalada);
@@ -215,7 +215,7 @@ public class GUIMenu extends JFrame {
 		PSeleccionProta.add(JBNaruto);
 		JBNaruto.setBackground(Color.BLACK);
 		JBNaruto.setFont(new Font("Source Sans Pro", Font.BOLD, 14));
-		imagen = new ImageIcon(GUIMenu.class.getResource("/Imagenes/narutoRunIzquierda.gif"));
+		imagen = new ImageIcon(GUIMenu.class.getResource("/Imagenes/Naruto/Protagonista/narutoRunIzquierda.gif"));
 		EscalarFoto = imagen.getImage().getScaledInstance(JBNaruto.getWidth(),JBNaruto.getHeight(), Image.SCALE_DEFAULT);
 		FotoEscalada = new ImageIcon(EscalarFoto);
 		JBNaruto.setIcon(FotoEscalada);

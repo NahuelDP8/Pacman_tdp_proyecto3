@@ -1,16 +1,16 @@
 package Visitors;
 
-import Entities.BombasPocion;
-import Entities.Enemigo;
-import Entities.Entidad;
-import Entities.Explosion;
-import Entities.Fruta;
-import Entities.Pared;
-import Entities.Pocion;
-import Entities.Protagonista;
-import Entities.PuertaEnemigo;
-import Entities.Punto;
-import Entities.PuntoGrande;
+import Improvements.BombasPocion;
+import EnemigosGenerales.Enemigo;
+import Improvements.Explosion;
+import Improvements.Fruta;
+import EstructurasMapas.Pared;
+import Improvements.Pocion;
+import Protagonistas.Protagonista;
+import EstructurasMapas.PuertaEnemigo;
+import Improvements.Punto;
+import Improvements.PuntoGrande;
+import Entities.Entidad; 
 
 public class EnemigoVisitor implements Visitor {
 	private Entidad miEntidad;

@@ -3,8 +3,8 @@ package Controladores;
 import Timer.EnemigosTimer;
 import Timer.ProtagonistaTimer;
 import java.util.ArrayList;
-import Entities.Enemigo;
-import Entities.Protagonista;
+import EnemigosGenerales.Enemigo;
+import Protagonistas.Protagonista;
 
 public class MovimientosControler extends ThreadControl {
 	private EnemigosTimer tEnemigos; 

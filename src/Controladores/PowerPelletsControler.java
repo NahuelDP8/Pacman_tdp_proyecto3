@@ -2,7 +2,7 @@ package Controladores;
 
 import Timer.PowerPelletsTimer;
 import java.util.ArrayList;
-import Entities.Enemigo;
+import EnemigosGenerales.Enemigo;
 
 public class PowerPelletsControler extends ThreadControl{
 	private PowerPelletsTimer miTimer;

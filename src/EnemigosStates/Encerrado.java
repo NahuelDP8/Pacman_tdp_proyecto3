@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-import Entities.Enemigo;
+import EnemigosGenerales.Enemigo;
 
 public class Encerrado implements EstadoEnemigo{
 	protected Enemigo miEnemigo;

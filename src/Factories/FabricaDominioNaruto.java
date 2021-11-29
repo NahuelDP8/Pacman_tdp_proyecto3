@@ -1,15 +1,11 @@
 package Factories;
 
 import javax.swing.ImageIcon;
-
-import Entities.Enemigo;
-import Entities.Naruto;
-import Entities.NinjaBlinky;
-import Entities.NinjaClyde;
-import Entities.NinjaInky;
-import Entities.NinjaPinky;
+import EnemigosGenerales.Enemigo;
+import Protagonistas.Naruto;
+import EnemigosModoNaruto.*; 
 import Entities.PairTupla;
-import Entities.Protagonista;
+import Protagonistas.Protagonista;
 import Logic.Logica;
 import Mapas.Mapa1;
 import Mapas.Mapa2;
@@ -18,21 +14,21 @@ import Mapas.MapaGrilla;
 import Nivel.Nivel;
 
 public class FabricaDominioNaruto extends FabricaDominio{
-	private ImageIcon cargando=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/narutoCargando.gif"));
-	private ImageIcon imagenNaruto=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/narutoRun.gif"));
+	private ImageIcon cargando=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Naruto/Protagonista/narutoCargando.gif"));
+	private ImageIcon imagenNaruto=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Naruto/Protagonista/narutoRun.gif"));
 	
-	private ImageIcon NinjaRojo=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/madaraRun.gif"));
-	private ImageIcon NinjaRosa=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/kaguyaRun.gif"));
-	private ImageIcon NinjaAzul=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/kisameRun.gif"));
-	private ImageIcon NinjaNaranja=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/danzoRun.gif"));
+	private ImageIcon NinjaRojo=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Naruto/Enemigos/madaraRun.gif"));
+	private ImageIcon NinjaRosa=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Naruto/Enemigos/kaguyaRun.gif"));
+	private ImageIcon NinjaAzul=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Naruto/Enemigos/kisameRun.gif"));
+	private ImageIcon NinjaNaranja=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Naruto/Enemigos/danzoRun.gif"));
 	
 	public FabricaDominioNaruto() {
-		imagenPunto=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/narutoPunto.png"));
-		imagenBomba=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/narutoExplosivo.png"));
-		imagenExplosion=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/narutoExplosion.gif"));
-		imagenFruta=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/narutoFruta.png"));
-		imagenPocion=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/narutoPocion.png"));
-		imagenPuntoGrande=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/narutoPowerPellets.png"));
+		imagenPunto=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Naruto/Mejora/narutoPunto.png"));
+		imagenBomba=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Naruto/Mejora/narutoExplosivo.png"));
+		imagenExplosion=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Naruto/Mejora/narutoExplosion.gif"));
+		imagenFruta=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Naruto/Mejora/narutoFruta.png"));
+		imagenPocion=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Naruto/Mejora/narutoPocion.png"));
+		imagenPuntoGrande=new ImageIcon(FabricaDominio.class.getResource("/Imagenes/Naruto/Mejora/narutoPowerPellets.png"));
 	}
 	@Override
 	public MapaGrilla crearMapa(Logica logica, Nivel lvl) {

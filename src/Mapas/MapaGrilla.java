@@ -1,17 +1,16 @@
 package Mapas;
 
 import javax.swing.ImageIcon;
-
 import Controladores.BombasControler;
 import Controladores.MovimientosControler;
 import Controladores.PowerPelletsControler;
-import Entities.Enemigo;
+import EnemigosGenerales.Enemigo;
 import Entities.Entidad;
 import Entities.PairTupla;
-import Entities.Protagonista;
+import Protagonistas.Protagonista;
 import Entities.EntidadGrafica;
-import Entities.Explosion;
-import Entities.Mejora;
+import Improvements.Explosion;
+import Improvements.Mejora;
 import Factories.FabricaDominio;
 import Logic.Logica;
 import Nivel.Nivel; 
