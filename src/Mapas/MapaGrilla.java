@@ -20,6 +20,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 abstract public class MapaGrilla {
+	protected Logica miLogica;
 	protected ImageIcon miFondo;
 	protected FabricaDominio fabrica;
 	protected Protagonista miProtagonista;
@@ -51,6 +52,7 @@ abstract public class MapaGrilla {
 		miLogica.actualizarFondo(fondo);
 		ancho = an;
 		altura = al;
+		this.miLogica = miLogica;
 		miNivel = lvl;	
 	}
 	
@@ -125,12 +127,12 @@ abstract public class MapaGrilla {
 		ArrayList<Zona> zonasActivasDePro = mapeoPosEntidadAZona(e, 0);
 		actualizarZonas(zonasActivasDePro, e);
 		if(e.getEntidad() != null) // Si tiene foto que represente esa entidad
-			Logica.getLogica().actualizarEntidad(e.getEntidad(),e.getX(),e.getY(),false);
+			miLogica.actualizarEntidad(e.getEntidad(),e.getX(),e.getY(),false);
 		
 	}
 		
 	public void verificacionesPreMovimientoProtagonista() {
-		Logica.getLogica().captar();
+		miLogica.captar();
 		boolean huboColisiones = verificarColisiones(miProtagonista);
 		if(!huboColisiones) miProtagonista.realizarMovimiento();		
 	}
@@ -246,12 +248,12 @@ abstract public class MapaGrilla {
 		ArrayList<Zona> zonasActivasDeE = mapeoPosEntidadAZona(entidad,0);
 		for(Zona z : zonasActivasDeE)
 			z.remove(entidad);
-		Logica.getLogica().quitarDeLaGui(entidad.getEntidad());
+		miLogica.quitarDeLaGui(entidad.getEntidad());
 		entidad = null;
 	}
 
 	public void actualizarPuntos(int i) {
-		Logica.getLogica().actualizarPuntos(i);
+		miLogica.actualizarPuntos(i);
 	}
 	
 	public void colisionEnemigo(Enemigo e, int movimiento) {
@@ -289,7 +291,7 @@ abstract public class MapaGrilla {
 	}
 
 	public void addEntidad(EntidadGrafica miEntidad) {
-		Logica.getLogica().addEntidad(miEntidad);	
+		miLogica.addEntidad(miEntidad);	
 	}
 
 	public void restarPunto() {
@@ -298,7 +300,7 @@ abstract public class MapaGrilla {
 			for(Zona[] zz: zonas) {
 				for(Zona z: zz) {
 					for(Entidad e: z.obtenerEntidades()) {
-						Logica.getLogica().quitarDeLaGui(e.getEntidad());
+						miLogica.quitarDeLaGui(e.getEntidad());
 					}
 				}
 			}
@@ -352,10 +354,10 @@ abstract public class MapaGrilla {
 			cantPuntos++;
 			for(Zona z:misZonas)
 				z.setEntidad(m);
-			Logica.getLogica().actualizarEntidad(m.getEntidad(),m.getX(),m.getY(),true);
+			miLogica.actualizarEntidad(m.getEntidad(),m.getX(),m.getY(),true);
 			
 		}else {
-			Logica.getLogica().quitarDeLaGui(m.getEntidad());
+			miLogica.quitarDeLaGui(m.getEntidad());
 			m.setEntidad(null);
 			m= null;
 		}
@@ -364,11 +366,11 @@ abstract public class MapaGrilla {
 	public void sacarTodo() {
 		sacarEntidad(miProtagonista);
 		for(Enemigo e: misEnemigos)
-			Logica.getLogica().quitarDeLaGui(e.getEntidad());
+			miLogica.quitarDeLaGui(e.getEntidad());
 		for(Zona[] zz: zonas) {
 			for(Zona z: zz) {
 				for(Entidad e: z.obtenerEntidades()) {
-					Logica.getLogica().quitarDeLaGui(e.getEntidad());
+					miLogica.quitarDeLaGui(e.getEntidad());
 				}
 			}
 		}
@@ -382,14 +384,14 @@ abstract public class MapaGrilla {
 		if(controladorBombas != null)
 			controladorBombas.parar();
 		sacarTodo();
-		Logica.getLogica().gameOver();
+		miLogica.gameOver();
 	}
 
 	public void protagonistaPierdeVida() {
 		encerrarFantasmas();
 		setearProtagonistaAPosicionInicial();
 		miProtagonista.quitarVida();
-		Logica.getLogica().quitarVida();
+		miLogica.quitarVida();
 		//Debereíamos actualizar los labels de las vidas quitando una
 		//Además, reiniciar el juego solo con las localizaciones originales del las entidades móviles y nada más. 
 	}
@@ -420,7 +422,7 @@ abstract public class MapaGrilla {
 	public void comunicarActivacionBomba() {
 		miProtagonista.agregarBomba(miNivel.cantidadBombas());
 		miProtagonista.setCantidadBombas(miNivel.cantidadBombas()); 
-		Logica.getLogica().activarBomba();
+		miLogica.activarBomba();
 	}
 
 	public void ponerBomba() {
@@ -430,7 +432,7 @@ abstract public class MapaGrilla {
 			actualizarEntidad(explosion);
 			controladorBombas = new BombasControler(explosion); 
 		}else {
-			Logica.getLogica().desactivarBomba();
+			miLogica.desactivarBomba();
 		}
 	}
 

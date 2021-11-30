@@ -66,10 +66,10 @@ public class Mapa3 extends MapaGrilla {
 		miProtagonista.setPos(new PairTupla(189, 290));
 		enemigo.setPos(new PairTupla(365,50));
 		
-		Logica.getLogica().actualizarEntidad(enemigo.getEntidad(),enemigo.getX(),enemigo.getY(),false);
-		Logica.getLogica().actualizarEntidad(miProtagonista.getEntidad(),miProtagonista.getX(),miProtagonista.getY(),false);
+		miLogica.actualizarEntidad(enemigo.getEntidad(),enemigo.getX(),enemigo.getY(),false);
+		miLogica.actualizarEntidad(miProtagonista.getEntidad(),miProtagonista.getX(),miProtagonista.getY(),false);
 		
-		Logica.getLogica().pintar();
+		miLogica.pintar();
 	}
 	protected void agregarMejoras() {
 		Mejora m;
@@ -166,7 +166,7 @@ public class Mapa3 extends MapaGrilla {
 
 	private void win() {
 		sacarTodo();
-		Logica.getLogica().win();
+		miLogica.win();
 		
 	}
 
