@@ -66,16 +66,16 @@ public class Mapa3 extends MapaGrilla {
 		miProtagonista.setPos(new PairTupla(189, 290));
 		enemigo.setPos(new PairTupla(365,50));
 		
-		miLogica.actualizarEntidad(enemigo.getEntidad(),enemigo.getX(),enemigo.getY(),false);
-		miLogica.actualizarEntidad(miProtagonista.getEntidad(),miProtagonista.getX(),miProtagonista.getY(),false);
+		Logica.getLogica().actualizarEntidad(enemigo.getEntidad(),enemigo.getX(),enemigo.getY(),false);
+		Logica.getLogica().actualizarEntidad(miProtagonista.getEntidad(),miProtagonista.getX(),miProtagonista.getY(),false);
 		
-		miLogica.pintar();
+		Logica.getLogica().pintar();
 	}
 	protected void agregarMejoras() {
 		Mejora m;
 		int x,y;
 		cantPuntos = 0;
-		agregarPowerPellets();/*
+		agregarPowerPellets();
 		for(int i = 1; i<28;i++) {
 			for (int j = 0; j<28;j++) {
 				x = 9+i*24;
@@ -85,7 +85,7 @@ public class Mapa3 extends MapaGrilla {
 					ubicarPunto(m);
 				}
 			}
-		}*/
+		}
 	}
 	public void encerrarFantasmas() {
 		PairTupla pos = new PairTupla(posResurreccion.getX()-24,posResurreccion.getY());
@@ -166,7 +166,7 @@ public class Mapa3 extends MapaGrilla {
 
 	private void win() {
 		sacarTodo();
-		miLogica.win();
+		Logica.getLogica().win();
 		
 	}
 

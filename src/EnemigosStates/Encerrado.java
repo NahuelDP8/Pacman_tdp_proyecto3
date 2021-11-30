@@ -12,7 +12,6 @@ public class Encerrado implements EstadoEnemigo{
 	public Encerrado(Enemigo e) {
 		miEnemigo = e; 
 		miImagen= miEnemigo.getImagen();
-		//deberiamos cambiar la imagen del enemigo en particular
 	}
 	@Override
 	public void realizarMovimiento() {

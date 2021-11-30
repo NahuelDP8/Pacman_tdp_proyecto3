@@ -151,6 +151,6 @@ public class Mapa1 extends MapaGrilla {
 	@Override
 	protected void nivelSiguiente(Nivel lvl) {
 		sacarTodo();
-		miLogica.nivelSiguiente(lvl);
+		Logica.getLogica().nivelSiguiente(lvl);
 	}
 }
